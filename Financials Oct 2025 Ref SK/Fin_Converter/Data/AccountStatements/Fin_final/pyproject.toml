@@ -1,0 +1,7 @@
+[project]
+name = "Fin_final"
+version = "0.1.0"
+dependencies = [
+    "pandas",
+    "python-docx",
+]

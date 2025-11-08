@@ -1,0 +1,2929 @@
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\April 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+04/01
+Beginning Balance
+36
+Checks
+1
+Withdrawals / Debits
+2
+04/30
+Deposits / Credits
+Ending Balance
+Analysis Period: 03/01/25-03/31/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 04/10/25
+Account Summary - 7986815129
+$8,826.70
+$(12,674.71)
+$(37.00)
+$10,000.00
+$6,114.99
+Statement Period Date: 4/1/2025 - 4/30/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+30
+$0.00
+$0.00
+Checks
+36 checks totaling $12,674.71
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20871 i
+04/04
+29.73
+20944*i
+04/03
+815.71
+20966 i
+04/03
+815.71
+20883*i
+04/07
+153.81
+20945 i
+04/03
+258.15
+20968*i
+04/04
+183.14
+20899*i
+04/07
+151.32
+20947*i
+04/07
+83.89
+20971*i
+04/21
+135.84
+20909*i
+04/07
+139.35
+20949*i
+04/01
+91.20
+20972 i
+04/21
+125.85
+20920*i
+04/03
+141.30
+20950 i
+04/09
+182.96
+20973 i
+04/14
+1,029.20
+20923*i
+04/09
+87.93 20953*i
+04/03
+281.07
+20974 i
+04/18
+815.71
+20927*i
+04/04
+130.72
+20958*i
+04/07
+182.28
+20975 i
+04/22
+1,029.20
+20930*i
+04/07
+90.89 20960*i
+04/03
+815.71
+20976 i
+04/18
+815.71
+20932*i
+04/09
+87.94
+20961 i
+04/04
+209.88
+20978*i
+04/25
+1,029.20
+20936*i
+04/03
+240.40
+20963*i
+04/18
+114.15
+20979 i
+04/28
+815.71
+20937 i
+04/04
+150.01
+20964 i
+04/28
+107.59
+20983*i
+04/28
+94.49
+20940*i
+04/07
+101.39
+20965 i
+04/02
+1,029.20
+20984 i
+04/29
+108.37
+Withdrawals / Debits
+1 item totaling $37.00
+Date
+Amount
+Description
+04/21
+37.00
+OVERDRAFT FEE
+Deposits / Credits
+2 items totaling $10,000.00
+Date
+Amount
+Description
+04/21
+5,000.00
+04/25
+5,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01117609066
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01119033863
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+04/01
+8,735.50 04/09
+2,373.01
+04/22
+3,270.35
+04/02
+7,706.30 04/14
+1,343.81 04/25
+7,241.15
+04/03
+4,338.25 04/18
+(401.76) 04/28
+6,223.36
+04/04
+3,634.77
+04/21
+4,299.55 04/29
+6,114.99
+04/07
+2,731.84
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+FIFTH THIRD
+IF YOU USE TREASURY MANAGEMENT SERVICES, PLEASE NOTE THAT WE HAVE UPDATED OUR TERMS & CONDITIONS. GO TO 53.COM/TM-TC TO
+VIEW.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Aug. 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 8/1/2025 - 8/31/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+08/01
+40
+2
+08/31
+Beginning Balance
+Checks
+Withdrawals / Debits
+Deposits / Credits
+Ending Balance
+Analysis Period: 07/01/25-07/31/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 08/12/25
+Account Summary - 7986815129
+$7,203.70
+$(12,254.09)
+$10,000.00
+$4,949.61
+$0.00
+$0.00
+Checks
+40 checks totaling $12,254.09
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+21050 i
+08/15
+120.70 21117*i
+08/12
+229.17
+21137 i
+08/25
+83.91
+21061*i
+08/13
+119.27 21121*i
+08/27
+393.51
+21138 i
+08/27
+332.59
+21069*i
+08/22
+151.76
+21123*i
+08/25
+94.38
+21139 i
+08/12
+249.44
+21079*i
+08/22
+534.81
+21124 i
+08/19
+333.02
+21141*i
+08/25
+69.92
+21090*i
+08/22
+122.56
+21125 i
+08/06
+413.66
+21142 i
+08/18
+1,029.20
+21093*i
+08/26
+108.15
+21126 i
+08/08
+419.61
+21143 i
+08/20
+419.61
+21095*i
+08/27
+164.31
+21127 i
+08/06
+1,029.20
+21144 i
+08/19
+276.90
+21098*i
+08/04
+58.99
+21128 i
+08/15
+136.35
+21146*i
+08/18
+74.29
+21105*i
+08/27
+154.81
+21130*i
+08/14
+111.44
+21147 i
+08/25
+143.33
+21111*i
+08/04
+306.12
+21133*i
+08/08
+1,029.20
+21148 i
+08/20
+1,029.20
+21112 i
+i
+08/19
+275.16
+21134 i
+08/08
+419.60
+21149 i
+08/26
+419.61
+21113 i
+i
+08/01
+123.85
+21135 i
+08/06
+427.28
+21153*i
+08/26
+59.42
+21114 i
+08/27
+266.66
+21136 i
+08/19
+300.88
+21154 i
+08/28
+78.65
+21115 i
+08/04
+143.57
+Deposits / Credits
+Date
+Amount
+08/13
+5,000.00
+08/26
+5,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01155362821
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01159606693
+2 items totaling $10,000.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+08/01
+7,079.85 08/14
+7,123.30 08/22
+2,318.86
+08/04
+6,571.17 08/15
+6,866.25 08/25
+1,927.32
+08/06
+4,701.03
+08/18
+5,762.76 08/26
+6,340.14
+08/08
+2,832.62 08/19
+4,576.80 08/27
+5,028.26
+08/12
+2,354.01 08/20
+3,127.99 08/28
+4,949.61
+08/13
+7,234.74
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+FIFTH THIRD
+This page intentionally left blank.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Dec. 2024 Payroll.PDF ---
+5/3
+FIFTH THIRD BANK
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+12/01
+Beginning Balance
+44
+Checks
+1
+Withdrawals / Debits
+4
+Deposits / Credits
+12/31
+Ending Balance
+Analysis Period: 11/01/24-11/30/24
+Standard Monthly Service Charge
+Service Charge withdrawn on 12/11/24
+Account Summary - 7986815129
+$382.47
+$(13,444.50)
+$(111.00)
+$17,000.00
+$3,826.97
+Statement Period Date: 12/1/2024 - 12/31/2024
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+$0.00
+$0.00
+Checks
+44 checks totaling $13,444.50
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20651 i
+12/24
+65.93
+20842*i
+12/30
+141.83
+20857 i
+12/20
+448.17
+20777*i
+12/24
+62.07
+20843 i
+12/02
+107.38
+20859*i
+12/18
+222.87
+20800*i
+12/23
+42.67
+20844 i
+12/09
+55.08
+20860 i
+12/16
+196.11
+20820*i
+12/20
+452.42
+20845 i
+12/16
+34.96
+20861 i
+12/30
+293.14
+20822*i
+12/05
+137.66
+20846 i
+12/11
+1,027.20
+20862 i
+12/11
+168.85
+20825*i
+12/03
+380.52
+20847 i
+12/13
+812.64
+20863 i
+12/17
+350.56
+20828*i
+12/02
+226.06
+20848 i
+12/20
+365.69
+20865*i
+12/23
+347.72
+20832*i
+12/20
+180.97
+20849 i
+12/18
+75.39
+20866 i
+12/27
+188.79
+20833 i
+12/03
+62.93
+20850 i
+12/10
+107.37
+20867 i
+12/23
+101.31
+20834 i
+12/24
+44.60
+20851 i
+12/16
+215.73
+20868 i
+12/19
+1,027.20
+20835 i
+12/09
+140.31
+20852 i
+12/18
+420.94
+20869 i
+12/19
+812.64
+20837*i
+12/09
+812.64
+20853 i
+12/16
+287.65
+20872*i
+12/26
+129.34
+20838 i
+12/20
+365.69
+20854 i
+12/16
+196.47
+20873 i
+12/20
+103.95
+20839 i
+12/11
+127.00
+20855 i
+12/11
+1,027.20
+20874 i
+12/30
+182.28
+20840 i
+12/18
+81.93
+20856 i
+12/13
+812.64
+Withdrawals / Debits
+1 item totaling $111.00
+Date
+Amount
+Description
+12/19
+111.00
+OVERDRAFT FEE
+Deposits / Credits
+4 items totaling $17,000.00
+Date
+Amount
+Description
+12/03
+3,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01073543064
+12/09
+4,000.00
+12/19
+7,000.00
+12/27
+3,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01074945610
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01078634916
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01081111360
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+5/3
+FIFTH THIRD BANK
+Daily Balance Summary
+Date
+Amount
+Date
+Amount Date
+Amount
+12/02
+49.03
+12/13
+1,376.99
+12/23
+1,934.95
+12/03
+2,605.58 12/16
+446.07
+12/24
+1,762.35
+12/05
+2,467.92 12/17
+95.51 12/26
+1,633.01
+12/09
+5,459.89 12/18
+(705.62)
+12/27
+4,444.22
+12/10
+5,352.52 12/19
+4,343.54 12/30
+3,826.97
+12/11
+3,002.27 12/20
+2,426.65
+WE'RE CHANGING OUR FEE-FREE PARTNER ATM NETWORK. BEGINNING FEBRUARY 3, 2025, USING AN ATM THAT IS NO LONGER IN THE NETWORK
+COULD RESULT IN FEES. WE WILL STILL HAVE A NATIONWIDE NETWORK OF FEE-FREE ATMS, AND WE'VE MADE IT EASY TO FIND ONE NEAR YOU!
+CHECK THE ATM LOCATOR ON 53.COM OR OUR MOBILE BANKING APP ON OR AFTER FEBRUARY 3, 2025.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Feb. 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+02/01 Beginning Balance
+Account Summary - 7986815129
+$4,622.68
+16
+Checks
+1
+Withdrawals / Debits
+2 Deposits / Credits
+02/28
+Ending Balance
+Analysis Period: 01/01/25-01/31/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 02/12/25
+$(8,599.74)
+$(37.00)
+$8,000.00
+$3,985.94
+Statement Period Date: 2/1/2025 - 2/28/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+28
+$0.00
+$0.00
+Checks
+16 checks totaling $8,599.74
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20826 i
+02/05
+128.94
+20906 i
+02/05
+815.71
+20915*i
+02/20
+1,029.20
+20891*i
+02/18
+235.70 20908*i
+02/03
+94.49
+20916 i
+02/18
+815.71
+20897*i
+02/25
+118.87
+20910*i
+02/19
+251.20
+20918*i
+02/24
+1,029.20
+20898 i
+02/03
+78.65
+20911 i
+02/06
+1,029.20
+20919 i
+02/27
+815.71
+20903*i
+02/20
+176.41
+20912 i
+02/20
+815.71
+20922*i
+02/24
+135.84
+20905*i
+02/03
+1,029.20
+Withdrawals / Debits
+1 item totaling $37.00
+Date
+Amount
+Description
+02/25
+37.00
+OVERDRAFT FEE
+Deposits / Credits
+2 items totaling $8,000.00
+Date
+Amount
+Description
+02/12
+3,000.00
+02/25
+5,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01095363339
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01099335486
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+02/03
+3,420.34 02/18
+3,395.08 02/24
+(42.48)
+02/05
+2,475.69 02/19
+3,143.88 02/25
+4,801.65
+02/06
+1,446.49
+02/20
+1,122.56 02/27
+3,985.94
+02/12
+4,446.49
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+Save 10% on
+TurboTax®1
+Save Now
+FIFTH THIRD
+Here's one more way we make banking a Fifth Third
+Better®-a 10% discount on TurboTax®.1
+Scan to save now:
+INTUIT
+INTUIT
+turbotax
+turbotax
+1. Visit http://turbotax.intuit.com/lp/yoy/guarantees.jsp for TurboTax product guarantees and other important information. Limited
+time offer for TurboTax 2024. Discount applies to TurboTax federal products only. Actual prices are determined at the time of
+print or e-file and are subject to change without notice. Terms, conditions, features, availability, pricing, fees, service and support
+options subject to change without notice. Intuit, TurboTax and TurboTax Online, amount others, are registered trademarks
+and/or service marks of Intuit Inc. in the United States and other counties.
+Fifth Third Bank, National Association, may refer customers to Intuit's TurboTax products and services and may receive
+compensation for those referrals. Customers are not required to obtain products or services from Intuit.
+LIDN 7836
+Fifth Third Bank, National Association. Member FDIC. Equal Housing Lender. Fifth Third and Fifth Third Bank are registered service marks of
+Fifth Third Bancorp.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Jan. 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Account Summary - 7986815129
+01/01
+Beginning Balance
+29
+Checks
+Withdrawals / Debits
+4
+Deposits / Credits
+$3,826.97
+$(12,704.29)
+$13,500.00
+01/31 Ending Balance
+$4,622.68
+Analysis Period: 12/01/24 - 12/31/24
+Standard Monthly Service Charge
+Service Charge withdrawn on 01/13/25
+Statement Period Date: 1/1/2025 - 1/31/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+$0.00
+$0.00
+Checks
+29 checks totaling $12,704.29
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20801 i
+01/16
+49.54
+20880 i
+01/02
+812.64
+20892*i
+01/17
+249.29
+20813*i
+01/21
+106.73
+20881 i
+01/23
+290.51
+20893 i
+01/17
+270.70
+20841*i
+01/15
+98.31
+20882 i
+01/13
+125.86
+20894 i
+01/15
+1,029.20
+20858*i
+01/13
+152.72
+20884*i
+01/02
+1,029.20
+20895 i
+01/22
+815.64
+20864*i
+01/10
+182.28
+20885 i
+01/02
+815.64
+20896 i
+01/23
+434.57
+20870*i
+01/23
+287.38
+20886 i
+01/13
+104.24
+20900*i
+01/27
+185.77
+20876*i
+01/13
+184.78
+20887 i
+01/09
+1,029.20
+20901 i
+01/23
+1,029.20
+20877 i
+01/10
+153.40
+20888 i
+01/22
+815.64
+20902 i
+01/24
+815.64
+20878 i
+01/16
+34.96
+20889 i
+01/23
+276.91
+20904*i
+01/31
+185.28
+20879 i
+01/02
+1,027.20
+20890 i
+01/13
+111.86
+Deposits / Credits
+Date
+Amount
+01/02
+3,500.00
+01/09
+3,000.00
+01/21
+4,000.00
+01/28
+3,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01082887061
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01084971087
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01088493410
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01090549125
+4 items totaling $13,500.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+01/02
+3,642.29 01/16
+3,385.94 01/24
+1,993.73
+01/09
+5,613.09 01/17
+2,865.95 01/27
+1,807.96
+01/10
+5,277.41
+01/21
+6,759.22 01/28
+4,807.96
+01/13
+4,597.95
+01/22
+5,127.94 01/31
+4,622.68
+01/15
+3,470.44 01/23
+2,809.37
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 4
+Analysis Billing Updates
+FIFTH THIRD
+Summary
+Fifth Third is updating and enhancing some of our billing and pricing processes.
+To support these efforts, the changes below are being implemented effective March 1, 2025.
+These changes are intended to be fee neutral or have an immaterial impact.*
+Description of changes
+Bank ID Consolidation
+(Bank ID is also known as Affiliate Code)
+Basis Days Calculation - Required
+Balance
+Blocked Composite Account Types
+Calculation Basis Days for Account
+Closures
+CPS Device ID on Statement
+CPS Use Tax Service Codes
+A Bank ID is the three-digit number that precedes an account
+number. Example: If an account number is displayed as (023) D
+XXXXXXX, the Bank ID is 023.
+Bank IDs will be updated to 879 for all domestic accounts.
+Canadian USD accounts will use Bank ID 932. Canadian Dollar
+accounts will use Bank ID 935.
+To align with how Earnings Credit is calculated, we will move to a
+static 30-day period for calculating Required Balance.
+Certain account types do not allow negotiated pricing. If a
+composite account has been established with any of these
+account types, it may have its account type updated to enable
+negotiated pricing. This will help ensure that child accounts
+underneath the composite account inherit the intended pricing.
+Certain calculations for closing accounts in the Cincinnati region
+will use the number of calendar days instead of the number of
+days that the account was open. Examples: Earnings Credit and
+Deposit Administration Fee.
+Statements for CPS clients will no longer contain a listing of
+individual device IDs. This information will be available for Excel
+download from Fifth Third Direct. For many clients, this will
+materially reduce statement length.
+To facilitate the processing of Use Tax in select states (currently
+New Jersey, Illinois and Maine), certain Currency Processing
+Solution (CPS) devices may have their billing transitioned to a
+new service code. Below are the new service names that may
+appear on statements:
+CPS 1K-NT HARDWARE FEE
+CPS 2K-NT HARDWARE FEE
+CPS 2KT-NT HARDWARE FEE
+CPS 6K-NT HARDWARE FEE
+CPS 10K-NT RCYCLR HARDWARE FEE
+Page 2 of 4
+EDI 822 File Processing
+Intramonth Statement
+IOLTA Processing Improvements
+Paper Analysis Statement Fee
+Sales Tax on Statement
+Select Price Points on IOLTA or
+IOTA Accounts Based in Ohio
+Standardizing G33 "Transactions"
+Pricing
+Uncollected Balance Usage Fee
+Calculation
+Updated Statement Layout
+Fifth Third will transition to an industry-standard file format for
+EDI 822 file creation. Impacted clients were given the opportunity
+to test the new format in 2024. New EDI 822 files will be
+transmitted in the same method as your previous EDI 822 files.
+Fifth Third will have the ability to generate an intramonth
+"snapshot" statement, providing a month-to-date view of select
+activities and volumes.
+Certain fees for IOLTA and/or IOTA accounts will be waived
+upfront instead of assessed and then credited back at a
+later date.
+This service will move from a tiered pricing structure to a per
+unit structure.
+Previously, all paper analysis statement volume within a
+relationship was totaled and priced on one account. Pricing was
+tiered based on volume.
+Going forward, paper analysis statement volume will be listed and
+priced on only the individual account(s) using the service. The
+per unit price will be determined based on past activity, to match
+the current fees being assessed as closely as possible.
+Sales tax will be displayed in the Results Summary section of the
+statement instead of the Services Performed section.
+Certain price points for IOLTA or IOTA accounts in Ohio may
+be updated to help ensure that client billing remains in line with
+prior experience.
+The pricing for "Transactions" is intended to be consistent across
+a relationship and at the standard rate. Discrepancies to this
+pricing may be adjusted.
+The formula to determine the Uncollected Balance Usage Fee
+(formerly known as Negative Collected) will leverage calendar
+days in the month, as opposed to a static number.
+An enhanced statement layout will be provided. For details on
+changes, please reach out to your relationship team.
+We're here to help
+If you have any questions, please contact your Treasury Management Officer. You can also call
+our Commercial Support Center at 866-475-0729, Monday through Friday, 7 a.m. to 10 p.m., ET
+for additional support.
+*Your actual impact could vary slightly depending on rounding, account structure, volume changes or other variables.
+Deposit and credit products provided by Fifth Third Bank, National Association. Member FDIC.
+Page 3 of 4
+FIFTH THIRD
+This page intentionally left blank.
+Page 4 of 4
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\July 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 7/1/2025 - 7/31/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+07/01
+51
+2
+07/31
+Beginning Balance
+Checks
+Withdrawals / Debits
+Deposits / Credits
+Ending Balance
+Analysis Period: 06/01/25-06/30/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 07/11/25
+Account Summary - 7986815129
+$8,906.68
+$(13,702.98)
+$12,000.00
+$7,203.70
+$0.00
+$0.00
+Checks
+51 checks totaling $13,702.98
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20468 i
+07/22
+122.42
+21070*i
+07/07
+222.74
+21088 i
+07/10
+1,029.20
+20480*i
+07/22
+117.30
+21071 i
+07/08
+52.44
+21089 i
+07/17
+419.60
+20772*i
+07/21
+237.64
+21072 i
+07/21
+42.60
+21091*i
+07/18
+339.45
+20798*i
+07/21
+226.54
+21073 i
+07/15
+228.72
+21092 i
+07/28
+129.34
+20811*i
+07/21
+98.32
+21074 i
+07/02
+129.86
+21094*i
+07/21
+117.87
+20957*i
+07/15
+189.28
+21075 i
+07/18
+249.36
+21096*i
+07/28
+111.44
+21009*i
+07/03
+213.25
+21076 i
+07/15
+195.77
+21097 i
+07/29
+61.72
+21015*i
+07/21
+145.76
+21077 i
+07/09
+1,029.20
+21099*i
+07/15
+117.87
+21031*i
+07/21
+204.32
+21078 i
+07/11
+419.61
+21100 i
+07/30
+76.90
+21041*i
+07/15
+228.72
+21080*i
+07/07
+388.17
+21101 i
+07/24
+1,029.20
+21056*i
+07/07
+397.31
+21081 i
+07/08
+292.67
+21102 i
+07/28
+419.61
+21058*i
+07/21
+88.50
+21082 i
+07/21
+174.54
+21103 i
+07/22
+313.42
+21059 i
+07/07
+69.92
+21083 i
+07/15
+423.47
+21104 i
+07/18
+371.59
+21060 i
+07/07
+121.26
+21084 i
+07/15
+160.80
+21106*i
+07/21
+180.44
+21062*i
+07/07
+106.20
+21085 i
+07/10
+111.44
+21108*i
+07/30
+136.35
+21064*i
+07/14
+59.42
+21086 i
+07/18
+114.14
+21109 i
+07/28
+1,029.20
+21068*i
+07/11
+419.61 21087 i
+07/15
+118.87
+21110 i
+07/28
+419.61
+Deposits / Credits
+2 items totaling $12,000.00
+Date
+Amount
+Description
+07/15
+5,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01145630094
+07/30
+7,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01150598559
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+3
+FIFTH THIRD
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+07/02
+8,776.82
+07/11
+3,903.80 07/22
+3,617.07
+07/03
+8,563.57
+07/14
+3,844.38 07/24
+2,587.87
+07/07
+7,257.97
+07/15
+7,180.88 07/28
+478.67
+07/08
+6,912.86
+07/17
+6,761.28 07/29
+416.95
+07/09
+5,883.66 07/18
+5,686.74
+07/30
+7,203.70
+07/10
+4,743.02
+07/21
+4,170.21
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\June 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 6/1/2025 - 6/30/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+30
+06/01
+52
+3
+06/30
+Beginning Balance
+Checks
+Withdrawals / Debits
+Deposits / Credits
+Ending Balance
+Analysis Period: 05/01/25-05/31/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 06/11/25
+Account Summary - 7986815129
+$4,197.61
+$(15,290.93)
+$20,000.00
+$8,906.68
+$0.00
+$0.00
+Checks
+52 checks totaling $15,290.93
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+2105 i
+06/26
+88.50
+21024 i
+06/02
+173.14
+21043 i
+06/17
+210.75
+20967*i
+06/20
+250.84
+21025 i
+06/11
+115.36
+21044 i
+06/13
+1,029.20
+20970*i
+06/03
+123.85
+21026 i
+06/03
+1,029.20
+21045 i
+06/12
+419.60
+20977*i
+06/20
+115.25
+21027 i
+06/05
+419.61
+21046 i
+06/12
+59.43
+20980*i
+06/20
+144.45
+21028 i
+06/30
+281.07
+21047 i
+06/30
+129.86
+20988*i
+06/30
+73.43
+21029 i
+06/12
+532.32
+21048 i
+06/18
+131.09
+20991*i
+06/20
+399.07
+21030 i
+06/16
+290.18
+21051*i
+06/30
+229.41
+21003*i
+06/20
+83.04
+21032*i
+06/03
+154.81
+21052 i
+06/30
+132.86
+21006*i
+06/02
+226.15
+21033 i
+06/30
+101.60
+21053 i
+06/20
+1,029.20
+21007 i
+06/17
+114.79
+21034 i
+06/16
+232.70
+21054 i
+06/24
+419.61
+21012*i
+06/30
+107.93
+21035 i
+06/09
+1,029.20
+21055 i
+06/30
+107.94
+21015*i
+06/27
+145.76
+21036 i
+06/12
+419.61 21057*i
+06/23
+180.26
+21016 i
+06/03
+104.88
+21037 i
+06/30
+240.39
+21063*i
+06/24
+197.76
+21019*i
+06/05
+419.61
+21038 i
+06/12
+480.89
+21065*i
+06/30
+133.81
+21020 i
+06/30
+255.00
+21039 i
+06/16
+223.75
+21066 i
+06/30
+66.43
+21021 i
+06/12
+349.59
+21040 i
+06/26
+215.43
+21067 i
+06/30
+1,029.20
+21022 i
+06/02
+364.06
+21042*i
+06/16
+203.21
+21331*i
+06/26
+204.32
+21023 i
+06/17
+71.53
+Deposits / Credits
+Date
+Amount
+06/03
+5,000.00
+06/17
+5,000.00
+06/25
+10,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01131850421
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01136444736
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01139000438
+3 items totaling $20,000.00
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+3
+FIFTH THIRD
+Daily Balance Summary
+Date
+06/02
+06/03
+06/05
+06/09
+06/11
+06/12
+Amount Date
+Amount Date
+Amount
+3,434.26
+06/13
+1,747.10 06/24
+2,449.62
+7,021.52 06/16
+797.26 06/25
+12,449.62
+6,182.30
+06/17
+5,400.19 06/26
+11,941.37
+5,153.10
+06/18
+5,269.10 06/27
+11,795.61
+5,037.74 06/20
+3,247.25 06/30
+8,906.68
+2,776.30 06/23
+3,066.99
+IMPORTANT CHANGES TO FUNDS AVAILABILITY BEGINNING JULY 1, 2025: A MINIMUM OF $275 (PREVIOUSLY $225) OF YOUR TOTAL CHECK
+DEPOSIT AMOUNT WILL BE AVAILABLE ON THE NEXT BUSINESS DAY AFTER WE RECEIVE THE DEPOSIT. ADDITIONALLY, LONGER DELAYS MAY
+APPLY FOR CHECKS TOTALING MORE THAN $6,725 (PREVIOUSLY $5,525) THAT ARE DEPOSITED ON THE SAME DAY. PLEASE REFERENCE YOUR
+DEPOSIT ACCOUNT RULES AND REGULATIONS FOR MORE INFORMATION.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\March 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Account Summary - 7986815129
+03/01
+Beginning Balance
+23
+Checks
+Withdrawals / Debits
+3
+Deposits / Credits
+$3,985.94
+$(9,159.24)
+$14,000.00
+03/31 Ending Balance
+$8,826.70
+Analysis Period: 02/01/25 - 02/28/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 03/12/25
+Statement Period Date: 3/1/2025 - 3/31/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+$0.00
+$0.00
+Checks
+23 checks totaling $9,159.24
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount Number
+Date Paid
+Amount
+20917 i
+03/13
+91.21
+20934 i
+03/06
+1,029.20
+20948*i
+03/17
+158.32
+20921*i
+03/31
+85.21
+20935 i
+03/10
+815.71 20951*i
+03/24
+1,029.20
+20924*i
+03/03
+1,029.20
+20938*i
+03/31
+101.39
+20952 i
+03/21
+815.71
+20925 i
+03/10
+815.71
+20939 i
+03/31
+95.05
+20954*i
+03/31
+122.36
+20928*i
+03/12
+90.89
+20941*i
+03/19
+91.77
+20955 i
+03/24
+97.76
+20929 i
+03/31
+85.22
+20942 i
+03/10
+127.34
+20956 i
+03/31
+172.26
+20931*i
+03/10
+90.89
+20943 i
+03/18
+1,029.20
+20959*i
+03/28
+1,029.20
+20933*i
+03/21
+90.89 20946*i
+03/31
+65.55
+Deposits / Credits
+Date
+Amount
+03/04
+4,000.00
+03/13
+5,000.00
+03/31
+5,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01101958710
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01104929034
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01110638689
+3 items totaling $14,000.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+03/03
+2,956.74 03/13
+8,895.79 03/21
+6,709.90
+03/04
+6,956.74 03/17
+8,737.47 03/24
+5,582.94
+03/06
+5,927.54
+03/18
+7,708.27 03/28
+4,553.74
+03/10
+4,077.89
+03/19
+7,616.50 03/31
+8,826.70
+03/12
+3,987.00
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+Save 10% on
+TurboTax®1
+Save Now
+FIFTH THIRD
+Here's one more way we make banking a Fifth Third
+Better®-a 10% discount on TurboTax®.1
+Scan to save now:
+INTUIT
+INTUIT
+turbotax
+turbotax
+1. Visit http://turbotax.intuit.com/lp/yoy/guarantees.jsp for TurboTax product guarantees and other important information. Limited
+time offer for TurboTax 2024. Discount applies to TurboTax federal products only. Actual prices are determined at the time of
+print or e-file and are subject to change without notice. Terms, conditions, features, availability, pricing, fees, service and support
+options subject to change without notice. Intuit, TurboTax and TurboTax Online, amount others, are registered trademarks
+and/or service marks of Intuit Inc. in the United States and other counties.
+Fifth Third Bank, National Association, may refer customers to Intuit's TurboTax products and services and may receive
+compensation for those referrals. Customers are not required to obtain products or services from Intuit.
+LIDN 7836
+Fifth Third Bank, National Association. Member FDIC. Equal Housing Lender. Fifth Third and Fifth Third Bank are registered service marks of
+Fifth Third Bancorp.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\May 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 5/1/2025 - 5/31/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+05/01
+32
+2
+05/31
+Beginning Balance
+Checks
+Withdrawals / Debits
+Deposits / Credits
+Ending Balance
+Analysis Period: 04/01/25-04/30/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 05/12/25
+Account Summary - 7986815129
+$6,114.99
+$(11,917.38)
+$10,000.00
+$4,197.61
+$0.00
+$0.00
+Checks
+32 checks totaling $11,917.38
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20875 i
+05/05
+98.22
+20990 i
+05/07
+815.71
+21002 i
+05/21
+419.61
+20907*i
+05/29
+323.88
+20992*i
+05/19
+564.46
+21004*i
+05/19
+532.32
+20913*i
+05/29
+189.27
+20993 i
+05/05
+230.75
+21005 i
+05/19
+298.65
+20926*i
+05/29
+243.54
+20994 i
+05/12
+114.14
+21008*i
+05/29
+296.62
+20969*i
+05/13
+116.99
+20995 i
+05/05
+111.43
+21010*i
+05/19
+1,029.20
+20981*i
+05/19
+300.89
+20996 i
+05/08
+103.01
+21011 i
+05/21
+419.60
+20982 i
+05/05
+104.88
+20997 i
+05/06
+324.09
+21013*i
+05/19
+416.60
+20985*i
+05/09
+129.86
+20998 i
+05/30
+117.85
+21014 i
+05/19
+209.76
+20986 i
+05/07
+211.75
+20999 i
+05/28
+223.86
+21017*i
+05/27
+333.40
+20987 i
+05/05
+255.91
+21000 i
+05/19
+293.53
+21018 i
+05/22
+1,029.20
+20989*i
+05/01
+1,029.20 21001 i
+05/08
+1,029.20
+Deposits / Credits
+Date
+Amount
+05/06
+5,000.00
+05/27
+5,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01122692185
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01129317536
+2 items totaling $10,000.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+05/01
+5,085.79 05/09
+6,670.98 05/22
+926.03
+05/05
+4,284.60 05/12
+6,556.84 05/27
+5,592.63
+05/06
+8,960.51 05/13
+6,439.85 05/28
+5,368.77
+05/07
+7,933.05
+05/19
+2,794.44 05/29
+4,315.46
+05/08
+6,800.84 05/21
+1,955.23 05/30
+4,197.61
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+FIFTH THIRD
+This page intentionally left blank.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Nov. 2024 Payroll.PDF ---
+5/3
+FIFTH THIRD BANK
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 11/1/2024 - 11/30/2024
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+30
+11/01
+Beginning Balance
+Deposits / Credits
+44
+Checks
+Withdrawals / Debits
+3
+11/30
+Ending Balance
+Analysis Period: 10/01/24 - 10/31/24
+Standard Monthly Service Charge
+Service Charge withdrawn on 11/13/24
+Account Summary - 7986815129
+$4,694.91
+$(14,312.44)
+$10,000.00
+$382.47
+$0.00
+$0.00
+Checks
+44 checks totaling $14,312.44
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20657 i
+11/18
+91.88
+20796 i
+11/15
+428.45
+20814*i
+11/18
+106.72
+20721*i
+11/12
+175.29
+20797 i
+i
+11/14
+111.45
+20815 i
+i
+11/14
+110.87
+20736*i
+11/12
+287.15
+20798 i
+11/18
+226.54
+20816 i
+11/25
+141.84
+20747*i
+11/12
+215.73
+20799 i
+11/12
+141.82
+20817 i
+11/25
+223.75
+20755*i
+11/12
+48.95
+20802*i
+11/04
+271.67
+20818 i
+11/18
+1,027.20
+20763*i
+11/12
+153.81
+20803 i
+11/18
+113.36
+20819 i
+11/27
+812.64
+20773*i
+11/12
+234.71
+20804 i
+11/13
+111.88
+20821*i
+11/18
+175.73
+20781*i
+11/13
+486.74
+20805 i
+11/08
+1,027.20
+20823*i
+11/18
+131.58
+20785*i
+11/12
+172.79
+20806 i
+11/14
+812.64
+20824 i
+11/25
+133.66
+20786 i
+11/13
+104.39
+20807 i
+11/13
+350.43
+20827*i
+11/26
+240.70
+20787 i
+11/01
+125.22
+20808 i
+11/15
+531.32
+20829*i
+11/25
+69.92
+20791*i
+11/04
+120.36
+20809 i
+11/14
+114.70
+20830 i
+11/29
+1,027.20
+20792 i
+11/04
+368.56
+20810 i
+11/12
+97.81
+20831 i
+11/27
+812.64
+20794*i
+11/05
+812.64
+20811 i
+11/19
+98.32 20836*i
+11/29
+1,027.20
+20795 i
+11/13
+234.72
+20812 i
+11/12
+200.26
+Deposits / Credits
+Date
+Amount
+11/08
+4,000.00
+11/15
+3,000.00
+11/22
+3,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01066034776
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01068071528
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01070222979
+3 items totaling $10,000.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+11/01
+4,569.69 11/13
+2,952.78 11/22
+4,872.02
+11/04
+3,809.10 11/14
+1,803.12 11/25
+4,302.85
+11/05
+2,996.46 11/15
+3,843.35 11/26
+4,062.15
+11/08
+5,969.26 11/18
+1,970.34 11/27
+2,436.87
+11/12
+4,240.94 11/19
+1,872.02 11/29
+382.47
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+5/3
+FIFTH THIRD BANK
+This page intentionally left blank.
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Oct. 2024 Payroll.PDF ---
+5/3
+FIFTH THIRD BANK
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Statement Period Date: 10/1/2024 - 10/31/2024
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+31
+10/01
+52
+Beginning Balance
+Checks
+Withdrawals / Debits
+4
+Deposits / Credits
+Account Summary - 7986815129
+$2,157.48
+$(15,462.57)
+$18,000.00
+$4,694.91
+10/31 Ending Balance
+Analysis Period: 09/01/24-09/30/24
+Standard Monthly Service Charge
+Service Charge withdrawn on 10/10/24
+$0.00
+$0.00
+Checks
+52 checks totaling $15,462.57
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20685 i
+10/15
+132.35
+20750 i
+10/30
+64.23
+20769 i
+10/24
+812.64
+20691*i
+10/30
+51.39
+20751 i
+10/07
+219.23
+20770 i
+10/28
+537.76
+20692 i
+10/16
+100.89
+20752 i
+10/04
+951.80
+20771 i
+10/23
+113.36
+20707*i
+10/15
+237.22
+20753 i
+10/10
+812.64
+20772 i
+10/28
+237.64
+20710*i
+10/16
+115.99
+20754 i
+10/21
+62.93
+20774*i
+10/30
+34.86
+20717*i
+10/03
+227.84
+20756*i
+10/28
+116.87
+20775 i
+10/24
+374.53
+20720*i
+10/16
+85.22
+20757 i
+10/15
+951.80
+20776 i
+10/28
+116.87
+20733*i
+10/15
+110.88
+20758 i
+10/16
+812.64
+20778*i
+10/29
+294.65
+20735*i
+10/16
+194.48
+20759 i
+10/21
+255.31
+20779 i
+10/24
+951.80
+20738*i
+10/07
+153.81
+20760 i
+10/23
+178.79
+20780 i
+10/31
+812.64
+20739 i
+10/01
+349.59
+20761 i
+10/15
+100.88
+20782*i
+10/28
+406.99
+20742*i
+10/03
+293.57
+20762 i
+10/16
+107.15
+20783 i
+10/28
+127.82
+20743 i
+10/15
+151.32
+20764*i
+10/21
+101.30
+20784 i
+10/29
+188.93
+20744 i
+10/28
+131.09
+20765 i
+10/30
+56.91
+20788*i
+10/28
+63.20
+20745 i
+10/07
+107.03
+20766 i
+10/16
+116.87
+20789 i
+10/30
+60.58
+20746 i
+10/16
+128.10
+20767 i
+10/24
+469.92
+20790 i
+10/30
+215.73
+20748*i
+10/07
+116.66
+20768 i
+10/17
+951.80
+20793*i
+10/30
+1,027.20
+20749 i
+10/15
+66.87
+Deposits / Credits
+Date
+Amount
+10/02
+3,000.00
+10/08
+4,000.00
+10/17
+10/29
+5,000.00
+6,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01054495861
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01056310296
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01059074449
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01062545060
+4 items totaling $18,000.00
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+5/3
+FIFTH THIRD BANK
+Daily Balance Summary
+Date
+Amount
+Date
+Amount Date
+Amount
+10/01
+1,807.89 10/10
+10/02
+4,807.89 10/15
+5,925.31 10/24
+4,173.99 10/28
+4,240.27
+2,502.03
+10/03
+4,286.48
+10/16
+2,512.65 10/29
+7,018.45
+10/04
+3,334.68 10/17
+7,560.85 10/30
+5,507.55
+10/07
+2,737.95 10/21
+7,141.31 10/31
+4,694.91
+10/08
+6,737.95 10/23
+6,849.16
+IF YOU USE TREASURY MANAGEMENT SERVICES, PLEASE NOTE THAT WE HAVE UPDATED OUR TERMS & CONDITIONS. GO TO 53.COM/TM-TC TO
+VIEW
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Sept. 2024 Payroll.PDF ---
+FIFTH THIRD BANK
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Account Summary - 7986815129
+09/01
+Beginning Balance
+50
+Checks
+Withdrawals / Debits
+3
+Deposits / Credits
+09/30
+Ending Balance
+Analysis Period: 08/01/24 - 08/31/24
+Standard Monthly Service Charge
+Service Charge withdrawn on 09/12/24
+$4,033.93
+$(14,876.45)
+$13,000.00
+$2,157.48
+Statement Period Date: 9/1/2024 - 9/30/2024
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+30
+$0.00
+$0.00
+Checks
+50 checks totaling $14,876.45
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20507 i
+09/23
+55.13
+20686*i
+09/23
+121.27
+20713 i
+09/09
+190.77
+20595*i
+09/23
+28.09
+20687 i
+09/03
+100.88
+20714 i
+Fi
+09/16
+213.27
+20603*i
+09/25
+102.25
+20693*i
+09/03
+69.92
+20715 i
+09/13
+951.80
+20611*i
+09/25
+241.59
+20696*i
+09/05
+812.64
+20716 i
+09/18
+812.64
+20619*i
+09/03
+209.75
+20697 i
+09/25
+244.52
+20718*i
+09/23
+128.84
+20625*i
+09/25
+343.56
+20698 i
+09/04
+182.28
+20719 i
+09/23
+94.74
+20635*i
+09/25
+289.64
+20699 i
+09/23
+108.16
+20722*i
+09/23
+92.09
+20638*i
+09/03
+221.74
+20700 i
+09/06
+191.20
+20723 i
+09/24
+197.76
+20643*i
+09/25
+78.66
+20702*i
+09/09
+190.77
+20729*i
+09/24
+213.25
+20649*i
+09/03
+92.10
+20703 i
+09/16
+188.28
+20730 i
+09/18
+951.80
+20666*i
+09/03
+113.36
+20704 i
+09/05
+213.25
+20731 i
+09/27
+812.64
+20670*i
+09/23
+126.34
+20705 i
+09/05
+951.80
+20732 i
+09/25
+513.23
+20676*i
+09/23
+90.89
+20706 i
+09/18
+812.64
+20734*i
+09/23
+101.60
+20678*i
+09/09
+82.90
+20708*i
+09/23
+114.71
+20737*i
+09/24
+104.88
+20680*i
+09/03
+122.85
+20709 i
+09/09
+94.75 20740*i
+09/27
+951.80
+20683*i
+09/05
+812.64
+20711*i
+09/12
+34.96
+20741 i
+09/27
+812.64
+20684 i
+09/25
+248.44
+20712 i
+09/30
+40.74
+Deposits / Credits
+3 items totaling $13,000.00
+Date
+Amount
+Description
+09/04
+4,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01045916950
+09/16
+4,000.00
+09/25
+5,000.00
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01049164226
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01052286650
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+5/3
+FIFTH THIRD BANK
+Daily Balance Summary
+Date
+Amount
+Date
+Amount Date
+Amount
+09/03
+3,103.33
+09/12
+3,345.37 09/24
+1,837.19
+09/04
+6,921.05
+09/13
+2,393.57 09/25
+4,775.30
+09/05
+4,130.72 09/16
+5,992.02 09/27
+2,198.22
+09/06
+3,939.52 09/18
+3,414.94 09/30
+2,157.48
+09/09
+3,380.33
+09/23
+2,353.08
+Page 2 of 2
+--- D:\Personal\Financials Oct 2025 Ref SK\Fin_Converter\Data\PayrollStatements\Sept. 2025 Payroll.PDF ---
+3
+FIFTH THIRD
+(CHICAGO)
+P.O. BOX 630900 CINCINNATI OH 45263-0900
+ROYALTY BANQUET HALL
+PAYROLL ACCOUNT
+8675 ARCHER AVE
+WILLOW SPRINGS IL 60480-1202
+Beginning Balance
+Account Summary - 7986815129
+09/01
+40
+Checks
+Withdrawals / Debits
+3
+Deposits / Credits
+$4,949.61
+$(11,919.56)
+$11,000.00
+09/30 Ending Balance
+$4,030.05
+Analysis Period: 08/01/25 - 08/31/25
+Standard Monthly Service Charge
+Service Charge withdrawn on 09/11/25
+Statement Period Date: 9/1/2025 - 9/30/2025
+Account Type: 5/3 BUSINESS CKG
+Account Number: 7986815129
+Banking Center: 222 S. Riverside
+Banking Center Phone: 312-704-7300
+Business Banking Support: 877-534-2264
+Number of Days in Period
+30
+$0.00
+$0.00
+Checks
+40 checks totaling $11,919.56
+* Indicates gap in check sequence i = Electronic Image
+s = Substitute Check
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+Number
+Date Paid
+Amount
+20914 i
+09/22
+45.71
+21160 i
+09/15
+203.44
+21175 i
+09/23
+69.92
+20962*i
+09/22
+62.34
+21162*i
+09/29
+148.82
+21176 i
+09/11
+1,029.20
+21049*i
+09/22
+70.64
+21163 i
+09/11
+201.25
+21177 i
+09/19
+419.61
+21118*i
+09/09
+41.29
+21164 i
+09/03
+166.58
+21179*i
+09/22
+176.73
+21119 i
+09/30
+81.94
+21165 i
+09/03
+108.16
+21181*i
+09/30
+74.29
+21122*i
+09/29
+129.85
+21167*i
+09/23
+111.88
+21182 i
+09/22
+151.76
+21145*i
+09/26
+222.73
+21168 i
+09/03
+1,029.20
+21184*i
+09/23
+104.88
+21150*i
+09/04
+166.37
+21169 i
+09/11
+419.60
+21185 i
+09/18
+1,029.20
+21151 i
+09/26
+275.16
+21170 i
+09/08
+352.10
+21186 i
+09/19
+419.61
+21152 i
+09/29
+90.90
+21171 i
+09/15
+294.45
+21187 i
+09/22
+323.86
+21156*i
+09/02
+164.30
+21172 i
+09/24
+117.87
+21188 i
+09/22
+252.15
+21157 i
+09/02
+1,029.20
+21173 i
+09/11
+213.24
+21189 i
+09/29
+104.88
+21158 i
+09/05
+419.61
+21174 i
+09/09
+229.17
+21193*i
+09/30
+1,029.20
+21159 i
+09/04
+338.47
+Deposits / Credits
+Date
+Amount
+09/09
+4,000.00
+09/19
+3,000.00
+09/24
+4,000.00
+Description
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01164381285
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01167788010
+5/3 ONLINE TRANSFER FROM CK: XXXXXX5111 REF # 01169322745
+3 items totaling $11,000.00
+Daily Balance Summary
+Date
+Amount Date
+Amount Date
+Amount
+09/02
+3,756.11 09/11
+3,041.87 09/23
+2,305.69
+09/03
+2,452.17 09/15
+2,543.98 09/24
+6,187.82
+09/04
+1,947.33
+09/18
+1,514.78 09/26
+5,689.93
+09/05
+1,527.72
+09/19
+3,675.56 09/29
+5,215.48
+09/08
+1,175.62 09/22
+2,592.37 09/30
+4,030.05
+09/09
+4,905.16
+For additional information and account disclosures, please visit www.53.com/businessbanking
+Page 1 of 2
+FIFTH THIRD
+This page intentionally left blank.
+Page 2 of 2
+--- End of content ---
