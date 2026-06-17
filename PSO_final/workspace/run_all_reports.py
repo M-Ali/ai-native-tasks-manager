@@ -22,6 +22,7 @@ SCRIPTS = [
     'city_profiles_volume.py',
     'lubes_vol_table.py',
     'lubes_vol_uplift.py',
+    'national_vol_slide.py',
 ]
 
 
