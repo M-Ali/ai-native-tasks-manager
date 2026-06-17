@@ -465,7 +465,7 @@ def build_slide4(prs, d):
         rect(sl, lx, leg_y, 0.12, 0.10, CAT_COLORS.get(cat, C['GREY3']))
         txt(sl, lx+0.15, leg_y, 1.08, 0.12, cat, size=6.5, color=C['GREY'])
 
-    ins_y = 3.56
+    ins_y = leg_y + 0.18
     rect(sl, 3.56, ins_y, 6.25, 0.52, C['BG_YELLOW'])
     rect(sl, 3.58, ins_y, 0.02, 0.52, C['BROWN'])
     top10_names = [s['name'][:20] for s in top10[:1]] if top10 else ['']
