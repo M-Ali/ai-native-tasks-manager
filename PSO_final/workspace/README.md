@@ -14,7 +14,7 @@ uv run python workspace/run_all_reports.py
 uv run python workspace/run_all_reports.py --input "data/input/Working File Retail Fuels Data FY27.xlsx"
 ```
 
-That single command runs all 7 scripts below in sequence and writes every
+That single command runs all 8 scripts below in sequence and writes every
 output into `reports/`, automatically tagged with the period read from the
 source file (e.g. `_10M_FY26`, `_10M_FY27`) — so a new run never overwrites
 an older period's reports.
@@ -30,6 +30,7 @@ an older period's reports.
 | `city_profiles_volume.py` | `city_profiles_volume/PSO_<City>_Lubes_Vol_Profile_<period>.pptx` (11 cities) | 5-slide **volume**-based city profile decks |
 | `lubes_vol_table.py` | `PSO_Lubes_Vol_Top20_Cities_Table_<period>.docx` | Landscape table — top 20 cities, volume + category breakdown |
 | `lubes_vol_uplift.py` | `PSO_Lubes_Vol_Uplift_Table_<period>.docx` + `PSO_Lubes_Uplift_Scenarios_<period>.pptx` | Volume uplift potential from the "Where to Focus" initiatives — conservative & optimal scenarios |
+| `national_vol_slide.py` | `PSO_National_Lubes_Vol_Station_Profile_<period>.pptx` | Single slide — national lubricants volume station performance (all retail stations aggregated) |
 
 All city selections (top 10, top 15, top 20) and every figure are computed
 live from the data each run — nothing about *which* cities or *what*
@@ -37,6 +38,22 @@ numbers appear is hardcoded. Only formatting and scenario assumptions
 (colors, the 25%/55% conservative/optimal multipliers in
 `lubes_vol_uplift.py`) are fixed in code — see comments at the top of each
 script.
+
+## YoY comparison methodology — SPLY vs LY 12M
+
+All **YoY % change figures** in every report are calculated against **Same Period Last Year (SPLY)** — a like-for-like comparison of the same number of months (e.g. 10M CY vs 10M SPLY). This avoids the apples-to-oranges distortion of comparing 10 months of CY data against a full 12-month LY.
+
+**How SPLY is derived:** The source Excel file contains `%SPLY*` columns (`%SPLYSalesLtr`, `%SPLYGRS`, `%SPLYNetMargin`, `%SPLYDisc`, `%SPLYPMargin`) — pre-calculated percentage changes vs the same period last year. At load time, `pso.ingest` derives absolute SPLY values as:
+
+```
+SPLY = CY / (1 + %SPLY / 100)
+```
+
+These become the `SalesLtr_SPLY`, `SalesGRS_SPLY`, `NetMargin_SPLY` etc. columns used by all downstream scripts.
+
+**LY 12M values are still shown in tables**, clearly labelled `LY 12M`, so the full prior-year scale is visible for context. But the `% change` column always uses the SPLY denominator, not LY 12M.
+
+New stations with no prior-period data have `%SPLY = NaN` → their SPLY is set to 0, so their % change shows as `+∞` or `N/A` depending on the context.
 
 ## How period auto-tagging works (`_pso_common.py`)
 
@@ -119,10 +136,8 @@ period suffix is always the latest for that period).
 - **`reports/`** is in `.gitignore` — it's treated as disposable, regenerable
   output, not source-controlled. That's normal; nothing here needs a backup
   because rerunning the scripts reproduces it exactly.
-- **`workspace/*.py`** (the actual report logic, including everything edited
-  in this refactor) is currently **untracked by git** — `git status` shows
-  the whole `workspace/` folder as new/untracked, meaning there is no commit
-  history to fall back on if a future edit breaks something. If you want a
-  real safety net for the scripts themselves, the right move is to commit
-  `workspace/` (and this README) to git. That hasn't been done — say the
-  word if you'd like it committed.
+- **`workspace/*.py`** (the actual report logic) is **git-tracked** — the
+  entire `workspace/` folder was committed to the repo (`543f2b4`). All
+  subsequent edits (SPLY implementation, legend fixes, national slide) are
+  also committed. Safe to fall back to any prior version via `git log
+  workspace/`.
