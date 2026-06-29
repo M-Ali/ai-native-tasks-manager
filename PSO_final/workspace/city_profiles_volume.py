@@ -177,7 +177,7 @@ def compute_city(city_norm):
 
     return dict(
         city=city_norm, n_stns=n_stns, n_active=n_active, n_zero=n_zero,
-        lubes_vol=lubes_vol, lubes_vol_ly=lubes_vol_ly, vol_chg=vol_chg,
+        lubes_vol=lubes_vol, lubes_vol_ly=lubes_vol_ly, lubes_vol_sply=lubes_vol_sply, vol_chg=vol_chg,
         avg_per_stn=avg_per_stn, med_per_stn=med_per_stn,
         min_per_stn=min_per_stn, max_per_stn=max_per_stn,
         top10_vol=top10_vol, top10_pct=top10_pct,
@@ -243,7 +243,7 @@ def build_slide2(prs, d):
     boxes = [
         (0.75, 0.86, fmt_kl_total(d['lubes_vol']),
          'TOTAL LUBES VOLUME', C['ORANGE'],
-         f"vs SPLY: {vol_chg_str}  (LY 12M: {fmt_kl_total(d['lubes_vol_ly'])})"),
+         f"vs SPLY: {vol_chg_str}  (SPLY: {fmt_kl_total(d['lubes_vol_sply'])})"),
         (1.73, 0.86, fmt_kl(d['avg_per_stn']),
          'AVG VOLUME PER STATION', C['BLUE'],
          f"Median: {fmt_kl(d['med_per_stn'])}  |  Range: {fmt_kl(d['min_per_stn'])} – {fmt_kl(d['max_per_stn'])}"),

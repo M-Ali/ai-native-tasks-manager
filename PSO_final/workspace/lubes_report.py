@@ -124,7 +124,7 @@ def agg_vol_margin(frame, by):
             .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_sply), axis=1),
                     rev_chg=lambda d: d.apply(lambda r: pct(r.rev_cy, r.rev_sply), axis=1),
                     mgn_pl_cy=lambda d: d.mgn_cy / d.vol_cy.replace(0, np.nan),
-                    mgn_pl_ly=lambda d: d.mgn_ly / d.vol_ly.replace(0, np.nan),
+                    mgn_pl_sply=lambda d: d.mgn_sply / d.vol_sply.replace(0, np.nan),
                     vol_sh=lambda d: d.vol_cy / d.vol_cy.sum() * 100))
 
 # National
@@ -151,7 +151,7 @@ city_df = agg_vol_margin(lubes, 'CityNorm').sort_values('vol_cy', ascending=Fals
 
 # By station
 stn_df = (lubes.groupby(['Customer Number','Name 1','CityNorm','Sales office Region'], as_index=False)
-          .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+          .agg(vol_cy=('SalesLtr_CY','sum'),
                vol_sply=('SalesLtr_SPLY','sum'), mgn_cy=('NetMargin_CY','sum'))
           .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_sply), axis=1),
                   mgn_pl_cy=lambda d: d.mgn_cy / d.vol_cy.replace(0, np.nan))
@@ -169,11 +169,11 @@ cats = cat_df[cat_df['LubeCategory'].isin(['LOW GRADE','DEO','MCO','PCMO'])]
 x = np.arange(len(cats))
 bw = 0.35
 bars_cy = ax1.bar(x - bw/2, kl(cats['vol_cy']), bw, color=PLT_BLUE, label='CY', zorder=3)
-bars_ly = ax1.bar(x + bw/2, kl(cats['vol_ly']), bw, color=PLT_GREY, label='LY (12M)', zorder=3)
+bars_ly = ax1.bar(x + bw/2, kl(cats['vol_sply']), bw, color=PLT_GREY, label='SPLY', zorder=3)
 ax1.set_xticks(x)
 ax1.set_xticklabels(['Low Grade','DEO','MCO','PCMO'], fontsize=9)
 ax1.set_ylabel('Volume (KL)', fontsize=9)
-ax1.set_title('Volume by Category — CY vs LY', fontsize=10, fontweight='bold', color=PLT_BLUE, pad=8)
+ax1.set_title('Volume by Category — CY vs SPLY', fontsize=10, fontweight='bold', color=PLT_BLUE, pad=8)
 ax1.legend(fontsize=8)
 ax1.yaxis.set_major_formatter(FuncFormatter(lambda v,_: f'{v:,.0f}'))
 ax1.set_axisbelow(True); ax1.yaxis.grid(True, linestyle='--', alpha=0.5)
@@ -206,7 +206,7 @@ fig2.patch.set_facecolor('white')
 cats4 = cat_df[cat_df['LubeCategory'].isin(['LOW GRADE','DEO','MCO','PCMO'])].copy()
 x = np.arange(len(cats4)); bw = 0.35
 ax.bar(x - bw/2, cats4['mgn_pl_cy'], bw, color=PLT_BLUE, label='CY')
-ax.bar(x + bw/2, cats4['mgn_pl_ly'], bw, color=PLT_GREY, label='LY')
+ax.bar(x + bw/2, cats4['mgn_pl_sply'], bw, color=PLT_GREY, label='SPLY')
 ax.set_xticks(x)
 ax.set_xticklabels(['Low Grade','DEO','MCO','PCMO'], fontsize=9)
 ax.set_ylabel('Net Margin / Litre (PKR)', fontsize=9)
@@ -227,7 +227,7 @@ reg_plot = reg_df.set_index('Sales office Region').reindex(reg_order)
 # Volume
 ax3a = axes[0]
 bars = ax3a.bar(reg_order, kl(reg_plot['vol_cy']), color=[PLT_BLUE,PLT_GREEN,PLT_ORANGE], zorder=3)
-ax3a.bar(reg_order, kl(reg_plot['vol_ly']), color='none', edgecolor=PLT_GREY, linewidth=1.5, linestyle='--', zorder=2)
+ax3a.bar(reg_order, kl(reg_plot['vol_sply']), color='none', edgecolor=PLT_GREY, linewidth=1.5, linestyle='--', zorder=2)
 ax3a.set_title('Volume CY (KL)', fontsize=10, fontweight='bold', color=PLT_BLUE)
 ax3a.yaxis.set_major_formatter(FuncFormatter(lambda v,_: f'{v:,.0f}'))
 ax3a.set_axisbelow(True); ax3a.yaxis.grid(True, linestyle='--', alpha=0.5)
@@ -266,14 +266,14 @@ fig4.patch.set_facecolor('white')
 top15 = city_df.head(15).copy()
 colours4 = [PLT_GREEN if c >= 0 else PLT_RED for c in top15['vol_chg']]
 bars4 = ax4.barh(range(len(top15)), kl(top15['vol_cy']), color=PLT_BLUE, zorder=3)
-# LY ghost
-ax4.barh(range(len(top15)), kl(top15['vol_ly']), color='none',
+# SPLY ghost
+ax4.barh(range(len(top15)), kl(top15['vol_sply']), color='none',
          edgecolor=PLT_GREY, linewidth=1.2, linestyle='--', zorder=2)
 ax4.set_yticks(range(len(top15)))
 ax4.set_yticklabels(top15['CityNorm'].tolist(), fontsize=9)
 ax4.invert_yaxis()
 ax4.set_xlabel('Volume (KL)', fontsize=9)
-ax4.set_title('Top 15 Cities — Lubricants Volume (CY vs LY)', fontsize=10, fontweight='bold', color=PLT_BLUE, pad=8)
+ax4.set_title('Top 15 Cities — Lubricants Volume (CY vs SPLY)', fontsize=10, fontweight='bold', color=PLT_BLUE, pad=8)
 ax4.xaxis.set_major_formatter(FuncFormatter(lambda v,_: f'{v:,.0f}'))
 ax4.set_axisbelow(True); ax4.xaxis.grid(True, linestyle='--', alpha=0.5)
 ax4.spines[['top','right']].set_visible(False)
@@ -416,7 +416,7 @@ add_body(doc,
     'shift in the consumer mix toward cheaper alternatives or a gap in premium product availability.', size=10)
 
 # Table
-hdr_row = ['Category', 'Vol CY (KL)', 'Vol LY 12M (KL)', 'vs SPLY', 'Mix %', 'Mgn/L CY (PKR)', 'Mgn/L LY (PKR)']
+hdr_row = ['Category', 'Vol CY (KL)', 'Vol SPLY (KL)', 'vs SPLY', 'Mix %', 'Mgn/L CY (PKR)', 'Mgn/L SPLY (PKR)']
 tbl1 = doc.add_table(rows=len(cat_df)+2, cols=len(hdr_row))
 tbl1.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl1.style = 'Table Grid'
@@ -427,10 +427,10 @@ for ci, h in enumerate(hdr_row):
 
 for ri, (_, row) in enumerate(cat_df.iterrows(), 1):
     bg = 'F2F2F2' if ri % 2 == 0 else 'FFFFFF'
-    vals = [row['LubeCategory'], f'{kl(row.vol_cy):,.1f}', f'{kl(row.vol_ly):,.1f}',
+    vals = [row['LubeCategory'], f'{kl(row.vol_cy):,.1f}', f'{kl(row.vol_sply):,.1f}',
             chg_str(row.vol_chg), f'{row.vol_sh:.1f}%',
             f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A',
-            f'{row.mgn_pl_ly:.0f}' if not np.isnan(row.mgn_pl_ly) else 'N/A']
+            f'{row.mgn_pl_sply:.0f}' if not np.isnan(row.mgn_pl_sply) else 'N/A']
     for ci, v in enumerate(vals):
         set_cell_bg(tbl1.cell(ri, ci), bg)
         chg_clr = None
@@ -443,8 +443,8 @@ for ri, (_, row) in enumerate(cat_df.iterrows(), 1):
 tot_row = len(cat_df) + 1
 set_cell_bg(tbl1.cell(tot_row, 0), '1F3864')
 cell_text(tbl1.cell(tot_row, 0), 'TOTAL', bold=True, size=9, color=WHITE)
-for ci, v in enumerate([f'{kl(vc):,.1f}', f'{kl(vl):,.1f}', chg_str(pct(vc,vl)), '100.0%',
-                         f'{mc/vc:.0f}', f'{ml_/vl:.0f}'], 1):
+for ci, v in enumerate([f'{kl(vc):,.1f}', f'{kl(vs):,.1f}', chg_str(pct(vc,vs)), '100.0%',
+                         f'{mc/vc:.0f}', f'{ms/vs:.0f}'], 1):
     set_cell_bg(tbl1.cell(tot_row, ci), '1F3864')
     chg_clr = WHITE
     cell_text(tbl1.cell(tot_row, ci), v, bold=True, size=9, color=WHITE, align=WD_ALIGN_PARAGRAPH.CENTER)
@@ -483,7 +483,7 @@ doc.add_paragraph()
 # Regional table
 add_heading(doc, '2.1  Region-wise Summary', level=2)
 
-r_hdr = ['Region', 'Vol CY (KL)', 'Vol LY 12M (KL)', 'vs SPLY', 'Mix %', 'Stations', 'Mgn/L CY', 'Mgn/L LY']
+r_hdr = ['Region', 'Vol CY (KL)', 'Vol SPLY (KL)', 'vs SPLY', 'Mix %', 'Stations', 'Mgn/L CY', 'Mgn/L SPLY']
 tbl2 = doc.add_table(rows=len(reg_df)+2, cols=len(r_hdr))
 tbl2.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl2.style = 'Table Grid'
@@ -494,9 +494,9 @@ for ci, h in enumerate(r_hdr):
 
 for ri, (_, row) in enumerate(reg_df.iterrows(), 1):
     bg = 'F2F2F2' if ri % 2 == 0 else 'FFFFFF'
-    vals = [row['Sales office Region'], f'{kl(row.vol_cy):,.1f}', f'{kl(row.vol_ly):,.1f}',
+    vals = [row['Sales office Region'], f'{kl(row.vol_cy):,.1f}', f'{kl(row.vol_sply):,.1f}',
             chg_str(row.vol_chg), f'{row.vol_sh:.1f}%', str(int(row.stns)),
-            f'PKR {row.mgn_pl_cy:.0f}', f'PKR {row.mgn_pl_ly:.0f}']
+            f'PKR {row.mgn_pl_cy:.0f}', f'PKR {row.mgn_pl_sply:.0f}']
     for ci, v in enumerate(vals):
         set_cell_bg(tbl2.cell(ri, ci), bg)
         chg_clr = None
@@ -508,8 +508,8 @@ for ri, (_, row) in enumerate(reg_df.iterrows(), 1):
 tot_r = len(reg_df) + 1
 set_cell_bg(tbl2.cell(tot_r, 0), '1F3864')
 cell_text(tbl2.cell(tot_r, 0), 'NATIONAL', bold=True, size=9, color=WHITE)
-for ci, v in enumerate([f'{kl(vc):,.1f}', f'{kl(vl):,.1f}', chg_str(pct(vc,vl)), '100.0%',
-                         str(n_stns), f'PKR {mc/vc:.0f}', f'PKR {ml_/vl:.0f}'], 1):
+for ci, v in enumerate([f'{kl(vc):,.1f}', f'{kl(vs):,.1f}', chg_str(pct(vc,vs)), '100.0%',
+                         str(n_stns), f'PKR {mc/vc:.0f}', f'PKR {ms/vs:.0f}'], 1):
     set_cell_bg(tbl2.cell(tot_r, ci), '1F3864')
     cell_text(tbl2.cell(tot_r, ci), v, bold=True, size=9, color=WHITE, align=WD_ALIGN_PARAGRAPH.CENTER)
 
@@ -594,7 +594,7 @@ doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 doc.add_paragraph()
 
 # Top 15 city table
-c_hdr = ['#','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Stns','Mgn/L (PKR)']
+c_hdr = ['#','City','Region','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Stns','Mgn/L (PKR)']
 top15_full = city_df.head(15).copy()
 # Need region for each city
 city_reg = (lubes.groupby(['CityNorm','Sales office Region'])['SalesLtr_CY']
@@ -616,7 +616,7 @@ for ri, (_, row) in enumerate(top15_full.iterrows(), 1):
     reg_name = city_reg.get(row['CityNorm'], '')
     chg_c = PSO_GREEN if row.vol_chg >= 0 else PSO_RED
     vals_data = [(str(ri), None), (row['CityNorm'], None), (reg_name, None),
-                 (f'{kl(row.vol_cy):,.1f}', None), (f'{kl(row.vol_ly):,.1f}', None),
+                 (f'{kl(row.vol_cy):,.1f}', None), (f'{kl(row.vol_sply):,.1f}', None),
                  (chg_str(row.vol_chg), chg_c), (str(int(row.stns)), None),
                  (f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A', None)]
     for ci, (v, fc) in enumerate(vals_data):
@@ -644,7 +644,7 @@ doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 doc.add_paragraph()
 
 if len(under_cities) > 0:
-    uc_hdr = ['City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
+    uc_hdr = ['City','Region','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Mgn/L (PKR)']
     tbl5 = doc.add_table(rows=min(len(under_cities),20)+1, cols=len(uc_hdr))
     tbl5.alignment = WD_TABLE_ALIGNMENT.CENTER
     tbl5.style = 'Table Grid'
@@ -655,7 +655,7 @@ if len(under_cities) > 0:
         bg = 'FFEDED' if ri % 2 == 1 else 'FFF4F4'
         reg_name = city_reg.get(row['CityNorm'], '')
         vals_data = [row['CityNorm'], reg_name, f'{kl(row.vol_cy):,.1f}',
-                     f'{kl(row.vol_ly):,.1f}', chg_str(row.vol_chg),
+                     f'{kl(row.vol_sply):,.1f}', chg_str(row.vol_chg),
                      f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A']
         for ci, v in enumerate(vals_data):
             set_cell_bg(tbl5.cell(ri, ci), bg)
@@ -686,7 +686,7 @@ doc.add_paragraph()
 add_heading(doc, '4.1  Top 25 Stations by Volume', level=2)
 
 top25 = stn_df.head(25).copy()
-s_hdr = ['#','Station Name','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
+s_hdr = ['#','Station Name','City','Region','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Mgn/L (PKR)']
 tbl6 = doc.add_table(rows=len(top25)+1, cols=len(s_hdr))
 tbl6.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl6.style = 'Table Grid'
@@ -700,7 +700,7 @@ for ri, (_, row) in enumerate(top25.iterrows(), 1):
     chg_clr = PSO_GREEN if row.vol_chg >= 0 else PSO_RED
     vals_d = [(str(ri),None), (row['Name 1'][:32],None), (row['CityNorm'],None),
               (row['Sales office Region'],None), (f'{kl(row.vol_cy):.1f}',None),
-              (f'{kl(row.vol_ly):.1f}',None), (chg_str(row.vol_chg), chg_clr),
+              (f'{kl(row.vol_sply):.1f}',None), (chg_str(row.vol_chg), chg_clr),
               (f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A', None)]
     for ci, (v, fc) in enumerate(vals_d):
         set_cell_bg(tbl6.cell(ri, ci), bg)
@@ -745,18 +745,18 @@ for ri, (_, row) in enumerate(dist_tbl.iterrows(), 1):
 doc.add_paragraph()
 
 # Bottom 20 stations (with meaningful LY but declining)
-add_heading(doc, '4.3  Stations with Significant Decline (LY > 2 KL)', level=2)
+add_heading(doc, '4.3  Stations with Significant Decline (SPLY > 2 KL)', level=2)
 
-bot_stns = (stn_df[(kl(stn_df['vol_ly']) > 2) & (stn_df['vol_chg'] < -20)]
+bot_stns = (stn_df[(kl(stn_df['vol_sply']) > 2) & (stn_df['vol_chg'] < -20)]
             .sort_values('vol_chg').head(20).copy())
 
 add_body(doc,
-    f'{len(bot_stns)} stations that previously sold meaningful volumes (>2 KL LY) have '
+    f'{len(bot_stns)} stations that previously sold meaningful volumes (>2 KL SPLY) have '
     'declined by more than 20%. These represent the highest-risk accounts and should be '
     'prioritised for sales intervention.', size=10)
 
 if len(bot_stns):
-    b_hdr = ['Station Name','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
+    b_hdr = ['Station Name','City','Region','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Mgn/L (PKR)']
     tbl8 = doc.add_table(rows=len(bot_stns)+1, cols=len(b_hdr))
     tbl8.alignment = WD_TABLE_ALIGNMENT.CENTER
     tbl8.style = 'Table Grid'
@@ -766,7 +766,7 @@ if len(bot_stns):
     for ri, (_, row) in enumerate(bot_stns.iterrows(), 1):
         bg = 'FFEDED' if ri % 2 == 1 else 'FFF4F4'
         vals_d = [(row['Name 1'][:32],None), (row['CityNorm'],None), (row['Sales office Region'],None),
-                  (f'{kl(row.vol_cy):.2f}',None), (f'{kl(row.vol_ly):.2f}',None),
+                  (f'{kl(row.vol_cy):.2f}',None), (f'{kl(row.vol_sply):.2f}',None),
                   (chg_str(row.vol_chg), PSO_RED),
                   (f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A', None)]
         for ci, (v, fc) in enumerate(vals_d):
@@ -856,8 +856,8 @@ implications = [
 
     ('6.3  Turnaround Plan for Declining Cities',
      f'The {len(under_cities)} cities with >100 KL volume but declining trends represent PKR '
-     f'{bn(under_cities["vol_ly"].sum()-under_cities["vol_cy"].sum())*1000:.0f} Mn in lost volume '
-     'versus the prior year. A structured recovery programme should include: (a) Root-cause analysis '
+     f'{bn(under_cities["vol_sply"].sum()-under_cities["vol_cy"].sum())*1000:.0f} Mn in lost volume '
+     'versus SPLY. A structured recovery programme should include: (a) Root-cause analysis '
      'per city — competitor activity, product mix issue, or distribution gap. (b) City-specific sales '
      'action plans with monthly tracking. KOHLU MARI BUGTI (-10.6%) needs particular attention given '
      'its large volume base and concentration of high-volume stations.'),
@@ -896,7 +896,7 @@ add_heading(doc, 'Appendix A — All Significant Cities (Top 50)', level=1)
 add_body(doc, 'Cities ranked by CY volume. Includes all cities with >50 KL CY volume.', size=9)
 
 top50 = city_df[kl(city_df['vol_cy']) > 50].copy()
-app_hdr = ['#','City','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Stns','Mgn/L (PKR)']
+app_hdr = ['#','City','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Stns','Mgn/L (PKR)']
 tbl_app = doc.add_table(rows=len(top50)+1, cols=len(app_hdr))
 tbl_app.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl_app.style = 'Table Grid'
@@ -907,7 +907,7 @@ for ri, (_, row) in enumerate(top50.iterrows(), 1):
     bg = 'F2F2F2' if ri % 2 == 0 else 'FFFFFF'
     chg_clr = PSO_GREEN if row.vol_chg >= 0 else PSO_RED
     vals = [(str(ri),None),(row['CityNorm'],None),(f'{kl(row.vol_cy):,.1f}',None),
-            (f'{kl(row.vol_ly):,.1f}',None),(chg_str(row.vol_chg),chg_clr),
+            (f'{kl(row.vol_sply):,.1f}',None),(chg_str(row.vol_chg),chg_clr),
             (str(int(row.stns)),None),
             (f'{row.mgn_pl_cy:.0f}' if not np.isnan(row.mgn_pl_cy) else 'N/A', None)]
     for ci, (v, fc) in enumerate(vals):

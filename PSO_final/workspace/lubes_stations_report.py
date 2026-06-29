@@ -87,7 +87,7 @@ lubes  = retail[retail['FuelSegment'] == 'Lubricants'].copy()
 # ── aggregations ──────────────────────────────────────────────────────────────
 # By category
 cat = (lubes.groupby('LubeCategory')
-       .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+       .agg(vol_cy=('SalesLtr_CY','sum'),
             vol_sply=('SalesLtr_SPLY','sum'),
             rev_cy=('SalesGRS_CY','sum'), mgn_cy=('NetMargin_CY','sum'),
             stns=('Customer Number','nunique'))
@@ -103,7 +103,7 @@ city_reg = (lubes.groupby(['CityNorm','Sales office Region'])['SalesLtr_CY']
             .drop_duplicates('CityNorm').set_index('CityNorm')['Sales office Region'])
 
 city = (lubes.groupby('CityNorm')
-        .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+        .agg(vol_cy=('SalesLtr_CY','sum'),
              vol_sply=('SalesLtr_SPLY','sum'),
              mgn_cy=('NetMargin_CY','sum'), stns=('Customer Number','nunique'))
         .assign(vol_chg=lambda d:(d.vol_cy-d.vol_sply)/d.vol_sply.abs().replace(0,float('nan'))*100,
@@ -126,8 +126,8 @@ x4 = np.arange(len(cat4)); bw = 0.5
 bar_cols = [BLUE, GREEN, ORANGE, RED]
 
 bars_cy = ax1.bar(x4 - 0.03, cat4['vol_cy']/1000, bw, color=bar_cols, alpha=0.88, zorder=3, label='Vol CY')
-ax1.bar(x4 - 0.03, cat4['vol_ly']/1000, bw, color='none',
-        edgecolor='#999999', linewidth=1.6, linestyle='--', zorder=2, label='Vol LY (12M)')
+ax1.bar(x4 - 0.03, cat4['vol_sply']/1000, bw, color='none',
+        edgecolor='#999999', linewidth=1.6, linestyle='--', zorder=2, label='Vol SPLY')
 
 ax1r.plot(x4, cat4['stns'], 'o--', color='#222222', linewidth=1.6,
           markersize=8, markerfacecolor='white', markeredgewidth=2.2, zorder=5, label='Stations')
@@ -302,7 +302,7 @@ doc.add_paragraph()
 # Category table
 heading(doc, '1.1  Category Summary Table', level=2)
 
-col_h = ['Category','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mix %','Stations',
+col_h = ['Category','Vol CY (KL)','Vol SPLY (KL)','vs SPLY','Mix %','Stations',
          'KL / Station','Margin / L (PKR)']
 all_cats = cat[~cat.index.isin(['INDUSTRIAL GRADE'])].copy()
 tbl1 = doc.add_table(rows=len(all_cats)+2, cols=len(col_h))
@@ -315,7 +315,7 @@ for ci, h in enumerate(col_h):
 for ri, (cat_name, r) in enumerate(all_cats.iterrows(), 1):
     bg = 'F2F2F2' if ri%2==0 else 'FFFFFF'
     chg_c = W_GREEN if r.vol_chg >= 0 else W_RED
-    vals = [cat_name, f'{r.vol_cy/1000:,.1f}', f'{r.vol_ly/1000:,.1f}',
+    vals = [cat_name, f'{r.vol_cy/1000:,.1f}', f'{r.vol_sply/1000:,.1f}',
             chg(r.vol_chg), f'{r.vol_sh:.1f}%', f'{int(r.stns):,}',
             f'{r.vol_ps/1000:.2f}', f'{r.mgn_pl:.0f}']
     for ci, v in enumerate(vals):
@@ -329,7 +329,7 @@ tot_r = len(all_cats)+1
 set_bg(tbl1.cell(tot_r,0), '1F3864')
 ct(tbl1.cell(tot_r,0), 'TOTAL', bold=True, size=9, color=W_WHITE,
    align=WD_ALIGN_PARAGRAPH.LEFT)
-tot_vals = [f'{tot_vol/1000:,.1f}', f'{tot_vol_ly/1000:,.1f}',
+tot_vals = [f'{tot_vol/1000:,.1f}', f'{tot_vol_sply/1000:,.1f}',
             chg((tot_vol-tot_vol_sply)/tot_vol_sply*100), '100.0%',
             f'{tot_stns:,}',
             f'{tot_vol/tot_stns/1000:.2f}',
@@ -373,8 +373,8 @@ doc.add_paragraph()
 
 heading(doc, '2.1  Top 15 Cities — Detailed Table', level=2)
 
-col_h2 = ['#','City','Region','Stations','Vol CY (KL)','Vol LY (KL)',
-           'YoY Chg','Mix %','KL / Station','Mgn/L (PKR)']
+col_h2 = ['#','City','Region','Stations','Vol CY (KL)','Vol SPLY (KL)',
+           'vs SPLY','Mix %','KL / Station','Mgn/L (PKR)']
 tbl2 = doc.add_table(rows=len(city)+1, cols=len(col_h2))
 tbl2.style = 'Table Grid'; tbl2.alignment = WD_TABLE_ALIGNMENT.CENTER
 
@@ -386,7 +386,7 @@ for ri, (city_name, r) in enumerate(city.iterrows(), 1):
     bg = 'F2F2F2' if ri%2==0 else 'FFFFFF'
     chg_c = W_GREEN if r.vol_chg >= 0 else W_RED
     vals = [str(ri), city_name, r.get('Region',''), f'{int(r.stns):,}',
-            f'{r.vol_cy/1000:,.1f}', f'{r.vol_ly/1000:,.1f}',
+            f'{r.vol_cy/1000:,.1f}', f'{r.vol_sply/1000:,.1f}',
             chg(r.vol_chg), f'{r.vol_sh:.1f}%',
             f'{r.vol_ps/1000:.2f}', f'{r.mgn_pl:.0f}']
     for ci, v in enumerate(vals):
