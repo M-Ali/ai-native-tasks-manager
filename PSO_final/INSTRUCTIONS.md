@@ -8,7 +8,7 @@ There are **two separate, independent apps** in this project. They do not call e
 |---|---|---|
 | **Entry point** | `pso.main` | `workspace/run_all_reports.py` |
 | **What it does** | Ingest → Analyse → AI Narrative → Excel | Ingest → Word & PowerPoint reports |
-| **Needs API key?** | Yes (for AI step; can skip) | No |
+| **Needs API key?** | Yes (for AI step; can skip) | Yes (for `frameworks.py`; all other scripts run without one) |
 | **Output** | Multi-sheet Excel workbook | Word docs, PowerPoint decks, PNGs |
 | **Output folder** | `reports/YYYY-MM-DD/` | `reports/` and subfolders |
 | **Run time** | ~2–3 min (with AI) / ~30 sec (no AI) | ~1–2 min |
@@ -51,7 +51,7 @@ portfolio summary, diesel, petrol, lubricants, city pareto, regional gaps, and A
 
 ## App 2 — Report Scripts (`workspace/run_all_reports.py`)
 
-Runs all 8 report-generation scripts in sequence, producing Word docs and PowerPoint decks.
+Runs all 9 report-generation scripts in sequence, producing Word docs and PowerPoint decks.
 
 ```bash
 # Standard run (uses default input file)
@@ -72,6 +72,7 @@ uv run python workspace/run_all_reports.py --input "data/input/Working File Reta
 | `PSO_Lubes_Vol_Uplift_Table_<period>.docx` | Where-to-focus volume uplift table |
 | `PSO_Lubes_Uplift_Scenarios_<period>.pptx` | Conservative & optimal uplift scenarios slide |
 | `PSO_National_Lubes_Vol_Station_Profile_<period>.pptx` | National station performance slide |
+| `PSO_Lubes_Framework_Analysis_<period>.pptx` | 7-slide strategic framework deck — BCG, Vol-Margin, Distribution Efficiency, PLC + AI per-category reconciliation + AI portfolio strategy |
 | `city_profiles/PSO_<City>_Lubes_Profile_<period>.pptx` | Revenue-based city profile (10 cities) |
 | `city_profiles_volume/PSO_<City>_Lubes_Vol_Profile_<period>.pptx` | Volume-based city profile (11 cities) |
 
