@@ -14,7 +14,7 @@ uv run python workspace/run_all_reports.py
 uv run python workspace/run_all_reports.py --input "data/input/Working File Retail Fuels Data FY27.xlsx"
 ```
 
-That single command runs all 8 scripts below in sequence and writes every
+That single command runs all 9 scripts below in sequence and writes every
 output into `reports/`, automatically tagged with the period read from the
 source file (e.g. `_10M_FY26`, `_10M_FY27`) — so a new run never overwrites
 an older period's reports.
@@ -31,6 +31,7 @@ an older period's reports.
 | `lubes_vol_table.py` | `PSO_Lubes_Vol_Top20_Cities_Table_<period>.docx` | Landscape table — top 20 cities, volume + category breakdown |
 | `lubes_vol_uplift.py` | `PSO_Lubes_Vol_Uplift_Table_<period>.docx` + `PSO_Lubes_Uplift_Scenarios_<period>.pptx` | Volume uplift potential from the "Where to Focus" initiatives — conservative & optimal scenarios |
 | `national_vol_slide.py` | `PSO_National_Lubes_Vol_Station_Profile_<period>.pptx` | Single slide — national lubricants volume station performance (all retail stations aggregated) |
+| `frameworks.py` | `PSO_Lubes_Framework_Analysis_<period>.pptx` | 7-slide deck — BCG, Vol-Margin, Distribution Efficiency, PLC + AI per-category reconciliation + AI portfolio strategy |
 
 All city selections (top 10, top 15, top 20) and every figure are computed
 live from the data each run — nothing about *which* cities or *what*
