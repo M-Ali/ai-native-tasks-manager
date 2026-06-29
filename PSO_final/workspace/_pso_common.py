@@ -11,6 +11,9 @@ actually loaded — not a hardcoded string.
 """
 import os
 from datetime import date
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DEFAULT_INPUT = 'data/input/Working File Retail Fuels Data.xlsx'
 INPUT_PATH = os.environ.get('PSO_INPUT', DEFAULT_INPUT)
