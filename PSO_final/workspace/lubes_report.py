@@ -115,11 +115,14 @@ lubes  = retail[retail['FuelSegment'] == 'Lubricants'].copy()
 def agg_vol_margin(frame, by):
     return (frame.groupby(by, as_index=False)
             .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+                 vol_sply=('SalesLtr_SPLY','sum'),
                  rev_cy=('SalesGRS_CY','sum'), rev_ly=('SalesGRS_LY','sum'),
+                 rev_sply=('SalesGRS_SPLY','sum'),
                  mgn_cy=('NetMargin_CY','sum'), mgn_ly=('NetMargin_LY','sum'),
+                 mgn_sply=('NetMargin_SPLY','sum'),
                  stns=('Customer Number','nunique'))
-            .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_ly), axis=1),
-                    rev_chg=lambda d: d.apply(lambda r: pct(r.rev_cy, r.rev_ly), axis=1),
+            .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_sply), axis=1),
+                    rev_chg=lambda d: d.apply(lambda r: pct(r.rev_cy, r.rev_sply), axis=1),
                     mgn_pl_cy=lambda d: d.mgn_cy / d.vol_cy.replace(0, np.nan),
                     mgn_pl_ly=lambda d: d.mgn_ly / d.vol_ly.replace(0, np.nan),
                     vol_sh=lambda d: d.vol_cy / d.vol_cy.sum() * 100))
@@ -127,10 +130,13 @@ def agg_vol_margin(frame, by):
 # National
 vc = lubes['SalesLtr_CY'].sum()
 vl = lubes['SalesLtr_LY'].sum()
+vs = lubes['SalesLtr_SPLY'].sum()
 rc = lubes['SalesGRS_CY'].sum()
 rl = lubes['SalesGRS_LY'].sum()
+rs = lubes['SalesGRS_SPLY'].sum()
 mc = lubes['NetMargin_CY'].sum()
 ml_ = lubes['NetMargin_LY'].sum()
+ms = lubes['NetMargin_SPLY'].sum()
 n_stns = lubes['Customer Number'].nunique()
 n_cities = lubes['CityNorm'].nunique()
 
@@ -146,8 +152,8 @@ city_df = agg_vol_margin(lubes, 'CityNorm').sort_values('vol_cy', ascending=Fals
 # By station
 stn_df = (lubes.groupby(['Customer Number','Name 1','CityNorm','Sales office Region'], as_index=False)
           .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
-               mgn_cy=('NetMargin_CY','sum'))
-          .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_ly), axis=1),
+               vol_sply=('SalesLtr_SPLY','sum'), mgn_cy=('NetMargin_CY','sum'))
+          .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_sply), axis=1),
                   mgn_pl_cy=lambda d: d.mgn_cy / d.vol_cy.replace(0, np.nan))
           .sort_values('vol_cy', ascending=False))
 
@@ -163,7 +169,7 @@ cats = cat_df[cat_df['LubeCategory'].isin(['LOW GRADE','DEO','MCO','PCMO'])]
 x = np.arange(len(cats))
 bw = 0.35
 bars_cy = ax1.bar(x - bw/2, kl(cats['vol_cy']), bw, color=PLT_BLUE, label='CY', zorder=3)
-bars_ly = ax1.bar(x + bw/2, kl(cats['vol_ly']), bw, color=PLT_GREY, label='LY', zorder=3)
+bars_ly = ax1.bar(x + bw/2, kl(cats['vol_ly']), bw, color=PLT_GREY, label='LY (12M)', zorder=3)
 ax1.set_xticks(x)
 ax1.set_xticklabels(['Low Grade','DEO','MCO','PCMO'], fontsize=9)
 ax1.set_ylabel('Volume (KL)', fontsize=9)
@@ -352,11 +358,11 @@ kpi_tbl = doc.add_table(rows=2, cols=4)
 kpi_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
 kpi_headers = ['Total Volume CY','Revenue CY','Net Margin CY','Margin / Litre']
 kpi_values  = [f'{ml(vc):.3f} ML', f'PKR {bn(rc):.2f} Bn', f'PKR {bn(mc):.2f} Bn', f'PKR {mc/vc:.0f}']
-kpi_changes = [chg_str(pct(vc,vl)), chg_str(pct(rc,rl)), chg_str(pct(mc,ml_)), chg_str(pct(mc/vc, ml_/vl))]
-kpi_chg_col = [PSO_GREEN if pct(vc,vl)>=0 else PSO_RED,
-               PSO_GREEN if pct(rc,rl)>=0 else PSO_RED,
-               PSO_GREEN if pct(mc,ml_)>=0 else PSO_RED,
-               PSO_GREEN if pct(mc/vc,ml_/vl)>=0 else PSO_RED]
+kpi_changes = [chg_str(pct(vc,vs)), chg_str(pct(rc,rs)), chg_str(pct(mc,ms)), chg_str(pct(mc/vc, ms/vs))]
+kpi_chg_col = [PSO_GREEN if pct(vc,vs)>=0 else PSO_RED,
+               PSO_GREEN if pct(rc,rs)>=0 else PSO_RED,
+               PSO_GREEN if pct(mc,ms)>=0 else PSO_RED,
+               PSO_GREEN if pct(mc/vc,ms/vs)>=0 else PSO_RED]
 
 for ci in range(4):
     h_cell = kpi_tbl.cell(0, ci)
@@ -386,11 +392,11 @@ add_heading(doc, '1.  Total Lubricants Volume — National Overview', level=1)
 
 add_body(doc,
     f'PSO\'s retail lubricant network sold {ml(vc):.3f} million litres (ML) in CY, compared to '
-    f'{ml(vl):.3f} ML in the prior year — a growth of {pct(vc,vl):.1f}%. This volume growth '
+    f'{ml(vs):.3f} ML in the same period last year (SPLY) — a growth of {pct(vc,vs):.1f}%. This volume growth '
     f'outpaces the overall retail portfolio, reflecting the continued penetration of PSO-branded '
-    f'lubricants at petrol stations. Revenue grew by {pct(rc,rl):.1f}% to PKR {bn(rc):.2f} Bn, '
+    f'lubricants at petrol stations. Revenue grew by {pct(rc,rs):.1f}% to PKR {bn(rc):.2f} Bn, '
     f'partly driven by higher realised prices. However, net margin per litre compressed from '
-    f'PKR {ml_/vl:.0f} to PKR {mc/vc:.0f} ({pct(mc/vc, ml_/vl):.1f}%), primarily because '
+    f'PKR {ms/vs:.0f} to PKR {mc/vc:.0f} ({pct(mc/vc, ms/vs):.1f}%), primarily because '
     f'the fastest-growing segment — Low Grade lubricants — carries significantly lower margins '
     f'than premium categories (DEO, PCMO).', size=10)
 
@@ -410,7 +416,7 @@ add_body(doc,
     'shift in the consumer mix toward cheaper alternatives or a gap in premium product availability.', size=10)
 
 # Table
-hdr_row = ['Category', 'Vol CY (KL)', 'Vol LY (KL)', 'YoY Chg', 'Mix %', 'Mgn/L CY (PKR)', 'Mgn/L LY (PKR)']
+hdr_row = ['Category', 'Vol CY (KL)', 'Vol LY 12M (KL)', 'vs SPLY', 'Mix %', 'Mgn/L CY (PKR)', 'Mgn/L LY (PKR)']
 tbl1 = doc.add_table(rows=len(cat_df)+2, cols=len(hdr_row))
 tbl1.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl1.style = 'Table Grid'
@@ -477,7 +483,7 @@ doc.add_paragraph()
 # Regional table
 add_heading(doc, '2.1  Region-wise Summary', level=2)
 
-r_hdr = ['Region', 'Vol CY (KL)', 'Vol LY (KL)', 'YoY Chg', 'Mix %', 'Stations', 'Mgn/L CY', 'Mgn/L LY']
+r_hdr = ['Region', 'Vol CY (KL)', 'Vol LY 12M (KL)', 'vs SPLY', 'Mix %', 'Stations', 'Mgn/L CY', 'Mgn/L LY']
 tbl2 = doc.add_table(rows=len(reg_df)+2, cols=len(r_hdr))
 tbl2.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl2.style = 'Table Grid'
@@ -588,7 +594,7 @@ doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 doc.add_paragraph()
 
 # Top 15 city table
-c_hdr = ['#','City','Region','Vol CY (KL)','Vol LY (KL)','YoY Chg','Stns','Mgn/L (PKR)']
+c_hdr = ['#','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Stns','Mgn/L (PKR)']
 top15_full = city_df.head(15).copy()
 # Need region for each city
 city_reg = (lubes.groupby(['CityNorm','Sales office Region'])['SalesLtr_CY']
@@ -638,7 +644,7 @@ doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 doc.add_paragraph()
 
 if len(under_cities) > 0:
-    uc_hdr = ['City','Region','Vol CY (KL)','Vol LY (KL)','YoY Chg','Mgn/L (PKR)']
+    uc_hdr = ['City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
     tbl5 = doc.add_table(rows=min(len(under_cities),20)+1, cols=len(uc_hdr))
     tbl5.alignment = WD_TABLE_ALIGNMENT.CENTER
     tbl5.style = 'Table Grid'
@@ -680,7 +686,7 @@ doc.add_paragraph()
 add_heading(doc, '4.1  Top 25 Stations by Volume', level=2)
 
 top25 = stn_df.head(25).copy()
-s_hdr = ['#','Station Name','City','Region','Vol CY (KL)','Vol LY (KL)','YoY Chg','Mgn/L (PKR)']
+s_hdr = ['#','Station Name','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
 tbl6 = doc.add_table(rows=len(top25)+1, cols=len(s_hdr))
 tbl6.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl6.style = 'Table Grid'
@@ -750,7 +756,7 @@ add_body(doc,
     'prioritised for sales intervention.', size=10)
 
 if len(bot_stns):
-    b_hdr = ['Station Name','City','Region','Vol CY (KL)','Vol LY (KL)','YoY Chg','Mgn/L (PKR)']
+    b_hdr = ['Station Name','City','Region','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Mgn/L (PKR)']
     tbl8 = doc.add_table(rows=len(bot_stns)+1, cols=len(b_hdr))
     tbl8.alignment = WD_TABLE_ALIGNMENT.CENTER
     tbl8.style = 'Table Grid'
@@ -776,9 +782,9 @@ doc.add_page_break()
 add_heading(doc, '5.  Margin Analysis', level=1)
 
 add_body(doc,
-    f'While total net margin grew by {pct(mc,ml_):.1f}% to PKR {bn(mc):.3f} Bn, '
-    f'the per-litre net margin declined from PKR {ml_/vl:.0f} to PKR {mc/vc:.0f} — a compression '
-    f'of PKR {ml_/vl - mc/vc:.0f}/litre ({pct(mc/vc, ml_/vl):.1f}%). '
+    f'While total net margin grew by {pct(mc,ms):.1f}% vs SPLY to PKR {bn(mc):.3f} Bn, '
+    f'the per-litre net margin changed from PKR {ms/vs:.0f} (SPLY) to PKR {mc/vc:.0f} — a movement '
+    f'of PKR {ms/vs - mc/vc:.0f}/litre ({pct(mc/vc, ms/vs):.1f}%). '
     'The compression is driven by: '
     '(1) Low Grade lubricants growing 24.4% with only PKR 116/L margin; '
     '(2) High-margin PCMO (PKR 501/L) declining 4.7%; '
@@ -890,7 +896,7 @@ add_heading(doc, 'Appendix A — All Significant Cities (Top 50)', level=1)
 add_body(doc, 'Cities ranked by CY volume. Includes all cities with >50 KL CY volume.', size=9)
 
 top50 = city_df[kl(city_df['vol_cy']) > 50].copy()
-app_hdr = ['#','City','Vol CY (KL)','Vol LY (KL)','YoY Chg','Stns','Mgn/L (PKR)']
+app_hdr = ['#','City','Vol CY (KL)','Vol LY 12M (KL)','vs SPLY','Stns','Mgn/L (PKR)']
 tbl_app = doc.add_table(rows=len(top50)+1, cols=len(app_hdr))
 tbl_app.alignment = WD_TABLE_ALIGNMENT.CENTER
 tbl_app.style = 'Table Grid'

@@ -85,9 +85,10 @@ for city in top20:
     cl = lubes_all[lubes_all['CityNorm']==city]
     ca = retail[retail['CityNorm']==city]
 
-    vol_cy   = cl['SalesLtr_CY'].sum()
-    vol_ly   = cl['SalesLtr_LY'].sum()
-    vol_chg_pct = (vol_cy-vol_ly)/vol_ly*100 if vol_ly else 0
+    vol_cy      = cl['SalesLtr_CY'].sum()
+    vol_ly      = cl['SalesLtr_LY'].sum()
+    vol_sply    = cl['SalesLtr_SPLY'].sum()
+    vol_chg_pct = (vol_cy-vol_sply)/vol_sply*100 if vol_sply else 0
 
     stn_all  = ca['Customer Number'].nunique()
     stn_tot  = cl.groupby('Customer Number')['SalesLtr_CY'].sum()
@@ -178,7 +179,7 @@ for seg, bd in [
 
 # ─── column definitions ───────────────────────────────────────────────────────
 HDR = [
-    '#','City','Current\nVol (KL)','YoY',
+    '#','City','Current\nVol (KL)','vs SPLY',
     # I1
     'I1: Low Grade\nGap Stns','I1 Full\nPotential','I1\nConserv','I1\nOptimal',
     # I2
@@ -213,7 +214,7 @@ for ci,h in enumerate(HDR):
     ct(tbl.cell(0,ci), h, bold=True, size=7, color=W_WHITE)
 
 # sub-header row 1
-SUB = ['','','KL','vs LY',
+SUB = ['','','KL','vs SPLY',
        'count','KL','KL','KL',
        'count','KL','KL','KL',
        'count','KL','KL','KL',

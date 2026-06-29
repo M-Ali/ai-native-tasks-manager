@@ -103,9 +103,10 @@ def compute_city(city_norm):
     city_all   = retail[retail['CityNorm']==city_norm].copy()
 
     # ── volume metrics (litres) ───────────────────────────────────────────────
-    lubes_vol    = city_lubes['SalesLtr_CY'].sum()
-    lubes_vol_ly = city_lubes['SalesLtr_LY'].sum()
-    vol_chg      = (lubes_vol - lubes_vol_ly) / lubes_vol_ly * 100 if lubes_vol_ly else 0
+    lubes_vol     = city_lubes['SalesLtr_CY'].sum()
+    lubes_vol_ly  = city_lubes['SalesLtr_LY'].sum()
+    lubes_vol_sply= city_lubes['SalesLtr_SPLY'].sum()
+    vol_chg       = (lubes_vol - lubes_vol_sply) / lubes_vol_sply * 100 if lubes_vol_sply else 0
 
     # per-station volume totals
     stn_total = (city_lubes.groupby('Customer Number')['SalesLtr_CY']
@@ -133,13 +134,14 @@ def compute_city(city_norm):
         stn_cat        = df_cat.groupby('Customer Number')['SalesLtr_CY'].sum()
         stn_cat_active = stn_cat[stn_cat > 0]
         vol    = stn_cat.sum()
-        vol_ly = df_cat['SalesLtr_LY'].sum()
+        vol_ly   = df_cat['SalesLtr_LY'].sum()
+        vol_sply = df_cat['SalesLtr_SPLY'].sum()
         n_sell = (stn_cat > 0).sum()
         cat_stats[cat] = dict(
             vol       = vol,
             vol_ly    = vol_ly,
             vol_pct   = vol / lubes_vol * 100 if lubes_vol else 0,
-            vol_chg   = (vol - vol_ly) / vol_ly * 100 if vol_ly else 0,
+            vol_chg   = (vol - vol_sply) / vol_sply * 100 if vol_sply else 0,
             n_selling = n_sell,
             n_pct     = n_sell / n_stns * 100 if n_stns else 0,
             avg       = stn_cat_active.mean()   if len(stn_cat_active) else 0,
@@ -241,7 +243,7 @@ def build_slide2(prs, d):
     boxes = [
         (0.75, 0.86, fmt_kl_total(d['lubes_vol']),
          'TOTAL LUBES VOLUME', C['ORANGE'],
-         f"YoY: {vol_chg_str}  (LY: {fmt_kl_total(d['lubes_vol_ly'])})"),
+         f"vs SPLY: {vol_chg_str}  (LY 12M: {fmt_kl_total(d['lubes_vol_ly'])})"),
         (1.73, 0.86, fmt_kl(d['avg_per_stn']),
          'AVG VOLUME PER STATION', C['BLUE'],
          f"Median: {fmt_kl(d['med_per_stn'])}  |  Range: {fmt_kl(d['min_per_stn'])} – {fmt_kl(d['max_per_stn'])}"),

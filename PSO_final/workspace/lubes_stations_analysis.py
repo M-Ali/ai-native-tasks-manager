@@ -20,14 +20,15 @@ lubes  = retail[retail['FuelSegment'] == 'Lubricants'].copy()
 cat = (lubes.groupby('LubeCategory')
        .agg(vol_cy=('SalesLtr_CY','sum'),
             vol_ly=('SalesLtr_LY','sum'),
+            vol_sply=('SalesLtr_SPLY','sum'),
             stns=('Customer Number','nunique'))
-       .assign(vol_chg=lambda d: (d.vol_cy - d.vol_ly) / d.vol_ly.abs() * 100,
+       .assign(vol_chg=lambda d: (d.vol_cy - d.vol_sply) / d.vol_sply.abs().replace(0, float('nan')) * 100,
                vol_sh=lambda d: d.vol_cy / d.vol_cy.sum() * 100,
                vol_per_stn=lambda d: d.vol_cy / d.stns)
        .sort_values('vol_cy', ascending=False))
 
 print("=== VOLUME & STATIONS BY LUBE CATEGORY ===")
-print(f"{'Category':<20}  {'Vol CY (KL)':>11}  {'Vol LY (KL)':>11}  {'Chg%':>7}  {'Mix%':>6}  {'Stns':>5}  {'KL/Stn':>8}")
+print(f"{'Category':<20}  {'Vol CY (KL)':>11}  {'Vol LY 12M (KL)':>15}  {'vs SPLY%':>8}  {'Mix%':>6}  {'Stns':>5}  {'KL/Stn':>8}")
 print("-" * 85)
 for cat_name, r in cat.iterrows():
     chg = f"{r.vol_chg:+.1f}%"
@@ -39,14 +40,15 @@ print()
 city = (lubes.groupby('CityNorm')
         .agg(vol_cy=('SalesLtr_CY','sum'),
              vol_ly=('SalesLtr_LY','sum'),
+             vol_sply=('SalesLtr_SPLY','sum'),
              stns=('Customer Number','nunique'))
-        .assign(vol_chg=lambda d: (d.vol_cy - d.vol_ly) / d.vol_ly.abs() * 100,
+        .assign(vol_chg=lambda d: (d.vol_cy - d.vol_sply) / d.vol_sply.abs().replace(0, float('nan')) * 100,
                 vol_per_stn=lambda d: d.vol_cy / d.stns)
         .sort_values('vol_cy', ascending=False)
         .head(15))
 
 print("=== TOP 15 CITIES — STATIONS & VOLUME ===")
-print(f"{'#':<3}  {'City':<25}  {'Stns':>5}  {'Vol CY (KL)':>11}  {'Vol LY (KL)':>11}  {'Chg%':>7}  {'KL/Stn':>8}")
+print(f"{'#':<3}  {'City':<25}  {'Stns':>5}  {'Vol CY (KL)':>11}  {'Vol LY 12M (KL)':>15}  {'vs SPLY%':>8}  {'KL/Stn':>8}")
 print("-" * 80)
 for i, (city_name, r) in enumerate(city.iterrows(), 1):
     chg = f"{r.vol_chg:+.1f}%"
@@ -76,7 +78,7 @@ bw = 0.55
 bar_colours = [BLUE, GREEN, ORANGE, RED]
 bars = ax1.bar(x, cat4['vol_cy']/1000, bw, color=bar_colours, alpha=0.85, zorder=3, label='Vol CY (KL)')
 ax1.bar(x, cat4['vol_ly']/1000, bw, color='none', edgecolor=GREY,
-        linewidth=1.5, linestyle='--', zorder=2, label='Vol LY (KL)')
+        linewidth=1.5, linestyle='--', zorder=2, label='Vol LY 12M (KL)')
 
 # Stations as dots on secondary axis
 ax1r.plot(x, cat4['stns'], 'o--', color='#333333', linewidth=1.5,

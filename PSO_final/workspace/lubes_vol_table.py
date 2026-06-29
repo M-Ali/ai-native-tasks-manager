@@ -80,9 +80,10 @@ for city in top20_cities:
     cl  = lubes_all[lubes_all['CityNorm']==city]
     ca  = retail[retail['CityNorm']==city]
 
-    vol_cy = cl['SalesLtr_CY'].sum()
-    vol_ly = cl['SalesLtr_LY'].sum()
-    vol_chg = (vol_cy - vol_ly) / vol_ly * 100 if vol_ly else 0
+    vol_cy   = cl['SalesLtr_CY'].sum()
+    vol_ly   = cl['SalesLtr_LY'].sum()
+    vol_sply = cl['SalesLtr_SPLY'].sum()
+    vol_chg  = (vol_cy - vol_sply) / vol_sply * 100 if vol_sply else 0
 
     # region (most common)
     region = (cl.groupby('Sales office Region')['SalesLtr_CY'].sum()
@@ -114,8 +115,8 @@ for city in top20_cities:
             vol_pct= cv/vol_cy*100 if vol_cy else 0,
             n_sell = (cl_stn > 0).sum(),
             avg_kl = cl_stn[cl_stn>0].mean()/1000 if (cl_stn>0).sum() else 0,
-            vol_chg= (cv - dc['SalesLtr_LY'].sum()) / dc['SalesLtr_LY'].sum() * 100
-                      if dc['SalesLtr_LY'].sum() else 0,
+            vol_chg= (cv - dc['SalesLtr_SPLY'].sum()) / dc['SalesLtr_SPLY'].sum() * 100
+                      if dc['SalesLtr_SPLY'].sum() else 0,
         )
 
     rows.append(dict(
@@ -161,7 +162,7 @@ r3.bold = True; r3.font.size = Pt(11); r3.font.color.rgb = W_BLUE; r3.font.name 
 p3.paragraph_format.space_after = Pt(3)
 
 hdr1 = ['#','City','Region','Total\nStns',
-        'Vol CY\n(KL)','Vol LY\n(KL)','YoY\nChg',
+        'Vol CY\n(KL)','Vol LY 12M\n(KL)','vs\nSPLY',
         'Avg KL\n/Stn','Median KL\n/Stn',
         'Active\nStns','Zero\nStns',
         'Top 10\nConc %',
@@ -178,7 +179,7 @@ for ci, h in enumerate(hdr1):
 
 # sub-header
 sub1 = ['','','','',
-        'Litres/1000','Litres/1000','vs LY',
+        'Litres/1000','Litres/1000','vs SPLY',
         'KL','KL',
         'count','count',
         '% of Vol',
@@ -234,7 +235,7 @@ p4.paragraph_format.space_after  = Pt(3)
 p4.paragraph_format.space_before = Pt(6)
 
 # columns: City | for each cat: Vol(KL) | Mix% | YoY% | Stns
-cat_hdr_main = ['#','City','Vol CY\n(KL)','YoY\nChg']
+cat_hdr_main = ['#','City','Vol CY\n(KL)','vs\nSPLY']
 for cat in CAT_ORDER:
     cat_hdr_main += [f'{cat}\nKL', f'{cat}\n%', f'{cat}\nYoY', f'{cat}\nStns']
 
@@ -260,9 +261,9 @@ for ci, h in enumerate(cat_hdr_main):
     ct(tbl2.cell(0, ci), h, bold=True, size=7, color=W_WHITE)
 
 # sub-header
-sub2 = ['','','Litres/1000','vs LY']
+sub2 = ['','','Litres/1000','vs SPLY']
 for _ in CAT_ORDER:
-    sub2 += ['KL','% of total','vs LY','# selling']
+    sub2 += ['KL','% of total','vs SPLY','# selling']
 for ci, s in enumerate(sub2):
     if ci < 4:
         bg_hex = '1B2A4A'
@@ -324,7 +325,7 @@ fn.paragraph_format.space_before = Pt(4)
 for part, bold in [
     ('Notes: ', True),
     ('Vol CY/LY = litres ÷ 1,000 (kilolitres). '
-     'YoY Chg = current year vs prior year. '
+     'vs SPLY = current year vs same period last year (like-for-like 10M comparison). LY 12M shown for reference only. '
      'Avg/Median KL per Station = among all stations in city, not just active ones for avg. '
      'High Performers = above 75th percentile volume; Mid = 50th–75th; Low = below 50th (active only). '
      'Top 10 Conc % = share of city volume held by top 10 stations.  '
