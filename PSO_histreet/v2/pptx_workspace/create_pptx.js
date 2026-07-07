@@ -3,7 +3,7 @@ const html2pptx = require('D:\\Personal\\SkillsApril2026\\claude-code-skills-lab
 const pptxgen = require('pptxgenjs');
 
 const SLIDES_DIR = path.join(__dirname, 'slides');
-const OUT = path.join(__dirname, '..', 'output', 'reports', 'PSO_Pricing_Strategy.pptx');
+const OUT = path.join(__dirname, '..', 'output', 'reports', 'PSO_Pricing_Strategy_v4.pptx');
 
 // ── Palette (no # prefix in pptxgenjs) ────────────────────────────
 const G_DARK   = "023520";
@@ -30,23 +30,43 @@ const compData = [
   ["Equimoli", "Economy", "Local/Imported", "15W-40, 20W-50", "922", "1,025", "2,150"],
 ];
 
+function chRow(brand, grade, pump) {
+  return [brand, grade,
+    `Rs ${pump.toLocaleString()}`,
+    `Rs ${Math.round(pump * 0.88).toLocaleString()}`,
+    `Rs ${Math.round(pump * 0.85).toLocaleString()}`,
+    `Rs ${Math.round(pump * 0.80).toLocaleString()}`,
+  ];
+}
+function chSectionRow(label) {
+  return [
+    { text: label, options: { fill: { color: "E8F5EE" }, color: G_DARK, bold: true, fontSize: 8, colspan: 6 } },
+    "", "", "", "", "",
+  ];
+}
+const chHdr = [
+  { text: "Brand",               options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8 } },
+  { text: "Grade",               options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8 } },
+  { text: "Retail Pump\n(PKR/L)", options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8, align: "center" } },
+  { text: "Workshop\n(−12%)",    options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8, align: "center" } },
+  { text: "Distributor\n(−15%)", options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8, align: "center" } },
+  { text: "Fleet Contract\n(−20%)", options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 8, align: "center" } },
+];
 const channelData = [
-  [
-    { text: "Brand",        options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9 } },
-    { text: "Grade",        options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9 } },
-    { text: "Retail Pump\n(PKR/L)", options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9, align: "center" } },
-    { text: "Workshop\n(−12%)",     options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9, align: "center" } },
-    { text: "Distributor\n(−15%)",  options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9, align: "center" } },
-    { text: "Fleet Contract\n(−20%)", options: { fill: { color: G_DARK }, color: WHITE, bold: true, fontSize: 9, align: "center" } },
-  ],
-  ["Carient Ultra", "0W-20", "Rs 3,745", "Rs 3,296", "Rs 3,183", "Rs 2,996"],
-  ["Carient Ultra", "5W-40", "Rs 3,287", "Rs 2,893", "Rs 2,794", "Rs 2,630"],
-  ["Carient FS",    "5W-30", "Rs 2,006", "Rs 1,765", "Rs 1,705", "Rs 1,605"],
-  ["Carient FS",    "5W-40", "Rs 3,138", "Rs 2,761", "Rs 2,667", "Rs 2,510"],
-  ["Carient Plus",  "15W-40","Rs 1,749", "Rs 1,539", "Rs 1,487", "Rs 1,399"],
-  ["Carient Plus",  "20W-50","Rs 1,287", "Rs 1,133", "Rs 1,094", "Rs 1,030"],
-  ["Carient SPRO",  "15W-40","Rs 1,575", "Rs 1,386", "Rs 1,339", "Rs 1,260"],
-  ["Carient SPRO",  "20W-50","Rs 1,026", "Rs 903",   "Rs 872",   "Rs 821"],
+  chHdr,
+  chSectionRow("PCMO — Petrol Engine Oil"),
+  chRow("Carient Ultra", "0W-20",  3745),
+  chRow("Carient FS",    "5W-40",  3138),
+  chRow("Carient Plus",  "15W-40", 1749),
+  chRow("Carient SPRO",  "15W-40", 1575),
+  chSectionRow("HDEO — Diesel Engine Oil"),
+  chRow("DEO Max",   "15W-40", 1613),
+  chRow("DEO 8000",  "10W-40", 1734),
+  chRow("DEO 6000",  "15W-40", 1784),
+  chRow("Dieselube", "15W-40", 1515),
+  chSectionRow("MCO — Motorcycle Oil"),
+  chRow("Blaze Xtreme", "10W-40", 1698),
+  chRow("Blaze 4T",     "10W-40", 1665),
 ];
 
 function makeHeader(row) {
@@ -179,16 +199,27 @@ const crpChartData = [
   { name: "PSO Recommended",      labels: ["Shell/Caltex/Total","ZIC/Aramco","Kixx/Equimoli"], values: [2106, 1640, 960]  },
 ];
 
+// F3 PPA: two brands with full 1L-3L-4L coverage to show step-down curves
 const ppaData = [
-  { name: "Rec Price/L",
+  { name: "Carient Ultra 5W-40 (Super Premium)",
     labels: ["1L", "3L", "4L"],
-    values: [3745, 3463, 3347] }
+    values: [3287, 3090, 3008] },
+  { name: "Carient Plus 15W-40 (Mainstream)",
+    labels: ["1L", "3L", "4L"],
+    values: [1749, 1602, 1542] },
+  { name: "Carient SPRO 15W-40 (Economy)",
+    labels: ["1L", "3L", "4L"],
+    values: [null, 1575, 1515] },
 ];
 
+// F5 Spec: two series (PSO rec vs market median) per grade for meaningful comparison
 const specData = [
-  { name: "Recommended Price/L (PKR)",
-    labels: ["0W-20", "5W-20", "5W-30", "5W-40"],
-    values: [3745, 2364, 2319, 3287] }
+  { name: "PSO Recommended (PKR/L)",
+    labels: ["20W-50\n(Mineral)", "15W-40\n(Mineral)", "10W-40\n(Semi-Syn)", "5W-40\n(Full Syn)", "5W-30\n(Full Syn)", "5W-20\n(Full Syn)", "0W-20\n(Full Syn)"],
+    values: [925, 1542, 1200, 3138, 2006, 2364, 3745] },
+  { name: "Market Median (PKR/L)",
+    labels: ["20W-50\n(Mineral)", "15W-40\n(Mineral)", "10W-40\n(Semi-Syn)", "5W-40\n(Full Syn)", "5W-30\n(Full Syn)", "5W-20\n(Full Syn)", "0W-20\n(Full Syn)"],
+    values: [1019, 1750, 2300, 3412, 1019, 1900, 3412] },
 ];
 
 const geoData = [
@@ -201,10 +232,12 @@ const geoData = [
 const signalLabels = ["Carient Ultra","Carient FS","Carient Plus","Carient SPRO","DEO 8000","DEO 6000","DEO 3000","DEO Max","Dieselube","Blaze 4T","Blaze Xtreme"];
 const signalValues = [9.8, 96.9, -27.6, -10.0, 4.1, 1.9, -11.9, 31.9, -13.4, -27.6, -26.2];
 
+// 5 representative SKUs: Super Premium PCMO, Premium PCMO, Mainstream PCMO, HDEO, MCO
+const geoSkuLabels = ["Ultra 0W-20\n(Super Prem)", "FS 10W-40\n(Premium)", "Plus 15W-40\n(Mainstream)", "DEO 8000\n(HDEO)", "Blaze 4T\n(MCO)"];
 const geoBarData = [
-  { name: "South",   labels: ["Carient Ultra\n5W-40"], values: [3090] },
-  { name: "Central", labels: ["Carient Ultra\n5W-40"], values: [3287] },
-  { name: "North",   labels: ["Carient Ultra\n5W-40"], values: [3123] },
+  { name: "South (−3%)",    labels: geoSkuLabels, values: [3310, 994, 1698, 1698, 2231] },
+  { name: "Central (Base)", labels: geoSkuLabels, values: [3376, 1014, 1732, 1783, 2231] },
+  { name: "North (−5%)",    labels: geoSkuLabels, values: [3211, 964, 1647, 1664, 2053] },
 ];
 
 async function main() {
@@ -228,10 +261,11 @@ async function main() {
 
   // ── S03 Competitive Landscape ────────────────────────────────────
   let s3 = await html2pptx(html('s03_competitive.html'), pptx, opts);
+  const s3ph = s3.placeholders[0];
   s3.slide.addTable(compData, {
-    x: 0.3, y: 1.55, w: 9.4, h: 3.6,
+    ...s3ph,
     colW: [1.5, 1.2, 1.0, 1.6, 1.2, 1.2, 1.2],
-    rowH: Array(compData.length).fill(0.46),
+    rowH: Array(compData.length).fill(s3ph.h / compData.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 8, valign: "middle", align: "center",
     autoPage: false,
@@ -278,14 +312,18 @@ async function main() {
     s8.slide.addChart(pptx.charts.LINE, ppaData, {
       ...ppaPh,
       showTitle: false,
-      showLegend: false,
+      showLegend: true,
+      legendPos: 't',
       lineSize: 3,
+      lineDataSymbol: 'circle',
+      lineDataSymbolSize: 6,
       showCatAxisTitle: true, catAxisTitle: 'Pack Size',
-      showValAxisTitle: true, valAxisTitle: 'PKR per Litre',
-      valAxisMinVal: 3000, valAxisMaxVal: 4000,
-      chartColors: [G_MED],
-      dataLabelFontSize: 8,
+      showValAxisTitle: true, valAxisTitle: 'Price/L (PKR)',
+      valAxisMinVal: 0, valAxisMaxVal: 3800,
+      valAxisMajorUnit: 500,
+      chartColors: [G_DARK, G_MED, GOLD],
       showValue: true,
+      dataLabelFontSize: 7,
     });
   }
   s8.slide.addNotes("The PPA curve for Carient Ultra shows the step-down: 1L at Rs 3,745/L → 3L at Rs 3,463/L → 4L at Rs 3,347/L. This is a roughly 4.5% step per pack size increment — consistent and defensible. Distributors cannot arbitrage by buying 4L and repacking because the margin doesn't justify it. This consistency needs to be enforced across all brands — currently, some brands show irregular step-downs that create channel conflict.");
@@ -301,14 +339,17 @@ async function main() {
     s10.slide.addChart(pptx.charts.BAR, specData, {
       ...specPh,
       barDir: 'bar',
+      barGrouping: 'clustered',
       showTitle: false,
-      showLegend: false,
+      showLegend: true,
+      legendPos: 't',
       showCatAxisTitle: false,
-      showValAxisTitle: true, valAxisTitle: 'PKR/L',
-      valAxisMinVal: 0, valAxisMaxVal: 4200,
-      chartColors: [G_MED, G_MED, RED_SIG, G_MED],
-      showValue: true,
-      dataLabelFontSize: 8,
+      showValAxisTitle: true, valAxisTitle: 'Price/L (PKR)',
+      valAxisMinVal: 0, valAxisMaxVal: 4000,
+      valAxisMajorUnit: 500,
+      chartColors: [G_MED, "AAAAAA"],
+      catAxisLabelFontSize: 7,
+      showValue: false,
     });
   }
   s10.slide.addNotes("The 5W-30 bar is highlighted in red — at Rs 2,319/L, it's priced 127% above market median, which is disproportionate even accounting for the spec premium. The 0W-20 grade at Rs 3,745 makes sense because there are few competitors in this grade range. The F5 framework caps spec uplift at 30% for Group III grades — the 5W-30 outlier is an artifact of near-zero competitor supply, not genuine spec justification.");
@@ -323,13 +364,14 @@ async function main() {
       barGrouping: 'clustered',
       showTitle: false,
       showLegend: true,
-      legendPos: 'b',
+      legendPos: 't',
       showCatAxisTitle: false,
-      showValAxisTitle: true, valAxisTitle: 'PKR/L',
-      valAxisMinVal: 3000, valAxisMaxVal: 3500,
+      showValAxisTitle: true, valAxisTitle: 'Price/L (PKR)',
+      valAxisMinVal: 0, valAxisMaxVal: 3800,
+      valAxisMajorUnit: 500,
       chartColors: [G_DARK, G_MED, "A8D5BE"],
-      showValue: true,
-      dataLabelFontSize: 8,
+      catAxisLabelFontSize: 7,
+      showValue: false,
     });
   }
   s11.slide.addNotes("Geographic segmentation is a reference framework — PSO likely operates uniform national pricing at this stage. However, the regional index provides a basis for targeted trade promotions. South Pakistan (Karachi) is a high-value, high-volume market where premium pricing is more sustainable. North Pakistan has lower income per capita and higher logistics cost, justifying the −5% index. Central (Punjab) is our baseline.");
@@ -340,10 +382,11 @@ async function main() {
 
   // ── S13 F8 Channel ──────────────────────────────────────────────
   let s13 = await html2pptx(html('s13_f8_channel.html'), pptx, opts);
+  const s13ph = s13.placeholders[0];
   s13.slide.addTable(channelData, {
-    x: 0.3, y: 1.45, w: 9.4, h: 3.7,
+    ...s13ph,
     colW: [1.8, 1.0, 1.7, 1.7, 1.7, 1.7],
-    rowH: Array(channelData.length).fill(0.42),
+    rowH: Array(channelData.length).fill(s13ph.h / channelData.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 8, valign: "middle", align: "center",
     fill: { color: WHITE },
@@ -352,10 +395,11 @@ async function main() {
 
   // ── S14 PCMO Table ───────────────────────────────────────────────
   let s14 = await html2pptx(html('s14_pcmo.html'), pptx, opts);
+  const s14ph = s14.placeholders[0];
   s14.slide.addTable(pcmoFormatted, {
-    x: 0.3, y: 1.45, w: 9.4, h: 3.7,
+    ...s14ph,
     colW: [1.55, 0.85, 0.7, 1.0, 1.1, 0.85, 1.4, 0.7],
-    rowH: Array(pcmoFormatted.length).fill(0.175),
+    rowH: Array(pcmoFormatted.length).fill(s14ph.h / pcmoFormatted.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 8, valign: "middle", align: "center",
     fill: { color: WHITE },
@@ -366,18 +410,20 @@ async function main() {
   let s15 = await html2pptx(html('s15_deo_mco.html'), pptx, opts);
   const deoPhEl = s15.placeholders.find(p => p.id === 'deo-table') || s15.placeholders[0];
   const mcoPhEl = s15.placeholders.find(p => p.id === 'mco-table') || (s15.placeholders[1] || null);
+  const s15ph0 = s15.placeholders.find(p => p.id === 'deo-table') || s15.placeholders[0];
+  const s15ph1 = s15.placeholders.find(p => p.id === 'mco-table') || s15.placeholders[1];
   s15.slide.addTable(deoRows, {
-    x: 0.3, y: 1.45, w: 4.7, h: 3.7,
+    ...s15ph0,
     colW: [1.1, 0.8, 0.5, 0.9, 0.9, 0.7, 1.2],
-    rowH: Array(deoRows.length).fill(0.265),
+    rowH: Array(deoRows.length).fill(s15ph0.h / deoRows.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 7.5, valign: "middle", align: "center",
     fill: { color: WHITE },
   });
-  s15.slide.addTable(mcoRows, {
-    x: 5.1, y: 1.45, w: 4.6, h: 3.7,
+  if (s15ph1) s15.slide.addTable(mcoRows, {
+    ...s15ph1,
     colW: [1.1, 0.8, 0.6, 0.9, 0.9, 0.7, 1.2],
-    rowH: Array(mcoRows.length).fill(0.53),
+    rowH: Array(mcoRows.length).fill(s15ph1.h / mcoRows.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 7.5, valign: "middle", align: "center",
     fill: { color: WHITE },
@@ -421,10 +467,11 @@ async function main() {
 
   // ── S19 Roadmap ─────────────────────────────────────────────────
   let s19 = await html2pptx(html('s19_roadmap.html'), pptx, opts);
+  const s19ph = s19.placeholders[0];
   s19.slide.addTable(roadmapRows, {
-    x: 0.3, y: 1.45, w: 9.4, h: 3.7,
+    ...s19ph,
     colW: [2.8, 1.4, 1.5, 1.4, 1.3, 1.0],
-    rowH: Array(roadmapRows.length).fill(0.53),
+    rowH: Array(roadmapRows.length).fill(s19ph.h / roadmapRows.length),
     border: { pt: 0.5, color: "DDDDDD" },
     fontSize: 8, valign: "middle",
     fill: { color: WHITE },
