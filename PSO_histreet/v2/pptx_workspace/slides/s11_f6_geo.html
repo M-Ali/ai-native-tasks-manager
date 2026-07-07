@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><style>
+html { background: #FFFFFF; }
+body { width: 720pt; height: 405pt; margin: 0; padding: 0; background: #FFFFFF;
+  font-family: Arial, sans-serif; display: flex; flex-direction: column; }
+.header { background: #00703C; padding: 12pt 28pt 10pt; display: flex; justify-content: space-between; align-items: center; }
+.header .hl { color: #FFFFFF; font-size: 17pt; font-weight: bold; margin: 0; }
+.header .tag { background: #555555; color: #FFFFFF; font-size: 9pt; font-weight: bold; padding: 3pt 8pt; border-radius: 3pt; }
+.header .tag p { margin: 0; }
+.content { display: flex; flex: 1; padding: 14pt 24pt; gap: 20pt; }
+.left { width: 200pt; display: flex; flex-direction: column; justify-content: center; gap: 10pt; }
+.region-card { padding: 10pt 14pt; border-radius: 6pt; }
+.r-south { background: #023520; }
+.r-south p { color: #FFFFFF; }
+.r-central { background: #00703C; }
+.r-central p { color: #FFFFFF; }
+.r-north { background: #E8F5EE; border: 1pt solid #00703C; }
+.r-north p { color: #023520; }
+.region-card .r-name { font-size: 11pt; font-weight: bold; margin: 0 0 2pt 0; }
+.region-card .r-idx { font-size: 9pt; margin: 0 0 2pt 0; }
+.region-card .r-cities { font-size: 8pt; margin: 0; }
+.right { flex: 1; }
+.lbl { color: #C8960C; font-size: 8pt; font-weight: bold; letter-spacing: 1pt; margin: 0 0 8pt 0; }
+.ph { flex: 1; background: #F0F8F4; border: 1pt solid #00703C; border-radius: 4pt; min-height: 260pt; }
+.note { color: #555555; font-size: 8pt; margin: 8pt 0 0 0; }
+</style></head><body>
+<div class="header">
+  <p class="hl">F6 — Geographic Segmentation</p>
+  <div class="tag"><p>REFERENCE FRAMEWORK</p></div>
+</div>
+<div class="content">
+  <div class="left">
+    <div class="region-card r-south">
+      <p class="r-name">South</p>
+      <p class="r-idx">Index: 0.97 (−3%)</p>
+      <p class="r-cities">Karachi, Hyderabad, Sukkur</p>
+    </div>
+    <div class="region-card r-central">
+      <p class="r-name">Central</p>
+      <p class="r-idx">Index: 1.00 (Baseline)</p>
+      <p class="r-cities">Lahore, Faisalabad, Multan</p>
+    </div>
+    <div class="region-card r-north">
+      <p class="r-name">North</p>
+      <p class="r-idx">Index: 0.95 (−5%)</p>
+      <p class="r-cities">Islamabad, Peshawar, Rawalpindi</p>
+    </div>
+  </div>
+  <div class="right">
+    <p class="lbl">REGIONAL PRICE COMPARISON — CARIENT ULTRA 5W-40 (PKR/L)</p>
+    <div id="geo-chart" class="ph"></div>
+    <p class="note">Regional indices reflect logistics cost differential and income-level elasticity. Central = base price reference.</p>
+  </div>
+</div>
+</body></html>

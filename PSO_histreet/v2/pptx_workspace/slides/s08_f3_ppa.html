@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><style>
+html { background: #FFFFFF; }
+body { width: 720pt; height: 405pt; margin: 0; padding: 0; background: #FFFFFF;
+  font-family: Arial, sans-serif; display: flex; flex-direction: column; }
+.header { background: #00703C; padding: 12pt 28pt 10pt; display: flex; justify-content: space-between; align-items: center; }
+.header .hl { color: #FFFFFF; font-size: 17pt; font-weight: bold; margin: 0; }
+.header .tag { background: #C8960C; color: #FFFFFF; font-size: 9pt; font-weight: bold; padding: 3pt 8pt; border-radius: 3pt; }
+.header .tag p { margin: 0; }
+.content { display: flex; flex: 1; padding: 16pt 24pt; gap: 20pt; }
+.left { flex: 1; }
+.right { width: 260pt; }
+.lbl { color: #C8960C; font-size: 8pt; font-weight: bold; letter-spacing: 1pt; margin: 0 0 10pt 0; }
+.body-txt { color: #333333; font-size: 9.5pt; line-height: 1.5; margin: 0 0 12pt 0; }
+.rule-box { background: #023520; padding: 10pt 14pt; border-radius: 5pt; margin-bottom: 10pt; }
+.rule-box p { color: #FFFFFF; font-size: 9pt; margin: 0; line-height: 1.4; }
+.rule-box .title { color: #C8960C; font-size: 8pt; font-weight: bold; margin: 0 0 4pt 0; }
+.ph { flex: 1; background: #F0F8F4; border: 1pt solid #00703C; border-radius: 4pt; }
+.chart-lbl { color: #555555; font-size: 8pt; margin: 0 0 6pt 0; }
+</style></head><body>
+<div class="header">
+  <p class="hl">F3 — Price-Pack Architecture (PPA)</p>
+  <div class="tag"><p>WEIGHT: 20%</p></div>
+</div>
+<div class="content">
+  <div class="left">
+    <p class="lbl">PACK PREMIUM LOGIC</p>
+    <p class="body-txt">Larger packs should carry a lower price-per-litre — rewarding bulk buyers while protecting per-unit margin on small packs. PPA enforces a consistent step-down curve.</p>
+    <div class="rule-box">
+      <p class="title">STEP-DOWN RULE APPLIED</p>
+      <p>0.7L → 1L: flat premium (convenience premium justified)</p>
+    </div>
+    <div class="rule-box">
+      <p class="title">BULK DISCOUNT APPLIED</p>
+      <p>1L → 3L: −8% per litre | 3L → 4L: −4% per litre</p>
+    </div>
+  </div>
+  <div class="right">
+    <p class="chart-lbl">Carient Ultra: Recommended Price/L vs Pack Size (PKR)</p>
+    <div id="ppa-chart" class="ph"></div>
+  </div>
+</div>
+</body></html>

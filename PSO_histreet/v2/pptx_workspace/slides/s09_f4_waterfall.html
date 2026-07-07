@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><style>
+html { background: #FFFFFF; }
+body { width: 720pt; height: 405pt; margin: 0; padding: 0; background: #FFFFFF;
+  font-family: Arial, sans-serif; display: flex; flex-direction: column; }
+.header { background: #00703C; padding: 12pt 28pt 10pt; display: flex; justify-content: space-between; align-items: center; }
+.header .hl { color: #FFFFFF; font-size: 17pt; font-weight: bold; margin: 0; }
+.header .tag { background: #555555; color: #FFFFFF; font-size: 9pt; font-weight: bold; padding: 3pt 8pt; border-radius: 3pt; }
+.header .tag p { margin: 0; }
+.content { display: flex; flex: 1; padding: 16pt 28pt; gap: 24pt; align-items: center; }
+.left { flex: 1; }
+.lbl { color: #C8960C; font-size: 8pt; font-weight: bold; letter-spacing: 1pt; margin: 0 0 12pt 0; }
+.step { display: flex; align-items: center; margin-bottom: 8pt; }
+.step-box { padding: 8pt 12pt; border-radius: 4pt; flex: 1; }
+.step-box p { font-size: 9pt; margin: 0; }
+.step-box .val { font-size: 12pt; font-weight: bold; margin: 3pt 0 0 0; }
+.s1 { background: #E8F5EE; border: 1pt solid #00703C; }
+.s1 p, .s1 .val { color: #023520; }
+.s2 { background: #F0F0F0; border: 1pt solid #AAAAAA; }
+.s2 p, .s2 .val { color: #444444; }
+.s3 { background: #FFF8E6; border: 1pt solid #C8960C; }
+.s3 p, .s3 .val { color: #7A5C00; }
+.s4 { background: #023520; }
+.s4 p { color: #A8D5BE; }
+.s4 .val { color: #FFFFFF; }
+.arrow-down { text-align: center; color: #AAAAAA; font-size: 14pt; margin: 2pt 0; }
+.arrow-down p { margin: 0; }
+.right { width: 240pt; }
+.insight { background: #F8F8F8; border-left: 4pt solid #C8960C; padding: 12pt 14pt; border-radius: 3pt; }
+.insight .i-lbl { color: #C8960C; font-size: 8pt; font-weight: bold; margin: 0 0 6pt 0; }
+.insight .i-txt { color: #333333; font-size: 9pt; line-height: 1.4; margin: 0; }
+</style></head><body>
+<div class="header">
+  <p class="hl">F4 — Price Waterfall (Hard Cost Floor)</p>
+  <div class="tag"><p>HARD FLOOR OVERRIDE</p></div>
+</div>
+<div class="content">
+  <div class="left">
+    <p class="lbl">WATERFALL STRUCTURE (EXAMPLE: CARIENT PLUS 15W-40)</p>
+    <div class="step"><div class="step-box s1"><p>Base Oil + Additives Cost</p><p class="val">Rs 850/L</p></div></div>
+    <div class="arrow-down"><p>+</p></div>
+    <div class="step"><div class="step-box s2"><p>Manufacturing + Fixed Overheads</p><p class="val">Rs 180/L</p></div></div>
+    <div class="arrow-down"><p>+</p></div>
+    <div class="step"><div class="step-box s3"><p>Target Gross Margin (20–30%)</p><p class="val">Rs 230/L</p></div></div>
+    <div class="arrow-down"><p>↓</p></div>
+    <div class="step"><div class="step-box s4"><p>Price Waterfall Floor</p><p class="val">Rs 1,260/L minimum</p></div></div>
+  </div>
+  <div class="right">
+    <div class="insight">
+      <p class="i-lbl">WHY A HARD FLOOR?</p>
+      <p class="i-txt">The F4 waterfall is not a weighted input — it is an absolute override. No recommended price can fall below the cost-plus floor, regardless of what other frameworks suggest. This prevents margin inversion especially in the economy tier where competitive pressure is highest.</p>
+    </div>
+  </div>
+</div>
+</body></html>
