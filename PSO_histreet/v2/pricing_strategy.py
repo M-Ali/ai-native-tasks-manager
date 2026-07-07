@@ -39,14 +39,21 @@ TIER_RANK = {"super_premium": 0, "premium": 1, "mainstream": 2, "economy": 3}
 
 # Shell tier equivalents for PSO brands
 PSO_TIER = {
+    # PCMO
     "PSO Carient Ultra": "super_premium",
     "PSO Carient FS":    "premium",
     "PSO Carient Plus":  "mainstream",
     "PSO Carient SPRO":  "economy",
+    # HDEO
+    "PSO DEO Max":       "super_premium",
+    "PSO DEO 8000":      "super_premium",
+    "PSO DEO 6000":      "premium",
     "PSO DEO 5000":      "premium",
     "PSO DEO 3000":      "mainstream",
-    "PSO Blaze 4T":      "mainstream",
+    "PSO Dieselube":     "economy",
+    # MCO
     "PSO Blaze Xtreme":  "premium",
+    "PSO Blaze 4T":      "mainstream",
 }
 
 SHELL_TIER = {
@@ -116,44 +123,113 @@ REGIONAL_SIGNAL = {
 
 # PSO brand discount vs Shell (brand perception gap, Pakistan market)
 PSO_BRAND_DISCOUNT = {
-    "super_premium": 0.08,   # PSO Ultra should price 8% below Shell Ultra
+    "super_premium": 0.08,
     "premium":       0.06,
     "mainstream":    0.04,
     "economy":       0.02,
 }
 
-# PSO SKU matrix — all SKUs we're pricing
-PSO_SKUS = [
-    # (brand, grade, pack_l, oil_type)
-    ("PSO Carient Ultra", "0W-20",  1.0,  "pcmo"),
-    ("PSO Carient Ultra", "0W-20",  4.0,  "pcmo"),
-    ("PSO Carient Ultra", "5W-30",  1.0,  "pcmo"),
-    ("PSO Carient Ultra", "5W-30",  4.0,  "pcmo"),
-    ("PSO Carient Ultra", "5W-40",  1.0,  "pcmo"),
-    ("PSO Carient Ultra", "5W-40",  4.0,  "pcmo"),
-    ("PSO Carient FS",    "5W-30",  1.0,  "pcmo"),
-    ("PSO Carient FS",    "5W-30",  4.0,  "pcmo"),
-    ("PSO Carient FS",    "5W-40",  1.0,  "pcmo"),
-    ("PSO Carient FS",    "5W-40",  4.0,  "pcmo"),
-    ("PSO Carient FS",    "10W-40", 1.0,  "pcmo"),
-    ("PSO Carient FS",    "10W-40", 4.0,  "pcmo"),
-    ("PSO Carient Plus",  "10W-40", 1.0,  "pcmo"),
-    ("PSO Carient Plus",  "10W-40", 4.0,  "pcmo"),
-    ("PSO Carient Plus",  "15W-40", 1.0,  "pcmo"),
-    ("PSO Carient Plus",  "15W-40", 4.0,  "pcmo"),
-    ("PSO Carient SPRO",  "20W-50", 1.0,  "pcmo"),
-    ("PSO Carient SPRO",  "20W-50", 4.0,  "pcmo"),
-    ("PSO Carient SPRO",  "15W-40", 1.0,  "pcmo"),
-    ("PSO Carient SPRO",  "15W-40", 4.0,  "pcmo"),
-    ("PSO DEO 5000",      "15W-40", 4.0,  "hdeo"),
-    ("PSO DEO 5000",      "15W-40", 10.0, "hdeo"),
-    ("PSO DEO 5000",      "10W-40", 4.0,  "hdeo"),
-    ("PSO DEO 3000",      "15W-40", 4.0,  "hdeo"),
-    ("PSO DEO 3000",      "20W-50", 4.0,  "hdeo"),
-    ("PSO Blaze 4T",      "10W-40", 1.0,  "mco"),
-    ("PSO Blaze 4T",      "20W-50", 1.0,  "mco"),
-    ("PSO Blaze Xtreme",  "10W-40", 1.0,  "mco"),
-]
+# Grades per PSO brand — sourced from product knowledge
+# SKU Wise sheet only carries pack sizes; grades come from product specs
+BRAND_GRADES = {
+    "PSO Carient Ultra": ["0W-20", "5W-20", "5W-30", "5W-40"],
+    "PSO Carient FS":    ["5W-30", "5W-40", "10W-40"],
+    "PSO Carient Plus":  ["10W-40", "15W-40", "20W-50"],
+    "PSO Carient SPRO":  ["15W-40", "20W-50"],
+    "PSO DEO Max":       ["10W-40", "15W-40"],
+    "PSO DEO 8000":      ["10W-40", "15W-40"],
+    "PSO DEO 6000":      ["15W-40"],
+    "PSO DEO 5000":      ["10W-40", "15W-40"],
+    "PSO DEO 3000":      ["15W-40", "20W-50"],
+    "PSO Dieselube":     ["15W-40", "20W-50"],
+    "PSO Blaze 4T":      ["10W-40", "20W-50"],
+    "PSO Blaze Xtreme":  ["10W-40"],
+}
+
+# Maps raw brand names in SKU Wise sheet → canonical PSO brand name + oil type
+BRAND_MAP = {
+    "Carient SPRO":  ("PSO Carient SPRO",  "pcmo"),
+    "Carient FS":    ("PSO Carient FS",    "pcmo"),
+    "Carient Ultra": ("PSO Carient Ultra", "pcmo"),
+    "Carient Plus":  ("PSO Carient Plus",  "pcmo"),
+    "Blaze 4T":      ("PSO Blaze 4T",      "mco"),
+    "Blaze Xtreme":  ("PSO Blaze Xtreme",  "mco"),
+    "DEO 3000":      ("PSO DEO 3000",      "hdeo"),
+    "DEO 5000":      ("PSO DEO 5000",      "hdeo"),
+    "DEO 6000":      ("PSO DEO 6000",      "hdeo"),
+    "DEO 8000":      ("PSO DEO 8000",      "hdeo"),
+    "DEO Max":       ("PSO DEO Max",       "hdeo"),
+    "Dieselube":     ("PSO Dieselube",     "hdeo"),
+}
+
+LUBES_FILE = Path("../Lubes Data Final.xlsx")
+MAX_PACK_L = 4.0   # only retail packs ≤ 4L
+
+
+def load_pso_skus_from_file() -> list[tuple]:
+    """
+    Reads SKU Wise sheet from Lubes Data Final.xlsx.
+    Returns list of (brand, grade, pack_l, oil_type) for all SKUs
+    with FY25 volume > 0 and pack_l <= MAX_PACK_L.
+    """
+    import openpyxl
+    wb = openpyxl.load_workbook(str(LUBES_FILE), data_only=True)
+    ws = wb["SKU Wise"]
+    rows = list(ws.iter_rows(values_only=True))
+
+    skus = []
+    current_brand_raw = None
+    section_headers = {"Vol vs Val (PCMO)", "Vol vs Val (MCO)",
+                       "Vol vs Val (DEO)", "Vol vs Val (Industrial)"}
+
+    for row in rows:
+        v0 = str(row[0]).strip() if row[0] else ""
+
+        # Section / column headers — skip and (for section headers) reset brand
+        if v0 in section_headers:
+            current_brand_raw = None
+            continue
+        if v0 in ("Brand", "None"):
+            continue
+
+        # Update current brand when column A has a non-empty value
+        if v0:
+            current_brand_raw = v0
+
+        # No known brand yet, or brand not in our map — skip data row
+        if current_brand_raw not in BRAND_MAP:
+            continue
+
+        brand, oil_type = BRAND_MAP[current_brand_raw]
+
+        # col1 = pack size (numeric litres), col3 = FY25 volume
+        try:
+            pack_raw = row[1]
+            fy25_vol = row[3]
+            if pack_raw is None:
+                continue
+            pack_l = float(pack_raw)
+            fy25_vol = float(fy25_vol) if fy25_vol else 0.0
+        except (TypeError, ValueError):
+            continue
+
+        # Only retail packs with actual FY25 sales
+        if pack_l > MAX_PACK_L or fy25_vol <= 0:
+            continue
+
+        grades = BRAND_GRADES.get(brand, [])
+        for grade in grades:
+            skus.append((brand, grade, pack_l, oil_type))
+
+    # Deduplicate while preserving order
+    seen = set()
+    unique = []
+    for s in skus:
+        if s not in seen:
+            seen.add(s)
+            unique.append(s)
+
+    return unique
 
 
 # ── Data loaders ──────────────────────────────────────────────────
@@ -562,9 +638,10 @@ def build():
     print(f"  {len(margins)} margin entries loaded.")
 
     records = []
-    print(f"\nProcessing {len(PSO_SKUS)} PSO SKUs across 8 frameworks...\n")
+    pso_skus = load_pso_skus_from_file()
+    print(f"\nProcessing {len(pso_skus)} PSO SKUs (from Lubes Data Final.xlsx) across 8 frameworks...\n")
 
-    for brand, grade, pack_l, oil_type in PSO_SKUS:
+    for brand, grade, pack_l, oil_type in pso_skus:
         tier = PSO_TIER.get(brand, "mainstream")
         print(f"  {brand} | {grade} | {pack_l}L")
 
