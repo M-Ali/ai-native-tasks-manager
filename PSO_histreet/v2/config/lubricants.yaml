@@ -1,0 +1,146 @@
+# ─────────────────────────────────────────────────────────────────
+# Pricing Intelligence Config — Lubricants (Engine Oils)
+# Edit this file to add/remove brands, grades, pack sizes or platforms.
+# No code changes needed.
+# ─────────────────────────────────────────────────────────────────
+
+product_category: lubricants
+subcategory: engine_oils
+currency: PKR
+market: Pakistan
+
+# ── Own brand (PSO) ──────────────────────────────────────────────
+own_brand:
+  name: PSO Carient
+  variants:
+    - name: Carient Ultra
+      type: pcmo
+      grades: ["5W-30", "5W-40", "0W-20"]
+      tier: super_premium
+    - name: Carient FS
+      type: pcmo
+      grades: ["5W-30", "5W-40", "10W-40"]
+      tier: premium
+    - name: Carient Plus
+      type: pcmo
+      grades: ["10W-40", "15W-40"]
+      tier: mainstream
+    - name: Carient SPRO
+      type: pcmo
+      grades: ["20W-50", "15W-40"]
+      tier: economy
+    - name: Blaze 4T
+      type: mco
+      grades: ["10W-40", "20W-50"]
+      tier: mainstream
+    - name: Blaze Xtreme
+      type: mco
+      grades: ["10W-40"]
+      tier: premium
+    - name: DEO 5000
+      type: hdeo
+      grades: ["15W-40", "10W-40"]
+      tier: premium
+    - name: DEO 3000
+      type: hdeo
+      grades: ["15W-40", "20W-50"]
+      tier: mainstream
+
+# ── Competing brands ─────────────────────────────────────────────
+competitors:
+  - name: Shell
+    search_terms:
+      pcmo: ["Shell Helix Ultra", "Shell Helix HX8", "Shell Helix HX7", "Shell Helix HX5", "Shell Helix HX3"]
+      hdeo: ["Shell Rimula R4", "Shell Rimula R3", "Shell Rimula R2"]
+    tier_map:
+      "Helix Ultra": super_premium
+      "Helix HX8": premium
+      "Helix HX7": premium
+      "Helix HX5": mainstream
+      "Helix HX3": economy
+
+  - name: Caltex
+    search_terms:
+      pcmo: ["Caltex Havoline Ultra", "Caltex Havoline Pro-DS", "Caltex Havoline"]
+      hdeo: ["Caltex Delo 400", "Caltex Delo 300", "Caltex Delo Gold"]
+    tier_map:
+      "Havoline Ultra": super_premium
+      "Havoline Pro-DS": premium
+      "Havoline": mainstream
+      "Delo 400": premium
+      "Delo 300": mainstream
+
+  - name: Total
+    search_terms:
+      pcmo: ["Total Quartz 9000", "Total Quartz 7000", "Total Quartz 5000"]
+      hdeo: ["Total Rubia TIR", "Total Rubia Works"]
+    tier_map:
+      "Quartz 9000": super_premium
+      "Quartz 7000": premium
+      "Quartz 5000": mainstream
+      "Rubia TIR": premium
+
+  - name: Aramco
+    search_terms:
+      pcmo: ["Aramco Advantage", "Aramco engine oil"]
+      hdeo: ["Aramco diesel engine oil"]
+    tier_map: {}
+
+  - name: ZIC
+    search_terms:
+      pcmo: ["ZIC X9", "ZIC X7", "ZIC X5", "ZIC A+", "ZIC A"]
+      hdeo: ["ZIC X7 Diesel", "ZIC 5000"]
+    tier_map:
+      "X9": super_premium
+      "X7": premium
+      "X5": mainstream
+      "A+": mainstream
+      "A": economy
+
+  - name: Kixx
+    search_terms:
+      pcmo: ["Kixx G1", "Kixx G SN", "Kixx PAO"]
+      hdeo: ["Kixx D1", "Kixx HD"]
+    tier_map:
+      "G1": premium
+      "PAO": super_premium
+      "G SN": mainstream
+
+  - name: Equimoli
+    search_terms:
+      pcmo: ["Equimoli engine oil", "Equimoli synthetic"]
+      hdeo: ["Equimoli diesel"]
+    tier_map: {}
+
+# ── Grades to track ──────────────────────────────────────────────
+grades:
+  pcmo:   # Passenger Car Motor Oil (petrol engines)
+    - "0W-20"
+    - "5W-20"
+    - "5W-30"
+    - "5W-40"
+    - "10W-30"
+    - "10W-40"
+    - "20W-50"
+  hdeo:   # Heavy Duty Engine Oil (diesel engines)
+    - "5W-30"
+    - "10W-40"
+    - "15W-40"
+    - "20W-50"
+  mco:    # Motorcycle Oil
+    - "10W-40"
+    - "20W-50"
+
+# ── Pack sizes (litres) ──────────────────────────────────────────
+pack_sizes: [0.8, 1, 1.5, 2, 3, 3.5, 4, 5, 7, 10, 20]
+
+# ── Scraping platforms ───────────────────────────────────────────
+platforms:
+  daraz:
+    enabled: true
+    base_url: "https://www.daraz.pk"
+    search_url: "https://www.daraz.pk/catalog/?q={query}&_keyori=ss&from=input&spm=a2a0e.searchlistcategory.search.go.30ff14c5lWNZYb"
+    max_pages: 3
+    delay_seconds: 2
+    headless: true
+    browsers_path: "D:\\playwright-browsers"
