@@ -1265,6 +1265,21 @@ def main():
     build_f8(wb, df, skus, final_prices)
     print("  âœ“ F8")
 
+    # Strip self-referencing cross-sheet prefixes that cause Excel repair prompts
+    import re as _re
+    fixed = 0
+    for ws in wb.worksheets:
+        pat = _re.compile(r"='" + _re.escape(ws.title) + r"'!", _re.IGNORECASE)
+        for row in ws.iter_rows():
+            for cell in row:
+                if cell.value and isinstance(cell.value, str) and cell.value.startswith("="):
+                    new = pat.sub("=", cell.value)
+                    if new != cell.value:
+                        cell.value = new
+                        fixed += 1
+    if fixed:
+        print(f"  Fixed {fixed} self-referencing formulas.")
+
     wb.save(OUT_PATH)
     print(f"\nSaved: {OUT_PATH}")
     print(f"Sheets: {len(wb.sheetnames)}")
