@@ -24,6 +24,7 @@ SCRIPTS = [
     'lubes_vol_uplift.py',
     'national_vol_slide.py',
     'frameworks.py',
+    'premium_fuel_report.py',
 ]
 
 

@@ -135,7 +135,7 @@ def bar_chart(sl, l,t,w,h, cats, cy_v, ly_v, period):
     cd = ChartData()
     cd.categories = cats
     cd.add_series(f"CY {period}", cy_v)
-    cd.add_series("LY", ly_v)
+    cd.add_series("SPLY", ly_v)
     cf = sl.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED,l,t,w,h,cd)
     ch = cf.chart
     ch.has_legend=True; ch.legend.position=XL_LEGEND_POSITION.BOTTOM
@@ -184,7 +184,7 @@ def compute(city_df):
     d = {}
     # totals
     d["tot_cy"]  = city_df["SalesLtr_CY"].sum()/1e6
-    d["tot_ly"]  = city_df["SalesLtr_LY"].sum()/1e6
+    d["tot_ly"]  = city_df["SalesLtr_SPLY"].sum()/1e6
     d["tot_chg"] = spct(d["tot_cy"],d["tot_ly"])
     d["nat_sh"]  = d["tot_cy"]/retail_nat_vol*100
 
@@ -192,7 +192,7 @@ def compute(city_df):
     segs={}
     for seg in SEGS:
         s=city_df[city_df["FuelSegment"]==seg]
-        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_LY"].sum()/1e6
+        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_SPLY"].sum()/1e6
         segs[seg]=dict(cy=cy,ly=ly,chg=spct(cy,ly),
                        sh=cy/d["tot_cy"]*100 if d["tot_cy"] else 0,
                        stns=s["Customer Number"].nunique())
@@ -202,15 +202,15 @@ def compute(city_df):
     sub={}
     for p in DIESEL_P:
         s=city_df[(city_df["FuelSegment"]=="Diesel")&(city_df["ProductCategory"]==p)]
-        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_LY"].sum()/1e6
+        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_SPLY"].sum()/1e6
         sub[p]=dict(grp="Diesel",cy=cy,ly=ly,chg=spct(cy,ly),stns=s["Customer Number"].nunique())
     for p in PETROL_P:
         s=city_df[(city_df["FuelSegment"]=="Petrol")&(city_df["ProductCategory"]==p)]
-        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_LY"].sum()/1e6
+        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_SPLY"].sum()/1e6
         sub[p]=dict(grp="Petrol",cy=cy,ly=ly,chg=spct(cy,ly),stns=s["Customer Number"].nunique())
     for c in LUBE_C:
         s=city_df[(city_df["FuelSegment"]=="Lubricants")&(city_df["LubeCategory"]==c)]
-        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_LY"].sum()/1e6
+        cy=s["SalesLtr_CY"].sum()/1e6; ly=s["SalesLtr_SPLY"].sum()/1e6
         sub[c]=dict(grp="Lubricants",cy=cy,ly=ly,chg=spct(cy,ly),stns=s["Customer Number"].nunique())
     d["sub"]=sub
 
@@ -218,7 +218,7 @@ def compute(city_df):
     stn=(city_df.groupby("Customer Number",as_index=False)
          .agg(name=("Name 1","first"),
               vol_cy=("SalesLtr_CY","sum"),
-              vol_ly=("SalesLtr_LY","sum"))
+              vol_ly=("SalesLtr_SPLY","sum"))
          .sort_values("vol_cy",ascending=False).reset_index(drop=True))
     stn["ml_cy"]=stn["vol_cy"]/1e6; stn["ml_ly"]=stn["vol_ly"]/1e6
     stn["chg"]  =stn.apply(lambda r: spct(r["vol_cy"],r["vol_ly"]),axis=1)
@@ -408,7 +408,7 @@ def make_divider(prs, city, d, rank):
     set_notes(sl,
         f"CITY DIVIDER — {city.upper()}\n\n"
         f"City rank: #{rank} by volume among top 5 PSO retail cities.\n"
-        f"Total CY volume: {fv(d['tot_cy'])}ML  |  LY: {fv(d['tot_ly'])}ML  |  Change: {fp(d['tot_chg'])}\n"
+        f"Total CY volume: {fv(d['tot_cy'])}ML  |  SPLY: {fv(d['tot_ly'])}ML  |  Change: {fp(d['tot_chg'])}\n"
         f"Stations: {d['n_tot']} total, {d['n_active']} active, {d['n_inact']} inactive\n"
         f"Volume per station CY: {d['vol_per_stn']:.2f}ML  |  10-city avg: {t10_avg_per_stn:.2f}ML\n"
         f"Identifiable volume opportunity: +{fv(d['tot_pot'])}ML (+{d['tot_pot']/d['tot_cy']*100:.0f}% on CY base)\n\n"
@@ -421,13 +421,13 @@ def make_divider(prs, city, d, rank):
 def make_s1(prs, city, d, period):
     sl=prs.slides.add_slide(prs.slide_layouts[6])
     hdr(sl,f"{city.upper()} — VOLUME SCORECARD",
-        "Headline performance: total volume CY vs LY, segment breakdown, and how this city compares to its peers.")
+        "Headline performance: total volume CY vs SPLY, segment breakdown, and how this city compares to its peers.")
 
     # KPI strip
     chg_c=GREEN if (d["tot_chg"] or 0)>=0 else RED
     kpis=[
-        ("Total Vol CY (ML)",  fv(d["tot_cy"]),   f"LY: {fv(d['tot_ly'])} ML",  WHITE,NAVY),
-        ("YoY Volume Change",  fp(d["tot_chg"]),   "vs same period LY",          WHITE,chg_c),
+        ("Total Vol CY (ML)",  fv(d["tot_cy"]),   f"SPLY: {fv(d['tot_ly'])} ML",  WHITE,NAVY),
+        ("YoY Volume Change",  fp(d["tot_chg"]),   "vs same period SPLY",          WHITE,chg_c),
         ("Natl Vol Share",     f"{d['nat_sh']:.1f}%","of PSO all-retail",        WHITE,DBLUE),
         ("Vol / Station CY",   f"{d['vol_per_stn']:.2f}ML",
                                f"10-city avg: {t10_avg_per_stn:.2f}ML",          WHITE,
@@ -443,12 +443,12 @@ def make_s1(prs, city, d, period):
     bar_chart(sl,Inches(0.18),Inches(1.92),Inches(5.5),Inches(2.8),
               SEGS,[d["segs"][s]["cy"] for s in SEGS],[d["segs"][s]["ly"] for s in SEGS],period)
     txt(sl,Inches(0.18),Inches(1.84),Inches(5.5),Inches(0.22),
-        "Volume by Segment (ML) — CY vs LY",size=8,bold=True,fg=NAVY)
+        "Volume by Segment (ML) — CY vs SPLY",size=8,bold=True,fg=NAVY)
 
     # segment table
     sec_bar(sl,Inches(5.9),Inches(1.84),Inches(7.25),"Segment Detail")
     t=sl.shapes.add_table(5,6,Inches(5.9),Inches(2.14),Inches(7.25),Inches(1.7)).table
-    for ci,h in enumerate(["Segment","Stns","Vol CY (ML)","Vol LY (ML)","Change","City Share"]):
+    for ci,h in enumerate(["Segment","Stns","Vol CY (ML)","Vol SPLY (ML)","Change","City Share"]):
         cstyle(t.cell(0,ci),h,size=8,bold=True,fg=WHITE,bg=NAVY)
     for ci,w in enumerate([Inches(1.4),Inches(0.85),Inches(1.25),Inches(1.25),Inches(1.0),Inches(1.5)]):
         t.columns[ci].width=w
@@ -489,7 +489,7 @@ def make_s1(prs, city, d, period):
     above_avg = d["vol_per_stn"]>=t10_avg_per_stn
     dsl=d["segs"]["Diesel"]; pet=d["segs"]["Petrol"]; lub=d["segs"]["Lubricants"]
     insight_body=(
-        f"{city} delivered {fv(d['tot_cy'])}ML in 10M FY26, a {fp(d['tot_chg'])} change vs LY. "
+        f"{city} delivered {fv(d['tot_cy'])}ML in 10M FY26, a {fp(d['tot_chg'])} change vs SPLY. "
         f"Diesel dominates at {dsl['sh']:.0f}% of volume. "
         f"Petrol is {pet['sh']:.0f}% and Lubricants {lub['sh']:.1f}%. "
         f"At {d['vol_per_stn']:.2f}ML per station, this city is "
@@ -498,7 +498,7 @@ def make_s1(prs, city, d, period):
     insight(sl,Inches(0.18),Inches(4.88),Inches(5.5),Inches(2.0),
             "KEY TAKEAWAY",insight_body)
 
-    footer(sl,"ML = Million Litres  |  CY = 10M FY26  |  LY = 10M FY25  |  Green=growth >2%  Red=decline >2%  Yellow=flat")
+    footer(sl,"ML = Million Litres  |  CY = 10M FY26  |  SPLY = 10M FY25  |  Green=growth >2%  Red=decline >2%  Yellow=flat")
     set_notes(sl,
         f"SLIDE 1 — {city.upper()} VOLUME SCORECARD\n\n"
         f"PRESENTER TALKING POINTS:\n"
@@ -546,7 +546,7 @@ def make_s2(prs, city, d, period):
             f"Station Volume Ranking — top {min(28,n_tot)} shown  |  Blue = within 80% threshold  |  Red = inactive")
     show=min(28,n_tot)
     rt=sl.shapes.add_table(show+1,6,Inches(0.15),Inches(1.93),Inches(7.9),Inches(5.0)).table
-    for ci,h in enumerate(["#","Station Name","Vol CY (ML)","Vol LY (ML)","Chg%","Cum%"]):
+    for ci,h in enumerate(["#","Station Name","Vol CY (ML)","Vol SPLY (ML)","Chg%","Cum%"]):
         cstyle(rt.cell(0,ci),h,size=7.5,bold=True,fg=WHITE,bg=NAVY)
     rt.columns[0].width=Inches(0.3); rt.columns[1].width=Inches(2.85)
     for ci in range(2,6): rt.columns[ci].width=Inches(1.19)
@@ -639,7 +639,7 @@ def make_s3(prs, city, d, period):
     sec_bar(sl,Inches(0.15),Inches(0.85),Inches(8.1),"Top 15 Stations — Volume Champions (products = actual CY sales)")
     stars=stn.head(15).copy()
     st=sl.shapes.add_table(16,7,Inches(0.15),Inches(1.13),Inches(8.1),Inches(5.85)).table
-    for ci,h in enumerate(["#","Station","Vol CY (ML)","Vol LY (ML)","YoY Chg","Products Sold","Cum%"]):
+    for ci,h in enumerate(["#","Station","Vol CY (ML)","Vol SPLY (ML)","YoY Chg","Products Sold","Cum%"]):
         cstyle(st.cell(0,ci),h,size=7.5,bold=True,fg=WHITE,bg=NAVY)
     st.columns[0].width=Inches(0.3); st.columns[1].width=Inches(2.85)
     st.columns[2].width=Inches(1.1); st.columns[3].width=Inches(1.1)
@@ -702,7 +702,7 @@ def make_s3(prs, city, d, period):
         cstyle(bmt.cell(ri,2),ctx,size=7.5,fg=NAVY,bg=bm_bgs[ri-1],italic=True,align=PP_ALIGN.LEFT)
         bmt.rows[ri].height=Inches(0.31)
 
-    footer(sl,"Green = CY > LY (growing)  |  Red = CY < LY (declining)  |  Products = actual sold in CY, from Working File")
+    footer(sl,"Green = CY > SPLY (growing)  |  Red = CY < SPLY (declining)  |  Products = actual sold in CY, from Working File")
     set_notes(sl,
         f"SLIDE 3 — {city.upper()} STAR PERFORMERS\n\n"
         f"PRESENTER TALKING POINTS:\n"
@@ -790,12 +790,12 @@ def make_s4(prs, city, d, period):
         ("Fuel stations with no Lubricants",f"{d['n_fl']} stations",
          f"Fuel vol at these stns: {fv(d['fl_vol'])}ML",f"+{fv(d['rec_lub'])}ML",
          f"Avg lube vol per existing lube stn: {d['avg_lub_per_stn']*1000:.0f} litres",LRED),
-        ("Inactive stations — recover LY vol",f"{d['n_inact']} stations",
-         f"Their LY volume: {fv(d['inact_ly_vol'])}ML",f"+{fv(d['rec_inact'])}ML",
+        ("Inactive stations — recover SPLY vol",f"{d['n_inact']} stations",
+         f"Their SPLY volume: {fv(d['inact_ly_vol'])}ML",f"+{fv(d['rec_inact'])}ML",
          "65% reactivation assumption — field programme",LRED),
-        ("Under-performers < 50% of own LY",f"{d['n_undp']} stations",
-         f"Current vol gap vs LY",f"+{fv(d['rec_undp'])}ML",
-         "Diagnostic visit + targeted support to reach 75% of LY",LYELL),
+        ("Under-performers < 50% of own SPLY",f"{d['n_undp']} stations",
+         f"Current vol gap vs SPLY",f"+{fv(d['rec_undp'])}ML",
+         "Diagnostic visit + targeted support to reach 75% of SPLY",LYELL),
     ]
     gh=Inches(6.15)/len(gaps)
     for gi,(title,count,base,potential,detail,bg) in enumerate(gaps):
@@ -818,7 +818,7 @@ def make_s4(prs, city, d, period):
         size=8.5,bold=True,fg=NAVY)
 
     footer(sl,"Potential estimates are directional. Lube: avg vol per existing lube stn. "
-              "Petrol: 25% of diesel base vol. Inactive: 65% of LY vol assumed recoverable.")
+              "Petrol: 25% of diesel base vol. Inactive: 65% of SPLY vol assumed recoverable.")
     set_notes(sl,
         f"SLIDE 4 — {city.upper()} PRODUCT GAPS\n\n"
         f"PRESENTER TALKING POINTS:\n"
@@ -851,7 +851,7 @@ def make_s4(prs, city, d, period):
 def make_s5(prs, city, d, period):
     sl=prs.slides.add_slide(prs.slide_layouts[6])
     hdr(sl,f"SUB-PRODUCT VOLUME — WHAT IS GROWING, WHAT IS DECLINING IN {city.upper()}",
-        "Every product within Diesel, Petrol and Lubricants. CY vs LY. Which products are losing ground and need attention?")
+        "Every product within Diesel, Petrol and Lubricants. CY vs SPLY. Which products are losing ground and need attention?")
 
     active=[(k,v) for k,v in d["sub"].items() if v["cy"]>0 or v["ly"]>0]
     active.sort(key=lambda x: x[1]["cy"],reverse=True)
@@ -860,12 +860,12 @@ def make_s5(prs, city, d, period):
              "Lubricants":d["segs"]["Lubricants"]["cy"]}
 
     sec_bar(sl,Inches(0.15),Inches(0.85),Inches(12.97),
-            "Volume by Sub-Product — CY vs LY  |  Only products with actual sales shown  |  "
-            "Red rows = had LY volume, now zero — urgent recovery needed")
+            "Volume by Sub-Product — CY vs SPLY  |  Only products with actual sales shown  |  "
+            "Red rows = had SPLY volume, now zero — urgent recovery needed")
     nr=len(active)+1
     t=sl.shapes.add_table(nr,8,Inches(0.15),Inches(1.13),Inches(12.97),
                            min(Inches(5.85),Inches(0.3)*nr)).table
-    hdrs=["Product","Group","Stns Selling","Vol CY (ML)","Vol LY (ML)","Chg%","Seg Share%","Status"]
+    hdrs=["Product","Group","Stns Selling","Vol CY (ML)","Vol SPLY (ML)","Chg%","Seg Share%","Status"]
     cws=[Inches(1.8),Inches(1.1),Inches(0.9),Inches(1.4),Inches(1.4),Inches(1.0),Inches(1.65),Inches(3.67)]
     for ci,(h,w) in enumerate(zip(hdrs,cws)):
         cstyle(t.cell(0,ci),h,size=8,bold=True,fg=WHITE,bg=NAVY)
@@ -876,7 +876,7 @@ def make_s5(prs, city, d, period):
         is_new=sv["grp"]!=last_grp; last_grp=sv["grp"]
         bg=grp_bgs.get(sv["grp"],LGREY)
         ss=sv["cy"]/grp_tot.get(sv["grp"],1)*100 if grp_tot.get(sv["grp"],0)>0 else 0
-        if sv["cy"]==0 and sv["ly"]>0: status="⚠ DROPPED — selling LY, zero CY"; sbg=LRED
+        if sv["cy"]==0 and sv["ly"]>0: status="⚠ DROPPED — selling SPLY, zero CY"; sbg=LRED
         elif (sv["chg"] or 0)>5:       status=f"Growing {fp(sv['chg'])} YoY"; sbg=LGREEN
         elif (sv["chg"] or 0)<-5:      status=f"Declining {fp(sv['chg'])} — investigate cause"; sbg=LRED
         elif sv["cy"]==0:               status="Not sold here"; sbg=MGREY
@@ -891,9 +891,9 @@ def make_s5(prs, city, d, period):
 
     dropped=d["dropped"]
     if dropped:
-        foot_note=f"DROPPED products (CY=0, had LY volume): {', '.join(dropped)} — these represent recoverable volume."
+        foot_note=f"DROPPED products (CY=0, had SPLY volume): {', '.join(dropped)} — these represent recoverable volume."
     else:
-        foot_note="No products dropped since LY — all previously sold products are still active in CY."
+        foot_note="No products dropped since SPLY — all previously sold products are still active in CY."
     footer(sl,foot_note)
 
     set_notes(sl,
@@ -902,16 +902,16 @@ def make_s5(prs, city, d, period):
         f"This slide goes inside each segment to show which specific products are driving "
         f"or dragging performance.\n\n"
         f"KEY NUMBERS:\n"
-        f"  HSD: {fv(d['sub']['HSD']['cy'])}ML CY vs {fv(d['sub']['HSD']['ly'])}ML LY ({fp(d['sub']['HSD']['chg'])})\n"
-        f"  PMG: {fv(d['sub']['PMG']['cy'])}ML CY vs {fv(d['sub']['PMG']['ly'])}ML LY ({fp(d['sub']['PMG']['chg'])})\n"
-        f"  R95: {fv(d['sub']['R95']['cy'])}ML CY vs {fv(d['sub']['R95']['ly'])}ML LY ({fp(d['sub']['R95']['chg'])})\n"
+        f"  HSD: {fv(d['sub']['HSD']['cy'])}ML CY vs {fv(d['sub']['HSD']['ly'])}ML SPLY ({fp(d['sub']['HSD']['chg'])})\n"
+        f"  PMG: {fv(d['sub']['PMG']['cy'])}ML CY vs {fv(d['sub']['PMG']['ly'])}ML SPLY ({fp(d['sub']['PMG']['chg'])})\n"
+        f"  R95: {fv(d['sub']['R95']['cy'])}ML CY vs {fv(d['sub']['R95']['ly'])}ML SPLY ({fp(d['sub']['R95']['chg'])})\n"
         f"  DEO: {fv(d['sub']['DEO']['cy'])}ML  PCMO: {fv(d['sub']['PCMO']['cy'])}ML  "
         f"MCO: {fv(d['sub']['MCO']['cy'])}ML  LOW GRADE: {fv(d['sub'].get('LOW GRADE',{}).get('cy',0))}ML\n\n"
         f"PRODUCTS TO CALL OUT:\n"
-        +(f"• DROPPED SINCE LY: {', '.join(dropped)} — supply chain or market exit. "
-           f"Needs immediate investigation.\n" if dropped else "• No products dropped since LY.\n")
-        +f"\nDECLINING PRODUCTS (CY < LY by >5%):\n"
-        +"\n".join(f"  • {k}: {fp(v['chg'])} ({fv(v['cy'])}ML CY vs {fv(v['ly'])}ML LY)"
+        +(f"• DROPPED SINCE SPLY: {', '.join(dropped)} — supply chain or market exit. "
+           f"Needs immediate investigation.\n" if dropped else "• No products dropped since SPLY.\n")
+        +f"\nDECLINING PRODUCTS (CY < SPLY by >5%):\n"
+        +"\n".join(f"  • {k}: {fp(v['chg'])} ({fv(v['cy'])}ML CY vs {fv(v['ly'])}ML SPLY)"
                    for k,v in d["sub"].items() if (v["chg"] or 0)<-5 and v["cy"]>0)
         +f"\n\nQUESTIONS YOU MIGHT GET:\n"
         f"• 'Why is HSD flat/declining?' — Check if competitor pricing is more aggressive "
@@ -927,17 +927,17 @@ def make_s6(prs, city, d, period):
     sl=prs.slides.add_slide(prs.slide_layouts[6])
     stn=d["stn"]; inact=stn[~stn["active"]]; undp=d["undp_df"]
     hdr(sl,f"LOST VOLUME — {d['n_inact']} INACTIVE + {d['n_undp']} UNDER-PERFORMING STATIONS IN {city.upper()}",
-        f"Inactive stations carried {fv(d['inact_ly_vol'])}ML in LY and now show zero. "
-        f"Under-performers lost {fv((undp['ml_ly']-undp['ml_cy']).sum())}ML vs their own LY. "
+        f"Inactive stations carried {fv(d['inact_ly_vol'])}ML in SPLY and now show zero. "
+        f"Under-performers lost {fv((undp['ml_ly']-undp['ml_cy']).sum())}ML vs their own SPLY. "
         f"Combined recoverable: ~{fv(d['rec_inact']+d['rec_undp'])}ML.")
 
     # inactive (left)
     sec_bar(sl,Inches(0.15),Inches(0.85),Inches(6.45),
-            f"Inactive Stations ({d['n_inact']}) — Zero CY Volume, Had Volume in LY  |  Sorted by LY vol desc")
+            f"Inactive Stations ({d['n_inact']}) — Zero CY Volume, Had Volume in SPLY  |  Sorted by SPLY vol desc")
     if not inact.empty:
         show=min(len(inact),15)
         it=sl.shapes.add_table(show+1,5,Inches(0.15),Inches(1.13),Inches(6.45),Inches(3.65)).table
-        for ci,h in enumerate(["Station Name","LY Vol (ML)","Products (LY)","LY Rank","Priority"]):
+        for ci,h in enumerate(["Station Name","SPLY Vol (ML)","Products (SPLY)","SPLY Rank","Priority"]):
             cstyle(it.cell(0,ci),h,size=7.5,bold=True,fg=WHITE,bg=RED)
         it.columns[0].width=Inches(2.4); it.columns[1].width=Inches(1.1)
         it.columns[2].width=Inches(1.4); it.columns[3].width=Inches(0.8); it.columns[4].width=Inches(0.75)
@@ -959,11 +959,11 @@ def make_s6(prs, city, d, period):
 
     # under-performers (left bottom)
     sec_bar(sl,Inches(0.15),Inches(4.94),Inches(6.45),
-            f"Severely Under-Performing ({d['n_undp']}) — CY Volume < 50% of Their Own LY Baseline")
+            f"Severely Under-Performing ({d['n_undp']}) — CY Volume < 50% of Their Own SPLY Baseline")
     if not undp.empty:
         show2=min(len(undp),7)
         ut=sl.shapes.add_table(show2+1,5,Inches(0.15),Inches(5.22),Inches(6.45),Inches(1.65)).table
-        for ci,h in enumerate(["Station","Vol CY","Vol LY","Vol Lost","Drop%"]):
+        for ci,h in enumerate(["Station","Vol CY","Vol SPLY","Vol Lost","Drop%"]):
             cstyle(ut.cell(0,ci),h,size=7.5,bold=True,fg=WHITE,bg=RED)
         for ci,w in enumerate([Inches(2.4),Inches(1.0),Inches(1.0),Inches(1.0),Inches(1.05)]): ut.columns[ci].width=w
         ut.rows[0].height=Inches(0.22)
@@ -976,19 +976,19 @@ def make_s6(prs, city, d, period):
             ut.rows[ri].height=Inches(0.20)
     else:
         txt(sl,Inches(0.2),Inches(5.3),Inches(6.3),Inches(0.4),
-            "No stations below 50% of their own LY baseline — under-performance is distributed.",
+            "No stations below 50% of their own SPLY baseline — under-performance is distributed.",
             size=9,fg=GREEN)
 
     # right panel
     insight(sl,Inches(6.72),Inches(0.85),Inches(6.43),Inches(2.0),
         "INACTIVE STATIONS — IMMEDIATE ACTION",
-        (f"  {d['n_inact']} stations had {fv(d['inact_ly_vol'])}ML in LY. Now zero.\n"
+        (f"  {d['n_inact']} stations had {fv(d['inact_ly_vol'])}ML in SPLY. Now zero.\n"
          f"  At 65% reactivation: +{fv(d['rec_inact'])}ML back.\n\n"
          f"  CLASSIFY EACH STATION (field visit within 2 weeks):\n"
          f"  • Temp closure (supply, credit, maintenance) → reactivate now\n"
          f"  • Dealer exit → find replacement or surrender licence\n"
          f"  • Competitive loss → pricing & relationship intervention\n"
-         f"  HIGH-PRIORITY: stations with LY vol > 1ML — each matters individually."),
+         f"  HIGH-PRIORITY: stations with SPLY vol > 1ML — each matters individually."),
         tbg=RED,bbg=LRED,tfg=WHITE,bfg=NAVY)
 
     insight(sl,Inches(6.72),Inches(3.0),Inches(6.43),Inches(1.8),
@@ -997,7 +997,7 @@ def make_s6(prs, city, d, period):
          f"  This is NOT market decline — it is station-specific failure.\n"
          f"  Root causes: equipment failure, credit limits, competitor opened nearby,\n"
          f"  management change at dealer level, product supply disruption.\n"
-         f"  At 75% of LY target: +{fv(d['rec_undp'])}ML recoverable."),
+         f"  At 75% of SPLY target: +{fv(d['rec_undp'])}ML recoverable."),
         tbg=ORANGE,bbg=LYELL,tfg=NAVY,bfg=NAVY)
 
     insight(sl,Inches(6.72),Inches(4.95),Inches(6.43),Inches(1.93),
@@ -1011,7 +1011,7 @@ def make_s6(prs, city, d, period):
          f"  Timeline: 60–90 days with dedicated field programme."),
         tbg=GREEN,bbg=LGREEN,tfg=WHITE,bfg=NAVY)
 
-    footer(sl,"Under-performing = active stations where CY vol < 50% of their own LY. "
+    footer(sl,"Under-performing = active stations where CY vol < 50% of their own SPLY. "
               "Recovery figures are directional — validate with field team.")
     set_notes(sl,
         f"SLIDE 6 — {city.upper()} LOST VOLUME\n\n"
@@ -1021,20 +1021,20 @@ def make_s6(prs, city, d, period):
         f"station-management problem.\n\n"
         f"INACTIVE STATIONS — THE FACTS:\n"
         f"• {d['n_inact']} stations have zero CY volume\n"
-        f"• Their combined LY volume was {fv(d['inact_ly_vol'])}ML\n"
+        f"• Their combined SPLY volume was {fv(d['inact_ly_vol'])}ML\n"
         f"• At 65% reactivation: +{fv(d['rec_inact'])}ML\n"
-        f"• Top priority: stations that had > 1ML in LY\n\n"
+        f"• Top priority: stations that had > 1ML in SPLY\n\n"
         f"UNDER-PERFORMERS — THE FACTS:\n"
-        f"• {d['n_undp']} active stations are below 50% of their own LY\n"
+        f"• {d['n_undp']} active stations are below 50% of their own SPLY\n"
         f"• Combined volume gap: {fv((undp['ml_ly']-undp['ml_cy']).sum() if not undp.empty else 0)}ML\n"
-        f"• At 75% of LY recovery: +{fv(d['rec_undp'])}ML\n\n"
+        f"• At 75% of SPLY recovery: +{fv(d['rec_undp'])}ML\n\n"
         f"HOW TO PRESENT:\n"
-        f"Read out the name of the highest-LY inactive station. Ask: "
+        f"Read out the name of the highest-SPLY inactive station. Ask: "
         f"'Does anyone in this room know why this station went to zero?' "
         f"That creates immediate accountability.\n\n"
         f"QUESTIONS YOU MIGHT GET:\n"
         f"• 'Is the inactive data accurate?' — Yes, from the Working File directly. "
-        f"Zero SalesLtr_CY with non-zero SalesLtr_LY.\n"
+        f"Zero SalesLtr_CY with non-zero SalesLtr_SPLY.\n"
         f"• 'What's the typical reason for going inactive?' — Most common: dealer credit frozen, "
         f"operational breakdown, or dealer switched to competitor on a better deal.\n"
         f"• 'Can we recover all of them?' — Field experience suggests 50–70% reactivation rate. "
@@ -1054,15 +1054,15 @@ def make_s7(prs, city, d, period):
          f"{d['n_inact']} stations",f"+{fv(d['rec_inact'])}ML","30–60 days",RED,LRED,
          [f"Field visit to all {d['n_inact']} inactive stations within 2 weeks",
           "Classify each: temp closure / dealer exit / credit issue / competitor loss",
-          f"Stations with LY vol > 1ML are highest priority — each has material impact",
+          f"Stations with SPLY vol > 1ML are highest priority — each has material impact",
           "Target: reactivate 65% of fleet → recover 65% of lost {:.1f}ML".format(d['inact_ly_vol']),
           "Weekly progress tracker vs reactivation targets — escalate at week 3 if no movement"]),
         ("LEVER 2","Fix Under-Performing Stations","Station-specific failure — diagnostic required",
          f"{d['n_undp']} stations",f"+{fv(d['rec_undp'])}ML","60–90 days",ORANGE,LYELL,
-         ["Station-by-station field visit — what specifically happened since LY?",
-          "Compare CY vs LY by product: which product dropped? Was it supply or demand?",
+         ["Station-by-station field visit — what specifically happened since SPLY?",
+          "Compare CY vs SPLY by product: which product dropped? Was it supply or demand?",
           "Check: competitor proximity, credit limit hit, equipment failure, dealer change",
-          f"Set 90-day volume recovery target at 75% of each station's LY baseline",
+          f"Set 90-day volume recovery target at 75% of each station's SPLY baseline",
           "Weekly check-in with regional managers — escalate at 4-week mark if no recovery"]),
         ("LEVER 3","Add Lubricants to Fuel-Only Stations","Highest vol multiplier per addition",
          f"{d['n_fl']} eligible stns",f"+{fv(d['rec_lub'])}ML","90–120 days",DBLUE,LBLUE,
@@ -1115,7 +1115,7 @@ def make_s7(prs, city, d, period):
         f"'This is money we have already earned and lost. "
         f"{d['n_inact']} stations went dark. We need {d['n_inact']} field visits in 2 weeks.'\n\n"
         f"Lever 2 (Under-performers, +{fv(d['rec_undp'])}ML): "
-        f"'These {d['n_undp']} stations are still alive but running at less than half their own LY. "
+        f"'These {d['n_undp']} stations are still alive but running at less than half their own SPLY. "
         f"Something broke. We need a diagnosis, not a target.'\n\n"
         f"Lever 3 (Lubes, +{fv(d['rec_lub'])}ML): "
         f"'{d['n_fl']} stations have zero lube sales. "
@@ -1130,8 +1130,8 @@ def make_s7(prs, city, d, period):
         f"Before we leave this room: who owns Lever 1? Who owns Lever 3? "
         f"What is the commitment date?'\n\n"
         f"NUMBERS SUMMARY:\n"
-        f"  L1 Inactive: {d['n_inact']} stns, {fv(d['inact_ly_vol'])}ML LY → +{fv(d['rec_inact'])}ML at 65%\n"
-        f"  L2 Under-perf: {d['n_undp']} stns → +{fv(d['rec_undp'])}ML at 75% of LY\n"
+        f"  L1 Inactive: {d['n_inact']} stns, {fv(d['inact_ly_vol'])}ML SPLY → +{fv(d['rec_inact'])}ML at 65%\n"
+        f"  L2 Under-perf: {d['n_undp']} stns → +{fv(d['rec_undp'])}ML at 75% of SPLY\n"
         f"  L3 Lubes: {d['n_fl']} stns × {d['avg_lub_per_stn']*1000:.0f}L/stn → +{fv(d['rec_lub'])}ML\n"
         f"  L4 Petrol: {d['n_d_no_p']} stns × 25% diesel vol → +{fv(d['rec_petrol'])}ML\n"
         f"  TOTAL: +{fv(tot_p)}ML (+{tot_p/d['tot_cy']*100:.0f}%)\n"
