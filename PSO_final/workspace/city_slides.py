@@ -1,7 +1,7 @@
 """
 PSO — City Performance Slide Deck
 Cover + 4 slides per city × 10 cities = 41 slides
-  Slide 1: GRS & Volume CY vs LY (by product group)
+  Slide 1: GRS & Volume CY vs SPLY (by product group)
   Slide 2: Station Pareto — who drives 80% of GRS
   Slide 3: Sub-product breakdown + station × product matrix
   Slide 4: Problems (data-driven) + Solutions
@@ -100,17 +100,17 @@ def extract(city_df):
         s = city_df[city_df["FuelSegment"] == seg]
         groups[seg] = dict(
             grs_cy = s["SalesGRS_CY"].sum() / 1e6,
-            grs_ly = s["SalesGRS_LY"].sum() / 1e6,
+            grs_ly = s["SalesGRS_SPLY"].sum() / 1e6,
             vol_cy = s["SalesLtr_CY"].sum() / 1e6,
-            vol_ly = s["SalesLtr_LY"].sum() / 1e6,
+            vol_ly = s["SalesLtr_SPLY"].sum() / 1e6,
             stations = s["Customer Number"].nunique(),
         )
     t = city_df
     groups["Total"] = dict(
         grs_cy = t["SalesGRS_CY"].sum() / 1e6,
-        grs_ly = t["SalesGRS_LY"].sum() / 1e6,
+        grs_ly = t["SalesGRS_SPLY"].sum() / 1e6,
         vol_cy = t["SalesLtr_CY"].sum() / 1e6,
-        vol_ly = t["SalesLtr_LY"].sum() / 1e6,
+        vol_ly = t["SalesLtr_SPLY"].sum() / 1e6,
         stations = t["Customer Number"].nunique(),
     )
     for v in groups.values():
@@ -126,9 +126,9 @@ def extract(city_df):
         subs[f"Diesel|{prod}"] = dict(
             group="Diesel", label=prod,
             grs_cy = s["SalesGRS_CY"].sum() / 1e6,
-            grs_ly = s["SalesGRS_LY"].sum() / 1e6,
+            grs_ly = s["SalesGRS_SPLY"].sum() / 1e6,
             vol_cy = s["SalesLtr_CY"].sum() / 1e6,
-            vol_ly = s["SalesLtr_LY"].sum() / 1e6,
+            vol_ly = s["SalesLtr_SPLY"].sum() / 1e6,
             stations = s["Customer Number"].nunique(),
         )
 
@@ -138,9 +138,9 @@ def extract(city_df):
         subs[f"Petrol|{prod}"] = dict(
             group="Petrol", label=prod,
             grs_cy = s["SalesGRS_CY"].sum() / 1e6,
-            grs_ly = s["SalesGRS_LY"].sum() / 1e6,
+            grs_ly = s["SalesGRS_SPLY"].sum() / 1e6,
             vol_cy = s["SalesLtr_CY"].sum() / 1e6,
-            vol_ly = s["SalesLtr_LY"].sum() / 1e6,
+            vol_ly = s["SalesLtr_SPLY"].sum() / 1e6,
             stations = s["Customer Number"].nunique(),
         )
 
@@ -150,9 +150,9 @@ def extract(city_df):
         subs[f"Lubes|{cat}"] = dict(
             group="Lubricants", label=cat,
             grs_cy = s["SalesGRS_CY"].sum() / 1e6,
-            grs_ly = s["SalesGRS_LY"].sum() / 1e6,
+            grs_ly = s["SalesGRS_SPLY"].sum() / 1e6,
             vol_cy = s["SalesLtr_CY"].sum() / 1e6,
-            vol_ly = s["SalesLtr_LY"].sum() / 1e6,
+            vol_ly = s["SalesLtr_SPLY"].sum() / 1e6,
             stations = s["Customer Number"].nunique(),
         )
 
@@ -168,9 +168,9 @@ def extract(city_df):
         .agg(
             name     = ("Name 1",        "first"),
             grs_cy   = ("SalesGRS_CY",   "sum"),
-            grs_ly   = ("SalesGRS_LY",   "sum"),
+            grs_ly   = ("SalesGRS_SPLY",   "sum"),
             vol_cy   = ("SalesLtr_CY",   "sum"),
-            vol_ly   = ("SalesLtr_LY",   "sum"),
+            vol_ly   = ("SalesLtr_SPLY",   "sum"),
         )
     )
     stn = stn.sort_values("grs_cy", ascending=False).reset_index(drop=True)
@@ -209,14 +209,14 @@ def extract(city_df):
     out["stn_subprod_map"]    = stn_subprod_map
 
     # ── Non-selling analysis ──────────────────────────────────────────────────
-    not_selling_cy = []   # zero CY vol but had LY vol
-    never_selling  = []   # zero CY and LY vol
+    not_selling_cy = []   # zero CY vol but had SPLY vol
+    never_selling  = []   # zero CY and SPLY vol
     for key, sv in subs.items():
         if sv["vol_cy"] == 0 and sv["vol_ly"] > 0:
             not_selling_cy.append(sv["label"])
         elif sv["vol_cy"] == 0 and sv["vol_ly"] == 0:
             never_selling.append(sv["label"])
-    out["not_selling_cy"]  = not_selling_cy   # dropped vs LY
+    out["not_selling_cy"]  = not_selling_cy   # dropped vs SPLY
     out["never_selling"]   = never_selling     # never had sales
 
     # ── Station × product group matrix (top 15 stations) ─────────────────────
@@ -400,10 +400,10 @@ def set_col_width(table, col_idx, width):
 def set_row_height(table, row_idx, height):
     table.rows[row_idx].height = height
 
-# ─── Bar chart helper (CY vs LY grouped) ─────────────────────────────────────
+# ─── Bar chart helper (CY vs SPLY grouped) ─────────────────────────────────────
 def add_grouped_bar(slide, left, top, width, height,
                     categories, cy_vals, ly_vals, title="",
-                    cy_label="CY", ly_label="LY"):
+                    cy_label="CY", ly_label="SPLY"):
     cd = ChartData()
     cd.categories = categories
     cd.add_series(cy_label, cy_vals)
@@ -483,15 +483,15 @@ def make_cover(prs, period_label, city_list):
     set_notes(slide,
         f"This deck covers the top 10 cities by GRS for PSO Retail in {period_label}.\n"
         f"Cities: {', '.join(city_list)}.\n"
-        "Each city has 4 slides: (1) GRS & Volume CY vs LY, (2) Station Pareto, "
+        "Each city has 4 slides: (1) GRS & Volume CY vs SPLY, (2) Station Pareto, "
         "(3) Product breakdown + station-product matrix, (4) Problems & Solutions.\n"
         "All numbers sourced directly from the Working File. No estimates."
     )
 
-# ─── Slide 1: GRS & Volume CY vs LY ──────────────────────────────────────────
+# ─── Slide 1: GRS & Volume CY vs SPLY ──────────────────────────────────────────
 def make_slide1_grs_vol(prs, city, cd, period_label):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_slide_header(slide, city, "GRS & Volume — CY vs LY by Product Group", period_label)
+    add_slide_header(slide, city, "GRS & Volume — CY vs SPLY by Product Group", period_label)
 
     groups  = cd["groups"]
     g_order = ["Diesel", "Petrol", "Lubricants"]
@@ -503,7 +503,7 @@ def make_slide1_grs_vol(prs, city, cd, period_label):
     add_grouped_bar(slide,
         left=Inches(0.18), top=Inches(0.82), width=Inches(5.8), height=Inches(3.1),
         categories=g_cats, cy_vals=cy_grs, ly_vals=ly_grs,
-        title="GRS (PKR Million) — CY vs LY", cy_label=f"CY ({period_label})", ly_label="LY"
+        title="GRS (PKR Million) — CY vs SPLY", cy_label=f"CY ({period_label})", ly_label="SPLY"
     )
 
     # ── Volume grouped bar (right) ─────────────────────────────────────────
@@ -512,7 +512,7 @@ def make_slide1_grs_vol(prs, city, cd, period_label):
     add_grouped_bar(slide,
         left=Inches(6.3), top=Inches(0.82), width=Inches(6.85), height=Inches(3.1),
         categories=g_cats, cy_vals=cy_vol, ly_vals=ly_vol,
-        title="Volume (Million Litres) — CY vs LY", cy_label=f"CY ({period_label})", ly_label="LY"
+        title="Volume (Million Litres) — CY vs SPLY", cy_label=f"CY ({period_label})", ly_label="SPLY"
     )
 
     # ── Detail table (full width below charts) ──────────────────────────────
@@ -528,8 +528,8 @@ def make_slide1_grs_vol(prs, city, cd, period_label):
     )
 
     headers = ["Product Group", "Stations",
-               "GRS CY (PKR M)", "GRS LY (PKR M)", "GRS Chg%",
-               "Vol CY (ML)", "Vol LY (ML)", "Vol Chg%",
+               "GRS CY (PKR M)", "GRS SPLY (PKR M)", "GRS Chg%",
+               "Vol CY (ML)", "Vol SPLY (ML)", "Vol Chg%",
                "GRS/Station CY (M)", "Natl Share%"]
     col_widths = [Inches(1.5), Inches(0.9),
                   Inches(1.5), Inches(1.5), Inches(1.0),
@@ -585,8 +585,8 @@ def make_slide1_grs_vol(prs, city, cd, period_label):
     lub   = groups["Lubricants"]
 
     def _note_seg(name, d):
-        chg_g = f"{fmt_pct(d['grs_chg'])} YoY" if d["grs_chg"] else "no LY"
-        chg_v = f"{fmt_pct(d['vol_chg'])} YoY" if d["vol_chg"] else "no LY"
+        chg_g = f"{fmt_pct(d['grs_chg'])} YoY" if d["grs_chg"] else "no SPLY"
+        chg_v = f"{fmt_pct(d['vol_chg'])} YoY" if d["vol_chg"] else "no SPLY"
         sh    = d["grs_cy"] / tot["grs_cy"] * 100 if tot["grs_cy"] else 0
         return (f"  {name}: GRS PKR {fmt_m(d['grs_cy'])}M ({sh:.0f}% of city, {chg_g}), "
                 f"Vol {fmt_vol(d['vol_cy'])}ML ({chg_v})")
@@ -594,8 +594,8 @@ def make_slide1_grs_vol(prs, city, cd, period_label):
     notes = (
         f"SLIDE 1 — {city.upper()} — GRS & VOLUME\n\n"
         f"TOTAL CITY:\n"
-        f"  GRS CY: PKR {fmt_m(tot['grs_cy'])}M   LY: PKR {fmt_m(tot['grs_ly'])}M   Change: {fmt_pct(tot['grs_chg'])}\n"
-        f"  Vol CY: {fmt_vol(tot['vol_cy'])}ML   LY: {fmt_vol(tot['vol_ly'])}ML   Change: {fmt_pct(tot['vol_chg'])}\n"
+        f"  GRS CY: PKR {fmt_m(tot['grs_cy'])}M   SPLY: PKR {fmt_m(tot['grs_ly'])}M   Change: {fmt_pct(tot['grs_chg'])}\n"
+        f"  Vol CY: {fmt_vol(tot['vol_cy'])}ML   SPLY: {fmt_vol(tot['vol_ly'])}ML   Change: {fmt_pct(tot['vol_chg'])}\n"
         f"  Total stations: {tot['stations']}\n\n"
         f"BY PRODUCT GROUP:\n"
         f"{_note_seg('Diesel', dsl)}\n"
@@ -749,7 +749,7 @@ def make_slide2_pareto(prs, city, cd, period_label):
             Inches(8.2), Inches(3.52), Inches(4.95), Inches(2.0),
             min(len(inactive), 12) + 1, 3
         )
-        for ci, h in enumerate(["Station", "LY GRS (M)", "Products"]):
+        for ci, h in enumerate(["Station", "SPLY GRS (M)", "Products"]):
             style_cell(itbl.cell(0, ci), h, size=7, bold=True, fg=C_WHITE, bg=C_RED,
                        align=PP_ALIGN.CENTER)
         set_row_height(itbl, 0, Inches(0.22))
@@ -793,7 +793,7 @@ def make_slide2_pareto(prs, city, cd, period_label):
                   f"generate 80% of GRS. Losing even 1–2 top stations would materially impact city revenue.\n")
     if n_inact > 3:
         inact_ly_grs = pareto[~pareto["active"]]["grs_ly"].sum() / 1e6
-        notes += (f"  {n_inact} INACTIVE STATIONS had PKR {inact_ly_grs:.1f}M GRS in LY "
+        notes += (f"  {n_inact} INACTIVE STATIONS had PKR {inact_ly_grs:.1f}M GRS in SPLY "
                   f"and are now showing zero volume. Immediate reactivation target.\n")
     set_notes(slide, notes)
 
@@ -801,7 +801,7 @@ def make_slide2_pareto(prs, city, cd, period_label):
 def make_slide3_products(prs, city, cd, period_label):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_slide_header(slide, city,
-        "Product Deep Dive — Sub-Product CY vs LY  |  Station × Product Matrix", period_label)
+        "Product Deep Dive — Sub-Product CY vs SPLY  |  Station × Product Matrix", period_label)
 
     subs   = cd["subs"]
     matrix = cd["matrix"]
@@ -810,7 +810,7 @@ def make_slide3_products(prs, city, cd, period_label):
 
     # ── Sub-product table (left 55%) ───────────────────────────────────────
     add_section_title(slide, Inches(0.15), Inches(0.82), Inches(7.3),
-                      "Sub-Product Breakdown — GRS & Volume CY vs LY")
+                      "Sub-Product Breakdown — GRS & Volume CY vs SPLY")
 
     sub_order = (
         [k for k in subs if k.startswith("Diesel|") and (subs[k]["grs_cy"] > 0 or subs[k]["grs_ly"] > 0)] +
@@ -827,8 +827,8 @@ def make_slide3_products(prs, city, cd, period_label):
         Inches(0.15), Inches(1.12), Inches(7.3), Inches(5.1),
         n_sub_rows, n_sub_cols
     )
-    sub_hdrs = ["Product", "Stns", "GRS CY (M)", "GRS LY (M)", "GRS Chg%",
-                "Vol CY (ML)", "Vol LY (ML)", "Vol Chg%"]
+    sub_hdrs = ["Product", "Stns", "GRS CY (M)", "GRS SPLY (M)", "GRS Chg%",
+                "Vol CY (ML)", "Vol SPLY (ML)", "Vol Chg%"]
     sub_cw   = [Inches(1.3), Inches(0.5), Inches(1.1), Inches(1.1), Inches(0.85),
                 Inches(0.85), Inches(0.85), Inches(0.75)]
     for ci, (h, w) in enumerate(zip(sub_hdrs, sub_cw)):
@@ -915,7 +915,7 @@ def make_slide3_products(prs, city, cd, period_label):
             set_row_height(mtbl, ri, Inches(0.19))
 
     add_footer(slide,
-        f"Red rows = product present in LY but ZERO volume in CY (dropped)  |  "
+        f"Red rows = product present in SPLY but ZERO volume in CY (dropped)  |  "
         f"Grey rows = product never sold in this city  |  "
         f"Green = station sells this product  |  Grey dash = not sold")
 
@@ -925,11 +925,11 @@ def make_slide3_products(prs, city, cd, period_label):
 
     notes = (
         f"SLIDE 3 — {city.upper()} — PRODUCT BREAKDOWN\n\n"
-        f"PRODUCTS DROPPED SINCE LY (CY volume = 0, had LY volume):\n"
+        f"PRODUCTS DROPPED SINCE SPLY (CY volume = 0, had SPLY volume):\n"
     )
     notes += (f"  {', '.join(not_sell)}\n" if not_sell else "  None — all previously sold products still active.\n")
     notes += f"\nPRODUCTS NEVER SOLD IN THIS CITY:\n"
-    notes += (f"  {', '.join(never)}\n" if never else "  All standard products have at least some LY history.\n")
+    notes += (f"  {', '.join(never)}\n" if never else "  All standard products have at least some SPLY history.\n")
 
     notes += f"\nSTATION × PRODUCT OBSERVATIONS (top 15 stations):\n"
     notes += f"  Stations selling R95 (premium petrol): {r95_stns} of top 15\n"
@@ -993,7 +993,7 @@ def make_slide4_problems(prs, city, cd, period_label):
         inact_ly = pareto[~pareto["active"]]["grs_ly"].sum() / 1e6
         problems.append(
             f"INACTIVE STATIONS ({n_inact} stations, {n_inact/n_tot*100:.0f}% of fleet): "
-            f"These stations had PKR {inact_ly:.1f}M GRS in LY and now show ZERO volume. "
+            f"These stations had PKR {inact_ly:.1f}M GRS in SPLY and now show ZERO volume. "
             f"Direct revenue loss of ~PKR {inact_ly:.0f}M vs last year."
         )
         solutions.append(
@@ -1050,7 +1050,7 @@ def make_slide4_problems(prs, city, cd, period_label):
     # P6: Dropped products
     if not_sell:
         problems.append(
-            f"DROPPED PRODUCTS vs LAST YEAR: {', '.join(not_sell)} had volume in LY "
+            f"DROPPED PRODUCTS vs SPLY: {', '.join(not_sell)} had volume in SPLY "
             f"but show ZERO volume in CY. This represents permanent revenue loss if not recovered."
         )
         solutions.append(
@@ -1082,7 +1082,7 @@ def make_slide4_problems(prs, city, cd, period_label):
         solutions.append(
             "Review diesel pricing vs PUMA/Shell/Total at key commercial corridors in the city. "
             "Target freight company accounts and commercial fleet operators with bulk deal pricing. "
-            "Check if any major fleet contracts lapsed since LY."
+            "Check if any major fleet contracts lapsed since SPLY."
         )
 
     # Ensure at least 2 problems/solutions
@@ -1143,9 +1143,9 @@ def make_slide4_problems(prs, city, cd, period_label):
     notes = (
         f"SLIDE 4 — {city.upper()} — PROBLEMS & SOLUTIONS\n\n"
         f"DATA SUMMARY USED FOR ANALYSIS:\n"
-        f"  GRS CY: PKR {fmt_m(tot['grs_cy'])}M  |  LY: PKR {fmt_m(tot['grs_ly'])}M  "
+        f"  GRS CY: PKR {fmt_m(tot['grs_cy'])}M  |  SPLY: PKR {fmt_m(tot['grs_ly'])}M  "
         f"|  Chg: {fmt_pct(tot['grs_chg'])}\n"
-        f"  Vol CY: {fmt_vol(tot['vol_cy'])}ML  |  LY: {fmt_vol(tot['vol_ly'])}ML  "
+        f"  Vol CY: {fmt_vol(tot['vol_cy'])}ML  |  SPLY: {fmt_vol(tot['vol_ly'])}ML  "
         f"|  Chg: {fmt_pct(tot['vol_chg'])}\n"
         f"  Stations: {n_tot}  |  Inactive: {n_inact}  |  For 80% GRS: {n80}\n"
         f"  Lube share: {lub['grs_cy']/tot['grs_cy']*100:.1f}%  "

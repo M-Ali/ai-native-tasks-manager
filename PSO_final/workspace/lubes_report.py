@@ -114,11 +114,11 @@ lubes  = retail[retail['FuelSegment'] == 'Lubricants'].copy()
 # ── aggregate helpers ─────────────────────────────────────────────────────────
 def agg_vol_margin(frame, by):
     return (frame.groupby(by, as_index=False)
-            .agg(vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+            .agg(vol_cy=('SalesLtr_CY','sum'),
                  vol_sply=('SalesLtr_SPLY','sum'),
-                 rev_cy=('SalesGRS_CY','sum'), rev_ly=('SalesGRS_LY','sum'),
+                 rev_cy=('SalesGRS_CY','sum'),
                  rev_sply=('SalesGRS_SPLY','sum'),
-                 mgn_cy=('NetMargin_CY','sum'), mgn_ly=('NetMargin_LY','sum'),
+                 mgn_cy=('NetMargin_CY','sum'),
                  mgn_sply=('NetMargin_SPLY','sum'),
                  stns=('Customer Number','nunique'))
             .assign(vol_chg=lambda d: d.apply(lambda r: pct(r.vol_cy, r.vol_sply), axis=1),
@@ -129,13 +129,10 @@ def agg_vol_margin(frame, by):
 
 # National
 vc = lubes['SalesLtr_CY'].sum()
-vl = lubes['SalesLtr_LY'].sum()
 vs = lubes['SalesLtr_SPLY'].sum()
 rc = lubes['SalesGRS_CY'].sum()
-rl = lubes['SalesGRS_LY'].sum()
 rs = lubes['SalesGRS_SPLY'].sum()
 mc = lubes['NetMargin_CY'].sum()
-ml_ = lubes['NetMargin_LY'].sum()
 ms = lubes['NetMargin_SPLY'].sum()
 n_stns = lubes['Customer Number'].nunique()
 n_cities = lubes['CityNorm'].nunique()
@@ -160,7 +157,7 @@ stn_df = (lubes.groupby(['Customer Number','Name 1','CityNorm','Sales office Reg
 # ── charts ────────────────────────────────────────────────────────────────────
 print("Generating charts…")
 
-# 1. Volume overview: grouped bar (national CY vs LY) + category donut
+# 1. Volume overview: grouped bar (national CY vs SPLY) + category donut
 fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.2))
 fig1.patch.set_facecolor('white')
 
@@ -744,7 +741,7 @@ for ri, (_, row) in enumerate(dist_tbl.iterrows(), 1):
 
 doc.add_paragraph()
 
-# Bottom 20 stations (with meaningful LY but declining)
+# Bottom 20 stations (with meaningful SPLY volume but declining)
 add_heading(doc, '4.3  Stations with Significant Decline (SPLY > 2 KL)', level=2)
 
 bot_stns = (stn_df[(kl(stn_df['vol_sply']) > 2) & (stn_df['vol_chg'] < -20)]
@@ -800,7 +797,7 @@ add_heading(doc, '5.1  Regional Margin Comparison', level=2)
 add_body(doc,
     'North Region has the best margin profile (PKR {:.0f}/L), benefiting from a higher '
     'premium product mix. Central\'s margin (PKR {:.0f}/L) reflects its heavy Low Grade exposure. '
-    'Both Central and South showed margin compression vs LY, while North\'s trajectory '
+    'Both Central and South showed margin compression vs SPLY, while North\'s trajectory '
     'should be monitored closely.'.format(
         reg_df.set_index('Sales office Region').loc['North','mgn_pl_cy'],
         reg_df.set_index('Sales office Region').loc['Central','mgn_pl_cy']), size=10)
@@ -864,7 +861,7 @@ implications = [
 
     ('6.4  Station-Level Performance Management',
      f'{len(bot_stns)} stations with meaningful prior-year sales have declined >20%. These accounts '
-     'should be flagged for sales officer review immediately. A station that sold 5 KL LY but only '
+     'should be flagged for sales officer review immediately. A station that sold 5 KL SPLY but only '
      '2 KL CY may have shifted to a competitor brand — early intervention with product offers, '
      'credit terms, or visibility support can recover the account. High-volume stations (>20 KL) '
      'generating above-average margin per litre should be used as benchmark models for the network.'),

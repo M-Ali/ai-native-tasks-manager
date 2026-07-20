@@ -104,7 +104,6 @@ def compute_city(city_norm):
 
     # ── volume metrics (litres) ───────────────────────────────────────────────
     lubes_vol     = city_lubes['SalesLtr_CY'].sum()
-    lubes_vol_ly  = city_lubes['SalesLtr_LY'].sum()
     lubes_vol_sply= city_lubes['SalesLtr_SPLY'].sum()
     vol_chg       = (lubes_vol - lubes_vol_sply) / lubes_vol_sply * 100 if lubes_vol_sply else 0
 
@@ -134,12 +133,10 @@ def compute_city(city_norm):
         stn_cat        = df_cat.groupby('Customer Number')['SalesLtr_CY'].sum()
         stn_cat_active = stn_cat[stn_cat > 0]
         vol    = stn_cat.sum()
-        vol_ly   = df_cat['SalesLtr_LY'].sum()
         vol_sply = df_cat['SalesLtr_SPLY'].sum()
         n_sell = (stn_cat > 0).sum()
         cat_stats[cat] = dict(
             vol       = vol,
-            vol_ly    = vol_ly,
             vol_pct   = vol / lubes_vol * 100 if lubes_vol else 0,
             vol_chg   = (vol - vol_sply) / vol_sply * 100 if vol_sply else 0,
             n_selling = n_sell,
@@ -177,7 +174,7 @@ def compute_city(city_norm):
 
     return dict(
         city=city_norm, n_stns=n_stns, n_active=n_active, n_zero=n_zero,
-        lubes_vol=lubes_vol, lubes_vol_ly=lubes_vol_ly, lubes_vol_sply=lubes_vol_sply, vol_chg=vol_chg,
+        lubes_vol=lubes_vol, lubes_vol_sply=lubes_vol_sply, vol_chg=vol_chg,
         avg_per_stn=avg_per_stn, med_per_stn=med_per_stn,
         min_per_stn=min_per_stn, max_per_stn=max_per_stn,
         top10_vol=top10_vol, top10_pct=top10_pct,

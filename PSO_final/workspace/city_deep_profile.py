@@ -93,9 +93,9 @@ def product_profile(subset):
             continue
         cust   = s["Customer Number"].nunique()
         grs_cy = s["SalesGRS_CY"].sum() / 1e6
-        grs_ly = s["SalesGRS_LY"].sum() / 1e6
+        grs_ly = s["SalesGRS_SPLY"].sum() / 1e6
         vol_cy = s["SalesLtr_CY"].sum() / 1e6
-        vol_ly = s["SalesLtr_LY"].sum() / 1e6
+        vol_ly = s["SalesLtr_SPLY"].sum() / 1e6
         nmgn   = s["NetMargin_CY"].sum() / 1e6
         disc   = s["Disc_CY"].sum() / s["SalesLtr_CY"].sum() if s["SalesLtr_CY"].sum() > 0 else 0
         nmln   = s["NetMargin_CY"].sum() / s["SalesLtr_CY"].sum() if s["SalesLtr_CY"].sum() > 0 else 0
@@ -114,9 +114,9 @@ def product_profile(subset):
     # Total row
     cust_tot = len(all_customers)
     grs_cy_t = subset["SalesGRS_CY"].sum() / 1e6
-    grs_ly_t = subset["SalesGRS_LY"].sum() / 1e6
+    grs_ly_t = subset["SalesGRS_SPLY"].sum() / 1e6
     vol_cy_t = subset["SalesLtr_CY"].sum() / 1e6
-    vol_ly_t = subset["SalesLtr_LY"].sum() / 1e6
+    vol_ly_t = subset["SalesLtr_SPLY"].sum() / 1e6
     nmgn_t   = subset["NetMargin_CY"].sum() / 1e6
     disc_t   = subset["Disc_CY"].sum() / subset["SalesLtr_CY"].sum() if subset["SalesLtr_CY"].sum() > 0 else 0
     nmln_t   = subset["NetMargin_CY"].sum() / subset["SalesLtr_CY"].sum() if subset["SalesLtr_CY"].sum() > 0 else 0

@@ -119,7 +119,7 @@ kar["Customer Number"] = kar["Customer Number"].astype(str).str.strip()
 kar_stns = (kar.groupby("Customer Number", as_index=False)
             .agg(name=("Name 1","first"),
                  vol_cy=("SalesLtr_CY","sum"),
-                 vol_ly=("SalesLtr_LY","sum"))
+                 vol_ly=("SalesLtr_SPLY","sum"))
             .assign(ml_cy=lambda d: d["vol_cy"]/1e6,
                     ml_ly=lambda d: d["vol_ly"]/1e6))
 
@@ -182,7 +182,7 @@ dist_tot = (kar_matched
             .groupby("District", as_index=False)
             .agg(stns =("Customer Number","nunique"),
                  cy   =("SalesLtr_CY",   lambda x: x.sum()/1e6),
-                 ly   =("SalesLtr_LY",   lambda x: x.sum()/1e6)))
+                 ly   =("SalesLtr_SPLY",   lambda x: x.sum()/1e6)))
 dist_tot["chg"] = dist_tot.apply(lambda r: spct(r["cy"],r["ly"]), axis=1)
 dist_tot["sh"]  = dist_tot["cy"] / dist_tot["cy"].sum() * 100
 dist_tot = dist_tot.sort_values("cy", ascending=False).reset_index(drop=True)
@@ -191,7 +191,7 @@ dist_tot = dist_tot.sort_values("cy", ascending=False).reset_index(drop=True)
 seg_agg = (kar_matched
            .groupby(["District","FuelSegment"], as_index=False)
            .agg(cy=("SalesLtr_CY", lambda x: x.sum()/1e6),
-                ly=("SalesLtr_LY", lambda x: x.sum()/1e6)))
+                ly=("SalesLtr_SPLY", lambda x: x.sum()/1e6)))
 seg_agg["chg"] = seg_agg.apply(lambda r: spct(r["cy"],r["ly"]), axis=1)
 
 # Pivot: rows=District, cols=Segment
@@ -231,11 +231,11 @@ hdr(sl, "KARACHI — VOLUME BY DISTRICT WITH FUEL & LUBRICANT BREAKDOWN",
     f"{tot_stns_match} of {tot_stns_all} stations assigned to a district  |  "
     f"(CSV: {n_csv_matched}, web-researched: {n_extra_matched})  |  "
     f"Assigned vol: {fv(tot_vol_match)}ML  |  Unassigned: {len(unmatched_stns)} stns, {fv(tot_vol_unm)}ML  |  "
-    f"All volumes CY (10M FY26) vs LY (10M FY25)")
+    f"All volumes CY (10M FY26) vs SPLY (10M FY25)")
 
 # ── KPI strip ────────────────────────────────────────────────────────────────
 kpis = [
-    ("Total Karachi Vol CY",  f"{fv(tot_vol_kar)} ML",  f"LY: {fv(matched_stns['ml_ly'].sum()+unmatched_stns['ml_ly'].sum())} ML", NAVY),
+    ("Total Karachi Vol CY",  f"{fv(tot_vol_kar)} ML",  f"SPLY: {fv(matched_stns['ml_ly'].sum()+unmatched_stns['ml_ly'].sum())} ML", NAVY),
     ("Matched to CSV Vol",    f"{fv(tot_vol_match)} ML", f"{tot_vol_match/tot_vol_kar*100:.0f}% of Karachi", DBLUE),
     ("Unassigned Vol",         f"{fv(tot_vol_unm)} ML",  f"{len(unmatched_stns)} stns unresolved", RED),
     ("Diesel (matched)",      f"{fv(seg_agg[seg_agg['FuelSegment']=='Diesel']['cy'].sum())} ML",  "10M FY26", DBLUE),
@@ -253,7 +253,7 @@ for ki,(lbl,val,sub,bg) in enumerate(kpis):
         sub, size=6.5, fg=LGREY, align=PP_ALIGN.CENTER, italic=True)
 
 # ── MAIN TABLE ──────────────────────────────────────────────────────────────
-# Columns: District | Stns | Total CY | Total LY | Chg | Share |
+# Columns: District | Stns | Total CY | Total SPLY | Chg | Share |
 #           Diesel CY | Diesel% | Diesel Chg |
 #           Petrol CY | Petrol% | Petrol Chg |
 #           Lubes CY  | Lubes%  | Lubes Chg
@@ -262,7 +262,7 @@ for ki,(lbl,val,sub,bg) in enumerate(kpis):
 nd = len(DISTRICTS)
 sec_bar(sl, Inches(0.12), Inches(1.57), SW-Inches(0.24),
         "Volume by District x Segment  |  Only matched stations shown  |  "
-        "Green = CY > LY  Red = CY < LY  |  % = share of that district's total volume")
+        "Green = CY > SPLY  Red = CY < SPLY  |  % = share of that district's total volume")
 
 # header rows: row0 = group header, row1 = col names, then data rows, then total
 NCOLS = 15
@@ -277,7 +277,7 @@ CWS = [
     Inches(2.15),  # District
     Inches(0.42),  # Stns
     Inches(0.82),  # Total CY
-    Inches(0.82),  # Total LY
+    Inches(0.82),  # Total SPLY
     Inches(0.60),  # Chg
     Inches(0.55),  # Share
     # Diesel x3
@@ -313,7 +313,7 @@ tbl.rows[0].height = Inches(0.24)
 
 # ROW 1 — column names
 COL_NAMES = [
-    "District", "Stns", "CY (ML)", "LY (ML)", "Chg%", "Share",
+    "District", "Stns", "CY (ML)", "SPLY (ML)", "Chg%", "Share",
     "CY (ML)", "% Dist", "Chg%",
     "CY (ML)", "% Dist", "Chg%",
     "CY (ML)", "% Dist", "Chg%",
@@ -440,13 +440,13 @@ overall_chg_str = fp(spct(tcol, tloy))
 INSIGHTS = [
     (DBLUE,
      f"{top_dist['District']} — {top_dist['sh']:.0f}% OF KARACHI",
-     f"{fv(top_dist['cy'])}ML CY  |  {int(top_dist['stns'])} stations  |  {fp(top_dist['chg'])} vs LY",
+     f"{fv(top_dist['cy'])}ML CY  |  {int(top_dist['stns'])} stations  |  {fp(top_dist['chg'])} vs SPLY",
      (f"Largest district by far — more than double the next district (Central: {fv(dist_tot.iloc[1]['cy'])}ML). "
       f"Growth is {'declining' if (top_dist['chg'] or 0) < 0 else 'positive'} — watch this district closely as it drives half of Karachi's total volume.")),
     (GREEN if (fast_row["chg"] or 0) > 0 else RED,
      f"{fast_row['District']} — FASTEST GROWING",
-     f"{fp(fast_row['chg'])} vs LY  |  {fv(fast_row['cy'])}ML CY  |  {int(fast_row['stns'])} stations",
-     (f"{n_growing} of {len(DISTRICTS)} districts are growing vs LY. "
+     f"{fp(fast_row['chg'])} vs SPLY  |  {fv(fast_row['cy'])}ML CY  |  {int(fast_row['stns'])} stations",
+     (f"{n_growing} of {len(DISTRICTS)} districts are growing vs SPLY. "
       f"South has the strongest momentum driven by higher Petrol mix ({_d_sh_pct('KARACHI SOUTH','Petrol'):.0f}% petrol) "
       f"— retail consumer demand, not commercial.")),
     (ORANGE,
@@ -491,7 +491,7 @@ set_notes(sl,
     + "\n".join(
         f"  {seg}: {fv(t_sv[seg]['cy'])}ML CY  "
         f"({t_sv[seg]['sh']:.0f}% of matched)  "
-        f"{fp(t_sv[seg]['chg'])} vs LY"
+        f"{fp(t_sv[seg]['chg'])} vs SPLY"
         for seg in SEGS
     ) + "\n\n"
     "QUESTIONS YOU MIGHT GET:\n"
@@ -555,7 +555,7 @@ for ki,(lbl,val,sub,bg) in enumerate(kpis2):
 LEFT_W = Inches(7.5)
 sec_bar(sl2, Inches(0.12), Inches(1.57), LEFT_W,
         f"District Distribution of {n_extra_matched} Web-Resolved Stations  |  "
-        f"Vol CY vs LY  |  Green = growth  Red = decline")
+        f"Vol CY vs SPLY  |  Green = growth  Red = decline")
 
 ned = len(extra_by_dist)
 et = sl2.shapes.add_table(
@@ -575,7 +575,7 @@ et.rows[0].height = Inches(0.24)
 
 # row 1: column names
 for ci,(h,bg) in enumerate(zip(
-        ["District","Stns","CY (ML)","LY (ML)","Chg%","Share"],
+        ["District","Stns","CY (ML)","SPLY (ML)","Chg%","Share"],
         [DBLUE,DBLUE,GREEN,GREEN,GREEN,GREEN])):
     cstyle(et.cell(1,ci), h, size=7.5, bold=True, fg=WHITE, bg=bg,
            align=PP_ALIGN.LEFT if ci==0 else PP_ALIGN.CENTER)
@@ -685,7 +685,7 @@ set_notes(sl2,
         for _, r in extra_by_dist.iterrows()
     ) + "\n\n"
     f"TOTAL WEB-RESOLVED: {n_extra_matched} stns  {fv(et_tot_cy)}ML CY\n"
-    f"Chg vs LY: {fp(et_tot_chg)}"
+    f"Chg vs SPLY: {fp(et_tot_chg)}"
 )
 
 # ═══════════════════════════════════════════════════════════════════════════════

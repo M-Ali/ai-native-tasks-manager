@@ -99,7 +99,6 @@ lubes_all = retail[retail['FuelSegment'] == 'Lubricants'].copy()
 print("Computing national station metrics…")
 
 lubes_vol     = lubes_all['SalesLtr_CY'].sum()
-lubes_vol_ly  = lubes_all['SalesLtr_LY'].sum()
 lubes_vol_sply= lubes_all['SalesLtr_SPLY'].sum()
 vol_chg       = (lubes_vol - lubes_vol_sply) / lubes_vol_sply * 100 if lubes_vol_sply else 0
 
@@ -142,7 +141,6 @@ for cat in CAT_ORDER:
     df_cat     = lubes_all[lubes_all['LubeCategory'] == cat]
     stn_cat    = df_cat.groupby('Customer Number')['SalesLtr_CY'].sum()
     vol        = stn_cat.sum()
-    vol_ly     = df_cat['SalesLtr_LY'].sum()
     vol_sply   = df_cat['SalesLtr_SPLY'].sum()
     n_sell     = (stn_cat > 0).sum()
     cat_stats[cat] = dict(
@@ -154,7 +152,7 @@ for cat in CAT_ORDER:
 
 d = dict(
     n_stns=n_stns, n_active=n_active, n_zero=n_zero,
-    lubes_vol=lubes_vol, lubes_vol_ly=lubes_vol_ly, vol_chg=vol_chg,
+    lubes_vol=lubes_vol, vol_chg=vol_chg,
     avg_per_stn=avg_per_stn, med_per_stn=med_per_stn, p75=p75,
     n_high=n_high, n_mid=n_mid, n_low=n_low, n_zero_stn=n_zero,
     vol_high=vol_high, vol_mid=vol_mid, vol_low=vol_low,

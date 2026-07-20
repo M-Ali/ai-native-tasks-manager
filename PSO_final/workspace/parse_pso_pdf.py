@@ -98,7 +98,7 @@ print(f"Combined unique: {len(combined_map)}")
 kar_stns = (kar_main.groupby('Customer Number', as_index=False)
             .agg(name=('Name 1','first'),
                  vol_cy=('SalesLtr_CY','sum'),
-                 vol_ly=('SalesLtr_LY','sum'))
+                 vol_ly=('SalesLtr_SPLY','sum'))
             .assign(ml_cy=lambda d: d['vol_cy']/1e6,
                     ml_ly=lambda d: d['vol_ly']/1e6))
 

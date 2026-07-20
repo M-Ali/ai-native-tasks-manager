@@ -105,7 +105,6 @@ def compute_city(city_norm):
 
     total_rev   = city_all['SalesGRS_CY'].sum()
     lubes_rev    = city_lubes['SalesGRS_CY'].sum()
-    lubes_rev_ly = city_lubes['SalesGRS_LY'].sum()
     lubes_rev_sply = city_lubes['SalesGRS_SPLY'].sum()
 
     # per-station totals
@@ -177,7 +176,7 @@ def compute_city(city_norm):
 
     return dict(
         city=city_norm, n_stns=n_stns, n_active=n_active, n_zero=n_zero,
-        total_rev=total_rev, lubes_rev=lubes_rev, lubes_rev_ly=lubes_rev_ly,
+        total_rev=total_rev, lubes_rev=lubes_rev,
         lubes_rev_sply=lubes_rev_sply,
         avg_per_stn=avg_per_stn, med_per_stn=med_per_stn,
         min_per_stn=min_per_stn, max_per_stn=max_per_stn,

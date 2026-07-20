@@ -29,8 +29,8 @@ station_city = (
         GRS_CY     = ("SalesGRS_CY",    "sum"),
         Vol_CY_ML  = ("SalesLtr_CY",    lambda x: x.sum() / 1_000_000),
         NMgn_CY    = ("NetMargin_CY",   "sum"),
-        GRS_LY     = ("SalesGRS_LY",    "sum"),
-        Vol_LY_ML  = ("SalesLtr_LY",    lambda x: x.sum() / 1_000_000),
+        GRS_LY     = ("SalesGRS_SPLY",    "sum"),
+        Vol_LY_ML  = ("SalesLtr_SPLY",    lambda x: x.sum() / 1_000_000),
     )
 )
 

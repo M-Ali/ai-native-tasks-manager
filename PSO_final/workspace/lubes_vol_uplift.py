@@ -86,7 +86,6 @@ for city in top20:
     ca = retail[retail['CityNorm']==city]
 
     vol_cy      = cl['SalesLtr_CY'].sum()
-    vol_ly      = cl['SalesLtr_LY'].sum()
     vol_sply    = cl['SalesLtr_SPLY'].sum()
     vol_chg_pct = (vol_cy-vol_sply)/vol_sply*100 if vol_sply else 0
 

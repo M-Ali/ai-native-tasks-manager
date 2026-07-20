@@ -262,7 +262,7 @@ doc.add_paragraph()
 # KPI strip
 kpi_tbl = doc.add_table(rows=2, cols=4)
 kpi_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-tot_vol = lubes['SalesLtr_CY'].sum(); tot_vol_ly = lubes['SalesLtr_LY'].sum()
+tot_vol = lubes['SalesLtr_CY'].sum()
 tot_vol_sply = lubes['SalesLtr_SPLY'].sum()
 tot_stns = lubes['Customer Number'].nunique()
 tot_cities = lubes['CityNorm'].nunique()

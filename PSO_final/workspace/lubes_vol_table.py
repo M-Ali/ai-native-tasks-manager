@@ -81,7 +81,6 @@ for city in top20_cities:
     ca  = retail[retail['CityNorm']==city]
 
     vol_cy   = cl['SalesLtr_CY'].sum()
-    vol_ly   = cl['SalesLtr_LY'].sum()
     vol_sply = cl['SalesLtr_SPLY'].sum()
     vol_chg  = (vol_cy - vol_sply) / vol_sply * 100 if vol_sply else 0
 
@@ -122,7 +121,7 @@ for city in top20_cities:
     rows.append(dict(
         city=city, region=region,
         n_stns=n_stns, n_active=n_active, n_zero=n_zero,
-        vol_cy=vol_cy, vol_ly=vol_ly, vol_chg=vol_chg,
+        vol_cy=vol_cy, vol_sply=vol_sply, vol_chg=vol_chg,
         avg_stn=avg_stn, med_stn=med_stn,
         top10_pct=top10_pct,
         n_high=n_high, n_mid=n_mid, n_low=n_low,
@@ -162,7 +161,7 @@ r3.bold = True; r3.font.size = Pt(11); r3.font.color.rgb = W_BLUE; r3.font.name 
 p3.paragraph_format.space_after = Pt(3)
 
 hdr1 = ['#','City','Region','Total\nStns',
-        'Vol CY\n(KL)','Vol LY 12M\n(KL)','vs\nSPLY',
+        'Vol CY\n(KL)','Vol SPLY\n(KL)','vs\nSPLY',
         'Avg KL\n/Stn','Median KL\n/Stn',
         'Active\nStns','Zero\nStns',
         'Top 10\nConc %',
@@ -199,7 +198,7 @@ for ri, d in enumerate(rows, 2):
         d['region'],
         str(d['n_stns']),
         fmt_kl(d['vol_cy']),
-        fmt_kl(d['vol_ly']),
+        fmt_kl(d['vol_sply']),
         chg_str(chg),
         fmt_kl(d['avg_stn']),
         fmt_kl(d['med_stn']),
@@ -324,8 +323,8 @@ fn = doc.add_paragraph()
 fn.paragraph_format.space_before = Pt(4)
 for part, bold in [
     ('Notes: ', True),
-    ('Vol CY/LY = litres ÷ 1,000 (kilolitres). '
-     'vs SPLY = current year vs same period last year (like-for-like 10M comparison). LY 12M shown for reference only. '
+    ('Vol CY/SPLY = litres ÷ 1,000 (kilolitres). '
+     'SPLY = same period last year (like-for-like 10M comparison) — not full-year LY. '
      'Avg/Median KL per Station = among all stations in city, not just active ones for avg. '
      'High Performers = above 75th percentile volume; Mid = 50th–75th; Low = below 50th (active only). '
      'Top 10 Conc % = share of city volume held by top 10 stations.  '

@@ -15,29 +15,29 @@ print(lubes['Sales office Region'].value_counts().to_string())
 print()
 print('TOP 20 CITIES by CY volume (KL):')
 city_vol = lubes.groupby('CityNorm').agg(
-    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum')
+    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_SPLY','sum')
 ).assign(chg=lambda d:(d.vol_cy-d.vol_ly)/d.vol_ly.abs()*100
 ).sort_values('vol_cy', ascending=False).head(20)
 for c,(v,ly,chg) in city_vol.iterrows():
-    print(f'  {c:<25} CY:{v/1000:>7.1f}KL  LY:{ly/1000:>7.1f}KL  Chg:{chg:>+6.1f}%')
+    print(f'  {c:<25} CY:{v/1000:>7.1f}KL  SPLY:{ly/1000:>7.1f}KL  Chg:{chg:>+6.1f}%')
 print()
 print('NATIONAL TOTALS:')
 vc = lubes['SalesLtr_CY'].sum()
-vl = lubes['SalesLtr_LY'].sum()
+vl = lubes['SalesLtr_SPLY'].sum()
 rc = lubes['SalesGRS_CY'].sum()
-rl = lubes['SalesGRS_LY'].sum()
+rl = lubes['SalesGRS_SPLY'].sum()
 mc = lubes['NetMargin_CY'].sum()
-ml = lubes['NetMargin_LY'].sum()
-print(f'  Vol CY:    {vc/1e6:.3f} ML  |  LY: {vl/1e6:.3f} ML  |  Chg: {(vc-vl)/vl*100:+.1f}%')
-print(f'  Rev CY:    PKR {rc/1e9:.3f} Bn  |  LY: {rl/1e9:.3f} Bn  |  Chg: {(rc-rl)/rl*100:+.1f}%')
-print(f'  Margin CY: PKR {mc/1e9:.3f} Bn  |  LY: {ml/1e9:.3f} Bn  |  Chg: {(mc-ml)/ml*100:+.1f}%')
-print(f'  Margin/Ltr CY: PKR {mc/vc:.2f}  |  LY: PKR {ml/vl:.2f}')
+ml = lubes['NetMargin_SPLY'].sum()
+print(f'  Vol CY:    {vc/1e6:.3f} ML  |  SPLY: {vl/1e6:.3f} ML  |  Chg: {(vc-vl)/vl*100:+.1f}%')
+print(f'  Rev CY:    PKR {rc/1e9:.3f} Bn  |  SPLY: {rl/1e9:.3f} Bn  |  Chg: {(rc-rl)/rl*100:+.1f}%')
+print(f'  Margin CY: PKR {mc/1e9:.3f} Bn  |  SPLY: {ml/1e9:.3f} Bn  |  Chg: {(mc-ml)/ml*100:+.1f}%')
+print(f'  Margin/Ltr CY: PKR {mc/vc:.2f}  |  SPLY: PKR {ml/vl:.2f}')
 print(f'  Stations:  {lubes["Customer Number"].nunique()}')
 print(f'  Cities:    {lubes["CityNorm"].nunique()}')
 print()
 print('BY CATEGORY:')
 cat = lubes.groupby('LubeCategory').agg(
-    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_SPLY','sum'),
     rev_cy=('SalesGRS_CY','sum'), margin_cy=('NetMargin_CY','sum')
 ).assign(chg=lambda d:(d.vol_cy-d.vol_ly)/d.vol_ly.abs()*100,
          vol_sh=lambda d:d.vol_cy/d.vol_cy.sum()*100
@@ -47,7 +47,7 @@ for cat_name, r in cat.iterrows():
 print()
 print('BY REGION:')
 reg = lubes.groupby('Sales office Region').agg(
-    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_SPLY','sum'),
     margin_cy=('NetMargin_CY','sum'), stns=('Customer Number','nunique')
 ).assign(chg=lambda d:(d.vol_cy-d.vol_ly)/d.vol_ly.abs()*100,
          vol_sh=lambda d:d.vol_cy/d.vol_cy.sum()*100
@@ -57,7 +57,7 @@ for rn, r in reg.iterrows():
 print()
 print('TOP 20 STATIONS by CY volume:')
 stn = lubes.groupby(['Customer Number','Name 1','CityNorm','Sales office Region']).agg(
-    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_LY','sum'),
+    vol_cy=('SalesLtr_CY','sum'), vol_ly=('SalesLtr_SPLY','sum'),
     margin_cy=('NetMargin_CY','sum')
 ).reset_index().assign(chg=lambda d:(d.vol_cy-d.vol_ly)/d.vol_ly.abs()*100
 ).sort_values('vol_cy', ascending=False).head(20)
