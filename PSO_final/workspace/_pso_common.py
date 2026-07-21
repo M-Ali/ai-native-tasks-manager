@@ -29,11 +29,17 @@ def get_period_label(df) -> str:
     return f"{get_period(df).replace('_', ' ')} (generated {date.today():%B %Y})"
 
 
-def out_path(stem: str, ext: str, df, out_dir: str = 'reports') -> str:
+def out_path(stem: str, ext: str, df, out_dir: str | None = None) -> str:
     """Period-tagged output path, e.g. reports/PSO_Lubricants_Report_10M_FY26.docx.
 
     Tagging prevents a new period's run from silently overwriting the
     previous period's reports.
+
+    out_dir defaults to the PSO_OUTDIR env var (or 'reports' if unset), so the
+    run-category selector can route every script's output into a category-
+    specific folder just by setting one env var before invoking the script.
     """
+    if out_dir is None:
+        out_dir = os.environ.get('PSO_OUTDIR', 'reports')
     os.makedirs(out_dir, exist_ok=True)
     return f"{out_dir}/{stem}_{get_period(df)}.{ext}"

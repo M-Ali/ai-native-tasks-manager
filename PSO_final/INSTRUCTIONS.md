@@ -1,17 +1,20 @@
 # PSO Analytics — How to Run
 
-## The Two Apps at a Glance
+## The Apps at a Glance
 
-There are **two separate, independent apps** in this project. They do not call each other.
+There are **three entry points** in this project. App 1 and App 2 do not call each
+other. App 3 (`run-category`) is a *selector* that runs a scoped subset of App 1's
+analysis plus a scoped subset of App 2's report scripts for one Sales Org/Category
+at a time — see "App 3" below.
 
-| | App 1 — Core Pipeline | App 2 — Report Scripts |
-|---|---|---|
-| **Entry point** | `pso.main` | `workspace/run_all_reports.py` |
-| **What it does** | Ingest → Analyse → AI Narrative → Excel | Ingest → Word & PowerPoint reports |
-| **Needs API key?** | Yes (for AI step; can skip) | Yes (for `frameworks.py`; all other scripts run without one) |
-| **Output** | Multi-sheet Excel workbook | Word docs, PowerPoint decks, PNGs |
-| **Output folder** | `reports/YYYY-MM-DD/` | `reports/` and subfolders |
-| **Run time** | ~2–3 min (with AI) / ~30 sec (no AI) | ~1–2 min |
+| | App 1 — Core Pipeline | App 2 — Report Scripts | App 3 — Category Selector |
+|---|---|---|---|
+| **Entry point** | `pso.main run` | `workspace/run_all_reports.py` | `pso.main run-category` |
+| **What it does** | Ingest → Analyse → AI Narrative → Excel (full workbook, all channels) | Ingest → Word & PowerPoint reports (Lubricants only) | Ingest → scoped Excel + scoped Word/PPTX for one Org/Category |
+| **Needs API key?** | Yes (for AI step; can skip) | Yes (for `frameworks.py`; all other scripts run without one) | Yes (Fuels/Lubricants `*_frameworks.py`; skip with `--no-ai`, or ignore if key unset) |
+| **Output** | Multi-sheet Excel workbook | Word docs, PowerPoint decks, PNGs | Excel workbook + Word/PPTX, scoped to selection |
+| **Output folder** | `reports/YYYY-MM-DD/` | `reports/` and subfolders | `reports/<Org>[_<Category>]/` |
+| **Run time** | ~2–3 min (with AI) / ~30 sec (no AI) | ~1–2 min | ~3–6 min per category (full report suite) |
 
 They share the same source Excel file and both run `pso.ingest.load()` internally — but beyond that they are completely independent. Running one does **not** run the other.
 
@@ -78,6 +81,40 @@ uv run python workspace/run_all_reports.py --input "data/input/Working File Reta
 
 Output filenames are **auto-tagged with the period** read from the source file's sheet name
 (e.g. `_10M_FY26`, `_10M_FY27`). A new period's run never overwrites a prior period's reports.
+
+---
+
+## App 3 — Category Selector (`pso.main categories` / `run-category`)
+
+The source file covers multiple Sales Org channels (`Sales _Org_ Desc.2`: Retail
+Business, Head Office, Strategic Accounts, Agency, Key Accounts, LPG, Aviation,
+Chemicals, Power Projects, Marine), and within **Retail Business** there are two
+real sub-businesses: **Fuels** (Diesel + Petrol + Other Fuels + LPG) and
+**Lubricants**. App 3 lets you pick one Org (+ Category, for Retail Business) and
+runs only the reports relevant to that selection, into its own output folder.
+
+```bash
+# List every available Org/Category combination with live row counts
+uv run python -m pso.main categories
+
+# Retail Business — deep dive, full 9-script report suite each
+uv run python -m pso.main run-category --org "Retail Business" --category "Fuels"
+uv run python -m pso.main run-category --org "Retail Business" --category "Lubricants"
+
+# Any other Org — one Excel overview + one short Word summary
+uv run python -m pso.main run-category --org "Aviation"
+uv run python -m pso.main run-category --org "Chemicals"
+```
+
+**Output:** `reports/<Org>[_<Category>]/` (e.g. `reports/Retail_Business_Fuels/`,
+`reports/Aviation/`). Retail Business selections get a reduced-sheet Excel workbook
+plus the full matching workspace report suite (`fuels_*.py` or `lubes_*.py`); every
+other Org gets `PSO_<Org>_Overview_<period>.xlsx` + `PSO_<Org>_Summary_<period>.docx`.
+
+This is **purely additive** — it does not touch `pso.main run` or
+`workspace/run_all_reports.py`, and reuses the same underlying analysis tables
+(`analyze.py`, `lubes_analyze.py`, `premium_fuel_analyze.py`), so numbers always
+match the full workbook exactly.
 
 ---
 

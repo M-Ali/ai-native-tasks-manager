@@ -224,6 +224,60 @@ dataset. Schema contract defined in `config.py → OPPORTUNITY_SCHEMA`.
 
 ---
 
+## Agent 7 — Business Category Selector (`src/pso/main.py:run-category`, `src/pso/org_report.py`)
+
+**Responsibility:** Let the user pick one Sales Org (+ Category, for Retail Business)
+and run only the reports relevant to that selection, into a dedicated output folder —
+without touching `pso.main run` or `workspace/run_all_reports.py`.
+
+**Taxonomy** (`config.SALES_ORG_CATEGORIES`, hardcoded deliberately — `ingest.py`
+already fails loudly on an unmapped Org/product, so a new one would surface there
+before ever reaching the selector):
+- **Retail Business** → `["Fuels", "Lubricants"]` — the only Org with a real
+  sub-category split, and the only one that gets full deep-dive report suites.
+- Every other Org (Head Office, Strategic Accounts, Agency, Key Accounts, LPG,
+  Aviation, Chemicals, Power Projects, Marine) → `None` — one simple report, no
+  category prompt.
+
+**Dispatch** (`pso.main run-category --org ... [--category ...]`):
+- **Retail Business + Lubricants** → `lubes_analyze.run_lubes()` + a Lubricants-only
+  Excel workbook + the 9 existing `workspace/lubes_*`/`city_profiles*`/
+  `national_vol_slide.py`/`frameworks.py` scripts (same list as `run_all_reports.py`).
+- **Retail Business + Fuels** → `analyze.run_all()` + `premium_fuel_analyze.run_premium_fuel()`
+  + a Fuels-only Excel workbook (Diesel/Petrol/Premium Fuel sheets) + the 9
+  `workspace/fuels_*.py` scripts — full mirrors of the Lubricants suite, adapted to
+  Diesel/Petrol/R95/PMG (R95-vs-PMG sections reuse `premium_fuel_analyze.py` directly
+  rather than recomputing).
+- **Any other Org** → `org_report.py` builds one small Excel overview (+ by-product
+  table if >1 product code, + by-region table if >1 region) and one short Word
+  summary — no deep dive, these channels have no further category worth splitting.
+
+**Output folder:** `reports/<Org_sanitized>[_<Category>]/`. Every `workspace/fuels_*.py`
+and `workspace/lubes_*.py` script routes its output there via the `PSO_OUTDIR` env var
+(read by `_pso_common.out_path()`, same mechanism `PSO_INPUT` already uses for the
+source file) — no per-script edits needed to add a new category folder.
+
+**Exception — legacy hardcoded output folders:** `city_profiles.py` and
+`city_profiles_volume.py` predate `PSO_OUTDIR` and hardcode their own output
+directory (`reports/city_profiles/`, `reports/city_profiles_volume/`) rather than
+using `out_path()`'s default. Left untouched (never edit an existing report script —
+see Rules below). `main.py`'s `_run_workspace_scripts()` instead snapshots those
+folders' file mtimes before running either script and, after it exits, moves any
+new/changed file into `<out_dir>/city_profiles[_volume]/` — see
+`_LEGACY_OUTPUT_OVERRIDES`. Any *new* script added to the selector must use
+`out_path()` normally; this override map should never need another entry.
+
+**Rules:**
+- Never edit an existing report-generating script when adding a new category — each
+  category gets its own new file(s); only the CLI dispatcher and `_pso_common.py`'s
+  `out_path()` are shared, and both are purely additive/backward-compatible.
+- The `fuels_*.py` "category" dimension is `FuelSegment` (Diesel, Petrol, Other Fuels,
+  LPG) — mirrors the 4-5 lube categories' treatment; R95 vs PMG is nested inside
+  Petrol via `premium_fuel_analyze.py`, not treated as a 5th sibling category (that
+  would double-count portfolio share).
+
+---
+
 ## Running the Pipeline
 
 ```bash
@@ -238,6 +292,14 @@ uv run python -m pso.main lubes --input "..."
 
 # Data quality report only
 uv run python -m pso.main quality --input "..."
+
+# List Sales Org / Category combinations with live row counts
+uv run python -m pso.main categories --input "..."
+
+# Run the full report suite for one Org (+ Category, for Retail Business) —
+# see "Agent 7 — Business Category Selector" below
+uv run python -m pso.main run-category --org "Retail Business" --category "Fuels" --input "..."
+uv run python -m pso.main run-category --org "Aviation" --input "..."
 ```
 
 ---

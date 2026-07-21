@@ -175,6 +175,220 @@ def quality(input_path: str):
             console.print(f"  [dim]{cnt:>4}x[/]  {city}")
 
 
+@cli.command()
+@click.option("--input", "-i", "input_path",
+              default="data/input/Working File Retail Fuels Data.xlsx",
+              show_default=True)
+def categories(input_path: str):
+    """List Sales Org / Category combinations available for run-category, with
+    live row counts from the loaded file."""
+    from pso import ingest
+    from pso.config import (
+        SALES_ORG_CATEGORIES, RETAIL_CATEGORY_SEGMENTS,
+        COL_ORG, COL_FUEL_SEG, COL_VOL_CY,
+    )
+
+    df, _ = ingest.load(input_path)
+
+    t = RichTable(title="Sales Org / Category — Available Combinations",
+                  show_header=True, header_style="bold cyan")
+    t.add_column("Sales Org", style="white")
+    t.add_column("Category", style="white")
+    t.add_column("Rows", justify="right")
+    t.add_column("Vol CY (ML)", justify="right")
+
+    for org, cats in SALES_ORG_CATEGORIES.items():
+        org_df = df[df[COL_ORG] == org]
+        if cats is None:
+            vol_ml = org_df[COL_VOL_CY].sum() / 1e6
+            t.add_row(org, "—", str(len(org_df)), f"{vol_ml:,.2f}")
+        else:
+            for cat in cats:
+                segs = RETAIL_CATEGORY_SEGMENTS.get(cat, set())
+                cat_df = org_df[org_df[COL_FUEL_SEG].isin(segs)]
+                vol_ml = cat_df[COL_VOL_CY].sum() / 1e6
+                t.add_row(org, cat, str(len(cat_df)), f"{vol_ml:,.2f}")
+
+    console.print(t)
+    console.print(
+        "\n[dim]Run reports for one combination with:[/]\n"
+        '  uv run python -m pso.main run-category --org "Retail Business" --category "Fuels"\n'
+        '  uv run python -m pso.main run-category --org "Aviation"'
+    )
+
+
+@cli.command(name="run-category")
+@click.option("--org", required=True, help='Sales Org, e.g. "Retail Business". See `pso.main categories`.')
+@click.option("--category", default=None, help='Category, required only for Orgs that have one (Retail Business).')
+@click.option("--input", "-i", "input_path",
+              default="data/input/Working File Retail Fuels Data.xlsx",
+              show_default=True)
+@click.option("--output", "-o", "out_base", default="reports", show_default=True,
+              help="Base output directory — the category folder is created under this.")
+def run_category(org: str, category: str | None, input_path: str, out_base: str):
+    """Run only the reports relevant to one Sales Org (+ Category, if applicable),
+    into a folder named after the selection."""
+    from pso.config import SALES_ORG_CATEGORIES
+
+    if org not in SALES_ORG_CATEGORIES:
+        console.print(f"[red]Unknown Sales Org:[/] {org}")
+        console.print(f"Valid options: {', '.join(SALES_ORG_CATEGORIES.keys())}")
+        raise SystemExit(1)
+
+    valid_cats = SALES_ORG_CATEGORIES[org]
+    if valid_cats is None:
+        if category:
+            console.print(f"[red]{org} does not take a --category (it has no sub-categories).[/]")
+            raise SystemExit(1)
+    else:
+        if category not in valid_cats:
+            console.print(f"[red]{org} requires --category, one of:[/] {', '.join(valid_cats)}")
+            raise SystemExit(1)
+
+    folder_name = _safe_name(org) + (f"_{_safe_name(category)}" if category else "")
+    out_dir = Path(out_base) / folder_name
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    label = org + (f" — {category}" if category else "")
+    console.print(Panel.fit(
+        f"[bold white]Run Category[/]\n[dim]{label}[/]\nOutput: {out_dir}",
+        border_style="cyan",
+    ))
+
+    from pso import ingest
+    df, quality = ingest.load(input_path)
+    period = df["_Period"].iloc[0] if "_Period" in df.columns else "Unknown"
+
+    root = Path(__file__).resolve().parents[2]   # project root
+    env = os.environ.copy()
+    env["PSO_INPUT"]  = input_path
+    env["PSO_OUTDIR"] = str(out_dir)
+
+    if org == "Retail Business" and category == "Lubricants":
+        from pso import lubes_analyze
+        lubes_tables = lubes_analyze.run_lubes(df)
+        _print_table_summary(lubes_tables)
+        _build_lubes_workbook(lubes_tables, period, out_dir)
+        _run_workspace_scripts([
+            "lubes_report.py", "lubes_stations_analysis.py", "lubes_stations_report.py",
+            "city_profiles.py", "city_profiles_volume.py", "lubes_vol_table.py",
+            "lubes_vol_uplift.py", "national_vol_slide.py", "frameworks.py",
+        ], root, env, out_dir=out_dir)
+
+    elif org == "Retail Business" and category == "Fuels":
+        from pso import analyze, premium_fuel_analyze
+        analysis_tables = analyze.run_all(df)
+        premium_tables = premium_fuel_analyze.run_premium_fuel(df)
+        _print_table_summary(analysis_tables)
+        _print_table_summary(premium_tables)
+        _build_fuels_workbook(analysis_tables, premium_tables, period, out_dir)
+        _run_workspace_scripts([
+            "fuels_report.py", "fuels_stations_analysis.py", "fuels_stations_report.py",
+            "fuels_city_profiles.py", "fuels_city_profiles_volume.py", "fuels_vol_table.py",
+            "fuels_vol_uplift.py", "fuels_national_vol_slide.py", "fuels_frameworks.py",
+        ], root, env)
+
+    else:
+        from pso import org_report
+        excel_path, docx_path = org_report.build(df, org, period, out_dir)
+        console.print(f"  [green]Saved:[/] {excel_path}")
+        console.print(f"  [green]Saved:[/] {docx_path}")
+
+    console.print(Panel.fit(f"[bold green]Done![/]  Reports in:\n[white]{out_dir}[/]", border_style="green"))
+
+
+def _safe_name(s: str) -> str:
+    import re
+    return re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
+
+
+def _build_lubes_workbook(lubes_tables: dict, period: str, out_dir: Path) -> None:
+    from openpyxl import Workbook
+    from pso.excel_report import _sheet_lubes_overview, _sheet_lube_category
+
+    wb = Workbook()
+    wb.remove(wb.active)
+    _sheet_lubes_overview(wb, {}, lubes_tables, period)
+    _sheet_lube_category(wb, lubes_tables, "DEO",       "DEO",       period)
+    _sheet_lube_category(wb, lubes_tables, "PCMO",      "PCMO",      period)
+    _sheet_lube_category(wb, lubes_tables, "MCO",       "MCO",       period)
+    _sheet_lube_category(wb, lubes_tables, "LOW GRADE", "LOW_GRADE", period)
+    _sheet_lube_category(wb, lubes_tables, "OTHERS",    "Other",     period)
+
+    fname = out_dir / f"PSO_Lubricants_{period}.xlsx"
+    wb.save(fname)
+    console.print(f"  [green]Saved:[/] {fname}")
+
+
+def _build_fuels_workbook(analysis_tables: dict, premium_tables: dict, period: str, out_dir: Path) -> None:
+    from openpyxl import Workbook
+    from pso.excel_report import _sheet_fuel, _sheet_premium_fuel_overview, _sheet_premium_fuel_stations
+
+    wb = Workbook()
+    wb.remove(wb.active)
+    _sheet_fuel(wb, analysis_tables, "Diesel", "02_Diesel", period)
+    _sheet_fuel(wb, analysis_tables, "Petrol", "03_Petrol", period)
+    _sheet_premium_fuel_overview(wb, premium_tables, period)
+    _sheet_premium_fuel_stations(wb, premium_tables, period)
+
+    fname = out_dir / f"PSO_Fuels_{period}.xlsx"
+    wb.save(fname)
+    console.print(f"  [green]Saved:[/] {fname}")
+
+
+# Some older workspace scripts hardcode their own output subfolder instead of
+# respecting PSO_OUTDIR (they predate the run-category feature and are left
+# untouched). Map script -> (hardcoded folder relative to project root, name to
+# use for the destination subfolder under the category's out_dir) so
+# _run_workspace_scripts can relocate their output after the fact.
+_LEGACY_OUTPUT_OVERRIDES = {
+    "city_profiles.py":        ("reports/city_profiles",        "city_profiles"),
+    "city_profiles_volume.py": ("reports/city_profiles_volume", "city_profiles_volume"),
+}
+
+
+def _run_workspace_scripts(scripts: list[str], root: Path, env: dict, out_dir: Path | None = None) -> None:
+    import subprocess
+
+    failures = []
+    for script in scripts:
+        path = root / "workspace" / script
+        if not path.exists():
+            console.print(f"  [yellow]Skipping (not built yet):[/] {script}")
+            continue
+
+        override = _LEGACY_OUTPUT_OVERRIDES.get(script)
+        legacy_dir = None
+        before: dict[Path, float] = {}
+        if override and out_dir is not None:
+            legacy_dir = root / override[0]
+            if legacy_dir.exists():
+                before = {p: p.stat().st_mtime for p in legacy_dir.glob("*") if p.is_file()}
+
+        console.print(f"  [cyan]Running[/] {script} …")
+        result = subprocess.run([sys.executable, str(path)], cwd=root, env=env)
+        if result.returncode != 0:
+            failures.append(script)
+            console.print(f"  [red]FAILED:[/] {script} (exit {result.returncode})")
+            continue
+
+        if override and legacy_dir is not None and legacy_dir.exists():
+            dest = out_dir / override[1]
+            moved = 0
+            for p in legacy_dir.glob("*"):
+                if not p.is_file():
+                    continue
+                if p not in before or p.stat().st_mtime != before[p]:
+                    dest.mkdir(parents=True, exist_ok=True)
+                    p.replace(dest / p.name)
+                    moved += 1
+            if moved:
+                console.print(f"  [dim]Relocated {moved} file(s): {legacy_dir} -> {dest}[/]")
+
+    if failures:
+        console.print(f"  [red]{len(failures)} script(s) failed:[/] {failures}")
+
+
 def _print_table_summary(tables: dict) -> None:
     t = RichTable(show_header=True, header_style="bold dim")
     t.add_column("Table", style="cyan")

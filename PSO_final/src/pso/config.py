@@ -101,6 +101,30 @@ FUEL_PRODUCTS    = DIESEL_PRODUCTS | PETROL_PRODUCTS
 
 RETAIL_FUEL_SEGMENTS = {"Diesel", "Petrol", "Lubricants", "Other Fuels", "LPG"}
 
+# ── Business-category selector (Agent: run-category) ─────────────────────────
+# Sales Org -> list of sub-categories. None = no further split; run a single
+# simple report for the whole Org. Hardcoded deliberately: ingest.py already
+# fails loudly (ValueError) on an unmapped product/org, so a genuinely new Org
+# or Category would surface there first, before ever reaching the selector.
+SALES_ORG_CATEGORIES = {
+    "Retail Business":    ["Fuels", "Lubricants"],
+    "Head Office":        None,
+    "Strategic Accounts": None,
+    "Agency":             None,
+    "Key Accounts":       None,
+    "LPG":                None,
+    "Aviation":           None,
+    "Chemicals":          None,
+    "Power Projects":     None,
+    "Marine":             None,
+}
+
+# Which FuelSegment values fall under each Retail Business category
+RETAIL_CATEGORY_SEGMENTS = {
+    "Fuels":      {"Diesel", "Petrol", "Other Fuels", "LPG"},
+    "Lubricants": {"Lubricants"},
+}
+
 # ── Lubricant sub-categories (from Category column) ──────────────────────────
 LUBE_CATEGORIES = ["DEO", "PCMO", "MCO", "LOW GRADE", "INDUSTRIAL GRADE", "Greases", "OTHERS"]
 
