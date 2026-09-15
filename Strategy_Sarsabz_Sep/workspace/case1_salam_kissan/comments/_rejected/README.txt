@@ -1,0 +1,1 @@
+The skill loader (load_comments.py) was run on comments.csv on 16 Sep 2026 and treated every cell (video id, title, likes) as a comment: 6,219 "comments" from a 1,572-row file. Rejected. corpus.csv (built from raw/*.info.json) is the base.

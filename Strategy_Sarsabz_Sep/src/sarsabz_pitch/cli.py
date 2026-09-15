@@ -49,6 +49,15 @@ def info() -> None:
 
 
 @app.command()
+def case1() -> None:
+    """Case 1 - Salam Kissan 2026: background, task and goal, page-traced."""
+    console.print(_items("Case 1 background", brief.CASE1_BACKGROUND))
+    console.print(_items("Case 1: the concept and 360° campaign must", brief.CASE1_TASK))
+    console.print(_items("Case 1 goal: make rural and urban audiences understand", brief.CASE1_GOAL))
+    console.print(f"Touchpoints to cover: {', '.join(brief.CASE1_CHANNELS)}")
+
+
+@app.command()
 def case2() -> None:
     """Case 2 - Sarsabz brand audit & tactical campaign: every ask, page-traced."""
     console.print(_items("Case 2 task", brief.CASE2_TASK))

@@ -7,7 +7,7 @@ for Fatima Fertilizer, Pak Arab and FatimaFert (brands: Sarsabz, Bubber Sher, Pa
 is `data/Creative Pitch Deck (1).pdf`.
 
 - 90-minute presentation: agency, team, awards, case studies, brand understanding, Case 1 and Case 2 solutions.
-- **Case 1**: Salam Kissan 2026. *Not started.*
+- **Case 1**: Salam Kissan 2026. *Evidence, Big Idea and concept drafted* (`workspace/case1_salam_kissan/`); deck `workspace/out/Sarsabz_case1_deck-v2.pptx` built by `deck/build_case1_deck.py` (verbatim and count guards). No made-up data, no assumptions.
 - **Case 2**: Sarsabz brand audit and a tactical campaign for "10 feesad se bhi ziada izafi paidawar". *Built:* the current deck is
   `workspace/out/Sarsabz_case2_deck-v4.pptx`. See README "Start here".
 - **No pitch date, no budget** in the brief. Do not invent either; they are open questions in `brief.py`.

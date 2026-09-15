@@ -1,0 +1,121 @@
+{
+  "brand": "Sarsabz",
+  "out": "Sarsabz_case1_big_idea_section.pptx",
+  "requires_commitments": true,
+
+  "divider": {
+    "title": "The Big Idea",
+    "subtitle": "Consumer insight  +  Category insight  +  Brand insight",
+    "subtitle2": "Three single lines, combined into one organising thought."
+  },
+
+  "insights": {
+    "consumer": {
+      "title": "What the audience feels, that the films leave out",
+      "from": "FROM THE SALAM KISSAN COMMENTS",
+      "line": "The people most moved by Salam Kissan are farmers and farmers' children speaking with pride about their own family, yet in seven years of films the farmer has almost never been the one speaking.",
+      "short": "Farmers' families speak up with pride, but the farmer has almost never been the one speaking.",
+      "evidence": [
+        "\"I feel proud because my father is farmer.\" (2019 anthem, 123 likes: the most-liked comment on that film)",
+        "\"I'm daughter of farmer. My grandfather was a farmer. And I'm proud of it.\" (2019)",
+        "\"We love kissan because my father is farmer Wo mehnat krta hn or ham aj parh raha hn\" (2023; Urdu part, our translation: he works hard and today we are studying)",
+        "In the archive, a farmer speaks in 9 of 76 Salam Kissan uploads. Celebrities and politicians speak in 30."
+      ],
+      "panel_title": "What the language tells us",
+      "panel": [
+        "The pride is personal: my father, my grandfather. People aren't talking about farmers in general.",
+        "Complaints are few but specific: 19 of 1,516 comments, about fertilizer supply, price and respect. Signal, not a pattern.",
+        "One comment asks for more than a day: \"We need to make this permanent not temporary.\" (87 likes)."
+      ],
+      "source": "Source: 1,572 YouTube comments on the 18 largest Salam Kissan uploads, all read (comments/comment_findings.md); 76-upload archive coded (archive/archive_findings.md). Self-selected; no age, location or occupation split possible. Translations labelled."
+    },
+
+    "category": {
+      "title": "What everyone else does, and what it leaves open",
+      "from": "FROM A YOUTUBE SCAN OF KISSAN DAY",
+      "line": "Kissan Day has become a December salute any brand can post, even under the name Salam Kissan, and the one brand moving toward the farmer's own voice is Syngenta, with #MaiKisanHun.",
+      "short": "Any brand can post the December salute, and Syngenta is moving toward the farmer's own voice.",
+      "evidence": [
+        "Sarsabz accounts for 43 of the 168 search results titled for the day or Salam Kissan.",
+        "JPL Pakistan (2020) and Rizq Foods (2025) title their Kissan Day videos \"Salam Kissan\" / \"Salam Kisan\".",
+        "Syngenta Pakistan posts December Kisan Day films: #MaiKisanHun in 2023 (our translation: I am a farmer), 60s, 399K views; a 70s film in 2024, 689K views.",
+        "No FFC or Engro Kissan Day campaign was found on YouTube or in web search."
+      ],
+      "panel_title": "What this leaves open",
+      "panel": [
+        "The salute itself is generic now: tribute films, #KissanDay and the same December date.",
+        "An agri channel's title, our translation: \"Kissan Day is only on TV shows; in reality Pakistan's farmer is ruined\" (DIGITAL KISAN Pakistan, 2022).",
+        "The farmer's own voice is the open ground. Syngenta's films weren't watched, so how far #MaiKisanHun occupies it is unverified."
+      ],
+      "source": "Source: 7 YouTube searches (254 videos) and metadata for 36 non-Sarsabz uploads, 16 Sep 2026 (scan/scan_findings.md). Search rank is not a census. TikTok and Facebook not covered. Brand-channel views are mostly paid."
+    },
+
+    "brand": {
+      "title": "What Sarsabz has, and what it faces",
+      "from": "FROM THE BRIEF, THE PRESS AND THE ARCHIVE",
+      "tag": "PROVISIONAL",
+      "line": "Sarsabz gave Pakistan its Kissan Day, but the day now travels without the brand, reported under Fatima Group or no name at all, while Sarsabz's own output lives in one month and has thinned since 2023.",
+      "short": "Sarsabz gave Pakistan the day, but the day now travels without the brand.",
+      "evidence": [
+        "Brief p12: Salam Kissan began in 2019; the 2026 ask includes \"strengthening our ownership of the cause\".",
+        "The Nation, 19 Dec 2024: the 5th National Farmers' Day is credited to Fatima Group for proposing it. Neither Sarsabz nor Salam Kissan is named.",
+        "Archive: 60 of 76 uploads (79%) fall between 1 Dec and 15 Jan. In 2024 there was no anthem-length film; in 2025, five 3D/AI-animated farmer shorts.",
+        "The eight 2025 uploads drew 61 audience comments, 35 of them from four accounts."
+      ],
+      "panel_title": "Where the brief and the evidence disagree",
+      "panel": [
+        "The brief wants to strengthen ownership. The one independent 2024 report found names Fatima Group, not Sarsabz or Salam Kissan.",
+        "The brief calls Salam Kissan a movement. After 2023 the owned output shrank to shorts, and the synthetic farmers drew little response.",
+        "The brief's TikTok awards (p9-10) can't be checked without logging in. There's no data on who people credit for Kissan Day."
+      ],
+      "source": "Source: Fatima Creative Marketing Brief 2026 (pp.9-12); The Nation, 19 Dec 2024; archive/archive_findings.md. PROVISIONAL: TikTok results and brand-health attribution of Kissan Day not supplied."
+    }
+  },
+
+  "idea": {
+    "title": "Three insights, one organising thought",
+    "line": "Salam Kissan gets its reply: the farmer answers Pakistan's salute in his own voice, through his own family.",
+    "meaning": "The salute becomes a conversation. Farmers and their children answer: what the work is, what it costs, what it gives the country. Sarsabz, which started the salute, hands over the microphone.",
+    "test": "remove any one insight and the idea fails. Without the audience it's a format change. Without the category there's no reason to leave a working anthem. Without the brand, any company could run farmer voices; only the brand that started the salute can hand the reply back."
+  },
+
+  "strategy": {
+    "title": "Strategy statement and comms platform",
+    "statement": "Re-frame Salam Kissan from a December tribute about farmers to a year-round conversation with them, by making farmers and their children the voice of every piece and carrying their answers from sowing to harvest to 18 December.",
+    "platform": "THE CHAMPION WHO GAVE THE FARMER HIS DAY, AND NOW GIVES HIM HIS VOICE.",
+    "why": {
+      "relevant": "starts from what commenters take pride in: family, and the farmer's own work.",
+      "distinctive": "moves off the generic salute that JPL, Rizq Foods and Syngenta already post.",
+      "ownable": "a reply only belongs to whoever gave the salute, and Sarsabz started Salam Kissan."
+    },
+    "alternatives": [
+      {"name": "A. The farmer answers the salute.", "recommended": true,
+       "tradeoff": "Built on all three insights. Needs Fatima to put farmers' own words on air, complaints included."},
+      {"name": "B. A year of the farmer (crop calendar).",
+       "tradeoff": "Answers the brief's beyond-a-single-day ask, but carries no audience tension, and any agri brand could run it."},
+      {"name": "C. Farmers' children reach urban youth.",
+       "tradeoff": "Fits the brief's young audience, but the comments can't show age or location, so it rests on an assumption. Folded into A as the voice."}
+    ],
+    "swap_test": "Syngenta can say #MaiKisanHun. It can't reply to a salute it never gave. Lead with the reply, and move first."
+  },
+
+  "commitments": {
+    "title": "What it asks of Fatima, and how it lives in media",
+    "asks_title": "What Fatima must commit to - before any line is written",
+    "asks": [
+      {"name": "Complaints on air", "detail": "Farmers' answers will include fertilizer supply and price. Editing them out proves the critic right."},
+      {"name": "Real families", "detail": "Real farmers and their children on screen. No celebrities or AI-animated farmers."},
+      {"name": "Name the brand", "detail": "Sarsabz Salam Kissan in every PR and event material, not only Fatima Group."},
+      {"name": "Beyond December", "detail": "Replies collected in Rabi (Oct-Mar) and Kharif (Apr-Sep), the seasons in brief p6."},
+      {"name": "Measure honestly", "detail": "Report organic response apart from giveaways, and add a brand-health question on who people credit for Kissan Day."}
+    ],
+    "channel_insight": "The response comes on the long anthem films and when creators send their audiences: the four anthems drew 1,422 of 1,572 comments, and the eight 2025 uploads drew 61.",
+    "media_principles": [
+      {"name": "Keep an anthem at the centre.", "detail": "The long film is where people respond, and 103 comments are about the music."},
+      {"name": "Creators carry it to people who don't farm.", "detail": "In 2023, 24 comments say they came from creator vlogs. Whether that was paid is a question for the client."},
+      {"name": "Reply in the thread.", "detail": "Answer farmers in their own language, where they wrote."},
+      {"name": "Contests aren't proof.", "detail": "31 winner notices sit in the 2023 thread. Report them separately."}
+    ],
+    "conclusion": "If Fatima won't put farmers' own words on air, the idea becomes another salute. Run B, a crop-calendar platform, instead, and state the trade-off: easier to approve, easy for rivals to copy."
+  }
+}

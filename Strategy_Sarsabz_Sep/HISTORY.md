@@ -3,7 +3,29 @@
 Newest first. The history of the SLIC and PTCL work this repo was copied from is in `_archive/slic_p78118/HISTORY.md`.
 
 > **Resuming?** Read `README.md` → "Start here". At the end of 15 Sep 2026, Case 2 is complete as
-> `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides), Case 1 is not started, and the pitch date and budget are still unknown.
+> `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides), Case 1 is in evidence gathering (`workspace/case1_salam_kissan/evidence.md`), and the pitch date and budget are still unknown.
+
+## 2026-09-16 — Case 1 started: evidence gathering (not committed)
+
+Under the user's rule **"no made up data, no assumptions"**. Everything is in `workspace/case1_salam_kissan/`; `evidence.md` is the summary.
+- `archive/`: 76 Salam Kissan uploads coded (format, speaker, audience, window): 79% of uploads in 1 Dec-15 Jan; a farmer speaks in 9 of 76.
+- `comments/`: 1,572 comments on 18 films, all read. `analyse.py` counts them with regexes plus a list of hand-picked verbatim
+  fragments that must each match exactly one comment. The 2023 thread is inflated by a giveaway (31 winner replies) and vlog referrals.
+  Complaints: 19 of 1,516. The skill's `load_comments.py` misread the clean CSV (6,219 "comments"), so its output is set aside in `comments/_rejected/`.
+- Press checks on who owns the day, plus PES and Census facts. TikTok is unreadable logged-out, and its 1.5M UGC / 4.19B views figures are unverified and not used.
+- `scan/`: YouTube search (7 queries, 254 videos) and metadata for 36 others. Syngenta runs Kisan Day films (2023-24); JPL and Rizq Foods
+  use "Salam Kissan"; no FFC or Engro campaign was found; one agri channel calls the day "sirf tv show".
+- **Big Idea** (`big_idea.md`): "Salam Kissan gets its reply: the farmer answers Pakistan's salute in his own voice, through his own
+  family." Brand insight is provisional (no attribution data).
+- **Concept** (`the_concept.md`): proposed line "Salam Kissan. Wa Alaikum Salam, Pakistan." (still needs a religious-sensitivity
+  check), with executions for ATL, UGC, BTL, PR, events and on-ground. It asks Fatima to put farmers' complaints on air and to name
+  the brand with the day.
+- Word files: `workspace/out/Sarsabz_case1_big_idea_2026-09-15.docx`, `Sarsabz_case1_campaign_concept_2026-09-15.docx`.
+- **Deck:** `workspace/out/Sarsabz_case1_deck-v2.pptx`, 19 slides: cover; brief; archive; comments ×2; category scan; Big Idea ×7
+  (big-idea-slides skill); campaign ×6. Built by `workspace/case1_salam_kissan/deck/build_case1_deck.py`, which refuses to build if
+  any verbatim isn't in a source file or a count no longer matches the data. v1 is kept: its render check showed line overlap and
+  table overflow, fixed in v2.
+- **Next:** client questions (TikTok data, attribution, giveaway rules, budget, pitch date); a client-facing version if wanted.
 
 ## 2026-09-16 — committed to git
 

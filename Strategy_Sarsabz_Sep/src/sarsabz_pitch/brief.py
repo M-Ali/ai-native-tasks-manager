@@ -48,6 +48,32 @@ PITCH_CONTENTS: tuple[Item, ...] = (
     Item("Any other suggestions for our brands (welcomed)", 12),
 )
 
+CASE1_BACKGROUND: tuple[Item, ...] = (
+    Item("Salam Kissan began in 2019 to meet farmers' 'need of appreciation' in the form of Farmers Day", 12),
+    Item("Celebrated on 18 December with a 360° campaign; the Government of Pakistan now officially recognises "
+         "18 December as National Kissan Day", 12),
+    Item("Described as 'one of Pakistan's most recognizable purpose-led initiatives'", 12),
+    Item("2026 ambition: make Salam Kissan 'bigger and better', take the movement to the next level and "
+         "'strengthen our ownership of the cause'", 12),
+)
+
+# The four things the Case 1 concept and 360° campaign must do (p.12).
+CASE1_TASK: tuple[Item, ...] = (
+    Item("Celebrate Pakistan's farmers and their contribution towards the country", 12),
+    Item("Strengthen Sarsabz's position as the pioneer and champion of the Salam Kissan movement", 12),
+    Item("Connect with both rural and urban audiences, especially the younger generation", 12),
+    Item("Create relevance beyond a single day and transform Salam Kissan into a nationwide movement", 12),
+)
+
+# The goal: maximise awareness of Salam Kissan and National Kissan Day, rural and urban, making people understand (p.12):
+CASE1_GOAL: tuple[Item, ...] = (
+    Item("The importance of farmers in our daily lives", 12),
+    Item("The contribution of agriculture towards Pakistan's economy", 12),
+    Item("The role played by Sarsabz in celebrating and empowering the farming community", 12),
+)
+
+CASE1_CHANNELS: tuple[str, ...] = ("ATL", "BTL", "PR", "Events", "On-Ground Activations")
+
 CASE2_TASK: tuple[Item, ...] = (
     Item("Review/audit current Sarsabz brand assets, communication and campaigns", 13),
     Item("Assess Sarsabz Ki Jeet alongside the brand's other platforms", 13),

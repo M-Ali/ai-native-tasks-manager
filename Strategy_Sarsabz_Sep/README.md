@@ -20,7 +20,7 @@ Brief: `data/Creative Pitch Deck (1).pdf` (32 pages, 13 of them image-only). Far
 | 29-36 | The campaign: **Dus Feesad Aur. Khet Gawah Hai.** | `concept/concept.yaml`, `concept/the_concept.md` |
 
 Paths above are under `workspace/case2_audit/`. The full argument in prose is `workspace/case2_audit/the_audit.md`.
-**Case 1 (Salam Kissan 2026) is not started.**
+**Case 1 (Salam Kissan 2026): evidence, Big Idea and concept drafted.** Read `workspace/case1_salam_kissan/evidence.md`, then `big_idea.md` and `the_concept.md`. Deck: `workspace/out/Sarsabz_case1_deck-v2.pptx` (19 slides), rebuilt by `uv run --no-project --with python-pptx python workspace/case1_salam_kissan/deck/build_case1_deck.py`.
 
 ### Next, in priority order
 
