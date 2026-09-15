@@ -1,0 +1,185 @@
+# Theme and brand lexicon. COPY THIS AND ADAPT IT before every run.
+#
+# An unmatched theme is invisible in the output, so the twenty minutes spent putting the
+# category's own words in here is the highest-leverage part of the whole analysis.
+#
+# QUOTE REGEX PATTERNS WITH SINGLE QUOTES, NEVER DOUBLE.
+# YAML processes backslash escapes inside "double quotes": "\bptcl\b" becomes a string
+# containing two BACKSPACE characters, which matches nothing, silently. That exact
+# mistake made a real analysis report 11 mentions of the client brand when the corpus
+# held 89 - it would have concluded the brand was barely discussed when it was the most
+# discussed brand in the file. Single quotes '\bptcl\b' keep the backslash literal.
+# code_comments.py now refuses to run if it finds control characters in a pattern.
+#
+# Terms are matched case-insensitively. A bare word matches as a whole word; anything
+# containing regex metacharacters is used as a pattern, so 'fiber ?link' catches both
+# spellings and 'compl(ain|aint)' catches a stem.
+#
+# In markets that code-switch, include the Roman-script spellings people actually type -
+# achi, ghatiya, bakwas, masla. Leaving them out silently drops a large share of the
+# corpus, and it will be the angriest share.
+
+themes:
+  # A large slice of any YouTube corpus is about THE VIDEO, not the brand - "great
+  # video", "thanks bro", "informative". Coding it explicitly is what lets you say
+  # "x% of this corpus is audience feedback to the creator, not consumer voice about
+  # the category", and stops it being silently counted as engagement with the brand.
+  # Exclude these before computing pain points.
+  video_feedback:
+    - 'nice video'
+    - 'good video'
+    - 'great video'
+    - informative
+    - 'thanks? (bro|sir|bhai)'
+    - 'achi (info|information|video)'
+    - 'zabardast (info|video)'
+    - 'jazak'
+    - 'مفید'
+    - 'معلومات'
+    - 'شکریہ'
+  # Technical help-seeking: router config, DNS, device compatibility. Distinct from a
+  # complaint - these are people trying to make something work, which is a different
+  # (and more winnable) communication job than someone threatening to leave.
+  technical_howto:
+    - dns
+    - 'router (settings|config)'
+    - firmware
+    - 'onu\b'
+    - 'gpon|epon'
+    - 'port forward'
+    - vpn
+    - 'kaise (karen|kare|lagay)'
+    - 'how to'
+    - 'setting'
+  price_value:
+    - price
+    - cost
+    - expensive
+    - cheap
+    - afford
+    - budget
+    - value for money
+    - mehnga
+    - sasta
+    - package
+    - bill
+    - rupees
+    - 'پیکج'
+    - 'قیمت'
+    - 'روپے'
+    - 'مہینے کا'
+    - 'rs\.? ?\d'
+  speed_performance:
+    - speed
+    - fast
+    - slow
+    - mbps
+    - ping
+    - lag
+    - buffer
+    - download
+    - upload
+    - 'speed ?test'
+    - tez
+    - fibre
+    - fiber
+    - 'سپیڈ'
+    - 'تیز'
+  reliability_uptime:
+    - down
+    - outage
+    - disconnect
+    - 'not working'
+    - unstable
+    - drop
+    - 'band ho'
+    - 'chal nahi'
+    - 'chalta nahi'
+    - bandh
+    - 'net gaya'
+    - signal
+    - 'بند'
+    - 'نہیں چل'
+  service_support:
+    - service
+    - support
+    - 'compl(ain|aint)'
+    - helpline
+    - 'customer care'
+    - staff
+    - rude
+    - response
+    - technician
+    - shikayat
+    - 'koi nahi ata'
+    - 'team ati'
+    - 'شکایت'
+    - 'سروس'
+  installation_delivery:
+    - install
+    - connection
+    - delivery
+    - waiting
+    - delay
+    - lagwa
+    - 'lagwana'
+  coverage_availability:
+    - area
+    - coverage
+    - available
+    - 'not available'
+    - city
+    - village
+    - ilaqa
+    - 'mere area'
+  billing_transparency:
+    - overcharge
+    - 'hidden charge'
+    - refund
+    - advance
+    - 'extra charge'
+    - tax
+    - 'paisay'
+  product_features:
+    - router
+    - device
+    - wifi
+    - 'smart tv'
+    - ott
+    - bundle
+    - channel
+    - 'set ?top'
+
+# Brands discussed in the conversation. Include sub-brands and common misspellings -
+# people type what they hear. Single quotes throughout.
+brands:
+  PTCL:
+    - '\bptcl\b'
+    - 'flash fiber'
+  StormFiber:
+    - 'storm ?fiber'
+    - '\bstorm\b'
+  Nayatel:
+    - 'nayatel'
+    - 'naya ?tel'
+  Transworld:
+    - 'transworld'
+    - 'trans world'
+  Optix:
+    - '\boptix\b'
+  Fiberlink:
+    - 'fiber ?link'
+  Worldcall:
+    - 'world ?call'
+  Wateen:
+    - 'wateen'
+  Jazz:
+    - '\bjazz\b'
+  Zong:
+    - '\bzong\b'
+  Ufone:
+    - 'ufone'
+
+# Optional: category-specific sentiment words the general list would miss.
+positive_extra: []
+negative_extra: []

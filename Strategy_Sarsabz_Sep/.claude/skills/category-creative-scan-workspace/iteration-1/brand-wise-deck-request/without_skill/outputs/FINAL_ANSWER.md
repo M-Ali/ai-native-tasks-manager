@@ -1,0 +1,15 @@
+Done — the deck is here: **https://claude.ai/code/artifact/ac6d54f5-00ee-472c-bb86-d0142a4d8844** ("Barrier Wars").
+
+**The brand set I picked, and why.** You didn't name one, so I took the US mass and dermatological skincare shelf — the set that fights for the same drugstore basket and the same skincare feed: **CeraVe** and **Cetaphil** (derm-authority incumbents), **La Roche-Posay** (pharmacy-prestige), **The Ordinary** (ingredient-transparency disruptor), and **BYOMA** and **Bubble** (barrier-era challengers built on social from day one). That mix deliberately spans the generational range you asked about — Bubble sells to Gen Alpha, La Roche-Posay reaches Gen X — so the differences read as strategy rather than noise. Say the word and I'll re-run it on your actual competitive set, or on the Pakistan market.
+
+**What's in it:** a panel per brand covering product focus, a generational target strip (Alpha / Z / Millennial / Gen X), a brand-build-vs-tactical meter, and a signature move, each with its evidence cited underneath; then a comparison table and six cross-category findings.
+
+**The headlines:**
+- **Nobody is discounting in feed.** Across 66 posts in the 2–26 Aug window, no visible price or discount creative in any of the six. The only retail mechanic in the whole set is La Roche-Posay's Ulta gift-with-purchase — and that lives in a press release, not the grid.
+- **Derm authority is now table stakes.** Four of six bios lead on dermatologists, including both challengers. When Bubble (built for twelve-year-olds) and Cetaphil (built for sensitive adults) make the same claim, the fight moves to tone.
+- **The Gen X flank is nearly empty.** Only La Roche-Posay talks to over-45s, and only through one franchise. Five brands are stacked onto Gen Z. Mature and menopausal skin is the open territory.
+- **Cadence trades off against fame.** The Ordinary posts least (~3.5/wk) on the biggest following (3.0M); Cetaphil posts most (~8/wk) on the smallest (222K).
+- **Two grammars of proof.** Incumbents prove with credentials and celebrity (video, Super Bowl, Minions, pro tennis); challengers prove with routines and peers (carousels, five-step explainers, a 40,000-person ambassador programme).
+- **Both challengers are ageing up in the same year.** BYOMA's clinical "2.0 era" and Bubble's cross-generational push are heading for the millennial middle CeraVe already owns.
+
+**One honest caveat, stated on the deck too.** Instagram doesn't expose full caption text on the profile page, so I could count post dates, media types, bios, follower counts and the alt-text, and I could pull named 2025–26 trade coverage for each brand — but I could not code post-by-post captions. The cadence and format numbers are observed (and are a floor, since the feed truncates at ~12 tiles); the generation read and the brand/tactical split are my judgement, shown with the evidence each rests on. To turn those meters into counts we'd need the Instagram Graph API or a listening tool, plus TikTok (where this category actually lives) and the Meta Ad Library to split paid from organic. Roughly a day's work if you want it at that grade.

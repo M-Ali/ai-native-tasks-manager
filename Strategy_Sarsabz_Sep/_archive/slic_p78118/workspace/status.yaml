@@ -1,0 +1,118 @@
+# Self-assessment for the SLIC advertising-agency prequalification (P78118).
+# status: ready | partial | missing | na
+# 'ready' scores full marks, 'partial' scores half, the rest score nothing.
+# Pre-filled 2026-08-26 from the UNICEF pitch pack in data/UNICEF_PITCH/.
+# Notes cite the proposal section each answer came from. Anything not evidenced
+# there is left 'missing' -- verify against actual certificates before submitting.
+agency: '<CONFIRM: Group entity holding APNS/PBA/AAP/PID -- see workspace/unicef_to_slic_reuse.md>'
+tender: P78118
+eligibility:
+  profile:
+    status: partial
+    note: 'Proposal S2.1: Group est. 1999, Synite inc. 9 Feb 2018, Karachi/Lahore/Islamabad.
+      Rewrite at applicant-entity level; add fax + branch addresses.'
+  apns_pba_aap:
+    status: missing
+    note: NOT evidenced in the UNICEF pack. Decides which Group entity can apply --
+      confirm certificates first.
+  pid:
+    status: missing
+    note: NOT evidenced in the UNICEF pack. Confirm PID enlistment for the applicant
+      entity.
+  tech_staff:
+    status: partial
+    note: Proposal S6.1 team table + S6.2 bios exist. Recast into SLIC Annexure III
+      columns; extend beyond the 11 named for UNICEF.
+  not_blacklisted:
+    status: missing
+    note: No APNS/PBA non-blacklisting certificate in the pack. Request from APNS
+      and PBA.
+  tax_cert:
+    status: partial
+    note: Proposal 'Evidence of Legal Registration' states registration, tax filings
+      and certified financials were annexed for UNICEF. SLIC needs 2023/2024/2025
+      returns + FBR ATL, attested.
+  bank_cert:
+    status: missing
+    note: UNICEF asked for an audit report, not a bank certificate. Request financial-stability
+      letter from the bank.
+  foreign_affiliation:
+    status: ready
+    note: Synergy Dentsu -- international network affiliation, named in proposal S2.1.
+  client_list:
+    status: partial
+    note: 'Proposal S2.4 + S2.6: Indus Hospital, Patients'' Aid JPMC, SBP (Raast/RDA/AMA),
+      BMGF Polio, JJ, AK Galleria, Palmolive, Faysal Bank, Diners, KFC, Standard Chartered.
+      Reformat to 5-year view with services per client; confirm disclosure permissions.'
+  slic_dues_clearance:
+    status: missing
+    note: Not evidenced. Depends on prior State Life releases -- check with accounts,
+      then obtain certificate.
+scored:
+  secp:
+    status: partial
+    note: Synite Digital inc. 9 Feb 2018 (proposal S2.1). Certificate/MoA/AoA needed
+      for whichever entity applies -- see workspace/unicef_to_slic_reuse.md S2.
+  fbr:
+    status: partial
+    note: Filings annexed to the UNICEF bid. SLIC wants three years' returns (2023,
+      2024, 2025) plus FBR active-taxpayer certificate, attested.
+  accreditation:
+    status: missing
+    note: APNS + PBA + PID. Not evidenced anywhere in the UNICEF pack. Blocking item
+      -- 3 marks and pass/fail eligibility.
+  clean_record:
+    status: missing
+    note: Rs.100 stamp-paper declaration per Annexure II. Model tone on the PSEA declaration
+      (proposal S7.4). 'slic-pq build' emits the form.
+  campaign_experience:
+    status: ready
+    note: Ramadan 2026 fundraising (Indus Hospital, Patients' Aid), BMGF Polio Eradication,
+      SBP Raast/RDA/AMA -- all within the last three years, with published material.
+  active_clients:
+    status: ready
+    note: Indus Hospital, Patients' Aid JPMC, plus fintech and telecom clients cited
+      in S6.2. Well above the minimum of three.
+  revenue:
+    status: partial
+    note: A certified audit report exists (annexed for UNICEF), but no entity-level
+      revenue figure appears in the pack. Confirm the applicant entity clears PKR
+      100m aggregate over three years.
+  expertise:
+    status: ready
+    note: Art/creative direction (Ferrukh Syed, ECD), copywriting (multilingual copywriters),
+      account management (Faheem Ahmed, Emaad Ishaq Khan). CVs already prepared for
+      the UNICEF annexures.
+  offices:
+    status: partial
+    note: Karachi, Lahore and Islamabad confirmed at Group level (four offices, proposal
+      S2.1/S2.2). Needs entity-level evidence -- affiliate offices do not count under
+      ITA 23.3.
+  headcount:
+    status: partial
+    note: 250+ professionals at Group level. Entity-level permanent headcount not
+      stated -- confirm against payroll/EOBI.
+  tech_staff_particulars:
+    status: partial
+    note: S6.1 table and S6.2 bios are the raw material; Annexure III also needs employment
+      status, date of joining and CV-enclosed flags.
+  campaign_concept:
+    status: missing
+    note: 'Must be originated for State Life. Spine available: the TRUST/RELEVANCE/IMPACT/EASE/CONFIDENCE
+      model from proposal S3.2 maps onto life-insurance purchase barriers.'
+  competitive_analysis:
+    status: missing
+    note: Must be written for the life-insurance category. The trust-deficit and religious-framing
+      analysis in S3.1-3.2 is the closest existing material.
+  communication_strategy:
+    status: missing
+    note: Framework transfers from S3.2 + S4.3.3; content to be rebuilt for a state-owned
+      life insurer.
+  creative_artworks:
+    status: missing
+    note: No transfer. Originate for State Life -- expect ATL weighting given the
+      APNS/PBA/PID framing.
+  media_mix:
+    status: missing
+    note: Build on the channel-allocation and testing logic in S4.4.4, but reweight
+      toward press and broadcast for this client.

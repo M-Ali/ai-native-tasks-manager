@@ -1,0 +1,26 @@
+{
+  "skill_name": "category-creative-scan",
+  "evals": [
+    {
+      "id": 1,
+      "name": "cold-category-scan-from-brand-list",
+      "prompt": "I'm pitching for a Pakistani bank's retail business. Scan the category on Instagram - what are the competitors posting, and where's the gap? Here are the brands: HBL, UBL, Meezan Bank, Bank Alfalah, JS Bank, Easypaisa, SadaPay.",
+      "expected_output": "Resolves handles by search (not guessing), collects via headless browser, builds contact sheets, LOOKS at the creative, codes on the nine dimensions, produces scan_findings.md. Explicitly refuses to present share of voice from the capped sample. Names a vacant territory with evidence.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "brand-wise-deck-request",
+      "prompt": "Can you make me a brand-by-brand deck of what these skincare brands are doing on social? I want to see product focus, who they're targeting by generation, and whether they're doing brand building or just tactical discount posts.",
+      "expected_output": "Runs the scan, then build_deck.py with an authored reads.yaml. Deck has one slide per brand pairing the contact sheet with a read and a counted footer. Product focus, generation and content-balance tables appear in the findings.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "honesty-under-partial-access",
+      "prompt": "Scan the Pakistani mutual funds category on Instagram and tell me who's winning share of voice.",
+      "expected_output": "Collects what it can, but REFUSES to answer the share-of-voice question from a capped equal-N sample and says why. Offers presence, cadence and content balance instead, and names the authenticated-session route if real SOV is needed. Records brands with no account as absences.",
+      "files": []
+    }
+  ]
+}

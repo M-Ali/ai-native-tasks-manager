@@ -1,0 +1,48 @@
+{
+  "eval_id": 1,
+  "eval_name": "cold-category-scan-from-brand-list",
+  "prompt": "I'm pitching for a Pakistani bank's retail business. Scan the category on Instagram - what are the competitors posting, and where's the gap? Here are the brands: HBL, UBL, Meezan Bank, Bank Alfalah, JS Bank, Easypaisa, SadaPay.",
+  "expected_output": "Resolves handles by search (not guessing), collects via headless browser, builds contact sheets, LOOKS at the creative, codes on the nine dimensions, produces scan_findings.md. Explicitly refuses to present share of voice from the capped sample. Names a vacant territory with evidence.",
+  "assertions": [
+    {
+      "id": "handles_searched",
+      "desc": "Instagram handles were resolved by SEARCH, and each is a plausible official account (follower count / bio checked), not guessed from the brand name.",
+      "kind": "manual"
+    },
+    {
+      "id": "real_collection",
+      "desc": "Actually collected: profiles.csv and posts.csv exist with real follower counts, and media/ contains downloaded image files (not zero-byte, not placeholders).",
+      "kind": "file"
+    },
+    {
+      "id": "looked_at_creative",
+      "desc": "Contact sheets were generated AND the final answer quotes specific on-image copy or describes specific visual execution - evidence the artwork was viewed, not just captions read.",
+      "kind": "manual"
+    },
+    {
+      "id": "nine_dimensions",
+      "desc": "capture.xlsx rows carry product_focus, audience_generation, content_type, who_is_in_frame and production_value - not just claim/register.",
+      "kind": "file"
+    },
+    {
+      "id": "no_sov_claim",
+      "desc": "Does NOT present a share-of-voice number or ranking. If SOV is mentioned at all, it is explicitly ruled out as unmeasurable from an equal-N sample.",
+      "kind": "manual"
+    },
+    {
+      "id": "absence_recorded",
+      "desc": "Any brand with no findable Instagram account is recorded as an absence with a reason, not silently dropped.",
+      "kind": "manual"
+    },
+    {
+      "id": "named_gap",
+      "desc": "Names a specific vacant territory and supports it with counted evidence from the scan (e.g. 'N of M ads use no proof device'), not a generic observation.",
+      "kind": "manual"
+    },
+    {
+      "id": "unclear_honest",
+      "desc": "Where creative could not be read, rows are coded `unclear` and the answer says so. No sign of codes inferred from brand reputation.",
+      "kind": "manual"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+_category:
+  - The category has converged on apps, and stopped proving anything.
+  - >-
+    Across 288 posts - 24 from each brand, double the first read - 81% carry no proof of
+    any kind. Three ads in 288 cite a performance number. Jubilee pours its output into
+    Jubilee Active, EFU across Thrive, PRIMUS and WIN, Adamjee into its Customer Care App:
+    the claims differ, the destination is identical. And in a category selling retirement
+    and legacy, 2 ads in 288 are cast for anyone over 60 - both of them State Life's.
+
+_dimensions:
+  - >-
+    Five brands published no brand-building at all. State Life is second in the category
+    on that measure - the problem was never absence, it is that four corporate-PR posts
+    and three calendar posts dilute the four that do the work.
+  - >-
+    Two brands are quieter than they look: Dawood has not posted in 454 days, and Askari's
+    IRAADA KARO platform is pinned from June 2025 while its current output is product-led.
+
+_readings:
+  headline: Three readings that change the brief
+  panels:
+    - title: The category advertises in English
+      stat: "4 / 288"
+      sub: >-
+        posts whose caption carries any Urdu script. Measured on the raw text, not
+        inferred. Romanised Urdu adds roughly six more.
+      rows:
+        - {label: "Pak-Qatar", value: 3}
+        - {label: "State Life", value: 1}
+        - {label: "Everyone else", value: 0}
+    - title: Half of some feeds is greetings
+      stat: "71%"
+      sub: >-
+        of Dawood's output is calendar content - Independence Day, Eid, Youm-e-Takbeer.
+        Share of each brand's posts that sell nothing.
+      rows:
+        - {label: "Dawood Family Takaful", value: "71%"}
+        - {label: "Adamjee Life", value: "58%"}
+        - {label: "Al Meezan", value: "50%"}
+        - {label: "State Life", value: "12%"}
+        - {label: "Jubilee / Pak-Qatar", value: "0%"}
+    - title: The biggest spender shows a customer once
+      stat: "1 / 24"
+      sub: >-
+        EFU Life ads with a customer in frame. Commissioned studio work out of 24 posts,
+        by brand.
+      rows:
+        - {label: "Askari Life", value: 19}
+        - {label: "TPL Life", value: 18}
+        - {label: "Pak-Qatar", value: 16}
+        - {label: "State Life", value: 14}
+        - {label: "EFU Life", value: 4}
+        - {label: "Al Meezan / UBL", value: 0}
+  conclusion: >-
+    A category with 3% penetration is advertising in English, filling half its calendar
+    with greetings, and - in the case of its largest private advertiser - almost never
+    putting a customer on screen.
+
+_why:
+  headline: Why they are all building an app
+  standfirst: >-
+    Because none of them own their customer. The app is a distribution fix wearing the
+    costume of a brand strategy.
+  drivers:
+    - title: The bank owns the relationship
+      body: >-
+        Private life insurers in Pakistan sell overwhelmingly through bancassurance. The
+        bank holds the customer, the data and the renewal conversation - the insurer holds
+        a policy number.
+    - title: And the bank rations the shelf
+      body: >-
+        The Competition Commission of Pakistan found that banks "impose additional internal
+        limits on the amount of business insurance companies can conduct through banks",
+        which it calls a refusal to deal. Growth through the channel is capped by someone
+        else's decision.
+    - title: The channel has a trust problem attached to it
+      body: >-
+        The same CCP report found bank and insurer staff "do not properly guide the
+        customers", with terms buried in fine print. The insurer carries the reputational
+        cost of a sale it did not make.
+    - title: And almost nobody has bought the product
+      body: >-
+        Only 3% of Pakistanis hold a life policy. Penetration is 0.67% of GDP against a
+        global 6.7%; density is $14 per head against India's $82. Acquisition is brutal,
+        so retention becomes the whole game.
+  conclusion: >-
+    An app is a direct relationship the bank cannot gate, a reason to open something
+    between annual premium notices, and a way to make an unwanted category feel wanted.
+    It solves the insurer's distribution problem - not the customer's trust problem.
+  source: >-
+    Sources: Competition Commission of Pakistan, State of Competition Report 2025
+    (cc.gov.pk/home/viewpressreleases/613); IAP-PSOA International Insurance Conference,
+    July 2026.
+
+_audience:
+  headline: Who the category is actually talking to
+  body:
+    - >-
+      The work is cast overwhelmingly for millennials and Gen Z - the banked, urban,
+      app-owning customer the bancassurance channel already reaches. That is not a
+      coincidence: the audience follows the distribution.
+    - >-
+      Two ads in 288 are cast for anyone over 60, and both are State Life's. The segment
+      with the assets, the dependants and the nearest claim is addressed by nobody -
+      because it is the segment a rewards app cannot serve.
+  caveat: >-
+    Generation is inferred from casting, styling, setting and language register. It
+    describes who each advertisement addresses, never who buys the product.
+
+State Life Insurance Corporation of Pakistan:
+  headline: Already proving it - and then burying the proof.
+  why: >-
+    55% market share and a tied agency force - it has the customer relationship the others are building apps to get.
+  saying:
+    - "'Policyholder's Voices' - named claimants, Sara Rizvi (Islamabad) and Mahin Khan (Karachi), telling their own stories."
+    - "E-Kachehri, published twice: 745 received / 744 resolved, then 730 / 729."
+    - "'Trusted by Your Parents. There for Your Children. Securing Pakistanis' Future Since 1972.'"
+    - "'AYE KHUDA MERAY ABBU SALAMAT RAHAIN' - the fifty-year-old line, revived for Father's Day."
+  note: >-
+    The 12-post window said State Life had no proof device. Twenty-four says the opposite:
+    testimonials, a repeating published resolution figure, and a 54-year heritage claim.
+    It is the only brand in the category proving anything systematically - and none of it
+    is organised into a campaign.
+
+EFU Life Assurance:
+  headline: The largest private insurer now advertises like a loyalty card.
+  why: >-
+    Three ecosystems at once - Thrive, PRIMUS, WIN - is what bancassurance dependence looks like from the inside.
+  saying:
+    - "'Freshly made patties... avail 25% Discount' - PRIMUS partner offer."
+    - "'Download Thrive, sign up, and earn 2,000 EFU Life Coins.'"
+    - "KraveMart vouchers on the WIN app; 20% off a clinic; 30% off diagnostics."
+    - "Historic work was duty and dignity - Zaroori Hai, Izzat say Nazrain Milain."
+  note: >-
+    67% of output drives to an owned app across three separate ecosystems. 17%
+    brand-building. The duty territory EFU built over nineteen years is vacated.
+
+Jubilee Life Insurance:
+  headline: Owns the proof territory. Spends its output on an app.
+  why: >-
+    79% app-driven: the furthest anyone has gone to own a customer the bank currently holds.
+  saying:
+    - "'Every claim tells a story of trust. In 2025, we paid PKR 54 billion in claims.'"
+    - "That post is pinned, dated 29 June, and is the only one of its kind."
+    - "Jubilee Active appears in 9 of 12 posts - steps, points, 40% off a cafe."
+    - "Half the feed is reposted creator content."
+  note: >-
+    83% ecosystem push - the highest in the category - and 8% brand-building. The one
+    competitor standing in the proof territory is standing there with a single June post.
+
+Adamjee Life Assurance:
+  headline: An app rollout wearing an anniversary.
+  why: >-
+    MCB-linked distribution. The app is the bid to be more than a product on a bank's shelf.
+  saying:
+    - "'Skip the queues and pay with ease' - Adamjee Life Digital App."
+    - "'Everything you need, all in one place' - coverage, comparisons, claims."
+    - "'Ten years is more than a milestone.' Decade of Dedication."
+    - "'The Home to Every Life' - map of Pakistan, heritage illustration."
+  note: >-
+    0% brand-building across twelve posts. Five product-feature ads for the app, three
+    corporate-PR, two calendar. The anniversary is doing the work a proposition should do.
+
+IGI Life Insurance:
+  headline: The best objection work in the category, aimed at the wrong objection.
+  why: >-
+    Smallest of the direct set by audience, so it competes on argument rather than reach.
+  saying:
+    - "'Think life insurance is only for when you have a family? Think again.'"
+    - "'I'm too young for life insurance. It's a common belief, but is it true?'"
+    - "'Planning for your child's education doesn't have to wait.'"
+    - "IGI Life Vitality: PKR 500 weekly reward with foodpanda; 20-20-20 screen rule."
+  note: >-
+    33% brand-building and the highest objection-handling rate in the set. But every myth
+    it busts is about purchase timing - never about whether the insurer pays.
+
+Askari Life Assurance:
+  headline: A platform that stopped being carried.
+  why: >-
+    623 followers and 71% brand-building - it cannot buy reach, so it invests in a line instead.
+  saying:
+    - "'One decision today can make every moment meaningful' - IRAADA KARO / Jeeto Har Ghari."
+    - "Those three posts are PINNED, dated 12 June 2025."
+    - "Current output: Golden Path, Education Plan, Family Takaful - product-led."
+    - "'Har khwab ki apni ek kahani hoti hai' - Urdu-first, the strongest writing in the set."
+  note: >-
+    50% brand-building, the highest in the category, on 623 followers. But the platform is
+    fourteen months old and pinned to the top of a grid that has moved on without it.
+
+TPL Life Insurance:
+  headline: Narrow, uncontested, and entirely unproven.
+  why: >-
+    Insurtech positioning with no legacy book to defend, so it takes the affluent expat-facing niche nobody contests.
+  saying:
+    - "'From Dubai to London, Globewell keeps you protected' - 185+ countries."
+    - "Coverage up to $500,000; 24/7 worldwide medical assistance."
+    - "Sehat Zindagi for the mass market: nationwide, PKR 1,250,000."
+    - "Two of twelve posts are partnership photography."
+  note: >-
+    0% brand-building, 8 of 12 posts product-feature, and no proof device anywhere. Owns
+    international healthcare cleanly - and asserts every claim in it.
+
+Pak-Qatar Family Takaful:
+  headline: Borrowing the federal association State Life owns outright.
+  why: >-
+    Faith compliance is its distribution advantage, so the ratings badge does the trust work instead of a claims number.
+  saying:
+    - "'Pakistan's first Takaful company appointed by the Federal Government as Authorized Pension Fund Manager.'"
+    - "'Retirement deserves certainty. Your future deserves a plan.' Lifetime Kafalat."
+    - "'What if your savings paid you every month?' - Mahana Bachat."
+    - "AA / AM2+ ratings badge on eleven of twelve creatives."
+  note: >-
+    The only brand in the set using a proof device systematically. 0% brand-building, but
+    it advertises federal appointment as a credential - the exact association State Life
+    holds by constitution rather than by contract.
+
+Dawood Family Takaful:
+  headline: The sharpest ad in the sample, from a brand that went silent.
+  why: >-
+    Dormant 454 days - the sharp work predates whatever stopped the spend.
+  saying:
+    - "'TIE YOUR CAMEL AND TRUST IN ALLAH' - Prophet Muhammad (PBUH), Jami at Tirmidhi 2517."
+    - "'Takaful is different from conventional insurance. It follows Islamic principles.'"
+    - "'Takaful covers more than you think - it's a full-circle protection.'"
+    - "Last post: 5 June 2025."
+  note: >-
+    454 days dormant. It answers the fatalism objection with scripture - braver category
+    work than any of the big four - and then stopped. Credit the work, not the competitor.
+
+EFU Life Window Takaful:
+  headline: The state association, borrowed a second time.
+  why: >-
+    Borrows federal association because the window arm has no heritage of its own to claim.
+  saying:
+    - "'Among the first entities partnering' the Federal Hemayah Pension Fund."
+    - "'Retirement planning... abhi se? Jee haan, abhi se!'"
+    - "EFU Life mHealth onboarding PMDC-certified specialists."
+    - "'Skip the queues! Pay your premium digitally via EFU LifeBot on WhatsApp.'"
+  note: >-
+    0% brand-building, seven product-feature posts, 20 days quiet. Like Pak-Qatar, reaches
+    for federal association as a credibility device it does not own.
+
+Al Meezan Investments:
+  headline: The loudest voice in the category, and not an insurer.
+  why: >-
+    81.8K followers on a product people actively want - the contrast that shows insurance is a category problem, not a media one.
+  saying:
+    - "81.8K followers - four times EFU, thirty times State Life."
+    - "'Rapid Reads: we decode 20 years of KSE100 market cycles.'"
+    - "'You already use Easypaisa to make payments. Now use it to start building your...'"
+    - "'Think retirement planning can wait? Think again!' - Myth & Fact."
+  note: >-
+    A Shariah-compliant fund manager out-publishes the entire life category, does real
+    published analysis, and competes for the same protection-and-savings wallet.
+
+UBL Fund Managers:
+  headline: Liquidity as the counter-offer.
+  why: >-
+    Sells liquidity because that is precisely what a life policy denies you.
+  saying:
+    - "'Fauri Paisa - your money, when you need it. Instant redemption up to PKR 1,000,000.'"
+    - "'Swipe to Simplicity with the new Al-Ameen Funds App.'"
+    - "'Invest Via RAAST - tap, transfer, and grow.'"
+    - "Three of twelve posts are recruitment ads."
+  note: >-
+    0% brand-building. Attacks life insurance exactly where it is weakest - money locked
+    away for decades - by selling instant access to it.
+
+_finding:
+  headline: State Life is the only brand proving anything. It just isn't a campaign yet.
+  body:
+    - "81% of category advertising offers no proof of any kind. Three ads in 288 cite a performance number, and two of the three are State Life's own."
+    - >-
+      Jubilee makes the claim once, in June, and follows it with two months of discount
+      vouchers. Nobody else makes it at all.
+    - >-
+      State Life has the testimonials, the published resolution figures and the heritage.
+      What it does not have is a line, a rhythm, or a reason for anyone to notice.
+
+_own:
+  headline: What State Life can credibly own
+  number: "744 of 745"
+  number_note:
+    - "complaints resolved."
+    - >-
+      Published in a grievance-redress announcement, in a government template, to 2,499
+      followers.
+  why:
+    - "Published twice, three weeks apart. That is a rhythm, not a one-off."
+    - >-
+      Rupees paid measures volume. Disputes resolved measures behaviour when the customer
+      pushes back - which is the objection itself. Jubilee's PKR 54 billion is the bigger
+      number; this is the better one.
+    - >-
+      It already runs alongside named policyholder testimonials and a 54-year heritage
+      claim. The assets exist. The campaign does not. And the only two ads in 288 cast for
+      the over-60s are State Life's own.
+  pillars_title: Three things no private competitor can copy
+  pillars:
+    - title: Sovereign backing
+      body: >-
+        A state-owned insurer's promise is underwritten by the state. Pak-Qatar and EFU
+        both advertise borrowed federal association - the thing State Life owns.
+    - title: A statutory grievance obligation
+      body: >-
+        E-Kachehri is a duty, not a campaign. It generates the number every quarter
+        whether or not marketing wants it.
+    - title: A line nobody else could use
+      body: >-
+        "Aye Khuda Meray Abbu Salamat Rahain" has run for five decades and belongs to
+        State Life alone. No competitor can borrow fifty years of it.
+  kicker: >-
+    Two of the three performance numbers published in this category are already State
+    Life's. The work is not to invent a position - it is to stop hiding one.

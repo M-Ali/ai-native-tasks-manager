@@ -1,0 +1,43 @@
+{
+  "eval_id": 2,
+  "eval_name": "brand-wise-deck-request",
+  "prompt": "Can you make me a brand-by-brand deck of what these skincare brands are doing on social? I want to see product focus, who they're targeting by generation, and whether they're doing brand building or just tactical discount posts.",
+  "expected_output": "Runs the scan, then build_deck.py with an authored reads.yaml. Deck has one slide per brand pairing the contact sheet with a read and a counted footer. Product focus, generation and content-balance tables appear in the findings.",
+  "assertions": [
+    {
+      "id": "deck_exists",
+      "desc": "A .pptx exists, opens, and has one slide per brand.",
+      "kind": "file"
+    },
+    {
+      "id": "deck_has_images",
+      "desc": "Brand slides embed that brand's actual collected creative (contact sheet), not placeholder boxes or text only.",
+      "kind": "file"
+    },
+    {
+      "id": "three_asked_dimensions",
+      "desc": "Product focus, audience generation, and brand-building vs tactical all appear as actual analysis with numbers - the three things the user explicitly asked for.",
+      "kind": "manual"
+    },
+    {
+      "id": "counted_footer",
+      "desc": "Per-brand judgements are anchored to counts from the sheet rather than asserted.",
+      "kind": "manual"
+    },
+    {
+      "id": "caveat_slide",
+      "desc": "Deck states the sample limitation (capped N, organic-only, no spend) rather than burying or omitting it.",
+      "kind": "manual"
+    },
+    {
+      "id": "quotes_real_copy",
+      "desc": "The per-brand reads quote actual ad copy, not generic descriptions.",
+      "kind": "manual"
+    },
+    {
+      "id": "no_geometry_bugs",
+      "desc": "No shape extends beyond the slide canvas.",
+      "kind": "script"
+    }
+  ]
+}

@@ -1,0 +1,598 @@
+"""Build the brand-by-brand scan deck.
+
+    python build_deck.py <workspace>/scan --title "..." --client "..."
+
+Needs `reads.yaml` in the workspace - one entry per brand, authored by you after
+looking at the contact sheets. See assets/reads.example.yaml.
+
+Each brand slide pairs that brand's contact sheet with your read and a counted footer,
+so every judgement on the page is anchored to a number from the sheet.
+
+Output is date-stamped and never overwritten; a same-day rebuild becomes -v2, -v3.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import re
+import sys
+from collections import Counter
+from datetime import date
+from pathlib import Path
+
+import openpyxl
+import yaml
+from pptx import Presentation
+from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN
+from pptx.util import Emu, Inches, Pt
+
+if hasattr(sys.stdout, "reconfigure"):        # Urdu / non-latin copy kills cp1252
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+NAVY = RGBColor(0x10, 0x2A, 0x43)
+INK = RGBColor(0x1A, 0x1A, 0x1A)
+MUTED = RGBColor(0x6B, 0x74, 0x80)
+ACCENT = RGBColor(0xC8, 0x10, 0x2E)
+PALE = RGBColor(0xF2, 0xF5, 0xF8)
+WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+DIM = RGBColor(0x9F, 0xB4, 0xC7)
+
+RING = {"client": "CLIENT", "direct": "DIRECT COMPETITOR",
+        "adjacent": "ADJACENT", "substitute": "SUBSTITUTE"}
+
+
+def txt(slide, l, t, w, h, text, size=12, bold=False, color=INK,
+        align=PP_ALIGN.LEFT, space=6):
+    tb = slide.shapes.add_textbox(l, t, w, h)
+    tf = tb.text_frame
+    tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    for i, line in enumerate(text if isinstance(text, list) else [text]):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.text = str(line)
+        p.alignment = align
+        p.space_after = Pt(space)
+        f = p.runs[0].font
+        f.size, f.bold, f.color.rgb, f.name = Pt(size), bold, color, "Segoe UI"
+    return tb
+
+
+def rect(slide, l, t, w, h, fill):
+    s = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, l, t, w, h)
+    s.fill.solid()
+    s.fill.fore_color.rgb = fill
+    s.line.fill.background()
+    s.shadow.inherit = False
+    return s
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("workspace", type=Path)
+    ap.add_argument("--title", default="How the category talks")
+    ap.add_argument("--client", default="")
+    ap.add_argument("--out", type=Path, default=None,
+                    help="DIRECTORY to write the deck into (default: the workspace). "
+                         "Pass a path ending .pptx to name the file exactly.")
+    args = ap.parse_args()
+
+    ws_dir = args.workspace
+    # --out may be a directory or an explicit .pptx path; both are common expectations.
+    explicit = args.out if (args.out and args.out.suffix.lower() == ".pptx") else None
+    out_dir = (explicit.parent if explicit else (args.out or ws_dir))
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    reads_path = ws_dir / "reads.yaml"
+    if not reads_path.exists():
+        raise SystemExit(f"{reads_path} not found. Author it after reading the contact "
+                         f"sheets - see assets/reads.example.yaml.")
+    reads = yaml.safe_load(reads_path.read_text(encoding="utf-8")) or {}
+
+    profiles = {}
+    p = ws_dir / "profiles.csv"
+    if p.exists():
+        with p.open(encoding="utf-8", newline="") as fh:
+            profiles = {r["brand"]: r for r in csv.DictReader(fh)}
+
+    handles = []
+    h = ws_dir / "handles.csv"
+    if h.exists():
+        with h.open(encoding="utf-8-sig", newline="") as fh:
+            handles = list(csv.DictReader(fh))
+
+    rows = []
+    cap = ws_dir / "capture.xlsx"
+    if cap.exists():
+        wb = openpyxl.load_workbook(cap, data_only=True)
+        sheet = wb["Ads"]
+        hdr = [c.value for c in sheet[1]]
+        rows = [dict(zip(hdr, [c.value for c in r])) for r in sheet.iter_rows(min_row=2)
+                if r[1].value]
+
+    prs = Presentation()
+    prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)
+    blank = prs.slide_layouts[6]
+    W, H = prs.slide_width, prs.slide_height
+
+    # title
+    s = prs.slides.add_slide(blank)
+    rect(s, 0, 0, W, H, NAVY)
+    txt(s, Inches(0.9), Inches(2.2), Inches(11.4), Inches(1.4), args.title, 38, True, WHITE)
+    txt(s, Inches(0.9), Inches(3.5), Inches(11.4), Inches(0.6),
+        "A brand-by-brand communications scan", 19, False, DIM)
+    sub = [f"{len(rows)} posts  ·  {len({r['brand'] for r in rows})} brands  ·  "
+           f"collected {date.today().isoformat()}"] if rows else []
+    if args.client:
+        sub.append(args.client)
+    if sub:
+        txt(s, Inches(0.9), Inches(5.6), Inches(11.4), Inches(1), sub, 13, False, DIM)
+
+    # method / caveat
+    s = prs.slides.add_slide(blank)
+    rect(s, 0, 0, W, Inches(1.0), NAVY)
+    txt(s, Inches(0.6), Inches(0.3), Inches(10), Inches(0.5), "What we looked at", 24, True, WHITE)
+    counts = Counter(r["brand"] for r in rows)
+    equal = len(set(counts.values())) == 1 and len(counts) > 1
+    txt(s, Inches(0.6), Inches(1.4), Inches(5.9), Inches(4),
+        ["The most recent posts from each brand's public account.",
+         "Every artwork was downloaded and coded from the image, not from the caption.",
+         "Codes left `unclear` where the message could not be read. None were guessed.",
+         "Brands with no account are recorded as absences, not gaps."], 13, False, INK, space=10)
+    rect(s, Inches(6.9), Inches(1.4), Inches(5.8), Inches(0.05), ACCENT)
+    caveats = ["A limit worth stating first"]
+    if equal:
+        caveats.append("Every brand contributed the same number of posts - a collection "
+                       "artefact, not a fact about the category. Share of voice cannot be "
+                       "measured here, and no share-of-voice number appears in this deck.")
+    caveats.append("Everything shown is organic owned content. No paid creative, no spend, "
+                   "no reach.")
+    tb = txt(s, Inches(6.9), Inches(1.7), Inches(5.8), Inches(3), caveats, 13, False, INK, space=10)
+    tb.text_frame.paragraphs[0].runs[0].font.bold = True
+
+    # ---- how the category talks: computed, so the numbers cannot drift from the sheet
+    if rows:
+        n = len(rows)
+        noproof = sum(1 for r in rows if r.get("proof_device") == "none")
+        nocta = sum(1 for r in rows if r.get("cta_channel") in (None, "", "none"))
+        bb = sum(1 for r in rows if r.get("content_type") == "brand_building")
+        eco = sum(1 for r in rows if str(r.get("ecosystem_push")).lower() == "yes")
+        gens = Counter(r.get("audience_generation") for r in rows)
+        older = gens.get("boomer_plus", 0)
+
+        s2 = prs.slides.add_slide(blank)
+        rect(s2, 0, 0, W, Inches(1.0), NAVY)
+        txt(s2, Inches(0.6), Inches(0.3), Inches(10), Inches(0.5),
+            "How the category talks", 24, True, WHITE)
+        stats = [
+            (f"{round(100*noproof/n)}%", "of ads prove nothing",
+             f"{noproof} of {n}. No statistic, rating, testimonial or guarantee."),
+            (f"{round(100*bb/n)}%", "is brand-building",
+             f"{bb} of {n}. The rest is promotion, PR, calendar and recruitment."),
+            (f"{round(100*eco/n)}%", "drives to an owned app",
+             f"{eco} of {n} exist to move people into an ecosystem."),
+            (f"{older}", "ads cast for over-60s",
+             f"Of {n}, in a category selling retirement and legacy."),
+        ]
+        x = Inches(0.6)
+        for big, mid, small in stats:
+            rect(s2, x, Inches(1.5), Inches(2.95), Inches(0.05), ACCENT)
+            txt(s2, x, Inches(1.8), Inches(2.95), Inches(0.9), big, 40, True, NAVY)
+            txt(s2, x, Inches(2.75), Inches(2.95), Inches(0.7), mid, 13, True, INK)
+            txt(s2, x, Inches(3.5), Inches(2.95), Inches(1.3), small, 11, False, MUTED)
+            x += Inches(3.12)
+        if reads.get("_category"):
+            body = reads["_category"]
+            tb2 = txt(s2, Inches(0.6), Inches(5.0), Inches(12.1), Inches(2),
+                      body if isinstance(body, list) else [body], 14, False, INK, space=8)
+            r0 = tb2.text_frame.paragraphs[0].runs[0].font
+            r0.bold, r0.size = True, Pt(17)
+
+    # ---- what the claim map cannot see: the behavioural dimensions
+    if rows:
+        by_brand = {}
+        for r in rows:
+            by_brand.setdefault(r["brand"], []).append(r)
+
+        def cnt(brand_rows, field, want):
+            return sum(1 for r in brand_rows if str(r.get(field)).lower() == want)
+
+        s3 = prs.slides.add_slide(blank)
+        rect(s3, 0, 0, W, Inches(1.0), NAVY)
+        txt(s3, Inches(0.6), Inches(0.3), Inches(11), Inches(0.5),
+            "What a message map cannot see", 24, True, WHITE)
+        panels = [
+            ("Converging on an app", "ecosystem_push", "yes",
+             "output driving to an owned ecosystem"),
+            ("Brand-building share", "content_type", "brand_building",
+             "everything else is promotion, PR, calendar, recruitment"),
+            ("Talking to customers, not itself", "who_is_in_frame", "customer",
+             "ads with a customer in frame"),
+        ]
+        for (title_txt, field, want, sub), x in zip(panels,
+                [Inches(0.6), Inches(4.9), Inches(9.2)]):
+            data = sorted(((b, cnt(rs, field, want), len(rs))
+                           for b, rs in by_brand.items()), key=lambda t: -t[1])[:7]
+            rect(s3, x, Inches(1.4), Inches(3.9), Inches(0.05), ACCENT)
+            txt(s3, x, Inches(1.62), Inches(3.9), Inches(0.4), title_txt, 14, True, NAVY)
+            txt(s3, x, Inches(2.08), Inches(3.9), Inches(0.4), sub, 10.5, False, MUTED)
+            y = Inches(2.6)
+            for b, k, tot in data:
+                label = b if len(b) <= 22 else b[:20] + "…"
+                txt(s3, x, y, Inches(2.35), Inches(0.3), label, 11, False, INK, space=0)
+                # count AND share - a bare 12/24 makes the reader do the division,
+                # and the panels are read against each other, where only the share
+                # is comparable.
+                share = f"{round(100 * k / tot)}%" if tot else "-"
+                txt(s3, x + Inches(2.4), y, Inches(1.5), Inches(0.3),
+                    f"{k}/{tot}  ·  {share}", 11, True, NAVY, PP_ALIGN.RIGHT, space=0)
+                y += Inches(0.42)
+        if reads.get("_dimensions"):
+            body = reads["_dimensions"]
+            txt(s3, Inches(0.6), Inches(5.75), Inches(12.1), Inches(1.4),
+                body if isinstance(body, list) else [body], 13, False, INK, space=8)
+
+    # ---- why: the mechanism behind the pattern, not just the pattern
+    if reads.get("_why"):
+        wsec = reads["_why"]
+        sW = prs.slides.add_slide(blank)
+        rect(sW, 0, 0, W, Inches(1.0), NAVY)
+        txt(sW, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            wsec.get("headline", "Why"), 24, True, WHITE)
+        if wsec.get("standfirst"):
+            txt(sW, Inches(0.6), Inches(1.35), Inches(12.1), Inches(0.8),
+                wsec["standfirst"], 15, True, NAVY, space=6)
+        y = Inches(2.35)
+        for item in (wsec.get("drivers") or [])[:4]:
+            rect(sW, Inches(0.6), y, Inches(12.1), Inches(0.04), ACCENT)
+            txt(sW, Inches(0.6), y + Inches(0.16), Inches(3.3), Inches(0.5),
+                item["title"], 13, True, NAVY, space=0)
+            txt(sW, Inches(4.1), y + Inches(0.16), Inches(8.6), Inches(0.8),
+                item["body"], 11.5, False, INK, space=0)
+            y += Inches(1.02)
+        if wsec.get("conclusion"):
+            rect(sW, Inches(0.6), Inches(6.35), Inches(12.1), Inches(0.75), PALE)
+            txt(sW, Inches(0.85), Inches(6.5), Inches(11.6), Inches(0.6),
+                wsec["conclusion"], 12.5, True, NAVY, space=0)
+        if wsec.get("source"):
+            txt(sW, Inches(0.6), Inches(7.15), Inches(12.1), Inches(0.3),
+                wsec["source"], 9, False, MUTED)
+
+    # ---- who the category is actually talking to
+    if rows and reads.get("_audience"):
+        a = reads["_audience"]
+        gens = Counter(r.get("audience_generation") for r in rows)
+        n2 = len(rows)
+        sA = prs.slides.add_slide(blank)
+        rect(sA, 0, 0, W, Inches(1.0), NAVY)
+        txt(sA, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            a.get("headline", "Who the category is talking to"), 24, True, WHITE)
+        order = [("genz", "Gen Z", "under ~28"), ("geny", "Millennial", "~28-43"),
+                 ("genx", "Gen X", "~44-59"), ("boomer_plus", "60+", "retirement, legacy"),
+                 ("mixed", "Multi-generational", "cast across ages")]
+        x = Inches(0.6)
+        for key, label, sub in order:
+            v = gens.get(key, 0)
+            rect(sA, x, Inches(1.4), Inches(2.35), Inches(0.05),
+                 ACCENT if key == "boomer_plus" else NAVY)
+            txt(sA, x, Inches(1.68), Inches(2.35), Inches(0.8),
+                f"{round(100*v/n2)}%", 34, True,
+                ACCENT if key == "boomer_plus" else NAVY)
+            txt(sA, x, Inches(2.55), Inches(2.35), Inches(0.4), label, 13, True, INK)
+            txt(sA, x, Inches(2.95), Inches(2.35), Inches(0.4),
+                f"{sub}  ·  {v} of {n2}", 10.5, False, MUTED)
+            x += Inches(2.47)
+        if a.get("body"):
+            txt(sA, Inches(0.6), Inches(3.7), Inches(12.1), Inches(2),
+                a["body"], 13, False, INK, space=9)
+        if a.get("caveat"):
+            rect(sA, Inches(0.6), Inches(6.45), Inches(12.1), Inches(0.7), PALE)
+            txt(sA, Inches(0.85), Inches(6.6), Inches(11.6), Inches(0.5),
+                a["caveat"], 11, False, NAVY, space=0)
+
+    # ---- the demand side: what customers say, in their own words
+    #
+    # A scan reads what brands PUBLISH. That is only half an argument, and it is the
+    # half the client already knows. Pairing it with unprompted customer voice is what
+    # turns "here is what you say" into "here is the gap between what you say and what
+    # they experience" - which is the finding a client cannot dismiss.
+    if reads.get("_voice"):
+        v = reads["_voice"]
+        sV = prs.slides.add_slide(blank)
+        rect(sV, 0, 0, W, Inches(1.0), NAVY)
+        txt(sV, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            v.get("headline", "What customers say"), 24, True, WHITE)
+        if v.get("standfirst"):
+            txt(sV, Inches(0.6), Inches(1.3), Inches(12.1), Inches(0.7),
+                v["standfirst"], 14, True, NAVY, space=6)
+        quotes = (v.get("quotes") or [])[:6]
+        y0 = Inches(2.25)
+        col_w = Inches(5.9)
+        for idx, q in enumerate(quotes):
+            col, row = idx % 2, idx // 2
+            x = Inches(0.6) + col * Inches(6.3)
+            y = y0 + row * Inches(1.45)
+            rect(sV, x, y, Inches(0.045), Inches(1.15), ACCENT)
+            body = q["text"] if isinstance(q, dict) else str(q)
+            tb = txt(sV, x + Inches(0.25), y, col_w, Inches(0.95),
+                     f"“{body}”", 11.5, False, INK, space=0)
+            tb.text_frame.paragraphs[0].runs[0].font.italic = True
+            if isinstance(q, dict) and q.get("note"):
+                txt(sV, x + Inches(0.25), y + Inches(0.98), col_w, Inches(0.3),
+                    q["note"], 9.5, False, MUTED, space=0)
+        if v.get("conclusion"):
+            rect(sV, Inches(0.6), Inches(6.5), Inches(12.1), Inches(0.75), PALE)
+            txt(sV, Inches(0.85), Inches(6.65), Inches(11.6), Inches(0.6),
+                v["conclusion"], 12.5, True, NAVY, space=0)
+        if v.get("source"):
+            txt(sV, Inches(0.6), Inches(7.3), Inches(12.1), Inches(0.3),
+                v["source"], 9, False, MUTED)
+
+    # ---- a plain grid: brands down the side, whatever you measured across the top
+    #
+    # Built for the presence sweep (followers per platform), but deliberately generic.
+    # Two rules it enforces, because both were learned the hard way: a cell you could
+    # not verify prints as `n/v` rather than blank, since a blank reads as zero and
+    # would turn a failed lookup into a finding; and the highest value in each column
+    # is emphasised so the eye lands on where the audience actually is.
+    if reads.get("_grid"):
+        g = reads["_grid"]
+        sG = prs.slides.add_slide(blank)
+        rect(sG, 0, 0, W, Inches(1.0), NAVY)
+        txt(sG, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            g.get("headline", "The numbers"), 24, True, WHITE)
+        if g.get("standfirst"):
+            txt(sG, Inches(0.6), Inches(1.2), Inches(12.1), Inches(0.6),
+                g["standfirst"], 13, True, NAVY, space=4)
+        cols = g.get("columns") or []
+        grows = g.get("rows") or []
+        label_w = Inches(3.0)
+        cell_w = Inches(9.1 / max(len(cols), 1))
+        y = Inches(1.95)
+        txt(sG, Inches(0.6), y, label_w, Inches(0.3), g.get("corner", ""), 11, True, MUTED)
+        for j, c in enumerate(cols):
+            txt(sG, Inches(0.6) + label_w + j * cell_w, y, cell_w, Inches(0.3),
+                c, 11, True, NAVY, PP_ALIGN.RIGHT, space=0)
+        y += Inches(0.34)
+        rect(sG, Inches(0.6), y, Inches(12.1), Inches(0.02), NAVY)
+        y += Inches(0.12)
+
+        def numeric(v: str):
+            m = re.fullmatch(r"([\d.]+)\s*([KM]?)", str(v).strip())
+            if not m:
+                return None
+            return float(m.group(1)) * {"": 1, "K": 1e3, "M": 1e6}[m.group(2)]
+
+        peaks = []
+        for j in range(len(cols)):
+            vals = [(numeric(r.get("values", [])[j]) if j < len(r.get("values", [])) else None)
+                    for r in grows]
+            vals = [v for v in vals if v is not None]
+            peaks.append(max(vals) if vals else None)
+
+        # Fit the rows to the space left above the conclusion band rather than using a
+        # fixed row height: a fourteen-brand grid otherwise runs straight through the
+        # banner and off the slide. Shrink type a little only when it is actually tight.
+        bottom = Inches(6.42) if g.get("conclusion") else Inches(7.25)
+        avail = bottom - y
+        step = min(Inches(0.38), int(avail / max(len(grows), 1)))
+        fsize = 11 if step >= Inches(0.33) else (10 if step >= Inches(0.28) else 9)
+        for i, r in enumerate(grows):
+            if i % 2 == 0:
+                rect(sG, Inches(0.6), y - Inches(0.03), Inches(12.1), step, PALE)
+            txt(sG, Inches(0.7), y, label_w, step, r.get("label", ""),
+                fsize, bool(r.get("emphasis")), NAVY if r.get("emphasis") else INK, space=0)
+            for j in range(len(cols)):
+                v = r.get("values", [])[j] if j < len(r.get("values", [])) else ""
+                nv = numeric(v)
+                top = nv is not None and peaks[j] is not None and nv == peaks[j]
+                txt(sG, Inches(0.6) + label_w + j * cell_w, y, cell_w, step,
+                    str(v), fsize, top,
+                    ACCENT if top else (MUTED if str(v) in ("n/v", "-", "none") else INK),
+                    PP_ALIGN.RIGHT, space=0)
+            y += step
+
+        if g.get("conclusion"):
+            rect(sG, Inches(0.6), Inches(6.5), Inches(12.1), Inches(0.78), NAVY)
+            txt(sG, Inches(0.85), Inches(6.63), Inches(11.6), Inches(0.6),
+                g["conclusion"], 12.5, True, WHITE, space=0)
+        if g.get("source"):
+            txt(sG, Inches(0.6), Inches(7.34), Inches(12.1), Inches(0.3),
+                g["source"], 9, False, MUTED)
+
+    # ---- a ladder: where the category sits on a staged model, and where to go
+    #
+    # Generic on purpose. Any staged framework works (levels of branding, maturity
+    # models, a funnel) - the slide's job is to place competitors on the rungs from
+    # evidence and mark the client's position against its target, so that "move up"
+    # becomes a specific claim rather than a slogan.
+    if reads.get("_ladder"):
+        ld = reads["_ladder"]
+        sL = prs.slides.add_slide(blank)
+        rect(sL, 0, 0, W, Inches(1.0), NAVY)
+        txt(sL, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            ld.get("headline", "Where the category sits"), 24, True, WHITE)
+        if ld.get("standfirst"):
+            txt(sL, Inches(0.6), Inches(1.25), Inches(12.1), Inches(0.6),
+                ld["standfirst"], 13.5, True, NAVY, space=4)
+        rungs = (ld.get("levels") or [])[:6]
+        # drawn bottom-up so the highest level sits at the top of the slide
+        top = Inches(1.95)
+        h = Inches(0.72)
+        for i, lv in enumerate(reversed(rungs)):
+            y = top + i * (h + Inches(0.09))
+            mark = lv.get("mark", "")
+            fill = PALE if mark else RGBColor(0xFA, 0xFB, 0xFC)
+            rect(sL, Inches(0.6), y, Inches(12.1), h, fill)
+            if mark:
+                rect(sL, Inches(0.6), y, Inches(0.05), h, ACCENT)
+            txt(sL, Inches(0.8), y + Inches(0.06), Inches(2.9), Inches(0.3),
+                lv.get("name", ""), 12, True, NAVY, space=0)
+            txt(sL, Inches(0.8), y + Inches(0.36), Inches(2.9), Inches(0.3),
+                lv.get("says", ""), 10, False, MUTED, space=0)
+            txt(sL, Inches(3.9), y + Inches(0.12), Inches(5.2), Inches(0.5),
+                lv.get("who", ""), 10.5, False, INK, space=0)
+            if mark:
+                tb = txt(sL, Inches(9.3), y + Inches(0.12), Inches(3.3), Inches(0.5),
+                         mark, 10.5, True, ACCENT, space=0)
+        if ld.get("conclusion"):
+            rect(sL, Inches(0.6), Inches(6.65), Inches(12.1), Inches(0.72), NAVY)
+            txt(sL, Inches(0.85), Inches(6.78), Inches(11.6), Inches(0.55),
+                ld["conclusion"], 12.5, True, WHITE, space=0)
+        if ld.get("source"):
+            txt(sL, Inches(0.6), Inches(7.42), Inches(12.1), Inches(0.28),
+                ld["source"], 9, False, MUTED)
+
+    # ---- author-supplied readings: three ranked panels with a conclusion
+    for key in ("_readings", "_readings2"):
+        rd = reads.get(key)
+        if not rd:
+            continue
+        sR = prs.slides.add_slide(blank)
+        rect(sR, 0, 0, W, Inches(1.0), NAVY)
+        txt(sR, Inches(0.6), Inches(0.3), Inches(11.5), Inches(0.5),
+            rd.get("headline", ""), 24, True, WHITE)
+        for panel, x in zip((rd.get("panels") or [])[:3],
+                            (Inches(0.6), Inches(4.9), Inches(9.2))):
+            rect(sR, x, Inches(1.4), Inches(3.9), Inches(0.05), ACCENT)
+            txt(sR, x, Inches(1.62), Inches(3.9), Inches(0.45), panel["title"],
+                14, True, NAVY)
+            if panel.get("stat"):
+                txt(sR, x, Inches(2.1), Inches(3.9), Inches(0.7), panel["stat"],
+                    30, True, ACCENT)
+            if panel.get("sub"):
+                txt(sR, x, Inches(2.85), Inches(3.9), Inches(0.6), panel["sub"],
+                    10.5, False, MUTED)
+            y = Inches(3.5)
+            for row in (panel.get("rows") or [])[:6]:
+                label, value = (row["label"], row["value"])
+                txt(sR, x, y, Inches(2.95), Inches(0.3),
+                    label if len(label) <= 24 else label[:22] + "…",
+                    11, False, INK, space=0)
+                txt(sR, x + Inches(3.0), y, Inches(0.9), Inches(0.3), str(value),
+                    11, True, NAVY, PP_ALIGN.RIGHT, space=0)
+                y += Inches(0.4)
+        if rd.get("conclusion"):
+            rect(sR, Inches(0.6), Inches(6.35), Inches(12.1), Inches(0.8), PALE)
+            txt(sR, Inches(0.85), Inches(6.5), Inches(11.6), Inches(0.65),
+                rd["conclusion"], 12.5, True, NAVY, space=0)
+
+    # brand slides
+    order = handles or [{"brand": b, "ring": "", "handle": ""} for b in sorted(counts)]
+    for hrow in order:
+        brand = hrow["brand"]
+        if brand not in reads:
+            continue
+        r = reads[brand] or {}
+        rs = [x for x in rows if x["brand"] == brand]
+        prof = profiles.get(brand, {})
+        handle = hrow.get("handle") or prof.get("handle") or ""
+
+        s = prs.slides.add_slide(blank)
+        rect(s, 0, 0, W, Inches(1.15), NAVY)
+        txt(s, Inches(0.55), Inches(0.22), Inches(8.6), Inches(0.5), brand, 22, True, WHITE)
+        bits = [f"@{handle}"] if handle else []
+        bits += [RING.get(hrow.get("ring", ""), (hrow.get("ring") or "").upper())]
+        if prof.get("followers"):
+            bits.append(f"{prof['followers']} followers")
+        bits.append(f"{len(rs)} ads coded")
+        txt(s, Inches(0.55), Inches(0.72), Inches(8.6), Inches(0.35),
+            "   ·   ".join(b for b in bits if b), 12, False, DIM)
+
+        sheet_img = ws_dir / "contact" / f"{handle}.jpg"
+        if sheet_img.exists():
+            s.shapes.add_picture(str(sheet_img), Inches(0.55), Inches(1.5), width=Inches(6.7))
+        else:
+            txt(s, Inches(0.55), Inches(3.2), Inches(6.7), Inches(0.5),
+                "No creative collected for this brand.", 13, False, MUTED, PP_ALIGN.CENTER)
+
+        left, wid = Inches(7.6), Inches(5.2)
+        rect(s, left, Inches(1.5), wid, Inches(0.05), ACCENT)
+        txt(s, left, Inches(1.75), wid, Inches(0.9), r.get("headline", ""), 17, True, NAVY)
+        saying = r.get("saying") or []
+        txt(s, left, Inches(2.8), wid, Inches(2.5),
+            [f"·  {x}" for x in saying], 11.5, False, INK, space=7)
+        if r.get("note"):
+            rect(s, left, Inches(5.45), wid, Inches(1.45), PALE)
+            txt(s, left + Emu(120000), Inches(5.6), wid - Emu(240000), Inches(1.2),
+                r["note"], 12, False, NAVY, space=4)
+
+        if r.get("why"):
+            txt(s, left, Inches(6.95), wid, Inches(0.5),
+                f"WHY:  {r['why']}", 10.5, False, ACCENT, space=0)
+
+        if rs:
+            noproof = sum(1 for x in rs if x.get("proof_device") == "none")
+            obj = sum(1 for x in rs if str(x.get("addresses_objection")).lower() == "yes")
+            bb = sum(1 for x in rs if x.get("content_type") == "brand_building")
+            txt(s, Inches(0.55), Inches(6.95), Inches(6.7), Inches(0.4),
+                f"{noproof}/{len(rs)} no proof device   ·   {obj}/{len(rs)} address the core "
+                f"objection   ·   {bb}/{len(rs)} brand-building", 10.5, False, MUTED)
+
+    # closing
+    if reads.get("_finding"):
+        f = reads["_finding"]
+        s = prs.slides.add_slide(blank)
+        rect(s, 0, 0, W, H, NAVY)
+        rect(s, Inches(0.9), Inches(1.5), Inches(1.6), Inches(0.06), ACCENT)
+        txt(s, Inches(0.9), Inches(1.9), Inches(11.4), Inches(1.4),
+            f.get("headline", ""), 38, True, WHITE)
+        txt(s, Inches(0.9), Inches(3.3), Inches(11.4), Inches(2.6),
+            f.get("body") or [], 15, False, RGBColor(0xC7, 0xD4, 0xE0), space=12)
+
+    if reads.get("_own"):
+        o = reads["_own"]
+        sO = prs.slides.add_slide(blank)
+        rect(sO, 0, 0, W, Inches(1.0), NAVY)
+        txt(sO, Inches(0.6), Inches(0.3), Inches(11), Inches(0.5),
+            o.get("headline", "What the client can own"), 24, True, WHITE)
+        if o.get("number"):
+            rect(sO, Inches(0.6), Inches(1.4), Inches(5.6), Inches(2.2), PALE)
+            tbN = txt(sO, Inches(0.9), Inches(1.75), Inches(5.0), Inches(1.7),
+                      [o["number"]] + (o.get("number_note") or []), 14, False, NAVY, space=8)
+            f0 = tbN.text_frame.paragraphs[0].runs[0].font
+            f0.size, f0.bold, f0.color.rgb = Pt(36), True, ACCENT
+        if o.get("why"):
+            tbW = txt(sO, Inches(6.6), Inches(1.4), Inches(6.1), Inches(2.4),
+                      o["why"], 14, False, INK, space=10)
+            tbW.text_frame.paragraphs[0].runs[0].font.bold = True
+        if o.get("pillars"):
+            txt(sO, Inches(0.6), Inches(4.0), Inches(12.1), Inches(0.4),
+                o.get("pillars_title", "What competitors cannot copy"), 15, True, NAVY)
+            x = Inches(0.6)
+            for item in o["pillars"][:3]:
+                rect(sO, x, Inches(4.5), Inches(3.9), Inches(0.05), ACCENT)
+                txt(sO, x, Inches(4.75), Inches(3.9), Inches(0.5), item["title"], 13, True, NAVY)
+                txt(sO, x, Inches(5.35), Inches(3.9), Inches(1.7), item["body"], 11.5, False, INK)
+                x += Inches(4.08)
+        if o.get("kicker"):
+            txt(sO, Inches(0.6), Inches(6.85), Inches(12.1), Inches(0.4),
+                o["kicker"], 12, True, ACCENT)
+
+    if explicit:
+        path = explicit
+    else:
+        # Strip anything NTFS or POSIX treats specially. A stray ":" silently creates an
+        # alternate data stream on Windows: the save "succeeds" and leaves a 0-byte file
+        # with the real deck hidden inside it.
+        stem = re.sub(r"[^A-Za-z0-9]+", "_", args.title.lower()).strip("_")[:40] or "scan"
+        stem = f"{stem}_{date.today().isoformat()}"
+        path = out_dir / f"{stem}.pptx"
+        n = 2
+        while path.exists():
+            path = out_dir / f"{stem}-v{n}.pptx"
+            n += 1
+    prs.save(path)
+    size = path.stat().st_size if path.exists() else 0
+    if size < 10_000:   # a real deck is never this small; catch silent write failures
+        raise SystemExit(f"ERROR: {path} is {size} bytes - the save did not land. "
+                         f"Check for special characters in --title or --out.")
+    print(f"{path}  ({len(prs.slides._sldIdLst)} slides, {size//1024} KB)")
+    print("Open it once and check the contact sheets sit where you expect before it ships.")
+
+
+if __name__ == "__main__":
+    main()

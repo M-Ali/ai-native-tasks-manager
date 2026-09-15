@@ -1,0 +1,29 @@
+# One entry per brand, authored AFTER reading the contact sheets.
+# Quote real copy in `saying` - a read with no evidence in it is an opinion.
+
+EFU Life Assurance:
+  headline: Has left the category it leads.
+  saying:
+    - "Seven of twelve posts are loyalty offers: 25% off a burger, 30% off diagnostics, 1000 EFU Coins."
+    - "Thrive and WIN apps carry the brand; insurance is barely mentioned."
+    - "Historic work was duty and dignity - Zaroori Hai, Izzat say Nazrain Milain."
+  note: >-
+    The largest private life insurer now advertises like a loyalty card. The duty
+    territory it built over nineteen years is vacated.
+
+Jubilee Life Insurance:
+  headline: Owns the proof territory - and then abandoned it.
+  saying:
+    - "'PKR 54 BILLION CLAIMS PAID IN 2025 / Behind every claim is a promise fulfilled.'"
+    - "Pinned to the top of the grid. Dated June."
+    - "Everything after it: 40% off a laboratory, and reposted fitness-influencer reels."
+  note: >-
+    The only competitor standing in the proof territory is standing there with one
+    June post. Claimed, not held.
+
+# Optional closing slide.
+_finding:
+  headline: The vacant territory is proof.
+  body:
+    - "Not trust as a feeling. Trust as an audited, publishable, repeatable number."
+    - "78% of category advertising offers no proof of anything. Two ads in 144 cite a claims figure."

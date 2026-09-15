@@ -1,0 +1,410 @@
+# One entry per brand, authored AFTER reading the contact sheets.
+# Every `saying` line quotes copy actually on the artwork or a number from capture.xlsx.
+
+_category:
+  - "336 posts, 24 per brand, collected logged-out on 11 September 2026. Equal N by
+     construction, so share of voice is not measurable and is not presented anywhere here."
+  - "Everything in this deck is ORGANIC, owned-channel output. It says nothing about
+     media spend, reach or weight. Only the Meta Ad Library shows paid creative."
+  - "Three brands in scope have no Instagram at all: PTCL Business, Cybernet and
+     Fiberlink. Those absences are findings and are recorded, not dropped."
+
+_dimensions:
+  - "68% of the category's creative carries no proof device of any kind."
+  - "Only 19% of posts answer a customer objection. PTCL's figure is zero of 24."
+  - "Not one post in 336 uses an independent speed or performance result as proof."
+
+PTCL:
+  headline: Spends its whole voice on being Pakistani, and none of it on being good.
+  saying:
+    - "14 of 24 posts claim heritage or nation - 'Celebrating 79 years', 'Who makes Pakistan 79 years young?', Defence Day, Jitna Jawan."
+    - "One post in 24 mentions speed. Zero mention reliability. Zero mention service."
+    - "Four posts sell other people's hardware: 'iPhone 18 Pro, coming soon' and 'MacBook Neo PKR 229,999' with Mercantile."
+    - "Proof devices used: heritage_scale (7) and celebrity (6). Performance proof: none."
+  note: >-
+    The most-loved brand in the category is advertising like a sponsor, not a service.
+    Hockey, esports, Independence Day and device retail fill the grid; the product the
+    brief says it is losing ground on - reliability, speed, product-benefit clarity -
+    is absent from its own channel.
+  why: >-
+    A brand that never mentions performance cannot correct a performance perception,
+    however much affinity it spends.
+
+StormFiber:
+  headline: The only brand in the category that treats the customer's problem as the subject.
+  saying:
+    - "Eleven of 24 posts answer an objection - the highest of any consumer brand in the set."
+    - "'MYTH vs FACT: More Wi-Fi bars = faster internet' ... 'Bandwidth allocation is first come, first serve.'"
+    - "'Experiencing Wi-Fi issues? Try these steps.' 'Connection not found.'"
+    - "Nine posts are coverage announcements: 'Cheema Town Phase 1 and 2 Bahawalpur NOW FIBERIZED'."
+  note: >-
+    The brand the brief names as leading awareness-to-consideration conversion is also
+    the brand that explains the product. It builds competence rather than affection,
+    and converts because it answers the question a switcher actually has.
+  why: >-
+    Wi-Fi literacy is a conversion tool - every myth it corrects removes a reason to blame the provider.
+
+Transworld Home:
+  headline: Already running PTCL's heritage claim, and running it better.
+  saying:
+    - "'CONNECTION ESTABLISHED 1947 - EXPERIENCE THAT MATTERS', over the faces of the founders."
+    - "'79 saal lag gaye lekin ho gaya. PAKISTAN; CONNECTION EST. SINCE 1947.'"
+    - "Seven of 24 posts are creator videos: 'Burey internet se jaan churaayein.'"
+    - "'The fight for the remote starts at 8PM.' 'More MBPS isn't always the answer.'"
+  note: >-
+    The sharpest consumer work in the category comes from the fourth-largest brand in it.
+    It pairs household truths with creators, and it has planted a flag on 1947 - the
+    single asset PTCL assumes is its own.
+  why: >-
+    A heritage claim nobody else could make is worth building on; one a competitor is
+    already making is a race PTCL would be entering second.
+
+Nayatel:
+  headline: Runs its staff as the story, and the national calendar as the filler.
+  saying:
+    - "Ten of 24 posts are calendar: Iqbal, Jinnah, Fatima Jinnah, Independence, Defence Day, Rabi-ul-Awwal."
+    - "'Episode 01 - Only Fahad Knows The Secret'; 'Episode 02 - Awais to the Rescue' - service staff cast as characters."
+    - "Six posts drive the My Nayatel App: 'Play the Quiz, win Rs. 500 off'."
+  note: >-
+    The staff-as-heroes device is the most human thing in the category and nobody else
+    is doing it. It sits beside ten posts of national wallpaper that any brand could run.
+
+Optix:
+  headline: A price list with a flag on it, published by a brand with 356 followers.
+  saying:
+    - "Sixteen of 24 posts are tactical price tiles: '300 Mbps for Rs. 10,999', '150 Mbps Rs. 5,199'."
+    - "Five of 24 are HR announcements - 'Welcome to the team' - in a 24-post window."
+    - "'Hidden charges se Azadi', 'Slow internet se Azadi', 'Streaming ki asli Azadi'."
+    - "Almost the entire grid is AI-generated imagery."
+  note: >-
+    An ISP with roughly 50,000 customers has 356 Instagram followers and gives a fifth
+    of its feed to recruitment. Credit where due: its copy names the customer's problem
+    - hidden charges, buffering, data caps - more directly than PTCL's does.
+
+Worldcall:
+  headline: Publishes offers into a channel it has effectively abandoned.
+  saying:
+    - "0.4 posts per week - the slowest in the set; the 24-post window reaches back to July 2023."
+    - "Six of 24 posts are religious or seasonal greetings."
+    - "'We changed the game once, we will change it again' - posted in 2023."
+  note: >-
+    A legacy operator whose channel is a noticeboard. The offers are competitive; nobody
+    is there to read them.
+
+Wateen:
+  headline: A B2B brand whose public channel is mostly its own staff.
+  saying:
+    - "Eight of 24 posts are corporate PR: townhalls, group photos, balloons, a team painting session."
+    - "The enterprise work is sharp where it appears: 'Banking doesn't need more AI hype. It needs AI that works.'"
+    - "Twenty-one days since the last post."
+  note: >-
+    Ten posts feature executives or staff against two featuring a customer. The
+    proposition is good and the channel is being used as an internal newsletter.
+
+Jazz:
+  headline: Buys the future tense with a number nobody else can match.
+  saying:
+    - "'1,000 5G SITES. IT'S JUST THE BEGINNING' - network scale used as proof, four times."
+    - "Celebrity-fronted device retail throughout: 'Phone ho tou 5G wala'."
+    - "Ran the identical 'iPhone 18 Pro, coming soon / Mercantile' creative as PTCL and Zong, in the same week."
+  note: >-
+    The only brand in the set that consistently proves a claim with a countable fact
+    about its own network. That is the proof behaviour PTCL's brief asks for, executed
+    by a competitor.
+
+Zong:
+  headline: Every road leads to the app.
+  saying:
+    - "Twelve of 24 posts drive My Zong App or Z Wallet - 50%, the highest in the set."
+    - "'Bachat Bazaar', 'Double Advance Loan', 'Wallet, gaming and recharge - all in one app'."
+    - "Also ran the same iPhone 18 Pro / Mercantile creative."
+  note: >-
+    Zong is not selling connectivity, it is recruiting into a wallet. The claims differ
+    from Jazz's; the destination is identical.
+
+Ufone:
+  headline: PTCL's own sibling is already occupying the emotional territory.
+  saying:
+    - "'Some Connections Never Get Old' and 'Oh Times, Timeless Connections' - 80s nostalgia, shot properly."
+    - "Carries a co-branded 'PTCL | ufone 5G' lockup on its own posts."
+    - "Runs the same properties as PTCL: Arslan Ash esports, the Dragons of Pakistan awards."
+    - "Four of 24 posts are Father's Day executions on the emotional-connection theme."
+  why: >-
+    The human-connection space the brief calls unclaimed is occupied - by a brand inside
+    PTCL's own group, spending PTCL's own equity.
+  note: >-
+    Telenor Pakistan ceased to exist in July 2026 and the merged business now posts as
+    Ufone 5G. The architecture question in Section 9 of the brief is not theoretical:
+    two brands in one group are currently running one territory and one set of sponsorships.
+
+Jazz Business:
+  headline: The enterprise category advertises to itself.
+  saying:
+    - "Fifteen of 24 posts are corporate PR: MoU handshakes, leadership spotlights, partner logos."
+    - "Seventeen posts feature an executive. Zero feature a customer."
+    - "'Building business value through technology' - a leadership portrait, repeated as a format."
+  note: >-
+    This is the only B2B comparator in the set with an active Instagram, and it spends it
+    on portraits of its own management. The enterprise audience is being addressed as an
+    audience of peers, not of customers with problems.
+
+Multinet:
+  headline: The one B2B brand leading with the customer's problem.
+  saying:
+    - "Sixteen of 24 posts answer an objection - the highest count in the whole scan."
+    - "'Your business grew. Did your infrastructure grow too?' 'One password can't protect a business.'"
+    - "A house of sub-brands does the work: FortSecure, MyCloud, Nunomics, ithinX, Tezz."
+  note: >-
+    Question-led, problem-first, and entirely built on stock imagery. It proves the
+    enterprise story can be told through the customer rather than the org chart.
+
+Shoq:
+  headline: PTCL's entertainment layer has been dark for eight months.
+  saying:
+    - "253 days since the last post. The only DORMANT brand in the scan."
+    - "Ten of 24 posts are religious or calendar greetings."
+    - "Its liveliest work is borrowed: five Zalmi Women League streaming posts."
+  note: >-
+    Smart TV and OTT is one of the five brand territories the brief names. On its own
+    channel that territory has not been advertised since December 2025.
+
+Tapmad:
+  headline: What an entertainment brand looks like when it is actually alive.
+  saying:
+    - "21 posts a week - the fastest cadence in the set."
+    - "Fixtures, live scores, results, esports leaderboards, Coke Studio Nu.WAV, Pakistan's Got Talent."
+    - "'ALL SPORTS. WITHOUT ADS.' carried as a permanent strap."
+  note: >-
+    A free OTT platform out-publishes PTCL's own paid entertainment product by a factor
+    of thirty-five, on the same audience, in the same week.
+
+_why:
+  headline: Why the category advertises streets instead of brands
+  standfirst: >-
+    Fixed broadband in Pakistan is a footprint business. Whether a household can buy you
+    at all is decided by your street, not your brand - so the category's creative is a
+    distribution announcement with a logo on it.
+  drivers:
+    - title: Fixed is 2.5% of broadband
+      body: >-
+        Of Pakistan's 150 million broadband subscriptions, 97.5% are mobile. Fixed
+        broadband is 2.5%. The category everyone in this deck competes in is a rounding
+        error against the mobile networks two of them also own.
+    - title: Two million FTTH users, nationally
+      body: >-
+        Fibre-to-the-home reached 2 million users in June 2025. Against roughly 35 million
+        households, availability - not preference - is the binding constraint on growth.
+    - title: So coverage is the message
+      body: >-
+        Nine of StormFiber's 24 posts name a neighbourhood. Worldcall and Optix do the
+        same. These are not brand campaigns; they are announcements that a street is now
+        sellable.
+    - title: And meaning goes unbuilt
+      body: >-
+        With the message space filled by availability and price, only 8 posts in 336
+        claim reliability and 4 claim the connected home. The layer above the network is
+        empty because nobody in a footprint business has needed it yet.
+  conclusion: >-
+    PTCL is the one brand here that does not have a footprint problem - which means the
+    category's dominant creative behaviour solves a problem PTCL largely does not have.
+  source: >-
+    Source: PTA Annual Report 2025 (published November 2025), figures as of June 2025 -
+    broadband subscriptions, fixed/mobile split, FTTH users. Household estimate is ours.
+
+_audience:
+  headline: Who the work is cast for
+  body:
+    - "Half the category's creative is cast 'mixed' - no one in particular. Tapmad is the
+       only brand with a clearly chosen audience, and it is the only one whose feed reads
+       as a destination rather than a noticeboard."
+    - "Not a single post in 336 is cast for over-60s, in a category whose most loyal
+       customers have been with PTCL for decades."
+  caveat: >-
+    Generation is inferred from casting, styling and setting. It is a read of who the work
+    addresses, never a claim about who actually buys.
+
+_readings:
+  headline: Three things the sheet says that the category does not know about itself
+  panels:
+    - title: PTCL's territory is the most crowded one
+      stat: "59"
+      sub: >-
+        posts claim heritage or nation - the largest territory on the map, 49 of them in
+        the pride register. 13 of 14 brands are standing in it.
+      rows:
+        - {label: "PTCL", value: "14/24"}
+        - {label: "Nayatel", value: "10/24"}
+        - {label: "Transworld Home", value: "8/24"}
+        - {label: "Ufone", value: "7/24"}
+        - {label: "Wateen", value: "4/24"}
+        - {label: "Worldcall", value: "4/24"}
+    - title: Nobody proves anything
+      stat: "68%"
+      sub: >-
+        of posts carry no proof device at all. Not one post in 336 cites an independent
+        speed test or performance result.
+      rows:
+        - {label: "no proof device", value: "229"}
+        - {label: "partner brand", value: "37"}
+        - {label: "celebrity", value: "24"}
+        - {label: "network scale", value: "16"}
+        - {label: "heritage scale", value: "12"}
+        - {label: "speed / perf. result", value: "0"}
+    - title: The customer's problem goes unanswered
+      stat: "19%"
+      sub: >-
+        of posts answer a customer objection, and they cluster in two brands. PTCL
+        answers none of the 24.
+      rows:
+        - {label: "Multinet", value: "16/24"}
+        - {label: "Optix", value: "14/24"}
+        - {label: "StormFiber", value: "11/24"}
+        - {label: "Transworld Home", value: "7/24"}
+        - {label: "Wateen", value: "6/24"}
+        - {label: "PTCL", value: "0/24"}
+  conclusion: >-
+    PTCL is loudest in the most crowded territory, and silent in the two that are empty.
+    Reliability - the attribute the brief says it is losing - is claimed in 8 posts out of 336.
+
+_grid:
+  headline: "Where the audience actually is"
+  standfirst: >-
+    Follower and subscriber counts, collected logged-out on 11 September 2026. This scan read
+    Instagram - which every brand here is an order of magnitude smaller on.
+  corner: "Brand"
+  columns: ["Instagram", "Facebook", "YouTube", "TikTok"]
+  rows:
+    - {label: "PTCL", values: ["91K", "1.3M", "43K", "none"], emphasis: true}
+    - {label: "Jazz", values: ["295K", "5.5M", "n/v", "n/v"]}
+    - {label: "Ufone", values: ["279K", "3.2M", "n/v", "n/v"]}
+    - {label: "Nayatel", values: ["19K", "1.1M", "1.5K", "n/v"]}
+    - {label: "Transworld Home", values: ["13K", "381K", "1.8K", "n/v"]}
+    - {label: "StormFiber", values: ["31K", "233K", "n/v", "none"]}
+    - {label: "Zong", values: ["181K", "n/v", "n/v", "n/v"]}
+    - {label: "Tapmad", values: ["264K", "n/v", "n/v", "n/v"]}
+    - {label: "Worldcall", values: ["2.3K", "98K", "n/v", "n/v"]}
+    - {label: "Wateen", values: ["1.2K", "93K", "627", "n/v"]}
+    - {label: "Fiberlink", values: ["none", "23K", "n/v", "n/v"]}
+    - {label: "Shoq", values: ["2.6K", "n/v", "n/v", "n/v"]}
+    - {label: "Optix", values: ["356", "n/v", "n/v", "n/v"]}
+    - {label: "Multinet", values: ["601", "n/v", "n/v", "n/v"]}
+  conclusion: >-
+    PTCL has 14x more people on Facebook than on Instagram; Nayatel has 57x. Fiberlink has no
+    Instagram at all and 23K on Facebook - a brand this scan would otherwise have called absent.
+  source: >-
+    n/v = not verified: the candidate page could not be confirmed, so the cell is left open
+    rather than reported as zero. TikTok "none" = the account does not exist (PTCL and
+    StormFiber both return "Couldn't find this account"); no official TikTok surfaced for any
+    brand in this category. Facebook renders logged-out for header data only - it is not a
+    viable platform for a systematic creative read, which is why Instagram was scanned.
+
+_voice:
+  headline: "The customer pulse: what people say when the brand is not listening"
+  standfirst: >-
+    976 YouTube comments on Pakistani broadband, analysed separately. When commenters
+    criticise other brands they say the service is slow. When they criticise PTCL they
+    use the language of dishonesty.
+  quotes:
+    - text: "These people are frauds. First they install it cheap, then every third month they keep increasing the bill. If you ask, they say rates have gone up."
+      note: "Urdu, translated. The word used is fraud, not expensive."
+    - text: "Whenever a problem arises you have to fall at their feet, and they become Pharaoh - you are caught in our clutches now, look out for yourself."
+      note: "The most articulate comment in the corpus. Register: captivity, not service."
+    - text: "If you want to disconnect, you have to pay the whole of the following month too. Where in the world does this happen, except PTCL?"
+      note: "Leaving is penalised - and cited as proof of bad faith."
+    - text: "Their internet is very good, I get 107 Mbps and it rarely breaks. I would give their service 10/10."
+      note: "Same commenter: his bill went from Rs 4,000 to Rs 7,250. Even advocates are repriced."
+    - text: "For all the people saying PTCL is bad, it's usually because of their location - my internet in Bahria Town Lahore is probably the best you can get."
+      note: "Every defence is about a postcode. Nobody defends the company."
+    - text: "STORM FIBER REPLIES ON FACEBOOK, CAN YOU IMAGINE, AND AT 3AM."
+      note: "The single most admired competitor behaviour in the corpus is answering."
+  conclusion: >-
+    Nobody in 976 comments says PTCL is fair, modern, or on their side. The brand has no
+    equity independent of whether the individual line happens to work.
+  source: >-
+    Source: COMMENTS.xlsx, 976 comments analysed, all 92 PTCL mentions read. Self-selected
+    corpus - not a satisfaction measure. Full analysis in the consumer conversation document.
+
+_ladder:
+  headline: "Levels of branding: where the category is, and where PTCL is talking"
+  standfirst: >-
+    Placement computed from the 336 coded posts - each brand's dominant claim mapped to a
+    level, not asserted.
+  levels:
+    - name: "1. Name only"
+      says: '"I am here"'
+      who: "Nobody. Every brand in this category has moved past recognition."
+    - name: "2. Product attributes"
+      says: '"Reason to buy me"'
+      who: "StormFiber (2.6), Zong (2.8), Optix (2.9), Jazz (2.9) - speed, price, coverage tiles"
+      mark: "WHERE THE CATEGORY SITS"
+    - name: "3. Product benefits"
+      says: '"Here is what I can do for you"'
+      who: "Tapmad (3.0), Multinet (3.2), Jazz Business (3.3) - problem-led, what it does for you"
+      mark: "WHERE PTCL MUST EARN"
+    - name: "4. Psychological territory"
+      says: '"I am like you; you are like me"'
+      who: "Transworld (3.8), Ufone (3.9) - household truths, nostalgia, relatability"
+      mark: "THE DIFFERENTIATION GAP"
+    - name: "5. Human values / way of life"
+      says: '"I think like you do"'
+      who: "PTCL (4.1) - 14 of 24 posts claim heritage or nation, in the pride register"
+      mark: "WHERE PTCL IS TALKING"
+    - name: "6. Mission / philosophy"
+      says: '"I change things you would like to"'
+      who: "Nobody in this category."
+  conclusion: >-
+    PTCL is communicating roughly two levels above where it is delivering - and the ladder
+    does not let a brand skip.
+  source: >-
+    Framework: Levels of Branding. Placement is each brand's mean level across its coded
+    posts; a claim map, not a quality judgement.
+
+_finding:
+  headline: "PTCL is advertising at level 5 and delivering at level 2."
+  body:
+    - "The category sits on product attributes - speed, price, coverage. PTCL sits on national
+       identity: 14 of its 24 posts claim heritage or nation, only one mentions speed, none
+       mentions reliability or service."
+    - "Its customers are not in that conversation. They are describing a bill that changes
+       without notice, a fault that takes days of pleading, and an exit that is penalised -
+       in the language of fraud, tyranny and captivity."
+    - "A brand cannot occupy \"I think like you do\" while its customers are saying \"you are
+       Pharaoh\". The higher the claim, the wider the credibility gap it opens."
+    - "This is why the awareness does not convert. Not a media weight problem. A permission
+       problem."
+
+_own:
+  headline: "The strategy: earn the rung below, then own the one above the category"
+  number: "L3 to L4"
+  number_note:
+    - "The category is stuck at level 2 - attributes. The framework's own rule is to
+       differentiate one level above where the category sits, which makes 3 and 4 the
+       contested ground and 5 a claim nobody has earned."
+    - "PTCL does not need a bigger idea. It needs a smaller, harder one it can prove."
+  why: >-
+    Fairness is the one territory that works on every rung and answers the customer pulse
+    directly. As a benefit it is predictable billing and a fault fixed without pleading.
+    As a psychological territory it is a brand that treats you like an adult. As a value it
+    is straight dealing - but only once the first two are true. It is also completely
+    unclaimed: no brand in 336 posts promises anything about price stability or being
+    answerable, and the most admired competitor behaviour in the corpus is simply replying.
+  pillars_title: "The sequence - each rung earns the next"
+  pillars:
+    - title: "1. Fix the terms (level 3)"
+      body: >-
+        Predictable pricing with notice, a published fault-response time, and an exit
+        without a penalty month. These are commercial decisions, not campaigns - and they
+        are the only things that will make any claim credible.
+    - title: "2. Become answerable (level 3-4)"
+      body: >-
+        Show up where the decision is made. PTCL appears nowhere in 976 comments while
+        StormFiber is praised for replying at 3am. Presence converts a utility into a
+        relationship.
+    - title: "3. Then claim the value (level 5)"
+      body: >-
+        Only when the first two are demonstrable does national scale become meaning rather
+        than advertising. The legacy story is the reward for fixing the relationship, not
+        a substitute for it.
+  kicker: >-
+    Heritage is the most crowded territory in the category - 13 of 14 brands are in it, and
+    Transworld already owns 1947. Fairness is empty.

@@ -1,0 +1,26 @@
+{
+  "skill_name": "campaign-concept",
+  "evals": [
+    {
+      "id": 1,
+      "name": "concept-from-an-existing-audit",
+      "prompt": "We've finished the competitive audit for a state-owned life insurer - the finding is that 81% of category advertising carries no proof device, and our client is the only one publishing performance numbers. Now write the campaign concept.",
+      "expected_output": "Builds the chain asset -> tension -> territory -> proposition -> line -> executions. Anchors on a structural asset (state ownership, statutory obligation), not tone. Runs the swap test. States what the idea asks of the client. Does not produce a generic 'securing your tomorrow' line.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "concept-with-no-audit",
+      "prompt": "Give me a big idea for a Pakistani bank's savings account campaign.",
+      "expected_output": "Says a concept without an audit is a guess, and either runs category-creative-scan first or explicitly labels the work as a hypothesis built on stated assumptions. Does not invent a confident insight from nothing.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "kills-its-own-weak-line",
+      "prompt": "Our concept is 'Together for a brighter tomorrow' for a life insurer. Is it any good?",
+      "expected_output": "Applies the swap test and fails the line explicitly - it works for every competitor, so it is a category truth not a concept. Identifies the missing structural asset and proposes what would need to be true instead. Does not soften the verdict into faint praise.",
+      "files": []
+    }
+  ]
+}

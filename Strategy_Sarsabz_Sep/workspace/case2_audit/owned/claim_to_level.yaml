@@ -1,0 +1,36 @@
+# Claim -> ladder level. Copy this and rewrite it for the category before computing anything.
+#
+# Every claim value used in the coded file must appear here; place_brands.py fails on an
+# unmapped value rather than dropping the row, because a dropped row moves every mean.
+#
+# Map on what the ad asks the viewer to BELIEVE, not on what the product is.
+
+column: claim_primary      # the column in the coded file holding the dominant claim
+brand_column: platform     # single-brand scan: platform stands in for brand
+level_column: level        # optional per-row override column; wins over the map when present
+
+levels:
+  1: "Product identification"
+  2: "Product attributes"
+  3: "Product benefits"
+  4: "Psychological associations"
+  5: "Human values / way of life"
+  6: "Mission / philosophy"
+
+# ---- fertilizer example (vocabulary from a Sarsabz scan) ----
+map:
+  brand_goodwill: 1
+  product_quality: 2
+  rewards_prizes: 2
+  yield_increase: 3
+  advisory_service: 3
+  farmer_recognition: 4
+  women_empowerment: 5
+  national_identity: 5
+  other: 1
+
+# Rows to exclude from placement entirely, with the reason recorded.
+# Sponsorship entertainment says nothing about the brand's claim depth.
+exclude:
+  content_type:
+    - sponsorship

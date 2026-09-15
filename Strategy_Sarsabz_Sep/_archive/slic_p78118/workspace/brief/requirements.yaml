@@ -1,0 +1,555 @@
+brief:
+  client: State Life Insurance Corporation of Pakistan (SLIC)
+  reference: P78118
+  title: Prequalification for Procurement of Advertising Agencies
+  source_file: data/pq-bidding-document (2).pdf
+  portal: https://epads.gov.pk/opportunities/federal/procurements/78118
+  method: Single Stage - One Envelope, National
+  selection: Quality Based Selection (QBS)
+  total_marks: 100
+  pass_mark: 50
+  submission_deadline: 2026-09-03 11:00
+  submission_channel: EPADS v2.0 only - manual submission not entertained
+  clarification_deadline: 2026-08-31
+
+the_ask: |
+  SLIC wants to prequalify advertising agencies for a 2026-28 roster, and will issue the
+  real RFP only to those that pass. Despite being called a prequalification, this is a
+  pitch with a paperwork gate: 70 of the 100 technical marks are a speculative campaign
+  (concept, competitive analysis, communication strategy, creative artworks, media mix),
+  and only 30 are corporate documents. Pass mark is 50, so the paperwork alone cannot
+  qualify us.
+
+  The gate is press and broadcast accreditation - APNS, PBA, AAP and PID - which means
+  SLIC is buying a full-service ATL agency, not a digital practice. Only the applicant
+  entity's own qualifications count (ITA 22.1, 23.3) and joint ventures are capped at nil
+  members, so we cannot lean on Group scale or an affiliate's accreditation.
+
+missing:
+  - what: Section VII - Schedule of Requirements
+    referenced_at: ITA 6.8 and ITA 1.1; PDS clause 1 points to "section services and Lots"
+    action: Check the EPADS opportunity page for the Services/Lots section and any attachment
+    question: >-
+      Which product line, audience and objective should the campaign submission address
+      (individual life / group and corporate / Takaful / corporate brand), and is there a
+      required format or page limit?
+  - what: Campaign brief for the 70-mark submission
+    referenced_at: Evaluation Criteria p.22-23 scores five campaign components with no brief given
+    action: File with the clarification above before 31 August
+    question: Is there a defined objective, budget or target segment for the campaign concept?
+
+requirements:
+  - id: entity_decision
+    name: Decide which Group entity applies (must itself hold APNS/PBA/AAP/PID)
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Faheem Ahmed
+    depends_on: []
+    notes: >-
+      ITA 22.1/23.3 exclude parents, subsidiaries and affiliates; PDS caps JV members at nil.
+      Synite Digital is the digital practice and is unlikely to hold press/broadcast
+      accreditation - probably Synergy Advertising. Blocks everything else.
+
+  - id: clarification
+    name: File clarification with SLIC on EPADS (missing Schedule of Requirements / campaign brief)
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 2
+    external: true
+    owner: Emaad Ishaq Khan
+    depends_on: []
+    due: 2026-08-31
+    notes: Window closes 31 Aug (ITA 7.1). Also check the portal Lots section first.
+
+  - id: accreditation
+    name: APNS, PBA and AAP registration certificates plus PID enlistment
+    type: gate
+    marks: 3
+    effort_days: 1
+    lead_time_days: 3
+    external: true
+    owner: Compliance
+    depends_on: [entity_decision]
+    notes: Pass/fail eligibility AND 3 marks. Not evidenced in any prior submission.
+
+  - id: bank_cert
+    name: Bank certificate of financial stability
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 4
+    external: true
+    owner: Finance
+    depends_on: [entity_decision]
+    notes: Not held. Bank turnaround is the risk, not our effort.
+
+  - id: not_blacklisted
+    name: Non-blacklisting certificate from APNS and PBA
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 3
+    external: true
+    owner: Compliance
+    depends_on: [entity_decision]
+
+  - id: slic_dues
+    name: Certificate that newspaper bills released by State Life are cleared
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 3
+    external: true
+    owner: Finance
+    depends_on: [entity_decision]
+    notes: Check with accounts whether we have ever been released by State Life.
+
+  - id: tax_cert
+    name: Income tax / GST certificate, NTN and 2023-25 returns, attested
+    type: gate
+    marks: 2
+    effort_days: 1
+    lead_time_days: 2
+    external: true
+    owner: Finance
+    depends_on: [entity_decision]
+    notes: Annexed to the UNICEF bid; needs entity-level version plus attestation.
+
+  - id: secp
+    name: SECP incorporation certificate, Memorandum and Articles, attested
+    type: scored
+    marks: 2
+    effort_days: 1
+    lead_time_days: 1
+    external: true
+    owner: Company Secretary
+    depends_on: [entity_decision]
+
+  - id: clean_record
+    name: Rs.100 stamp-paper declaration per Annexure II
+    type: scored
+    marks: 3
+    effort_days: 1
+    lead_time_days: 1
+    external: true
+    owner: Compliance
+    depends_on: [entity_decision]
+    notes: Stamp paper and notarisation are the lead time. Form emitted by slic-pq build.
+
+  - id: revenue
+    name: Audited accounts evidencing PKR 100m+ aggregate revenue over three years
+    type: scored
+    marks: 4
+    effort_days: 1
+    lead_time_days: 2
+    external: true
+    owner: Finance
+    depends_on: [entity_decision]
+    notes: Entity-level, not Group. Confirm the applicant entity clears the threshold.
+
+  - id: headcount
+    name: Permanent headcount evidence (payroll / EOBI) for 20+ employees
+    type: scored
+    marks: 4
+    effort_days: 1
+    lead_time_days: 1
+    external: false
+    owner: HR
+    depends_on: [entity_decision]
+
+  - id: offices
+    name: Evidence of operational offices in Karachi, Lahore and Islamabad
+    type: scored
+    marks: 2
+    effort_days: 1
+    lead_time_days: 1
+    external: false
+    owner: Admin
+    depends_on: [entity_decision]
+    notes: Entity-level leases or utility bills. Affiliate offices do not count.
+
+  - id: staff_annexure
+    name: Annexure III staff particulars with CVs
+    type: scored
+    marks: 3
+    effort_days: 2
+    lead_time_days: 0
+    external: false
+    owner: HR
+    depends_on: [entity_decision]
+    notes: UNICEF bid has 11 bios and CVs - recast into SLIC columns and extend.
+
+  - id: expertise
+    name: CVs evidencing art direction, creative direction, copywriting, account management
+    type: scored
+    marks: 2
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: HR
+    depends_on: [staff_annexure]
+
+  - id: client_list
+    name: Five-year client list with services, plus active-client evidence
+    type: scored
+    marks: 2
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Emaad Ishaq Khan
+    depends_on: []
+    notes: UNICEF S2.4/S2.6 is the source. Confirm disclosure permissions.
+
+  - id: campaign_experience
+    name: Three years of campaign evidence - print, TVC/DVC, transmission certificates
+    type: scored
+    marks: 3
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: []
+    notes: Lead with ATL (Polio docu-dramas, SBP anthems) given the APNS/PBA framing.
+
+  - id: profile
+    name: Agency profile - addresses, branches, year of establishment
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Emaad Ishaq Khan
+    depends_on: [entity_decision]
+
+  - id: category_analysis
+    name: Category and competitor comms audit (feeds concept, strategy and media)
+    type: scored
+    marks: 0
+    effort_days: 3
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: []
+    notes: >-
+      Carries no marks itself but feeds 55. Use the competitor-comms-audit skill;
+      capture sheet already generated at workspace/audit/capture.xlsx.
+
+  # --- Competitive Analysis (15) -----------------------------------------------
+  - id: comp_competitors
+    name: Identify relevant competitors
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [category_analysis]
+    notes: brands.csv already lists 16 across four rings - confirm the frame, do not rebuild it.
+
+  - id: comp_analyse_comms
+    name: Analyse competitor communication
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [comp_competitors]
+    notes: >-
+      Coding pass on capture.xlsx. Every row needs a source_url or analyze_audit.py drops it.
+
+  - id: comp_gaps
+    name: Identify gaps and opportunities
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [comp_analyse_comms]
+    notes: >-
+      The claim x register crosstab; white space is the output campaign_concept consumes.
+
+  - id: comp_differentiation
+    name: Establish SLIC's potential communication differentiation
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [comp_gaps]
+    notes: >-
+      The handover line to the concept. If this can be deleted without weakening the
+      concept, the whole 15-mark section has failed.
+
+  - id: competitive_analysis
+    name: Competitive Analysis section
+    type: scored
+    marks: 15
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [comp_competitors, comp_analyse_comms, comp_gaps, comp_differentiation]
+    notes: Task breakdown from data/SLIC Doc.docx (internal checklist, 2026-08-27).
+
+  # --- Campaign Concept (15) ---------------------------------------------------
+  - id: concept_develop
+    name: Develop campaign concept
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [comp_differentiation]
+
+  - id: concept_core_idea
+    name: Clearly articulate the core idea
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [concept_develop]
+
+  - id: concept_relevance
+    name: Ensure concept is relevant to SLIC
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [concept_core_idea]
+    notes: >-
+      Relevance to which product line is exactly what the missing Section VII would have
+      told us. Until the clarification lands this is an assumption we must state on the page.
+
+  - id: concept_rationale
+    name: Prepare presentation-ready rationale
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [concept_relevance]
+    notes: >-
+      Presentation-ready is the team's own assumption - the tender sets no format or page
+      limit. Confirm whether a deck is expected or whether it came from the EPADS Lots.
+
+  - id: campaign_concept
+    name: Campaign Concept
+    type: scored
+    marks: 15
+    effort_days: 2
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [concept_develop, concept_core_idea, concept_relevance, concept_rationale]
+    notes: Task breakdown from data/SLIC Doc.docx (internal checklist, 2026-08-27).
+
+  # --- Communication Strategy (15) ---------------------------------------------
+  - id: strat_objective
+    name: Define communication objective
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [category_analysis]
+
+  - id: strat_audience
+    name: Define target audience
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [strat_objective]
+    notes: >-
+      Blocked on the same clarification as concept_relevance - no segment is stated anywhere.
+
+  - id: strat_approach
+    name: Establish communication approach
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [strat_audience]
+
+  - id: strat_messaging
+    name: Develop messaging direction
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [strat_approach]
+
+  - id: strat_journey
+    name: Define communication journey
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [strat_messaging]
+
+  - id: communication_strategy
+    name: Communication Strategy
+    type: scored
+    marks: 15
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Khalid Naseem
+    depends_on: [strat_objective, strat_audience, strat_approach, strat_messaging, strat_journey]
+    notes: Task breakdown from data/SLIC Doc.docx (internal checklist, 2026-08-27).
+
+  # --- Creative Artworks (15) --------------------------------------------------
+  - id: art_kv_direction
+    name: Develop KV / creative direction
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [campaign_concept]
+
+  - id: art_samples
+    name: Prepare required sample artworks
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [art_kv_direction]
+    notes: >-
+      Required is undefined - no count or format is given. Weight to press and broadcast:
+      the criteria gate on APNS/PBA/PID and ask for print ads and TVC/DVC as evidence.
+
+  - id: art_quality
+    name: Ensure quality is presentation-ready
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [art_samples]
+
+  - id: art_demonstrates_concept
+    name: Ensure creative work demonstrates the proposed campaign concept
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [art_quality]
+
+  - id: creative_artworks
+    name: Creative Artworks
+    type: scored
+    marks: 15
+    effort_days: 2
+    lead_time_days: 0
+    external: false
+    owner: Ferrukh Syed
+    depends_on: [art_kv_direction, art_samples, art_quality, art_demonstrates_concept]
+    notes: Task breakdown from data/SLIC Doc.docx (internal checklist, 2026-08-27).
+
+  # --- Proposed Media Mix (10) -------------------------------------------------
+  - id: media_channels
+    name: Define proposed media channels
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Suhira Munshi
+    depends_on: [category_analysis]
+
+  - id: media_roles
+    name: Explain role of each medium
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Suhira Munshi
+    depends_on: [media_channels]
+
+  - id: media_supports_strategy
+    name: Demonstrate how the media mix supports the communication strategy
+    type: informational
+    marks: 0
+    effort_days: 0
+    lead_time_days: 0
+    external: false
+    owner: Suhira Munshi
+    depends_on: [media_roles, communication_strategy]
+    notes: >-
+      Depends on the strategy landing, not just the category read - the internal doc
+      makes this an explicit test.
+
+  - id: media_mix
+    name: Proposed Media Mix
+    type: scored
+    marks: 10
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Suhira Munshi
+    depends_on: [media_channels, media_roles, media_supports_strategy]
+    notes: >-
+      Task breakdown from data/SLIC Doc.docx (internal checklist, 2026-08-27).
+      No budget is stated in the tender - budget logic must be presented as indicative.
+
+
+  - id: assembly
+    name: Assemble, proof, attest and upload to EPADS
+    type: gate
+    marks: 0
+    effort_days: 1
+    lead_time_days: 0
+    external: false
+    owner: Emaad Ishaq Khan
+    depends_on:
+      - accreditation
+      - bank_cert
+      - not_blacklisted
+      - slic_dues
+      - tax_cert
+      - secp
+      - clean_record
+      - revenue
+      - headcount
+      - offices
+      - staff_annexure
+      - expertise
+      - client_list
+      - campaign_experience
+      - profile
+      - competitive_analysis
+      - campaign_concept
+      - communication_strategy
+      - creative_artworks
+      - media_mix
+    notes: Portal uploads fail. Do not leave this to the morning of the 3rd.

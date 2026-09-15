@@ -1,0 +1,26 @@
+{
+  "skill_name": "brand-laddering",
+  "evals": [
+    {
+      "id": 1,
+      "name": "place-brands-from-coded-scan",
+      "prompt": "Here is the coded output of a category creative scan (codes.csv, one row per post with brand and claim_primary). Work out where each brand sits on the levels of branding and where our client should be positioned.",
+      "expected_output": "A claim-to-level mapping written down first; placement computed with place_brands.py (per-brand mean and mode with n); a recommended level with one PLACE HERE verdict and the other levels marked HOLD/PROVE/NEXT/LATER/NOT NOW; explicit statement that higher is not better; thin samples flagged.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "refuses-to-ladder-without-evidence",
+      "prompt": "Our client is a fertilizer brand. Can you build me a brand ladder showing we should move up from functional to emotional and own 'farmer prosperity'?",
+      "expected_output": "Does not produce a ladder from assertion. Asks for the coded advertising and any customer evidence, or offers to run the category scan first; explains that a purpose-level claim needs evidence at the levels beneath it, and that the ladder does not permit skipping rungs.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "ladder-slides-with-customer-evidence",
+      "prompt": "We have 300 coded competitor posts and a comment analysis of 1,400 customer comments. Build the brand meaning ladder slides for the pitch deck.",
+      "expected_output": "Four slides: framework, computed placement, factor inventory (current/potential/unsupported with dagger marks for additions), and the client ladder with says/heard/verdict columns. Each slide footnoted with framework, sample size and source file. Customer evidence placed against brand claims, with the mismatch named as the finding.",
+      "files": []
+    }
+  ]
+}

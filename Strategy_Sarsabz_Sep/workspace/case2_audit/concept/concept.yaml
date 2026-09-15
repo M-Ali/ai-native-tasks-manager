@@ -1,0 +1,110 @@
+# Sarsabz Case 2 - the tactical campaign concept. The chain, written before any copy (campaign-concept skill).
+# Every archive title and brief phrase quoted below is checked by build_concept_section.py before it builds.
+
+brand: Sarsabz
+big_idea: "Sarsabz proves itself on a field like yours."
+
+chain:
+  asset: "The only CAN and 93% of NP in Pakistan, 500+ demo plots, and Ki Jeet winners in 34 of 40 districts. Engro holds 6% of NP and no CAN."
+  tension: "Farmers don't doubt that NP and CAN work, but they won't bet a season on a switch nobody has shown them how to make without waste."
+  territory: "Proof on a real field - a result beside the old way. Engro owns advice; no brand in 200 uploads shows the comparison."
+  proposition: "Sarsabz puts its NP and CAN beside your usual DAP and urea on a field like yours, weighs both, and publishes the result and the recipe - whatever it shows."
+  line: "Dus Feesad Aur. Khet Gawah Hai."
+  line_translation: "Ten percent more. The field is the witness."
+  mechanic: "Do Khet (two fields, one farmer, one soil), Kaanta Din (harvest weigh-in, on camera), and a Nuskha (the recipe) - repeated every crop, season and district."
+
+line:
+  why:
+    - "'Dus Feesad Aur' is a line Sarsabz already owns: a 2018 wheat film and a 2021 rice TVC with 1.8M views. It has been dormant since 2021. Reviving it is cheaper than a new line and honours the brand's own history."
+    - "'Khet Gawah Hai' turns the promise into testimony. The field, not the brand, makes the claim - the answer to farmers who suspect paid advice."
+    - "Written as farmers write: 1,025 of 1,433 comments are in Roman Urdu."
+  alternatives:
+    - name: "A. Dus Feesad Aur. Khet Gawah Hai."
+      recommended: true
+      tradeoff: "Owned line plus a proof sign-off. Only works if the plot results are published."
+    - name: "B. Pehle Dekho, Phir Daalo (See first, then apply)."
+      tradeoff: "Clear instruction, but a new line with no equity - and any brand could say it."
+    - name: "C. Revive 'Khaad Muft He Samjho'."
+      tradeoff: "Owned value line (1.1M views, 2022), but a 'free fertilizer' claim invites a price fight Engro is already running ('Kam Kharch, Zyada Paidawar')."
+    - name: "D. Keep '10% Se Bhi Ziyada Izaafi Paidawaar'."
+      tradeoff: "The brief's own wording - but it is the badge 10 of 11 films already carry without proof."
+  swap_test: "Engro could say 'Khet Gawah Hai', but its field would show urea and DAP. Only Sarsabz can put NP and CAN on the winning side."
+
+mechanic:
+  - name: "Do Khet"
+    gloss: "Two fields"
+    body: "One farmer, one soil, split down the middle: his usual DAP and urea on one side, Sarsabz NP and CAN on the other. Chosen with the farmer, not by the brand."
+  - name: "Kaanta Din"
+    gloss: "Weighing day"
+    body: "Both halves harvested and weighed on camera, in front of neighbours, with an Agriculture Department or university officer reading the scale."
+  - name: "Nuskha"
+    gloss: "The recipe"
+    body: "What replaced DAP, how many bags, what it was mixed with, which irrigation, which soil - printed, filmed and handed over with the result."
+
+executions:
+  - channel: "ATL"
+    work: "TV and DVC: 'Do Khet' - one field, two halves, the scale, the number. 15s carries the result; 60s carries the recipe. Radio: district results read out during harvest."
+    answers: "Farmers are exposed to terrestrial TV and radio (brief p7)."
+  - channel: "BTL"
+    work: "A Nuskha card in every bag. The Nitrophos sticker code moves from the prize draw to proof: SMS it to get your district's result."
+    answers: "220 comments ask what mixes with what."
+  - channel: "Digital"
+    work: "Kaanta Din live on TikTok (1.2M) and YouTube (396K). Every short points to the long recipe film. The Sarsabz Pakistan App finds the nearest proof plot and lets farmers log their own."
+    answers: "Farmers ask strangers what to mix, and suspect the answers are paid."
+  - channel: "Dealer / Trade"
+    work: "A Khet Gawah Hai board at every dealer and AgriMart: this district's plot, both weights, the recipe. The dealer becomes the last field."
+    answers: "Farmers replicate best practices shared by fellow farmers (brief p7)."
+  - channel: "On-ground"
+    work: "Kaanta Din field days at the plots, hosted by Ki Jeet winners. The Sarsabz Kissan Convention becomes results day."
+    answers: "High believability in word of mouth publicity (brief p7)."
+
+calendar:
+  - when: "Oct - Nov 2026"
+    stage: "Sowing"
+    work: "Plots planted in Ki Jeet districts. Launch 'Do Khet' 15s TV, radio and dealer boards."
+  - when: "Dec 2026 - Jan 2027"
+    stage: "First irrigations"
+    work: "Nuskha push: the mixing guide in bags, app and comment replies, when the questions peak."
+  - when: "Feb - Mar 2027"
+    stage: "Growth"
+    work: "Farmer diaries from the plots on TikTok and YouTube - the two halves, week by week."
+  - when: "Apr - May 2027"
+    stage: "Harvest"
+    work: "Kaanta Din weigh-ins live. District results on radio and dealer boards - including any under 10%."
+  - when: "Jun - Sep 2027"
+    stage: "Kharif"
+    work: "Rice, cotton and maize plots, including Sindh rice - where Ki Jeet has no proof yet."
+  - when: "Oct 2027"
+    stage: "Month twelve"
+    work: "Ki Jeet with published inputs, and the next Rabi with farmer-logged plots from the app. The idea generates new proof; it does not repeat."
+
+measurement:
+  - kind: "Leading"
+    measure: "Paired plots planted and published; Kaanta Din attendance; sticker-code result look-ups; mixing questions answered in the app and comments."
+    baseline: "New - set at launch."
+  - kind: "Lagging"
+    measure: "NP and CAN offtake in plot districts against matched districts without plots."
+    baseline: "Client sales data - requested."
+  - kind: "Brand"
+    measure: "Top-of-mind and spontaneous awareness in the next brand health wave; farmers naming Sarsabz, not just 'Nitrophos'."
+    baseline: "TOM 22% (brief p29); Sarsabz named in 15 of 1,433 comments."
+
+asks:
+  - "Publish every plot result, including those under 10%. A campaign called 'the field is the witness' cannot hide a field."
+  - "Clear the 10% claim for advertising with the plot data behind it - a question for Fatima's legal team, not an assumption."
+  - "Fatima agronomy signs the Nuskha, so field staff, dealers and creators give one answer on mixing."
+  - "Move the Nitrophos sticker code from the prize draw to verification."
+  - "Agree an independent adjudicator - Agriculture Department or university - for the weigh-ins."
+
+tests:
+  - {name: "Swap", result: "Engro's field would show urea and DAP. The line is false in any other brand's mouth."}
+  - {name: "Asset", result: "The only CAN, 93% of NP, 500+ plots - structural, not tone."}
+  - {name: "Deletion", result: "Remove the audit and there is no reason to pick proof over advice. They are one argument."}
+  - {name: "Department", result: "Agronomy, legal, sales and the app team must act. It asks Fatima to do something, not only say it."}
+  - {name: "Month twelve", result: "New crops, districts and farmer-logged plots every season. A platform, not a launch."}
+  - {name: "Room", result: "'Ten percent more - the field is the witness.' A farmer can repeat it."}
+
+checks:
+  archive_titles: ["Dus Feesad Aur! | Wheat Crop", "Dus Feesad Aur | Rice Crop TVC", "Khaad Muft He Samjho | Cotton"]
+  brief_phrases: ["Replicates best practices shared by fellow farmers", "High believability in word of mouth publicity",
+                  "Exposed to TV (terrestrial), Radio", "A practical and measurable approach to campaign effectiveness"]

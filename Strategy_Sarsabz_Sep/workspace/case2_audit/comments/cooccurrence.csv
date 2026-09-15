@@ -1,0 +1,118 @@
+brand,theme,comments
+Urea (generic),mixing_compatibility,64
+Urea (generic),timing_dose,56
+NP / Nitrophos (product),mixing_compatibility,52
+CAN / Gawara (product),timing_dose,43
+DAP (product),mixing_compatibility,40
+CAN / Gawara (product),application_method,38
+CAN / Gawara (product),mixing_compatibility,34
+Urea (generic),application_method,34
+Urea (generic),crop_wheat,30
+NP / Nitrophos (product),application_method,28
+DAP (product),timing_dose,26
+NP / Nitrophos (product),timing_dose,25
+Engro Zabardast,mixing_compatibility,24
+Engro Zabardast,timing_dose,24
+CAN / Gawara (product),soil_type,20
+DAP (product),crop_wheat,18
+Engro Zabardast,application_method,18
+CAN / Gawara (product),crop_wheat,17
+DAP (product),application_method,17
+DAP (product),np_vs_dap_substitution,15
+Urea (generic),crop_rice,15
+Engro Zabardast,crop_wheat,13
+NP / Nitrophos (product),np_vs_dap_substitution,13
+CAN / Gawara (product),crop_other,12
+FFC Sona,mixing_compatibility,11
+CAN / Gawara (product),yield_result,11
+NP / Nitrophos (product),crop_wheat,11
+Urea (generic),crop_other,11
+CAN / Gawara (product),price_cost,11
+DAP (product),crop_other,10
+DAP (product),yield_result,10
+Urea (generic),video_feedback,10
+Urea (generic),soil_type,9
+CAN / Gawara (product),video_feedback,8
+NP / Nitrophos (product),video_feedback,8
+NP / Nitrophos (product),yield_result,8
+NP / Nitrophos (product),crop_other,7
+Urea (generic),yield_result,7
+Urea (generic),np_vs_dap_substitution,7
+Badshah / Swat / Jaffar / others,application_method,6
+FFC Sona,timing_dose,6
+Engro Zabardast,video_feedback,6
+DAP (product),soil_type,6
+NP / Nitrophos (product),soil_type,5
+Badshah / Swat / Jaffar / others,timing_dose,5
+Badshah / Swat / Jaffar / others,mixing_compatibility,5
+DAP (product),crop_rice,5
+NP / Nitrophos (product),price_cost,5
+Urea (generic),price_cost,5
+DAP (product),video_feedback,4
+Urea (generic),contact_reply_request,4
+DAP (product),price_cost,4
+FFC Sona,crop_rice,4
+FFC Sona,application_method,3
+Sarsabz,np_vs_dap_substitution,3
+Sarsabz,timing_dose,3
+NP / Nitrophos (product),contact_reply_request,3
+Engro Zabardast,contact_reply_request,3
+Engro (other),crop_wheat,3
+Engro Zabardast,crop_rice,3
+CAN / Gawara (product),trust_distrust_advice,3
+Engro Zabardast,crop_other,3
+Engro Zabardast,soil_type,3
+CAN / Gawara (product),region_request,3
+Sarsabz,mixing_compatibility,2
+FFC Sona,crop_wheat,2
+CAN / Gawara (product),np_vs_dap_substitution,2
+Engro Zabardast,np_vs_dap_substitution,2
+DAP (product),counterfeit_quality,2
+Engro (other),mixing_compatibility,2
+Fatima,mixing_compatibility,2
+Fatima,application_method,2
+Urea (generic),region_request,2
+Badshah / Swat / Jaffar / others,crop_wheat,2
+DAP (product),region_request,2
+Engro (other),soil_type,2
+Sarsabz,crop_wheat,2
+DAP (product),trust_distrust_advice,2
+Urea (generic),availability,2
+CAN / Gawara (product),crop_rice,2
+Engro (other),timing_dose,2
+Sarsabz,counterfeit_quality,1
+Pak Arab,counterfeit_quality,1
+FFC Sona,crop_other,1
+Badshah / Swat / Jaffar / others,np_vs_dap_substitution,1
+Badshah / Swat / Jaffar / others,yield_result,1
+Sarsabz,contact_reply_request,1
+Badshah / Swat / Jaffar / others,price_cost,1
+FFC Sona,video_feedback,1
+Sarsabz,yield_result,1
+Sarsabz,video_feedback,1
+DAP (product),availability,1
+NP / Nitrophos (product),crop_rice,1
+Urea (generic),counterfeit_quality,1
+Engro Zabardast,counterfeit_quality,1
+Engro Zabardast,region_request,1
+FFC Sona,np_vs_dap_substitution,1
+Engro (other),application_method,1
+Engro (other),contact_reply_request,1
+Sarsabz,application_method,1
+Engro (other),price_cost,1
+FFC Sona,price_cost,1
+Engro (other),availability,1
+FFC Sona,availability,1
+Engro (other),crop_rice,1
+FFC Sona,yield_result,1
+Sarsabz,trust_distrust_advice,1
+NP / Nitrophos (product),trust_distrust_advice,1
+NP / Nitrophos (product),availability,1
+CAN / Gawara (product),availability,1
+Engro (other),yield_result,1
+Fatima,yield_result,1
+FFC Sona,trust_distrust_advice,1
+Badshah / Swat / Jaffar / others,counterfeit_quality,1
+Pak Arab,mixing_compatibility,1
+Pak Arab,timing_dose,1
+Pak Arab,price_cost,1

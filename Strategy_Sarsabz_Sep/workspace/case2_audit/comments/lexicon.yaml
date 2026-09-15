@@ -1,0 +1,135 @@
+# Fertilizer lexicon for data/COMMENTS.xlsx (YouTube agronomy channels, Pakistan).
+# Built AFTER reading all 1,433 comments. Single quotes on every pattern.
+# Roman Urdu spellings are wildly variable (nitrophos / nitrofas / natrofas / naitrofast);
+# stems are used where a single spelling would miss most of them.
+
+themes:
+  video_feedback:
+    - 'nice (video|info|work|tips)'
+    - 'good (video|info|information|job|work)'
+    - 'great (video|info|job)'
+    - 'very (good|nice|useful|informative|fruitful)'
+    - informative
+    - 'well (explained|elaborated|done)'
+    - 'thanks?( you| u)?\b'
+    - shukri
+    - 'jazak'
+    - 'زبردست (سر|معلومات|جناب)'
+    - 'مفید'
+    - 'معلومات'
+    - 'شکریہ'
+    - 'ماشاء'
+  # "Can I mix X with Y / together / ikathi / mila kar" - the dominant question in the file
+  mixing_compatibility:
+    - '\bmix'
+    - 'mila (kar|k|ke)'
+    - 'milakar'
+    - 'ikh?att?h?[iy]'
+    - 'akh?att?h?[iy]'
+    - 'ak ?sath|aik ?sath|ek ?sath|sath (mix|dal|istamal|use)'
+    - together
+    - react
+    - 'fix ho'
+    - 'مکس'
+    - 'ملا ?کر'
+    - 'اکٹھ'
+    - 'اکھٹ'
+    - 'ایک ساتھ'
+    - 'ری ایکشن|ریایکشن'
+  application_method:
+    - '\bflood|\bfl[ae]d\b|fald'
+    - 'chh?att?a|chata'
+    - fertigat
+    - broadcast
+    - 'فلڈ'
+    - 'چھٹ'
+  timing_dose:
+    - 'pani (pe|pa|py|par|pr|per)'
+    - 'پانی (پر|پہ|پے)'
+    - 'kitn[ie]|miqdar|dose|per acre|fi acre|fee acre|فی ایکڑ|مقدار|کتنی'
+    - 'din (ki|k|bad|baad)|دن (کی|بعد)'
+    - 'gobh|goob|گوبھ|booting'
+  np_vs_dap_substitution:
+    - 'dap ki (jga|jagah|jaga)'
+    - 'ڈی اے پی کی جگہ'
+    - 'ڈی اے پی کے (مقابلے|متبادل)'
+    - 'mutbadal|متبادل'
+    - '(np|nitro\w*|natro\w*|naitro\w*).{0,40}(dap|ڈی اے پی)'
+    - '(dap|ڈی اے پی).{0,40}(np|nitro\w*|natro\w*|نائٹرو|نائیٹرو)'
+  soil_type:
+    - 'kal[ae]?r|kalrath|کلر'
+    - 'retl[iy]|reetli|rateel|sandy|ریتل'
+    - 'chikn[iy]|chkni|pak[ai] (wat|what)|sakht|hard|چکنی|سخت'
+    - 'barani|بارانی'
+    - '\bph\b'
+  counterfeit_quality:
+    - '2 ?(number|no\.?|numbr)'
+    - '(original|orignal|asli|nakli|fake|adulter|milawat)'
+    - 'اصلی|نقلی|دو نمبر|اوریجنل'
+  price_cost:
+    - price|rate\b|cost|mehng|sast|expensive|cheap|economical
+    - '\brs\.? ?\d|\d{1,2},?\d{3} ki'
+    - 'قیمت|ریٹ|مہنگ|سست'
+  availability:
+    - 'mil (hi )?n[ai]h?[ie]? rh?[iy]|nahi mil|ni mil|nahi milli|availab|shortage|kahan se mil|کہاں سے مل|نہیں مل'
+  yield_result:
+    - 'maund|\bmann?\b|\bmun\b|\bmand\b|\bمن\b'
+    - 'paidawar|pedawar|paidawaar|پیداوار|avera?ge|yield|result|رزلٹ|نتائج'
+  trust_distrust_advice:
+    - mafia|مافیا
+    - 'paise lekar|company ?(ne|nay)? kitn|marketing|sale kern'
+    - "don.?t believe|nonsens|misguid|galat|غلط|ڈرامے"
+    - 'likh?it|tehreeri|تحریری|ثبوت|proof|literature'
+  contact_reply_request:
+    - 'whats ?app|what.?s ?up|number (de|do|dain|mil)|contact|rbta|rabta|cell no'
+    - 'reply (bhi|zaroor|zarur|kren|kijiye|must|plz|please)|jawab (zaroor|zarur|dein|dijiye)|جواب ضرور'
+  region_request:
+    - 'sindh|سندھ'
+    - 'barani|بارانی|thal|تھل|bahawal|bhakkar|chakwal|jampur|thatta'
+  cold_fertilizer_perception:
+    - 'thand|ٹھنڈ'
+  crop_wheat:
+    - 'gand[ou]m|gundum|gandam|ghandam|wheat|گندم'
+  crop_rice:
+    - 'dhaa?n|monji|munji|rice|1509|1121|دھان|مونجی'
+  crop_other:
+    - 'cotton|kapas|کپاس|makai|maki|maize|مکئی|gann[ae]|kamad|sugar ?cane|کماد|گنے|onion|pyaz|پیاز|aloo|allo|potato|آلو|sarso|raya|سرسوں'
+
+brands:
+  Sarsabz:
+    - 'sar ?sa?bz|sar sbz|sarsbz|سرسبز|سر سبز'
+  Fatima:
+    - 'fatima|فاطمہ'
+  Pak Arab:
+    - 'pak ?arab|pakarab|پاک عرب'
+  NP / Nitrophos (product):
+    - '\bn\.?p\b|nitro ?ph?o?a?s|nitrofas|natro\w*|naitro\w*|netro\w*|nethro\w*|nitrophase|niytro\w*|نائٹرو|نائیٹرو|ناٸٹرو|ناءیٹرو|نایٹرو|ناٹٔرو|نٹرو|این پی'
+  CAN / Gawara (product):
+    - '\bcan (gawara|gowara|guwara|gwara|gavara|goura|guara|gawra)|can ?g\b|calcium ammonium|cangaw|cangw|cane ?ga|cean ga|kan ?gw|gawara|gowara|guwara|gwara|guara|ganwara|gunwara|کین گ|گوار|کین'
+    - '\bcan (khad|khaad|fertilizer|ki|ka|ko|kab|best|bhtr|istamal|ke sath|k sath|ky sath|2 bori|pakarab|pak arab)\b'
+    - '(dap|sop|urea|zinc|sulphur|potash) (and|or|with) can\b|mix can\b|with can\b|\bcan\?|\bcan with'
+  DAP (product):
+    - '\bd\.?a\.?p\b|ڈی ?اے ?پی|ڈی ای پی'
+  Urea (generic):
+    - 'ur[ei]a|uria|yoria|یوریا'
+  Engro Zabardast:
+    - 'zabar?d[au]?s?t (urea|uria|ureq|area|yoria)|zbrdst|zabrdast|zabardast urea|zardast|جبردست|زبردست یوریا|زبردست یویا|زبردست$'
+  Engro (other):
+    - 'engro|zorawar|zarkhez|اینگرو|زوآور|زور آور'
+  FFC Sona:
+    - '\bsona\b|\bffc\b|سونا|فوجی|fauji'
+  Badshah / Swat / Jaffar / others:
+    - 'badshah|بادشاہ|swat agro|ferti ?ns|jaff?ar|syngenta|sinjenta|سنجنٹا|fmc|headland|kenzo|arysta'
+
+positive_extra:
+  - behtreen
+  - behtareen
+  - 'best (hy|hai|ha|result)'
+  - 'zabardast result'
+  - 'بہترین'
+  - 'acha result|achi pedawar|faida|فائدہ|فایدہ'
+negative_extra:
+  - 'nuqsan|nuksan|نقصان'
+  - 'zaya|ضائع'
+  - 'koi faida nahi|کوی فایدہ نہیں|کوئی فائدہ نہیں'
+  - 'mehnga|مہنگا'

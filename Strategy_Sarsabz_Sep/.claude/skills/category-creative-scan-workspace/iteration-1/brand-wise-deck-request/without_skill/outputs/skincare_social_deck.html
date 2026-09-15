@@ -1,0 +1,346 @@
+<title>Barrier Wars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#F1F4F3; --surface:#FFFFFF; --surface-2:#E7ECEA;
+  --ink:#101718; --ink-2:#4F6265; --line:#D3DCDA;
+  --accent:#0F6E64; --accent-soft:#CFE6E1;
+  --tactical:#A85A18; --tactical-soft:#F0DFCD;
+  --shadow:0 1px 0 rgba(16,23,24,.04), 0 12px 32px -24px rgba(16,23,24,.5);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1213; --surface:#141C1D; --surface-2:#1C2627;
+    --ink:#E7EEEC; --ink-2:#94A7A8; --line:#273335;
+    --accent:#4FC4B2; --accent-soft:#123833;
+    --tactical:#E0954E; --tactical-soft:#33240F;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 40px -28px #000;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1213; --surface:#141C1D; --surface-2:#1C2627;
+  --ink:#E7EEEC; --ink-2:#94A7A8; --line:#273335;
+  --accent:#4FC4B2; --accent-soft:#123833;
+  --tactical:#E0954E; --tactical-soft:#33240F;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 40px -28px #000;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque","Public Sans",sans-serif; text-wrap:balance; margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace}
+.label{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2)}
+
+.cover{padding:88px 0 56px; border-bottom:1px solid var(--line)}
+.cover h1{font-size:clamp(40px,7vw,76px); line-height:.98; font-weight:700; letter-spacing:-.02em}
+.cover .sub{max-width:60ch; margin-top:20px; font-size:18px; color:var(--ink-2)}
+.meta{display:flex; flex-wrap:wrap; gap:8px 28px; margin-top:28px}
+.meta div{display:flex; gap:8px; align-items:baseline}
+
+section{padding:56px 0; border-bottom:1px solid var(--line)}
+.sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:28px; flex-wrap:wrap}
+.sec-head h2{font-size:clamp(24px,3.2vw,34px); font-weight:700; letter-spacing:-.01em}
+.lede{max-width:70ch; color:var(--ink-2); margin:0 0 24px}
+
+.brand{background:var(--surface); border:1px solid var(--line); border-radius:4px; box-shadow:var(--shadow); overflow:hidden; margin-bottom:20px}
+.brand-top{display:grid; grid-template-columns:260px 1fr; gap:0}
+@media(max-width:760px){.brand-top{grid-template-columns:1fr}}
+.rail{padding:22px 24px; background:var(--surface-2); border-right:1px solid var(--line)}
+@media(max-width:760px){.rail{border-right:none; border-bottom:1px solid var(--line)}}
+.rail h3{font-size:26px; font-weight:700; letter-spacing:-.01em}
+.handle{margin-top:2px; font-size:12.5px; color:var(--ink-2)}
+.stats{display:grid; grid-template-columns:1fr 1fr; gap:14px 12px; margin-top:18px}
+.stat .n{font-family:"Bricolage Grotesque",sans-serif; font-size:22px; font-weight:700; font-variant-numeric:tabular-nums}
+.stat .k{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2)}
+.bio{margin-top:18px; padding-top:14px; border-top:1px solid var(--line); font-size:13px; font-style:italic; color:var(--ink-2)}
+.body{padding:22px 26px}
+.dims{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 32px}
+@media(max-width:620px){.dims{grid-template-columns:1fr}}
+.dim .label{display:block; margin-bottom:5px}
+.dim p{margin:0; font-size:14.5px}
+.gens{display:flex; gap:6px; margin:6px 0 0}
+.gen{flex:1; text-align:center; padding:6px 2px; border-radius:3px; border:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em; color:var(--ink-2); background:transparent}
+.gen.on{background:var(--accent-soft); border-color:var(--accent); color:var(--ink); font-weight:600}
+.gen.half{background:var(--accent-soft); border-color:var(--line); opacity:.62}
+.meter{height:10px; border-radius:2px; background:var(--tactical-soft); overflow:hidden; display:flex; margin-top:8px}
+.meter i{display:block; background:var(--accent); height:100%}
+.meter-key{display:flex; justify-content:space-between; margin-top:6px; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
+.ev{margin:0; padding:16px 26px 22px; border-top:1px dashed var(--line); font-size:13px; color:var(--ink-2)}
+.ev strong{color:var(--ink); font-weight:600}
+
+.scroll{overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:820px; font-size:13.5px}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); background:var(--surface-2)}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+
+.finds{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
+.find{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:3px; padding:18px 20px}
+.find h3{font-size:17px; font-weight:700; margin-bottom:6px}
+.find p{margin:0; font-size:14px; color:var(--ink-2)}
+.find.warn{border-left-color:var(--tactical)}
+.note{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:20px 24px; font-size:14px}
+.note ul{margin:10px 0 0; padding-left:18px}
+.note li{margin-bottom:6px; color:var(--ink-2)}
+footer{padding:36px 0 64px; color:var(--ink-2); font-size:13px}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header class="cover">
+  <p class="label">Category creative scan &middot; US mass &amp; derm skincare</p>
+  <h1>Barrier Wars</h1>
+  <p class="sub">Six brands, one feed-level read: what each is actually posting, who it is pitched at by generation, and whether the work is building a brand or moving a unit this week.</p>
+  <div class="meta">
+    <div><span class="label">Scanned</span><span class="mono">27 Aug 2026</span></div>
+    <div><span class="label">Window</span><span class="mono">2&ndash;26 Aug 2026</span></div>
+    <div><span class="label">Posts seen</span><span class="mono">66 tiles</span></div>
+    <div><span class="label">Channel</span><span class="mono">Instagram + trade press</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><h2>Why these six</h2></div>
+  <p class="lede">No brand set was given, so this is the US mass and dermatological skincare shelf &mdash; the set that competes for the same drugstore basket and the same skincare feed. Two derm-authority incumbents (<strong>CeraVe</strong>, <strong>Cetaphil</strong>), one pharmacy-prestige player (<strong>La Roche-Posay</strong>), one ingredient-transparency disruptor (<strong>The Ordinary</strong>), and two barrier-era challengers built on social from day one (<strong>BYOMA</strong>, <strong>Bubble</strong>). They span the generational range you asked about &mdash; Bubble sells to Gen Alpha, La Roche-Posay to ageing Gen X &mdash; so the gaps between them are readable rather than cosmetic.</p>
+  <div class="note">
+    <p class="label">What is evidence here, and what is judgement</p>
+    <ul>
+      <li><strong>Observed:</strong> live profile pulls on 27 Aug 2026 &mdash; bios, follower counts, post dates, media type, and Meta&rsquo;s auto alt-text. Cadence and format skew are counted from those tiles.</li>
+      <li><strong>Observed:</strong> named 2025&ndash;26 trade-press and brand-owned campaign coverage, cited under each brand.</li>
+      <li><strong>Judgement:</strong> the generation read and the brand-build/tactical split. Instagram does not expose full caption text on the profile page, so post-by-post caption coding was not possible. Each call is shown with the evidence it rests on &mdash; treat the meters as a defensible read, not a measurement.</li>
+      <li><strong>Cadence is a floor.</strong> The feed view truncates at about 12 tiles, so real posting volume is equal to or higher than shown.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Brand by brand</h2><span class="label">Six panels</span></div>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>CeraVe</h3><p class="handle mono">@cerave &middot; L&rsquo;Or&eacute;al</p>
+        <div class="stats">
+          <div class="stat"><div class="n">1.5M</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~5.4</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">7</div><div class="k">Tiles, 18&ndash;26 Aug</div></div>
+          <div class="stat"><div class="n">Video</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;Developed with Dermatologists / #1 dermatologist recommended skincare brand&rdquo;</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>Cleansers and moisturisers carry the feed, with SPF and blemish patches pushed hard in-window. Profile highlights are organised by regimen step &mdash; Cleansers, Moisturizers, SPFs, Acne &mdash; plus Haircare, the category stretch.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen half">Alpha</span><span class="gen on">Gen Z</span><span class="gen on">Millennial</span><span class="gen half">Gen X</span></div>
+            <p style="margin-top:8px">Gen Z first, millennial second. The derm credential is the millennial hook; creator competitions and gaming are the Gen Z one.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:70%"></i></div>
+            <div class="meter-key"><span>Brand 70</span><span>Tactical 30</span></div>
+            <p style="margin-top:8px">An explicit house split: entertainment where scrolling is passive, education where the platform is a search bar. Product posts still name the SKU and the ceramide claim.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Borrowed-audience entertainment &mdash; a basketball SPF post, gaming activations &mdash; hung off a hard derm claim.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (7 tiles, 18&ndash;26 Aug; 18 Aug Foaming Cleanser, ceramides and HA; 20 Aug SLAM basketball SPF). Trade: #CerAwards 2026 creator competition with AR tools; Madeline Argy with board-certified derms for Blemish Barrier Patches; L&rsquo;Or&eacute;al gaming activation; stated passive-vs-search channel split.</p>
+  </article>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>Cetaphil</h3><p class="handle mono">@cetaphil &middot; Galderma</p>
+        <div class="stats">
+          <div class="stat"><div class="n">222K</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~8</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">11</div><div class="k">Tiles, 18&ndash;26 Aug</div></div>
+          <div class="stat"><div class="n">Video</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;For Everyone&rsquo;s Sensitive Skin / Dermatologist Recommended / Backed by Science&rdquo;</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>Sensitive-skin cleansers and hydrating creams, plus makeup-adjacent content. The least SKU-specific feed of the six &mdash; the sensitivity <em>condition</em> is the hero, not the bottle.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen">Alpha</span><span class="gen on">Gen Z</span><span class="gen on">Millennial</span><span class="gen half">Gen X</span></div>
+            <p style="margin-top:8px">Deliberately broadened downward: the &ldquo;Gentle Power&rdquo; campaign posted a 1.6pt recall lift concentrated in Gen Z and millennials.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:75%"></i></div>
+            <div class="meter-key"><span>Brand 75</span><span>Tactical 25</span></div>
+            <p style="margin-top:8px">Fame-first. A first-time Super Bowl buy, a celebrity social push and a UGC hashtag are all top-of-funnel; the tactical work has moved off-feed into AI-search product copy.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Culture-jacking sport and music moments &mdash; Lil Wayne, NFL rookies, the Super Bowl &mdash; from a sensitive-skin brand with no obvious right to be there.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (about 11 tiles, 18&ndash;26 Aug &mdash; highest cadence in the set). Trade: first-time Super Bowl advertiser 2026; Lil Wayne social push and local Super Bowl spot; &ldquo;Gentle Power&rdquo; +1.6pt recall with Gen Z/millennial skew; #FaceofCetaphil TikTok UGC; Galderma rewriting product copy for AI search.</p>
+  </article>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>La Roche-Posay</h3><p class="handle mono">@larocheposayusa &middot; L&rsquo;Or&eacute;al</p>
+        <div class="stats">
+          <div class="stat"><div class="n">761K</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~4.9</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">12</div><div class="k">Tiles, 8&ndash;24 Aug</div></div>
+          <div class="stat"><div class="n">Mixed</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;A French skincare brand recommended by 100,000 dermatologists worldwide&rdquo;</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>The most franchise-led feed in the set: Anthelios (SPF), Hyalu B5 (anti-wrinkle), Effaclar (acne). Texture and formula demos rather than routines &mdash; milk-to-water, serum-sunscreen.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen half">Alpha</span><span class="gen on">Gen Z</span><span class="gen on">Millennial</span><span class="gen on">Gen X</span></div>
+            <p style="margin-top:8px">The widest span of the six, and it is franchise-segmented: Effaclar to teens via a Minions tie-up, Anthelios sport to Gen Z and millennial athletes, Hyalu B5 to Gen X.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:60%"></i></div>
+            <div class="meter-key"><span>Brand 60</span><span>Tactical 40</span></div>
+            <p style="margin-top:8px">The only brand in the set with a visible retail mechanic: a limited-edition gift-with-purchase at Ulta from 12 July. Big platform ideas, but they land on a promotion.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Licensed entertainment IP &mdash; Illumination&rsquo;s Minions for acne, pro tennis for sport SPF &mdash; used to make dermatology approachable.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (12 tiles, 8&ndash;24 Aug; 24 Aug Anthelios UV Air SPF 50; 18 Aug Hyalu B5). Trade: global &ldquo;Minions &amp; Monsters&rdquo; Effaclar collaboration launching 1 Jun 2026 ahead of the 1 Jul film, with Ulta gift-with-purchase from 12 Jul; &ldquo;Club La Roche-Posay&rdquo; social-first sport-SPF campaign with Taylor Fritz, Madison Keys, Frances Tiafoe and Noah Beck.</p>
+  </article>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>The Ordinary</h3><p class="handle mono">@theordinary &middot; DECIEM</p>
+        <div class="stats">
+          <div class="stat"><div class="n">3.0M</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~3.5</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">12</div><div class="k">Tiles, 2&ndash;25 Aug</div></div>
+          <div class="stat"><div class="n">Text</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;Clinical Formulations with Integrity.&rdquo;</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>Actives by molecule, not by regimen &mdash; Salicylic Acid 2%, single-ingredient serums. Half the in-window tiles are text cards where the argument, not the product, is the image.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen">Alpha</span><span class="gen on">Gen Z</span><span class="gen on">Millennial</span><span class="gen half">Gen X</span></div>
+            <p style="margin-top:8px">Millennial-founded, now speaking Gen Z: the 11 Aug acne post &mdash; acne is normal, even if you cannot see it online &mdash; is aimed squarely at a filtered feed.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:90%"></i></div>
+            <div class="meter-key"><span>Brand 90</span><span>Tactical 10</span></div>
+            <p style="margin-top:8px">The most purely brand-led of the six, and the lowest cadence. Campaigns argue a position &mdash; industry markups, category myths, celebrity endorsement &mdash; rather than sell a SKU.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Stunts that attack the category&rsquo;s pricing: $175 bananas, a secret-ingredient pop-up, a 49-myth periodic table.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (12 tiles, 2&ndash;25 Aug; 19 Aug Salicylic Acid 2%; 11 Aug acne-normalisation caption). Trade: &ldquo;Truth Should Be Ordinary&rdquo; myth archive (Jan 2025); $175-banana markup pop-up, with DECIEM VP of brand Amy Bi citing luxury markups up to 700%; &ldquo;Beware of Cheap Creep&rdquo;; Pride Is Still Here activations 2026; about 1.8M TikTok followers built organically.</p>
+  </article>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>BYOMA</h3><p class="handle mono">@byoma &middot; independent</p>
+        <div class="stats">
+          <div class="stat"><div class="n">706K</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~5.3</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">12</div><div class="k">Tiles, 10&ndash;25 Aug</div></div>
+          <div class="stat"><div class="n">Carousel</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;Barrier Boosting Skincare&rdquo; &mdash; then a retailer list: Target, Ulta, Amazon, Boots, Space NK, Sephora</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>Every SKU laddered to one idea &mdash; the skin barrier. In-window: a five-step Skin Barrier 101 routine carousel and a ceramide-plus-probiotic face mist. Routine-led, not hero-SKU-led.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen half">Alpha</span><span class="gen on">Gen Z</span><span class="gen half">Millennial</span><span class="gen">Gen X</span></div>
+            <p style="margin-top:8px">The narrowest target in the set: Gen Z, near-exclusively. The 2026 &ldquo;2.0&rdquo; move toward clinical claims is an attempt to age the brand upward.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:80%"></i></div>
+            <div class="meter-key"><span>Brand 80</span><span>Tactical 20</span></div>
+            <p style="margin-top:8px">Owns a territory rather than a shelf: it invented an awareness month for a body part. The retailer list in the bio is the whole of the tactical layer.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Category invention &mdash; Skin Barrier Awareness Month, a 30-day barrier reset &mdash; plus fans cast as the campaign talent.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (12 tiles, 10&ndash;25 Aug; 24 Aug Skin Barrier 101 five-step routine; 14 Aug Balancing Face Mist). Trade: &ldquo;Your Skin Barrier Needs You&rdquo; first global campaign across social, subway and OOH; second annual Skin Barrier Awareness Month with a 30-day reset challenge; 2025 community campaign casting fans as creators; 2026 &ldquo;2.0 era&rdquo; leaning on clinical claims, debut Bio-Collagen Radiance Facial Mask.</p>
+  </article>
+
+  <article class="brand">
+    <div class="brand-top">
+      <div class="rail">
+        <h3>Bubble</h3><p class="handle mono">@bubble &middot; independent</p>
+        <div class="stats">
+          <div class="stat"><div class="n">894K</div><div class="k">Followers</div></div>
+          <div class="stat"><div class="n">~6</div><div class="k">Posts / week</div></div>
+          <div class="stat"><div class="n">12</div><div class="k">Tiles, 13&ndash;26 Aug</div></div>
+          <div class="stat"><div class="n">Carousel</div><div class="k">Dominant format</div></div>
+        </div>
+        <p class="bio">&ldquo;Built by dermatologists.&rdquo; &mdash; then Ulta, Walmart, Target, CVS, Boots, ASOS, Shoppers</p>
+      </div>
+      <div class="body">
+        <div class="dims">
+          <div class="dim"><span class="label">Product focus</span><p>Starter routines and moisturisers, with the product itself designed to be content &mdash; the Slam Dunk moisturiser dispenses in a flower shape. The feed leans lifestyle and partner reshares over SKU close-ups.</p></div>
+          <div class="dim"><span class="label">Generational target</span>
+            <div class="gens"><span class="gen on">Alpha</span><span class="gen on">Gen Z</span><span class="gen half">Millennial</span><span class="gen">Gen X</span></div>
+            <p style="margin-top:8px">The only brand here genuinely built for Gen Alpha &mdash; Gen Zalpha in the founder&rsquo;s own words &mdash; and now consciously widening as that cohort ages.</p></div>
+          <div class="dim"><span class="label">Brand building vs tactical</span>
+            <div class="meter"><i style="width:85%"></i></div>
+            <div class="meter-key"><span>Brand 85</span><span>Tactical 15</span></div>
+            <p style="margin-top:8px">Community <em>is</em> the media plan: no formal marketing team, and 40,000 consumer ambassadors. Almost nothing in-feed reads as a promotion.</p></div>
+          <div class="dim"><span class="label">Signature move</span><p>Peer-voice distribution &mdash; an ambassador army plus partner reshares &mdash; with dermatologists brought forward to buy parental permission.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="ev"><strong>Evidence:</strong> profile pull 27 Aug 2026 (12 tiles, 13&ndash;26 Aug; 21 Aug reshare of @makeuperaser). Trade: no formal marketing team and a 40,000-person ambassador programme; founder Shai Eisenman on Gen Zalpha positioning and cross-generational expansion; the Slam Dunk moisturiser&rsquo;s flower-shaped dispense; dermatologists and clinical results pushed forward in 2026.</p>
+  </article>
+</section>
+
+<section>
+  <div class="sec-head"><h2>The set at a glance</h2></div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Brand</th><th>Followers</th><th>Posts/wk</th><th>Format</th><th>Product focus</th><th>Generation</th><th>Brand : tactical</th></tr></thead>
+    <tbody>
+      <tr><td>CeraVe</td><td class="num">1.5M</td><td class="num">~5.4</td><td>Video</td><td>Cleanser and moisturiser, SPF, patches</td><td>Z, then millennial</td><td class="num">70 : 30</td></tr>
+      <tr><td>Cetaphil</td><td class="num">222K</td><td class="num">~8.0</td><td>Video</td><td>Sensitivity as the hero, not a SKU</td><td>Z + millennial</td><td class="num">75 : 25</td></tr>
+      <tr><td>La Roche-Posay</td><td class="num">761K</td><td class="num">~4.9</td><td>Mixed</td><td>Franchises: Anthelios, Hyalu B5, Effaclar</td><td>Alpha through Gen X</td><td class="num">60 : 40</td></tr>
+      <tr><td>The Ordinary</td><td class="num">3.0M</td><td class="num">~3.5</td><td>Text cards</td><td>Single actives by molecule</td><td>Z + millennial</td><td class="num">90 : 10</td></tr>
+      <tr><td>BYOMA</td><td class="num">706K</td><td class="num">~5.3</td><td>Carousel</td><td>Barrier routines, one idea</td><td>Gen Z only</td><td class="num">80 : 20</td></tr>
+      <tr><td>Bubble</td><td class="num">894K</td><td class="num">~6.0</td><td>Carousel</td><td>Starter routines, product-as-content</td><td>Alpha + Z</td><td class="num">85 : 15</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>What the pattern says</h2></div>
+  <div class="finds">
+    <div class="find"><h3>Nobody is discounting in feed</h3><p>Across 66 tiles in the window, not one visible price or discount post. The only retail mechanic anywhere in the set is La Roche-Posay&rsquo;s Ulta gift-with-purchase &mdash; and that lives in a press release, not the grid. Caveat: captions were not retrievable, so this is an absence of visible evidence rather than proof.</p></div>
+    <div class="find"><h3>Derm authority has stopped being a differentiator</h3><p>Four of six bios lead on dermatologists &mdash; including both challengers. When Bubble, built for twelve-year-olds, and Cetaphil, built for sensitive adults, make the same claim, the claim is table stakes and the fight moves to tone.</p></div>
+    <div class="find warn"><h3>The Gen X flank is nearly empty</h3><p>Only La Roche-Posay speaks to over-45s, and only through one franchise. Five brands are crowded onto Gen Z. Mature and menopausal skin is the vacant territory in this set.</p></div>
+    <div class="find"><h3>Cadence and fame trade off</h3><p>The Ordinary posts least (~3.5/wk) and has the largest following (3.0M); Cetaphil posts most (~8/wk) on the smallest (222K). Volume is compensating for a brand idea, not creating one.</p></div>
+    <div class="find"><h3>Two grammars of proof</h3><p>Incumbents prove with credentials and celebrity; challengers prove with routines and peers &mdash; carousels, five-step explainers, ambassador content. Format follows argument: video for fame, carousel for teaching.</p></div>
+    <div class="find warn"><h3>Both challengers are ageing up at once</h3><p>BYOMA&rsquo;s clinical 2.0 era and Bubble&rsquo;s cross-generational push are the same manoeuvre in the same year. They are about to collide in the millennial middle that CeraVe already owns.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>What would sharpen this</h2></div>
+  <p class="lede">Three gaps are worth closing before this goes in front of a client, and all three are collection problems rather than analysis ones.</p>
+  <div class="note">
+    <ul>
+      <li><strong>Caption-level coding.</strong> Full caption text is the evidence that would turn the brand/tactical meters from a defensible read into a count. It needs the Instagram Graph API, a licensed listening tool, or manual capture of roughly 50 posts per brand.</li>
+      <li><strong>TikTok, where the category actually lives.</strong> Every brand here is described in trade coverage as TikTok-led, and none of that output is in this scan.</li>
+      <li><strong>Paid versus organic.</strong> The Meta Ad Library would separate what each brand pays to say from what it posts for free &mdash; the fastest way to see where tactical spend really sits.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p class="label">Sources</p>
+  <p>Live Instagram profile pulls, 27 Aug 2026: @cerave, @cetaphil, @larocheposayusa, @theordinary, @byoma, @bubble. Trade press 2025&ndash;26: Marketing Dive, Adweek, Ad Age, Cosmetics Business, Marketing Week, Global Cosmetic Industry, MM+M, PR Newswire, DesignRush, ClickZ, Ads of the World, Fashionista, The Dermatology Digest.</p>
+</footer>
+</div>

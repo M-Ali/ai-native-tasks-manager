@@ -1,0 +1,26 @@
+{
+  "skill_name": "communication-strategy",
+  "evals": [
+    {
+      "id": 1,
+      "name": "diagnoses-the-right-barrier",
+      "prompt": "Write the communication strategy for a life insurer whose category audit shows 81% of advertising carries no proof device and only 5% addresses the core objection. Awareness of the brand is high.",
+      "expected_output": "Identifies BELIEF as the barrier, not awareness, and says so using the audit evidence. Rejects a reach-led approach explicitly. Produces objective as from->to, an audience with a decision-making unit, a proof-led approach with a stated exclusion, a three-pillar message house whose proof layer contains facts not adjectives, and a barrier-led journey rather than a generic funnel.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "refuses-a-business-objective",
+      "prompt": "Our communication objective is to grow premium income by 15% this year. Build the strategy around that.",
+      "expected_output": "Says plainly that this is a business objective, not a communication objective, and that communication cannot deliver it alone. Converts it into a belief/behaviour change with a from->to, names the barrier, and asks what evidence identifies the barrier. Does not simply accept the brief.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "audience-is-not-a-media-buy",
+      "prompt": "Target audience is males 25-45, SEC A and B, urban. Write the messaging framework.",
+      "expected_output": "Points out this is a media buying instruction, not an audience: no attitude, no behaviour, no insight. Adds life-stage/attitudinal/behavioural segmentation, separates primary audience from influencers and the decision-making unit, and states an audience insight. Then builds the message house.",
+      "files": []
+    }
+  ]
+}

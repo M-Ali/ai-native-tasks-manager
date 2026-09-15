@@ -1,0 +1,31 @@
+# The five parts, written down before any prose. See SKILL.md.
+objective:
+  from: "<what they currently believe or do>"
+  to: "<what they must believe or do>"
+  barrier: belief          # awareness | understanding | belief | relevance | salience
+  why_this_barrier: "<the audit evidence that says so>"
+audience:
+  primary: "<behaviour + attitude, not just demographics>"
+  influencers: "<who they consult>"
+  decision_unit: "<who signs, who pays, who benefits - often three people>"
+  insight: "<true, uncomfortable, useful. Not a census fact.>"
+  not_talking_to: "<the exclusion. A strategy that excludes nothing decided nothing.>"
+approach:
+  route: proof_led         # proof_led | category_building | reframing | salience_led | barrier_removal | recruitment
+  in_one_sentence: "<arguable - a sensible person could propose the opposite>"
+  what_we_are_not_doing: "<the discipline>"
+architecture:
+  master_message: "<the proposition, in the client's voice>"
+  positioning_statement: >-
+    For <audience> who <tension>, <brand> is the <frame> that <benefit>,
+    because <reason to believe>.
+  pillars:
+    - claim: "<supporting claim>"
+      proof: "<a FACT - figure, mandate, date, scale. Not an adjective.>"
+journey:
+  - stage: "<Hear it>"
+    job: "<what must happen in their head>"
+    message: "<which pillar leads>"
+    proof: "<what substantiates it here>"
+    channel_role: "<what the channel is FOR - not the channel list>"
+    signal: "<how you would know, even directionally>"

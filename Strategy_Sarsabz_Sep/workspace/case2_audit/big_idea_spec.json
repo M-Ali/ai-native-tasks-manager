@@ -1,0 +1,121 @@
+{
+  "brand": "Sarsabz",
+  "out": "../out/Sarsabz_big_idea_section.pptx",
+  "requires_commitments": true,
+
+  "divider": {
+    "title": "The Big Idea",
+    "subtitle": "Consumer insight  +  Category insight  +  Brand insight",
+    "subtitle2": "Three single lines, combined into one organising thought."
+  },
+
+  "insights": {
+    "consumer": {
+      "title": "What farmers feel, that the category ignores",
+      "from": "FROM THE FARMER CONVERSATION",
+      "line": "Farmers don't doubt that Nitrophos and CAN work, but they won't bet a season on a switch nobody has shown them how to make without waste.",
+      "short": "Farmers won't bet a season on a switch nobody has shown them how to make without waste.",
+      "evidence": [
+        "Mixing is the largest subject in the file: 220 of 1,433 comments, 83 about NP or CAN, 33 putting Nitrophos beside Engro Zabardast.",
+        "\"Zabrdast urea ma zink ha aur np ma phosphorus ha to akthy dalen gy to zink phosphorus to fix ho jay ge\" (together they lock up).",
+        "Translated from Urdu: \"How many bags of Sarsabz Nitrophos give the same result as one DAP, or can it not replace DAP?\"",
+        "\"Fatima fertilizer walon ne NP+CAN+ZINC SULFATE mila ke chatta kiya hai... aap bol rahai in ko aapus main na milaain\" (Fatima mixed them; you say don't)."
+      ],
+      "panel_title": "What the language tells us",
+      "panel": [
+        "The fear is waste, not failure. Nobody questions whether NP and CAN raise yield; they ask whether mixing will lock it up.",
+        "No comment mentions the 10% promise. One asks whether CAN raises yield at all.",
+        "Farmers are getting contradictory advice - including Fatima's own field practice against the creators they watch."
+      ],
+      "source": "Source: 1,433 YouTube comments on independent agronomy channels (comments/analysis.md). Self-selected corpus, channels not supplied - not a measure of what most farmers think. Translations labelled."
+    },
+
+    "category": {
+      "title": "What everyone else does, and what it leaves open",
+      "from": "FROM COMPETITORS' OWNED CHANNELS",
+      "line": "Engro has made itself the farmer's adviser and Sarsabz makes the loudest yield promise, but no brand shows the result on a real field beside the old way.",
+      "short": "Engro advises and Sarsabz asserts, but nobody shows the result beside the old way.",
+      "evidence": [
+        "Engro answers a farmer objection in 58% of its 110 uploads; Sarsabz in 6% of its 90.",
+        "Engro: 44 advisory uploads, 31 with a named agronomist, soil testing, a cost-per-acre podcast, retail centres and an app.",
+        "Sarsabz makes the yield claim 15 times, Engro 0 - and 10 of Sarsabz's 11 '10%' films offer nothing but the badge.",
+        "FFC Sona, Bubber Sher and Agritech Tara have no official YouTube channel."
+      ],
+      "panel_title": "Why the category behaves this way",
+      "panel": [
+        "Urea and DAP are near-commodities, so Engro competes on what comes with the bag: a zinc coating, advice, a service.",
+        "Sarsabz sells products no rival makes at scale - the only CAN and 93% of NP - so proof is its natural ground, and the one it is not using.",
+        "The space is not empty because it failed: Ki Jeet, the closest thing to field proof, carries Sarsabz's biggest product films (8.2M, 7.5M views)."
+      ],
+      "source": "Source: 200 owned YouTube uploads coded on the same schema, 15 Sep 2024 - 15 Sep 2026 (scan/scan_findings.md); presence sweep 15 Sep 2026. Views are bought media weight, not share of voice."
+    },
+
+    "brand": {
+      "title": "What Sarsabz has, and what it faces",
+      "from": "FROM THE BRIEF AND MARKET DATA",
+      "tag": "PROVISIONAL",
+      "line": "Sarsabz holds proof no rival can produce - the only CAN and 93% of NP in Pakistan, 500+ demo plots, Ki Jeet winners in 34 districts - but keeps it off screen, so farmers know the product and forget the name.",
+      "short": "Sarsabz holds proof no rival can produce, but keeps it off screen - farmers know the product and forget the name.",
+      "evidence": [
+        "The asset: Fatima Group holds 93% of NP and is the sole CAN producer; Engro holds 6% of NP (CCP Table 11, NFDC 2022-23).",
+        "The proof exists: the promise is \"documented by... 500+ demo plots\" (brief p5); Ki Jeet wins in 34 of 40 districts. No plot appears in 90 uploads.",
+        "The name is missing: farmers mention CAN 193 times and NP 147 times, Sarsabz 15 times."
+      ],
+      "panel_title": "Where the brief and the evidence disagree",
+      "panel": [
+        "Brief: the brand \"evolved from being a product-focused brand to a farmer-centric brand\" (p13). Evidence: farmers judge at product level, and Engro is winning there.",
+        "Brief: 22% top-of-mind \"exceeded competition's TOM awareness by 6%\" (p29). Chart: true against Competitor 2 only - Competitor 1 is at 62%.",
+        "The brief's own pillar is \"Experts\" (p5). On screen, Sarsabz shows 0 named agronomists; Engro shows 31."
+      ],
+      "source": "Source: Fatima Creative Marketing Brief 2026 (pp.5, 13, 29); CCP Competition Assessment, DRAFT, Jul 2025. PROVISIONAL: demo-plot data, current product share and the brand-health study method were not supplied."
+    }
+  },
+
+  "idea": {
+    "title": "Three insights, one organising thought",
+    "line": "Sarsabz proves itself on a field like yours.",
+    "meaning": "The 10% stops being a badge and becomes a result a farmer can see on a field like his - with the recipe that produced it: what replaced DAP, what it was mixed with, on which irrigation, on what soil.",
+    "test": "remove any one insight and the idea fails - without the farmer it is demo-plot PR nobody asked for, without the category it is Engro's advice, without the brand anyone could promise a demo, but only Sarsabz makes the NP and CAN on the winning side of it."
+  },
+
+  "strategy": {
+    "title": "Strategy statement and comms platform",
+    "statement": "Re-frame Sarsabz from a yield promise farmers take on trust to the proof they can see and copy, by putting its demo plots and winning farmers side by side with DAP + urea on fields like theirs, and publishing the recipe behind every result.",
+    "platform": "THE PROOF, NOT THE PROMISE.",
+    "why": {
+      "relevant": "answers the largest subject in the farmer conversation - how to switch without waste.",
+      "distinctive": "Engro advises, Sarsabz asserts, and nobody in 200 uploads shows a result beside the old way.",
+      "ownable": "only the maker of 93% of NP and all of CAN can put those products on the winning side of the comparison."
+    },
+    "alternatives": [
+      {"name": "A. Sarsabz proves itself on a field like yours.", "recommended": true,
+       "tradeoff": "Built on all three insights. Needs Fatima to publish plot results - including the ones that fell short."},
+      {"name": "B. The farmer's trusted adviser.",
+       "tradeoff": "Engro's territory: 44 advisory uploads, 31 named experts. Sarsabz would arrive second in a space Engro already owns."},
+      {"name": "C. Saluting the farmer - Sarsabz Pakistan.",
+       "tradeoff": "Where the brand talks today (30 of 90 uploads) and right for Salam Kissan. But farmers name Sarsabz 15 times in 1,433 comments; a salute does not sell a switch."}
+    ],
+    "swap_test": "Engro could film a demo plot. It cannot put NP and CAN on the winning side - it has 6% of NP and no CAN. Lead with that."
+  },
+
+  "commitments": {
+    "title": "What it asks of Fatima, and how it lives in media",
+    "asks_title": "What Fatima must commit to - before any line is written",
+    "asks": [
+      {"name": "Publish the plots", "detail": "Demo-plot results by crop, district and soil - including those under 10%."},
+      {"name": "Correct Ki Jeet", "detail": "State winners' yields and inputs; drop 'proved 10%'; verify before saying 'all winners'."},
+      {"name": "One mixing answer", "detail": "An official NP and CAN compatibility and timing guide, so field staff and creators agree."},
+      {"name": "Name the recipe", "detail": "Every proof film names the farmer, district, soil, inputs and maunds."},
+      {"name": "Answer in the thread", "detail": "Agronomists staffing the Sarsabz Pakistan App and comment replies."}
+    ],
+    "channel_insight": "The switch is decided in agronomy creators' comment threads, where farmers ask strangers what the maker should be telling them - and suspect the answers are paid.",
+    "media_principles": [
+      {"name": "Show the field, not the badge.", "detail": "Every yield claim points to a named plot or farmer."},
+      {"name": "Short points to long.", "detail": "The 15-second cut carries the result; the funded long cut carries the recipe."},
+      {"name": "Be in the creator thread, disclosed.", "detail": "Farmers suspect paid advice - label every partnership."},
+      {"name": "Use the reach for proof.", "detail": "1.2M on TikTok and 396K on YouTube - proof clips, not prizes."},
+      {"name": "The dealer is the last field.", "detail": "AgriMart and dealers carry the side-by-side at the point of sale."}
+    ],
+    "conclusion": "If Fatima will not publish plot results, the idea becomes an assertion again. Run Ki Jeet winner stories with corrected claims instead, and state the trade-off."
+  }
+}

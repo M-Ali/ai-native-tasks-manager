@@ -1,0 +1,109 @@
+# Reads for the Sarsabz vs Engro comms scan deck - authored after reading every thumbnail
+# (owned/contact, scan/engro/contact). Figures from scan/scan_findings.md; quotes from titles and descriptions.
+
+Sarsabz:
+  headline: "Talks at values, and proves almost nothing it claims."
+  saying:
+    - "10 of 11 '10% se bhi ziyada izaafi paidawaar' films show nothing but the badge - one walking-farmer template re-cut for wheat, maize, sugarcane, cotton and rice."
+    - "'Jeet' means three things: Sarsabz Ki Jeet (a competition win), 'Nitrophos ko laga aur jeeta ja' (a lucky draw), 'Jeet ka naam, Sarsabz Ke Sultan' (cricket)."
+    - "22 Multan Sultans uploads and 17 Dil Se Dekho contest posts - 43% of output, cast young, with no farmer and no product."
+    - "The proof it does have is strong: Ki Jeet names winners and yields - '69 man 38 kilo fi-acre', '40 mein se 34 azlaa'."
+  note: >-
+    The largest owned audience in the category puts its media weight on a yield promise it proves in
+    5 of 15 uploads, and its volume on content that says nothing about the bag.
+  why: "with the only CAN and 93% of NP, Sarsabz has had almost no one to argue with on its own products."
+
+Engro Fertilizers:
+  headline: "Owns advice - and answers the farmer's question in 58% of uploads."
+  saying:
+    - "Engro Kahanian: a named agronomist solving one crop problem per film - 'Pani Ki Kami Ka Hal', 'Soil Testing Ki Ehmiyat'."
+    - "'Kam Kharch, Zyada Paidawar!' - an 89-minute podcast on saving and profit in maize and rice."
+    - "Zinc explained with arithmetic; 'DAP Bharosa Seal - Chamkay Toh Asal, Na Chamkay Toh Naqal', verified by SMS."
+    - "Engro Markaz and Mitti Mahir - retail centre, app and soil test: 28 of 110 uploads drive to an owned service."
+  note: >-
+    Engro sells near-commodity urea and DAP, so it competes on everything around the bag. It has built the
+    most complete farmer-facing service story in the category - and now sells NP+ and imported TSP, inside
+    Fatima's categories.
+  why: "commodity product, differentiated service - the advice is the product."
+
+_category:
+  - "Two brands advertise to farmers on owned video. They stand at opposite ends."
+  - "Sarsabz asserts: a yield claim in 15 uploads, proven in 5. Engro advises: 44 advisory uploads, 31 named agronomists, and no yield claim at all."
+  - "Nobody shows a result on a real field beside the old way."
+
+_dimensions:
+  - "Engro converges on service - app, retail centre, soil testing. Sarsabz puts a customer in frame more often (46 of 90 vs 19 of 110), but Engro fills its frame with 31 named experts, and Sarsabz with 24 celebrity appearances."
+
+_why:
+  headline: "Why the two brands talk so differently"
+  standfirst: "The pattern is structural. Each brand's advertising follows from what it sells and who it has to beat."
+  drivers:
+    - title: "Commodity vs owned product"
+      body: "Urea and DAP are near-commodities, so Engro competes on what comes with the bag. Fatima makes the only CAN and 93% of NP (CCP Table 11, NFDC 2022-23), so Sarsabz has had almost no one to argue with on its own products."
+    - title: "The leader stays silent"
+      body: "FFC holds 44% of urea and 61% of DAP, yet has 71K followers on Facebook and no official YouTube channel. A leader of a commodity market does not need to argue on owned channels."
+    - title: "Engro is moving into Fatima's space"
+      body: "Engro NP+ (Feb 2025) and imported TSP, a phosphate alternative to DAP (Oct 2025), both launched inside the window."
+    - title: "The farmer's question is how, not whether"
+      body: "220 of 1,433 farmer comments ask what can be mixed with what. Engro's advice answers that demand; Sarsabz's badge does not."
+  conclusion: "Engro solves a commodity problem with service. Sarsabz has a proof problem it has not recognised - and the proof is already in its own plots."
+  source: "Sources: 200 coded owned-YouTube uploads (scan/scan_findings.md); CCP Competition Assessment, DRAFT, Jul 2025, Table 11; presence sweep 15 Sep 2026; 1,433 farmer comments (comments/analysis.md)."
+
+_grid:
+  headline: "Where each brand's audience actually is"
+  standfirst: "Owned-channel followers, logged-out sweep, 15 September 2026. Reach is not Sarsabz's problem."
+  corner: "Brand"
+  columns: ["TikTok", "YouTube", "Facebook"]
+  rows:
+    - {label: "Sarsabz", values: ["1.2M", "396K", "274K"], emphasis: true}
+    - {label: "Engro Fertilizers", values: ["156.7K", "81.2K", "152K"]}
+    - {label: "Engro Zabardast Urea (page)", values: ["n/v", "n/v", "4.1K"]}
+    - {label: "FFC (Sona)", values: ["n/v", "none", "71K"]}
+    - {label: "Agritech (Tara)", values: ["n/v", "none", "1.8K"]}
+    - {label: "Bubber Sher", values: ["n/v", "none", "none"]}
+  conclusion: "Sarsabz has the largest owned audience in the category. FFC, Agritech and Bubber Sher barely compete on owned channels at all."
+  source: "n/v = not verified; none = searched, no official account found. The 'Bubber Sher' Facebook page is a rock band and is excluded. Followers are reach, not engagement."
+
+_readings:
+  headline: "Claims only one brand makes - and the one nobody makes"
+  panels:
+    - title: "Only Sarsabz"
+      stat: "15"
+      sub: "yield-claim uploads. Engro makes none."
+      rows:
+        - {label: "Yield claim", value: 15}
+        - {label: "National identity", value: 22}
+        - {label: "Multan Sultans", value: 22}
+        - {label: "Women in farming", value: 8}
+    - title: "Only Engro"
+      stat: "44"
+      sub: "advisory uploads. Sarsabz makes 3."
+      rows:
+        - {label: "Advisory uploads", value: 44}
+        - {label: "Named agronomist", value: 31}
+        - {label: "Cost-saving claim", value: 6}
+        - {label: "Authenticity claim", value: 3}
+    - title: "Nobody"
+      stat: "0"
+      sub: "uploads showing a yield result beside the old way - in titles, thumbnails or descriptions."
+      rows:
+        - {label: "Side-by-side field", value: 0}
+        - {label: "Published demo plot", value: 0}
+        - {label: "NP vs DAP price gap", value: 0}
+  conclusion: "The open ground is proof: a result on a real field, beside DAP and urea."
+
+_finding:
+  headline: "The vacant territory is proof on a real field."
+  body:
+    - "Engro owns advice. Sarsabz owns the loudest promise. Nobody shows the result beside the old way."
+    - "Sarsabz is the only brand that can: the only CAN, 93% of NP, 500+ demo plots, and Ki Jeet winners in 34 of 40 districts."
+
+_method:
+  did:
+    - "Every YouTube upload from Sarsabz and Engro Fertilizers between 15 Sep 2024 and 15 Sep 2026 - 200 in all."
+    - "Coded on a fixed nine-dimension schema from each thumbnail, title and description. Videos were not watched end to end."
+    - "Contact sheets show each brand's 25 most-viewed uploads - where it put its media weight."
+    - "FFC Sona, Bubber Sher and Agritech have no official channel. Recorded as absences, not gaps."
+  limits:
+    - "View counts on brand channels are mostly bought. They show where each brand spends - never share of voice or organic interest."
+    - "Owned YouTube only. Paid TV, press and Facebook ads are not captured; the Meta Ad Library is the next source."

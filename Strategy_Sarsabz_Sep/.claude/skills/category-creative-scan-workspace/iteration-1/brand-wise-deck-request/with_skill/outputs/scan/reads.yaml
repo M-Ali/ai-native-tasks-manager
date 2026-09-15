@@ -1,0 +1,96 @@
+# One entry per brand, authored AFTER reading the contact sheets.
+# Every `saying` line quotes copy actually visible in the artwork.
+
+POND'S Pakistan:
+  headline: Two campaigns and a party, running at once.
+  saying:
+    - "The one real idea: 'SOAK UP THE SUN, NOT THE TAN' - Sun Miracle tubes pegged on a washing line against sky."
+    - "Then Bright Beauty niacinamide, '4X', on a towel - the only measured number the brand publishes."
+    - "Then a giveaway: 'GIVEAWAY WINNER... Join our Broadcast channel for the reveal!' - the only post in 84 that pushes to an owned platform."
+    - "Two of twelve are the same in-store reel: 'The girls and their skin concerns!! ft. skincare specialist'."
+  note: >-
+    Biggest verified account in the set at 112K, and the widest spread of intent:
+    de-tan, brightening, community, ambassador. 4/12 brand-building is the highest of
+    the multinationals - but no line recurs, so nothing compounds.
+
+Glow & Lovely Pakistan:
+  headline: Brightening, restated eleven different ways.
+  saying:
+    - "'MY LOVE LANGUAGE IS MAKING YOUR SKIN 98% BRIGHTER' - the only stat in the feed."
+    - "'Ever heard of a facewash that gives you glow for just Rs. 99?' - the category's only price-led post."
+    - "A mocked-up ChatGPT screenshot: 'Make this brighter' / 'can't go brighter than renew bright'."
+    - "'AB NAHI' with a BUY NOW button - the only Urdu-led headline in 84 posts."
+  note: >-
+    Eleven of twelve posts lead on brightening or the facewash that delivers it. Seven
+    are in-house template graphics. Renew Bright recurs five times, so there is a
+    platform - it just has nothing to say beyond brighter.
+
+Garnier Pakistan:
+  headline: Half the feed is somebody else's footage.
+  saying:
+    - "Six of twelve are creator reposts - @Merub Ali, @SARA ALI, @B O B B Y Official and three more."
+    - "The brand's own work is packshots: 'ZERO RESIDUE / HYDRATES & SOOTHES SKIN / NO RINSE NEEDED'."
+    - "One genuinely art-directed idea: a line drawing of a figure dragging a serum bottle - 'C'MON, BRIGHTEN MY SKIN'."
+    - "'CHOOSE YOUR FIGHTER - Micellar All in 1 VS Micellar Oil in Water' is the only recurring device, used once."
+  note: >-
+    131K followers, the largest account here, and nine of twelve posts are one SKU -
+    Micellar Cleansing Oil-in-Water. Last post 24 days before collection. The creator
+    reposts carry the only testimonials; the brand itself proves nothing.
+
+Nivea Pakistan:
+  headline: The account stopped in August 2022.
+  saying:
+    - "The twelve most recent posts are dated 28 May to 1 August 2022. Nothing since - 1,487 days."
+    - "Four of them are deodorant, not skincare: Powder Touch, Fresh Natural."
+    - "The sharpest thing in the grid is four years old: a mock 'Suggestions for you' panel offering Shea Smooth, Cocoa Butter and Rich Nourishing, each with a Follow button."
+    - "'Bring out your natural radiance' - Natural Fairness body lotion, 2022."
+  note: >-
+    23.7K followers, unverified, dormant. Read this as a finding about the category's
+    face-care contest, not a hole in the sample: the world's largest skin-care brand
+    is not competing on this platform in this market at all.
+
+Conatural:
+  headline: The only brand arguing with the category instead of joining it.
+  saying:
+    - "'We put ACTIVS in. Not PROMISES.'"
+    - "'NOT A MIRACLE. Just good ingredients doing their job.'"
+    - "And an OFFICIAL STATEMENT post: 'We are aware that our recent posts have caused a lot of outrage. And honestly, we are glad they did. Because false, and fabricated claims have no space in our industry... No misleading labels. No ingredient lies.'"
+    - "NO B.S. appears on all twelve posts - the only platform in the set with total coverage."
+  note: >-
+    339K followers, verified, 12 posts in a week, 58% brand-building - the highest in
+    the scan on every one of those measures. It has taken the honesty territory by
+    naming the category's dishonesty. It still proves nothing: zero proof devices in
+    twelve posts. The position is claimed, not evidenced.
+
+Saeed Ghani:
+  headline: One SKU, twelve times, and the only male face in the category.
+  saying:
+    - "All twelve posts are the Detox & Cleanse Activated Charcoal Face Wash. Not the range - the tube."
+    - "'IF YOUR SKIN FEELS OILY & DIRTY THIS SUMMER!' over a man's face against sky."
+    - "The only published customer review in the scan, verbatim: 'I just used it from three days my skin has become just super cool so i m ordering this by my heart'."
+    - "'REFRESHED & CLEAR SKIN with every wash' recurs on five of twelve."
+  note: >-
+    560K followers, the largest account in the set, and a 138-year-old herbal house
+    running one product like a performance ad. Male casting and oil control are both
+    uncontested here. Only 1 of 12 is brand-building - the heritage that is the whole
+    asset is never once used.
+
+Dermaceutical Pakistan:
+  headline: Zero brand-building. The influencers are the brand.
+  saying:
+    - "Seven of twelve posts are creator reposts - @Doc.Rapunzel, @Paro, @Rija Rafique and four more."
+    - "'THE ONLY PAKISTANI SKINCARE BRAND I TRUST!!' - said by a creator, not by the brand."
+    - "The only before/after face grid in 84 posts is a repost: 'Facing acne Problems'."
+    - "The brand's own posts are a spec sheet ('TINTED SUNSCREEN... ONE STEP. MANY BENEFITS') and a sale ('RABI-UL-AWWAL HOLY MONTH SALE - 10% OFF')."
+  note: >-
+    12.9K followers, verified, dermo-science positioning - and 0% brand-building. It
+    has the most proof in the category (7 testimonials, an expert voice, a before/after)
+    and none of it belongs to it. Rent the credibility, never bank it.
+
+_finding:
+  headline: Nobody in this category is over forty.
+  body:
+    - "Across 84 posts and seven brands, not one is cast, styled or written for GenX or older. Zero. And `anti_ageing` - the single largest value pool in global skincare - is claimed by nobody: 0 of 84 posts."
+    - "The two brands that would naturally own it have no Pakistan account at all. Olay and Cetaphil are absences, not competitors."
+    - "The occupied centre is brightening (13 posts, 9 of them aspirational) and cleansing (11). 74% of the category's output offers no proof of anything - no statistic, no test, no before/after, no expert. Three posts in 84 carry a number."
+    - "So the vacant territory is a proven claim made to an adult: efficacy, evidenced, cast for someone with a skin history rather than a skin trend. Conatural has already taken the honesty position rhetorically - 'NOT A MIRACLE. Just good ingredients doing their job' - and has published no evidence behind it. That gap is open for exactly as long as it takes someone to publish one."
