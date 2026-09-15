@@ -5,6 +5,17 @@ Newest first. The history of the SLIC and PTCL work this repo was copied from is
 > **Resuming?** Read `README.md` → "Start here". At the end of 15 Sep 2026, Case 2 is complete as
 > `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides), Case 1 is not started, and the pitch date and budget are still unknown.
 
+## 2026-09-16 — committed to git
+
+The whole project folder is committed on branch **`sarsabz-pitch`** (repo root `D:\Personal`, left off `master`). Only `.venv`, caches
+and `~$` Office lock files are excluded. Nothing is pushed. **Both remotes (`ai-native-tasks-manager`, `-new`) are PUBLIC**, and this
+branch holds the client's brief, the farmer comments and archived SLIC/PTCL work, so don't push it without deciding that first.
+
+- `86cfdf3`: 2,189 files. The inherited SLIC `.gitignore` rule `workspace/out/` silently left out every deck and Word file.
+- Second commit: that rule removed, so all deliverables in `workspace/out/` (and `_archive/slic_p78118/workspace/out/`) are tracked.
+
+The 321 uncommitted changes in other projects under `D:\Personal` were deliberately not touched.
+
 ## 2026-09-15 (after midnight) — campaign concept added to the deck
 
 **Concept** via the `campaign-concept` skill (`workspace/case2_audit/concept/`):

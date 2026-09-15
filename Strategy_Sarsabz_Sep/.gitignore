@@ -1,7 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-workspace/out/
 
 # Office lock files
 ~$*
