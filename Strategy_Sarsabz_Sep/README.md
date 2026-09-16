@@ -76,6 +76,21 @@ Builder: `workspace/agri/build_agri_landscape.py` (every figure comes from a `FA
 PBS Table-1 (wheat, rice, cotton, sugarcane, maize). Minor crops were dropped: their province attribution could not be validated
 in the source PDF, and the deck says so.
 
+### Agricultural landscape report (brand-free) → `workspace/out/Agricultural_landscape_report_*.docx`
+
+A detailed background report written with **no company or brand named anywhere** - it describes the market, not any
+participant. Source: `workspace/agri/agri_landscape_report.md` (edit that, then re-render with
+`uv run sarsabz-pitch doc workspace/agri/agri_landscape_report.md --stem Agricultural_landscape_report`).
+
+Covers: the land and irrigation by province; **crops per year** (Punjab 1.62 vs Sindh 1.38, and Punjab districts from
+Kasur 3.84 down to Islamabad 1.00); crop sizes and province shares; cropping systems and the season; water as the only
+calendar that can be evidenced; the fertilizer market (4,324.2k nutrient tonnes, Punjab 69.1% / Sindh 22.9%); and three
+sized opportunities - the **602k nutrient tonne phosphate gap** against official recommendations, balanced nutrition, and
+the under-fertilized rainfed farmer - plus international practice.
+
+Every figure is graded measured / reconciled / modelled / not available. A brand-name scan and a 19-point numeric
+re-check against the source tables both pass.
+
 ### Next, in priority order
 
 1. **Ask the client.** None of these are in the brief.
@@ -120,6 +135,7 @@ in the source PDF, and the deck says so.
 |---|---|
 | `Sarsabz_case1_big_idea_2026-09-15.docx` | Case 1 Big Idea sheet, from `case1_salam_kissan/big_idea.md` |
 | `Sarsabz_case1_campaign_concept_2026-09-16-v2.docx` | Case 1 campaign concept, from `case1_salam_kissan/the_concept.md`. Earlier files keep the earlier line and the pre-goal version. |
+| `Agricultural_landscape_report_*.docx` | The brand-free agricultural landscape report (crops, seasons, sizing, opportunity) |
 | `Sarsabz_agri_landscape-v2.pptx` | The agricultural landscape: crops, seasons, provinces, fertilizer opportunity |
 | `Sarsabz_point_of_view-v3.pptx` | The pitch-expectations deck (portfolio, Bubber Sher, category, measurement, long term) |
 | `Sarsabz_TG_farmer_card-v4.pptx` | The Sarsabz farmer TG profile card, from `workspace/tg_profile/farmer_card.json` |

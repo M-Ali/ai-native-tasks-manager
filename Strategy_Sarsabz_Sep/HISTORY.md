@@ -9,6 +9,24 @@ Newest first. The history of the SLIC and PTCL work this repo was copied from is
 > Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
 > The pitch date and budget are still unknown.
 
+## 2026-09-16 (later) — Brand-free agricultural landscape report
+
+Written at the user's request with **no brand or company named**, as a market description rather than a pitch document.
+Source `workspace/agri/agri_landscape_report.md`, rendered to `workspace/out/Agricultural_landscape_report_*.docx`.
+
+Adds beyond the deck: **crops per year** (cropping intensity) by province and by Punjab district; cropping systems from
+the FAO crop production regions; and three **sized** opportunities - the phosphate gap against official recommendations
+(~602k nutrient tonnes across five crop-province pairs, against a 917k tonne phosphate market), balanced nutrition
+(potash at 1.8 kg/ha, under 2% adoption), and the rainfed farmer (only ~50% fertilize).
+
+Two faults caught before writing: cropping intensity was first computed off the wrong columns (Balochistan came out at 68
+crops a year) - net sown is column 8, sown-more-than-once 9, total cropped 10; and no reachable source gives sowing or
+harvest **months** (provincial crop-calendar host does not resolve, one aggregator 403s, another 404s, FAO's regions
+chapter states it has none), so the report states that gap and names the document that would close it rather than using
+blog-sourced months.
+
+Checks: a brand-name scan over 25 terms returns none, and 19 key figures re-verified against the source tables pass.
+
 ## 2026-09-16 (later) — The agricultural landscape deck
 
 Built from the user's `data/reference/Agri_Landscape_2026` folder (PBS tables) plus sources I retrieved. Deck:
