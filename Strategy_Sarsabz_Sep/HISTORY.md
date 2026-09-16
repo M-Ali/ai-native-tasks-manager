@@ -9,6 +9,19 @@ Newest first. The history of the SLIC and PTCL work this repo was copied from is
 > Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
 > The pitch date and budget are still unknown.
 
+## 2026-09-16 (later) — Crop calendar and charts added to the landscape deck
+
+Deck rebuilt as `workspace/out/Sarsabz_agri_landscape-v4.pptx` (12 slides, was 9). Added:
+- **The crop calendar as a drawn month grid** - 12 columns x 8 crops, cells coloured sowing / growth / harvesting with the
+  source's own t/p/d marks, read at build time from `workspace/agri/punjab_crop_calendar.json` so it traces to the parsed
+  provincial file rather than being retyped.
+- **A Sindh timing slide**: north against south by crop, and the November-December pinch point where wheat sowing,
+  sugarcane harvest, cotton picking and autumn maize harvest overlap.
+- **Two native charts**: crop area by province (Punjab / Sindh / other, clustered) and fertilizer per hectare against
+  peer countries - both easier to read as bars than as table rows.
+
+Sections renumbered 1-9 with the calendar inserted at 3.
+
 ## 2026-09-16 (later) — Crop calendar added from the provincial crop reporting services
 
 The month-level gap flagged in the first version of the report is closed. The Punjab crop reporting service's host
@@ -53,7 +66,7 @@ Checks: a brand-name scan over 25 terms returns none, and 19 key figures re-veri
 ## 2026-09-16 (later) — The agricultural landscape deck
 
 Built from the user's `data/reference/Agri_Landscape_2026` folder (PBS tables) plus sources I retrieved. Deck:
-`workspace/out/Sarsabz_agri_landscape-v2.pptx` (9 slides), builder `workspace/agri/build_agri_landscape.py`.
+`workspace/out/Sarsabz_agri_landscape-v4.pptx` (9 slides), builder `workspace/agri/build_agri_landscape.py`.
 
 **What the folder could and could not answer.** It has national crop area/production, province-wise and crop-wise fertilizer
 consumption, land use, irrigation, canal withdrawals, water availability, support prices - but **no province-level crop data**,

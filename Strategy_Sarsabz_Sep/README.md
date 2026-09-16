@@ -59,7 +59,7 @@ figure comes from a `FACTS` entry carrying its source, so a number cannot reach 
 Sources downloaded to `workspace/pov/sources/`. **FFC's own annual report could not be retrieved** - ffc.com.pk returns 403 to
 curl, WebFetch and a headless browser - so FFC's figures are cited from PACRA's rating report on FFC instead.
 
-### The agricultural landscape → `workspace/out/Sarsabz_agri_landscape-v2.pptx` (9 slides)
+### The agricultural landscape → `workspace/out/Sarsabz_agri_landscape-v4.pptx` (9 slides)
 
 Background deck built from the PBS tables the user supplied (`data/reference/Agri_Landscape_2026`), the MNFSR district-wise crop
 publication, the Economic Survey 2025-26 chapter 2, and the World Bank, IFA, EC and Fertilizers Europe for international practice.
@@ -68,9 +68,10 @@ Builder: `workspace/agri/build_agri_landscape.py` (every figure comes from a `FA
 | Slides | Section |
 |---|---|
 | 1-2 | Cover; the land and the two seasons (cropped area, water, canal withdrawals by season) |
-| 3-5 | What Pakistan grows; Punjab and Sindh ranked by crop area |
-| 6-7 | Where the fertilizer goes (province use, per hectare, N:P:K); the imbalance against the balanced ratio |
-| 8-9 | What is practised internationally; the opportunity by product (NP, CAN, urea/DAP, potash) |
+| 3-6 | What Pakistan grows, as a table and a province chart; the crop calendar grid; Sindh's district timing |
+| 7-8 | Punjab and Sindh ranked by crop area |
+| 9-10 | Where the fertilizer goes (province use, per hectare, N:P:K); the imbalance against the balanced ratio |
+| 11-12 | What is practised internationally (with a per-hectare bar chart); the opportunity by product |
 
 **Crop data caveat:** `workspace/agri/crop_by_province.csv` holds only the five crops whose province totals reconcile exactly with
 PBS Table-1 (wheat, rice, cotton, sugarcane, maize). Minor crops were dropped: their province attribution could not be validated
@@ -136,7 +137,7 @@ re-check against the source tables both pass.
 | `Sarsabz_case1_big_idea_2026-09-15.docx` | Case 1 Big Idea sheet, from `case1_salam_kissan/big_idea.md` |
 | `Sarsabz_case1_campaign_concept_2026-09-16-v2.docx` | Case 1 campaign concept, from `case1_salam_kissan/the_concept.md`. Earlier files keep the earlier line and the pre-goal version. |
 | `Agricultural_landscape_report_*.docx` | The brand-free agricultural landscape report (crops, seasons, sizing, opportunity) |
-| `Sarsabz_agri_landscape-v2.pptx` | The agricultural landscape: crops, seasons, provinces, fertilizer opportunity |
+| `Sarsabz_agri_landscape-v4.pptx` | The agricultural landscape: crops, seasons, provinces, fertilizer opportunity |
 | `Sarsabz_point_of_view-v3.pptx` | The pitch-expectations deck (portfolio, Bubber Sher, category, measurement, long term) |
 | `Sarsabz_TG_farmer_card-v4.pptx` | The Sarsabz farmer TG profile card, from `workspace/tg_profile/farmer_card.json` |
 | `Sarsabz_case2_brand_audit_draft_2026-09-15-v5.docx` | The Case 2 audit, rendered from `the_audit.md` |

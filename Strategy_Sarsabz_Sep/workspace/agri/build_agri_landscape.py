@@ -20,8 +20,12 @@ import csv
 import sys
 from pathlib import Path
 
+import json
+
 from pptx import Presentation
+from pptx.chart.data import CategoryChartData
 from pptx.dml.color import RGBColor
+from pptx.enum.chart import XL_CHART_TYPE, XL_LEGEND_POSITION
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Inches, Pt
@@ -48,6 +52,8 @@ IFABAL = "L. Cissé, Balanced fertilization for sustainable use of plant nutrien
 EUBRIEF = "European Commission, EU Agricultural Markets Brief No 15, Fertilisers in the EU, June 2019"
 FEUROPE = "Fertilizers Europe, Types of fertilizer, retrieved 16 Sep 2026"
 BRIEF = "Fatima Creative Marketing Brief 2026"
+CRS_PUNJAB = "Crop Reporting Service, Punjab: Crops' Life Calendar and Kharif crop-cut calendar notification"
+CRS_SINDH = "Agriculture department, Sindh: district-wise sowing periods and harvest dates for major crops"
 
 FACTS: dict[str, tuple[str, str]] = {
     "cropped": ("Pakistan crops 24.60m hectares: Punjab 17.52m, Sindh 3.90m, KP 1.73m, Balochistan 1.45m (2024-25)", PBS),
@@ -80,6 +86,14 @@ FACTS: dict[str, tuple[str, str]] = {
     "nitrate_eu": ("Fertilizers Europe: ammonium nitrate and calcium ammonium nitrate are 'well suited to most European "
                    "soils and climatic conditions'", FEUROPE),
     "global_split": ("Globally nitrogen is 108m tonnes of nutrient (60%), of which urea is 60m tonnes", EUBRIEF),
+    "cal_cut": ("The crop-cut calendar fixes when yield is measured in the field: rice from 15 September, cotton from "
+                "15 July, sugarcane from 1 January, autumn maize from 1 November", CRS_PUNJAB),
+    "cal_sindh_wheat": ("Sindh wheat sowing is 1-20 November in the south against 7 November-30 December in the north", CRS_SINDH),
+    "cal_sindh_cotton": ("Sindh cotton is sown March-May in Badin and Thatta but in June in Sukkur, Khairpur and Dadu", CRS_SINDH),
+    "cal_sindh_rice": ("Sindh rice nurseries: 20 April-10 June in the south, late May-30 June in the north; harvest "
+                       "September-October in the south and November in the north", CRS_SINDH),
+    "cal_vintage": ("The Punjab grid is undated on its face and the crop-cut notification carries a 2020 season; the "
+                    "agricultural survey records sowing shifting earlier", CRS_PUNJAB),
 }
 USED: list[str] = []
 
@@ -161,6 +175,77 @@ def table(s, l, t, widths, rows, size=10.5, row_h=0.52, head_h=0.45):
     return y
 
 
+MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+SOW, GROW, HARV = RGBColor(0xC8, 0x10, 0x2E), RGBColor(0xD8, 0xE2, 0xEA), RGBColor(0x1F, 0x7A, 0x3D)
+
+
+def calendar_grid(s, left, top, width, crops_rows, row_h=0.42, label_w=2.3, size=10):
+    """Draw the crops' life calendar as a month grid - the shape the source itself uses."""
+    cal = json.loads((HERE / "punjab_crop_calendar.json").read_text(encoding="utf-8"))
+    col_w = (width - label_w) / 12.0
+    for i, m in enumerate(MONTHS):
+        txt(s, left + label_w + i * col_w, top, col_w, 0.26, m, 9, True, MUTED, align=PP_ALIGN.CENTER, space=0)
+    y = top + 0.3
+    for label, key in crops_rows:
+        row = cal.get(key, {})
+        sow = set(x.strip() for x in (row.get("sowing") or "").split(",") if x.strip())
+        grow = set(x.strip() for x in (row.get("growth") or "").split(",") if x.strip())
+        harv = set(x.strip() for x in (row.get("harvesting") or "").split(",") if x.strip())
+        marks = {k: set(x.strip() for x in v.split(",") if x.strip()) for k, v in (row.get("marks") or {}).items()}
+        txt(s, left, y + 0.06, label_w - 0.12, row_h - 0.1, label, size, True, INK, space=0)
+        for i, m in enumerate(MONTHS):
+            x = left + label_w + i * col_w
+            fill = SOW if m in sow else (HARV if m in harv else (GROW if m in grow else PALE))
+            rect(s, x + 0.02, y, col_w - 0.04, row_h - 0.06, fill)
+            letter = next((k for k, v in marks.items() if m in v), None)
+            if letter:
+                colour = WHITE if fill in (SOW, HARV) else INK
+                txt(s, x + 0.02, y + 0.07, col_w - 0.04, row_h - 0.16, letter, 9, True, colour,
+                    align=PP_ALIGN.CENTER, space=0)
+        y += row_h
+    # legend - the growth colour is nearly white, so every swatch gets an outline to read against the page
+    lx = left
+    for colour, label in ((SOW, "Sowing"), (GROW, "Growth"), (HARV, "Harvesting")):
+        sw = rect(s, lx, y + 0.1, 0.22, 0.16, colour)
+        sw.line.color.rgb = MUTED
+        sw.line.width = Pt(0.75)
+        txt(s, lx + 0.3, y + 0.07, 1.2, 0.24, label, 9.5, False, MUTED, space=0)
+        lx += 1.55
+    txt(s, lx, y + 0.07, 5.0, 0.24, "t transplanting   ·   p picking   ·   d digging  (the source's own keys)",
+        9.5, False, MUTED, space=0)
+    return y
+
+
+def bar_chart(s, left, top, width, height, categories, series, colours=None, number_format='0.0'):
+    data = CategoryChartData()
+    data.categories = categories
+    for name, values in series:
+        data.add_series(name, values)
+    kind = XL_CHART_TYPE.COLUMN_CLUSTERED if len(series) > 1 else XL_CHART_TYPE.COLUMN_CLUSTERED
+    gf = s.shapes.add_chart(kind, Inches(left), Inches(top), Inches(width), Inches(height), data)
+    chart = gf.chart
+    chart.has_title = False
+    if len(series) > 1:
+        chart.has_legend = True
+        chart.legend.position = XL_LEGEND_POSITION.BOTTOM
+        chart.legend.include_in_layout = False
+        chart.legend.font.size = Pt(10)
+    else:
+        chart.has_legend = False
+    plot = chart.plots[0]
+    plot.has_data_labels = True
+    plot.data_labels.number_format = number_format
+    plot.data_labels.number_format_is_linked = False
+    plot.data_labels.font.size = Pt(9)
+    for i, ser in enumerate(chart.series):
+        ser.format.fill.solid()
+        ser.format.fill.fore_color.rgb = (colours or [NAVY, ACCENT, SKY])[i % 3]
+    chart.category_axis.tick_labels.font.size = Pt(10)
+    chart.value_axis.tick_labels.font.size = Pt(9)
+    chart.value_axis.has_major_gridlines = True
+    return chart
+
+
 def crops():
     rows = list(csv.DictReader((HERE / "crop_by_province.csv").open(encoding="utf-8")))
     for r in rows:
@@ -183,9 +268,9 @@ def build(prs) -> None:
     txt(s, 0.9, 1.95, 11.4, 0.5, "Fatima Fertilizer creative pitch  ·  background", 18, False, SKY)
     txt(s, 0.9, 2.5, 11.6, 1.0, "The agricultural landscape", 48, True, WHITE)
     txt(s, 0.9, 3.6, 11.4, 0.6, "What Pakistan grows, when, where - and where the fertilizer opportunity sits", 22, False, WHITE, italic=True)
-    txt(s, 0.9, 4.8, 11.4, 1.2, ["1  The land and the two seasons   ·   2  What Pakistan grows",
-                                 "3  Punjab   ·   4  Sindh   ·   5  Where the fertilizer goes   ·   6  The imbalance",
-                                 "7  What is practised internationally   ·   8  The opportunity by product"], 14, False, SKY)
+    txt(s, 0.9, 4.8, 11.4, 1.2, ["1  The land and the two seasons   ·   2  What Pakistan grows   ·   3  The crop calendar",
+                                 "4  Punjab   ·   5  Sindh   ·   6  Where the fertilizer goes   ·   7  The imbalance",
+                                 "8  What is practised internationally   ·   9  The opportunity by product"], 14, False, SKY)
     txt(s, 0.9, 6.6, 11.6, 0.4, "Built from the PBS tables supplied, the MNFSR district-wise crop publication, the Economic "
                                 "Survey 2025-26, the World Bank, IFA and the European Commission  ·  16 September 2026", 11, False, SKY)
 
@@ -223,9 +308,51 @@ def build(prs) -> None:
         "(gram, sesame, tobacco, bajra) were dropped because their province attribution could not be validated in the source PDF.",
         fact("gdp") + " - the sector's weight, but not its fertilizer demand, which follows crop and season."], 11)
 
+    # crop area by province, as a chart
+    s = frame(prs, "2  ·  WHAT PAKISTAN GROWS", "The same five crops, by province",
+              "Punjab holds roughly seven in every ten hectares of each major crop; Sindh's weight is in cotton and rice.",
+              MNFSR + ", area 2022-23 ('000 hectares)")
+    cats = [c.title() for c in sorted(national, key=lambda c: -national[c])]
+    pj = [next((r["area_000ha"] for r in C if r["crop"] == c.upper() and r["province"] == "PUNJAB"), 0) for c in cats]
+    sd = [next((r["area_000ha"] for r in C if r["crop"] == c.upper() and r["province"] == "SINDH"), 0) for c in cats]
+    other = [national[c.upper()] - p - s_ for c, p, s_ in zip(cats, pj, sd)]
+    bar_chart(s, 0.6, 1.3, 12.1, 4.8, cats,
+              [("Punjab", pj), ("Sindh", sd), ("Other provinces", other)],
+              colours=[NAVY, ACCENT, SKY], number_format='#,##0')
+
+    # the crop calendar, from the provincial services
+    k = ["cal_cut", "cal_vintage"]
+    s = frame(prs, "3  ·  THE CROP CALENDAR", "When each crop is sown and harvested, per the provincial service",
+              "Wheat sowing runs four months; cotton picking and wheat sowing collide in November.",
+              sources_line(k))
+    calendar_grid(s, 0.6, 1.25, 12.1, [
+        ("Wheat", "Wheat"), ("Rice", "Rice"), ("Cotton", "Cotton"), ("Sugarcane", "Sugarcane"),
+        ("Maize (autumn)", "Maize (A)"), ("Maize (spring)", "Maize (S)"),
+        ("Gram + masoor", "Gram + Masoor"), ("Potato (autumn)", "Potato(A)")])
+    txt(s, 0.6, 5.35, 12.1, 0.85, [
+        fact("cal_cut") + ".",
+        fact("cal_vintage") + " - these are the published windows, not a promise about this season."], 10.5, False, INK)
+
+    # Sindh timing
+    k = ["cal_sindh_wheat", "cal_sindh_cotton", "cal_sindh_rice"]
+    s = frame(prs, "3  ·  THE CROP CALENDAR  ·  SINDH", "In Sindh the same crop moves by up to a quarter, district to district",
+              "A single national campaign date cannot be right for both provinces, or for both ends of Sindh.",
+              sources_line(k))
+    table(s, 0.6, 1.25, [2.4, 4.85, 4.85], [
+        ["Crop", "North Sindh", "South Sindh"],
+        ["Wheat", "Sowing 7 Nov - 30 Dec; harvest through May", "Sowing 1-20 Nov (late varieties to 15 Dec); harvest through March"],
+        ["Rice", "Nursery late May - 30 June; harvest November", "Nursery 20 Apr - 10 June; harvest September - October"],
+        ["Cotton", "Sown June (Sukkur, Khairpur, Ghotki, Dadu); harvest 15 Oct - 15 Dec",
+         "Sown March - May (Badin, Thatta, Mirpurkhas, Hyderabad); harvest 15 Sept - 31 Oct"],
+        ["Sugarcane", "Spring 10 Feb - 30 Mar; autumn Sept - Oct", "Same, harvested December - February"]],
+        10.5, 0.7)
+    panel(s, 0.6, 4.65, 12.1, 1.5, "The pinch point", [
+        "November and December carry wheat sowing, sugarcane harvest, cotton picking and the autumn maize harvest at once - "
+        "in both provinces, and across both seasons."], 11)
+
     # 4 and 5: Punjab, Sindh
-    for who, label, note in [("PUNJAB", "3  ·  PUNJAB", "Punjab is the fertilizer market: 69% of national nutrient use."),
-                             ("SINDH", "4  ·  SINDH", "Sindh is smaller but more intensive per hectare, and more nitrogen-skewed.")]:
+    for who, label, note in [("PUNJAB", "4  ·  PUNJAB", "Punjab is the fertilizer market: 69% of national nutrient use."),
+                             ("SINDH", "5  ·  SINDH", "Sindh is smaller but more intensive per hectare, and more nitrogen-skewed.")]:
         s = frame(prs, label, f"{who.title()}: what is grown, ranked by area",
                   note, MNFSR + "  ·  area and production 2022-23  ·  cotton production in bales, others in tonnes")
         rows = [["Crop", "Area ('000 ha)", "Share of national area", "Production"]]
@@ -246,7 +373,7 @@ def build(prs) -> None:
 
     # 6 where the fertilizer goes
     k = ["prov_use", "per_ha", "offtake", "npk_trend", "bag", "cropwise"]
-    s = frame(prs, "5  ·  WHERE THE FERTILIZER GOES", "Two provinces are the market; price decides the mix",
+    s = frame(prs, "6  ·  WHERE THE FERTILIZER GOES", "Two provinces are the market; price decides the mix",
               "Nitrogen is bought; phosphate is skipped when it is dear. That is the opening for a cheaper phosphate route.",
               sources_line(k))
     table(s, 0.6, 1.25, [3.0, 3.1, 3.0, 3.0], [
@@ -262,7 +389,7 @@ def build(prs) -> None:
 
     # 7 the imbalance
     k = ["npk_ratio", "balanced", "pak_history", "imbalance_cost", "npk_trend"]
-    s = frame(prs, "6  ·  THE IMBALANCE", "Pakistan buys nitrogen and skips the rest",
+    s = frame(prs, "7  ·  THE IMBALANCE", "Pakistan buys nitrogen and skips the rest",
               "Against the balanced ratio, Pakistan applies about half the phosphate and almost no potash. That is the "
               "agronomic argument the category has never made.", sources_line(k))
     panel(s, 0.6, 1.25, 6.0, 2.3, "What Pakistan applies", [fact("npk_ratio") + ".",
@@ -275,24 +402,21 @@ def build(prs) -> None:
 
     # 8 international practice
     k = ["wb", "fourR", "urea_eu", "nitrate_eu", "global_split"]
-    s = frame(prs, "7  ·  WHAT IS PRACTISED INTERNATIONALLY", "Three practices Pakistan has not adopted",
+    s = frame(prs, "8  ·  WHAT IS PRACTISED INTERNATIONALLY", "Three practices Pakistan has not adopted",
               "Pakistan is not under-fertilised by accident: it uses less per hectare than its neighbours, and what it uses "
               "is the least balanced.", sources_line(k))
-    table(s, 0.6, 1.3, [3.4, 2.4, 6.3], [
-        ["Practice", "Where", "What it means here"],
-        ["Higher and balanced application", "Bangladesh 391.9 and China 394.0 kg/ha against Pakistan's 160.3 (2023)",
-         "Pakistan's yield gap is partly a nutrition gap; India at 199.1 is the nearest comparison"],
-        ["Nitrate-based nitrogen, not only urea", "AN and CAN are the European norm; urea's share is 'high in Asia... lower "
-         "in the EU'", "Sarsabz is the only CAN maker at scale in Pakistan - an international norm it already produces"],
-        ["4R nutrient stewardship", "The global framework since 2009",
-         "'Right source, right rate, right time, right place' is exactly the advice farmers ask for in the comments"]],
-        10.5, 1.15)
-    panel(s, 0.6, 5.05, 12.1, 1.1, "The honest comparison", [
-        fact("global_split") + " - so urea's dominance is global, but its dominance of Pakistan's mix is what makes the "
-        "ratio unbalanced."], 11)
+    bar_chart(s, 0.6, 1.25, 6.1, 4.0, ["Egypt", "Vietnam", "China", "Bangladesh", "India", "Pakistan", "USA"],
+              [("kg per hectare of arable land, 2023", [532.8, 419.9, 394.0, 391.9, 199.1, 160.3, 127.8])],
+              colours=[NAVY], number_format='0')
+    fact("wb")
+    panel(s, 6.9, 1.25, 5.8, 4.0, "The other two practices", [
+        "Nitrate-based nitrogen, not only urea: " + fact("nitrate_eu") + ", and " + fact("urea_eu") + ".",
+        "4R nutrient stewardship, the global framework since 2009: " + fact("fourR") + "."], 11)
+    panel(s, 0.6, 5.45, 12.1, 0.75, "The honest comparison", [
+        fact("global_split") + " - urea's dominance is global; its dominance of Pakistan's mix is what unbalances the ratio."], 11)
 
     # 9 opportunity by product
-    s = frame(prs, "8  ·  THE OPPORTUNITY BY PRODUCT", "Where each fertilizer type has a claim, and what it needs",
+    s = frame(prs, "9  ·  THE OPPORTUNITY BY PRODUCT", "Where each fertilizer type has a claim, and what it needs",
               "Each opportunity is an argument the category is not making - and three of the four are products Fatima already makes.",
               "Our own reading of the data on the previous slides  ·  " + BRIEF + "  ·  product positions from the Case 2 audit")
     table(s, 0.6, 1.25, [2.3, 3.5, 3.4, 2.9], [
