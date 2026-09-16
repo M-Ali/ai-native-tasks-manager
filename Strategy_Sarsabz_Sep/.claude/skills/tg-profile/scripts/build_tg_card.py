@@ -44,18 +44,25 @@ PALE = RGBColor(0xF2, 0xF5, 0xF8)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 SKY = RGBColor(0x9F, 0xB4, 0xC7)
 
-def fits(text: str, w: float, h: float, size: float) -> bool:
-    """Estimate whether text fits, by line rather than by area.
+def fits(lines: list, w: float, h: float, size: float) -> bool:
+    """Estimate whether these paragraphs fit, counting the lines each one wraps to.
 
-    Segoe UI averages about 0.0062in of width and 0.019in of line height per point of size, so a 13pt
-    line in a 9in box holds roughly 110 characters. An area-based estimate gets short wide boxes badly
-    wrong - it rejects a one-line subtitle that fits easily - so the budget is lines x chars-per-line.
+    Segoe UI runs about 0.0062in of width and 0.0168in of line height per point of size, so a 10pt
+    bullet in a 3.1in column holds roughly 50 characters per line. Counting total characters is not
+    enough: each bullet's last line is part-used, so six two-line bullets need twelve rows, not the
+    nine that a character total suggests. That is exactly how a panel passes the check and still
+    clips its last bullet in PowerPoint.
     """
-    chars_per_line = max(1, w / (0.0062 * size))
-    lines = max(1, h / (0.019 * size))
-    # 0.9, not 1.0: every wrapped line wastes part of its last row, and a card that overflows in
-    # PowerPoint after passing this check is worse than one that made you shorten a line.
-    return len(text) <= chars_per_line * lines * 0.9
+    import math
+    chars_per_line = max(1.0, w / (0.0059 * size))
+    available = h / (0.0168 * size)
+    # a box within a fifth of one line's height still renders that line, so count it as one
+    if available >= 0.8:
+        available = max(available, 1.0)
+    used = sum(max(1, math.ceil(len(str(line)) / chars_per_line)) for line in lines)
+    used += 0.25 * max(0, len(lines) - 1)  # paragraph spacing
+    # a hair of slack, so a single line in a box exactly one line tall is not rejected on rounding
+    return used <= available + 0.05
 
 
 def check(spec: dict) -> None:
@@ -101,10 +108,10 @@ def txt(slide, l, t, w, h, text, size=12, bold=False, color=INK, align=PP_ALIGN.
         p.space_after = Pt(space)
         f = p.runs[0].font
         f.size, f.bold, f.italic, f.color.rgb, f.name = Pt(size), bold, italic, color, "Segoe UI"
-    body = " ".join(str(x) for x in lines)
-    if not fits(body, w, h, size):
-        raise SystemExit(f"Refusing to build: text overflows its box ({len(body)} chars in {w:.1f}x{h:.1f}in "
-                         f"at {size}pt). Shorten it or give it more room:\n    {body[:120]}...")
+    if not fits(lines, w, h, size):
+        body = " ".join(str(x) for x in lines)
+        raise SystemExit(f"Refusing to build: text overflows its box ({len(lines)} paragraph(s), {len(body)} chars "
+                         f"in {w:.1f}x{h:.1f}in at {size}pt). Shorten it or give it more room:\n    {body[:120]}...")
     return tb
 
 

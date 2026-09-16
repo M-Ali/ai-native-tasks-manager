@@ -302,6 +302,8 @@ CHAIN = [
 EXEC = [
     ("ATL", "The Reply anthem", "Real farming families, parent and child, sing and speak the 2026 anthem back. No celebrities, no AI farmers.",
      f"Anthems hold {ANTHEM_C:,} of {len(corpus):,} comments; the 2025 uploads drew {len(Y25)}."),
+    ("ATL / Digital, urban", "What I put on your table today", "The reply cut for the city: a farmer names his district, his crop and the meal it becomes.",
+     "The archive's urban films work: 4.0M on the 2025 food-blogger film; 388K and 382K on the 2020 urban shorts."),
     ("Digital / UGC", "#KissanKaJawab", "Farmers' children film their parent's answer; creators seed it to people who don't farm.",
      f"The pride-in-family comments; {code_n['vlog_referral']} 2023 creator referrals; TikTok UGC awards (brief p9-10)."),
     ("BTL", "Reply cards", "Replies and voice notes collected at Kissan Day stalls and dealer counters.",
@@ -367,7 +369,63 @@ def campaign(prs) -> None:
     s = frame(prs, "6  ·  THE CAMPAIGN  ·  HOW IT TRAVELS", "One idea across the five touchpoints the brief names",
               "Every execution puts the farmer's own voice first, and every one builds on something the evidence shows.", src)
     rows = [["Touchpoint", "Execution", "What it is", "Evidence it builds on"]] + [list(e) for e in EXEC]
-    table(s, 0.6, 1.3, [1.5, 2.2, 4.6, 3.8], rows, 10, 0.74)
+    table(s, 0.6, 1.3, [1.6, 2.3, 4.5, 3.7], rows, 9.5, 0.64)
+
+    # the goal (p12), mechanism by mechanism
+    urban = sorted([r for r in arch if r["audience"] == "urban"], key=lambda r: -int(r["views"]))
+    meal = next(r for r in urban if "Behind every meal" in r["title"])
+    waste = next(r for r in urban if "Waste Food" in r["title"])
+    thank = next(r for r in urban if "Thank you, Kissan!" in r["title"])
+    undp = next(r for r in arch if r["format"] == "corporate_pr")
+    s = frame(prs, "6  ·  THE CAMPAIGN  ·  THE GOAL", "What the goal asks people to understand, and what delivers it",
+              "Each line of the goal gets a mechanism, not a mention.", src)
+    table(s, 0.6, 1.3, [3.2, 4.3, 4.6], [
+        ["The goal (p12): people should understand", "What delivers it", "Evidence it stands on"],
+        ["The importance of farmers in our daily lives",
+         "“What I put on your table today” - the reply cut for the city: a district, a crop, the meal it becomes",
+         f"The archive's urban films work: {V('Behind every meal is a farmer’s hard work.')} ({m(int(meal['views']))}), "
+         f"{V('Let’s Pledge Not To Waste Food')} ({m(int(waste['views']))})"],
+        ["The contribution of agriculture to the economy",
+         "The number in the reply: farmers state what their field puts in, and the work carries the national figures",
+         "Agriculture is 24% of GDP and 37.4% of employment (Pakistan Economic Survey 2023-24)"],
+        ["The role Sarsabz plays in celebrating and empowering",
+         "The other 364 days: the empowerment proof joins Kissan Day for the first time",
+         f"Ki Jeet wins in 34 of 40 districts; 500+ demo plots (p5); app 800,000+ downloads and Sarsabz Asaan Rs.500bn (p7); "
+         f"UNDP film {m(int(undp['views']))} (2024)"]],
+        10, 1.25)
+
+    s = frame(prs, "6  ·  THE CAMPAIGN  ·  EMPOWERING", "Celebrating is one day. Empowering is the other 364",
+              "None of this proof has ever been part of Kissan Day. It is what turns a tribute into a role.",
+              "Sources: brief pp.5, 7; Case 2 audit (workspace/case2_audit/); archive/archive_codes.csv. Ki Jeet claims need "
+              "correcting before use - see the Case 2 asks.")
+    table(s, 0.6, 1.3, [3.4, 4.6, 4.1], [
+        ["What Sarsabz already does", "How it joins the reply", "Where it comes from"],
+        ["Ki Jeet: wins in 34 of 40 districts", "Winners answer in their own words, with yields and inputs named",
+         "Case 2 audit; the brand's most-watched product films (8.2M, 7.5M)"],
+        ["500+ demo plots with research institutes", "A plot near the farmer who replies, open to visit at sowing",
+         "Brief p5. No plot has ever appeared in the owned archive"],
+        ["Sarsabz Pakistan App, 800,000+ downloads", "Replies collected and answered in the app, in his language",
+         "Brief p7"],
+        ["Sarsabz Asaan, Rs.500bn recorded", "The credit story told by the farmer who used it", "Brief p7"],
+        ["UNDP partnership on sustainable farming", f"The national frame for the movement ({m(int(undp['views']))} views)",
+         "Archive: the biggest upload of 2024"]],
+        9, 0.74)
+
+    s = frame(prs, "6  ·  THE CAMPAIGN  ·  THE MOVEMENT", "The day already travels without the brand. Make that the movement",
+              "A movement that publishes its size can be checked. One that does not is a claim.",
+              "Sources: The Nation 19 Dec 2024; ProPakistani 8 Jan 2025; Daily Times (undated, blocked); scan/scan_findings.md.")
+    panel(s, 0.6, 1.3, 5.9, 4.85, "Who marks the day now, without Sarsabz on it", [
+        "The 5th National Farmers' Day was observed through the Kashtkar Dost Foundation and All Pakistan Kissan Ittehad, "
+        "crediting “Fatima Group” - not Sarsabz, not Salam Kissan (The Nation, 19 Dec 2024).",
+        "The sixth Kissan Day was held in Islamabad with the Federal Minister and the FAO representative (ProPakistani, 8 Jan 2025).",
+        "The ICT administration ran its own “Salam Kissan” campaign on the capital's streets (Daily Times; undated, page blocked).",
+        "Syngenta, JPL Pakistan and Rizq Foods post the day on their own channels; JPL and Rizq use the Salam Kissan name."], 11.5)
+    panel(s, 6.8, 1.3, 5.9, 4.85, "The mechanism", [
+        "A Salam Kissan partner pack: the day's assets, the reply format and the name, offered to the farmer bodies, provincial "
+        "departments and partners who already mark it - so it grows under the name that started it.",
+        "Every partner's replies feed one record, handed over on 18 December as Kissan ki Awaaz.",
+        "One published number each year: how many farmers answered, from how many districts.",
+        "What it asks of Fatima: decide the number it will publish before the campaign runs, and accept that year one may be small."], 11.5)
 
     s = frame(prs, "6  ·  THE CAMPAIGN  ·  A YEAR", "Beyond a single day: replies from sowing to harvest to 18 December",
               "Month twelve opens the next December with what changed, so the day becomes a platform, not a launch.",

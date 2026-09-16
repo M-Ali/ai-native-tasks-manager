@@ -12,8 +12,8 @@
 
   "mindset": [
     "Judges at product level, on what he has seen work on land like his.",
-    "Asks strangers in comment threads what the maker should be telling him, and suspects the answers are paid for.",
-    "Fears waste more than failure: not whether NP and CAN work, but what will lock up if he mixes them."
+    "Asks strangers in comment threads what the maker should tell him.",
+    "Fears waste more than failure: what will lock up if he mixes."
   ],
 
   "pain_points": [
@@ -54,19 +54,27 @@
 
   "interests": {
     "title": "Interests and affinity index",
-    "items": [],
-    "gap": "No interest-affinity dataset covers this audience. The available export (Interests.csv) is brandsynario.com's own web audience - 35,681 urban, English-reading visitors, Jan-Sep 2026 - so it is kept for the urban card. To fill this block: a rural U&A or media study from Fatima.",
-    "source": ""
+    "items": [
+      {"label": "Avid Political News Readers", "index": 264, "users": 121},
+      {"label": "Cricket Enthusiasts", "index": 185, "users": 91},
+      {"label": "Auto Enthusiasts", "index": 183, "users": 79},
+      {"label": "Avid Business News Readers", "index": 161, "users": 70},
+      {"label": "Banking & Finance / Avid Investors", "index": 159, "users": 113},
+      {"label": "Avid News Readers (all)", "index": 126, "users": 141}
+    ],
+    "source": "GA4: brandsynario.com visitors in Punjab, male 25-44, 390 of 1,472 users. A website audience, not a farmer sample - directional only.",
+    "gap": ""
   },
 
   "media": {
     "title": "Where to reach him (evidenced, no survey)",
     "items": [
-      {"channel": "YouTube, agronomy creators", "note": "where the switch is argued out"},
-      {"channel": "YouTube, brand films", "note": "long anthems draw response; 2025's AI shorts drew almost none"},
-      {"channel": "Dealer and trade counter", "note": "the last conversation before the bag"},
-      {"channel": "Sarsabz Pakistan App", "note": "800,000+ downloads claimed (brief p7)"},
-      {"channel": "TikTok", "note": "brief p23 calls the target TikTok-engaged; unverified, not readable logged-out"}
+      {"channel": "TV, radio, OOH", "note": "template frame; no rural survey"},
+      {"channel": "YouTube", "note": "evidenced: agronomy creators, anthems"},
+      {"channel": "TikTok", "note": "brief p23: TikTok-engaged; unverified"},
+      {"channel": "Facebook, Instagram", "note": "template frame only"},
+      {"channel": "Dealer counter", "note": "last stop before the bag"},
+      {"channel": "Sarsabz App", "note": "800,000+ downloads (brief p7)"}
     ],
     "source": ""
   },
@@ -77,6 +85,7 @@
     "1,433 farmer comments (case2_audit/comments/analysis.md, theme_counts.csv)",
     "1,572 Salam Kissan comments (case1_salam_kissan/comments/comment_findings.md)",
     "76-upload archive (case1_salam_kissan/archive/archive_findings.md)",
+    "GA4 interests export, brandsynario.com Punjab visitors (data/reference/Punjab.csv)",
     "No media survey supplied, so no percentages are shown; ask Fatima for TGI or Gallup",
     "The name and composite framing are a device; no individual farmer is described"
   ]

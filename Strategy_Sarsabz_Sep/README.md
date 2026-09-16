@@ -11,7 +11,7 @@ Brief: `data/Creative Pitch Deck (1).pdf` (32 pages, 13 of them image-only). Far
 **Both cases are built as internal working drafts.** Everything is committed on branch `sarsabz-pitch` (last commit `6b6eeeb`).
 **Nothing is pushed:** both remotes are public, and the branch holds the client brief and downloaded comments.
 
-### Case 1: Salam Kissan 2026 → `workspace/out/Sarsabz_case1_deck-v3.pptx` (19 slides)
+### Case 1: Salam Kissan 2026 → `workspace/out/Sarsabz_case1_deck-v4.pptx` (19 slides)
 
 Built under the user's rule **"no made up data, no assumptions"**.
 
@@ -22,7 +22,9 @@ Built under the user's rule **"no made up data, no assumptions"**.
 | 4-5 | What commenters say (1,572 comments, all read) | `comments/comment_findings.md`, `comments/analyse.py` → `comment_codes.csv` |
 | 6 | Who else marks the day (YouTube scan) | `scan/scan_findings.md`, `scan/others.csv` |
 | 7-13 | The Big Idea: *the farmer answers Pakistan's salute in his own voice, through his own family* | `big_idea.md`, `deck/big_idea_spec.json` |
-| 14-19 | The campaign: **"Salam Kissan. Salam Pakistan."** (proposed), mechanic **Kissan ka Jawab** | `the_concept.md` |
+| 14-17 | The campaign: **"Salam Kissan. Salam Pakistan."** (proposed), mechanic **Kissan ka Jawab**, across the five touchpoints | `the_concept.md` |
+| 18-20 | Delivering the goal (p12): daily life, the economy, and Sarsabz *empowering*; then the movement mechanism | `the_concept.md` §5b-5c |
+| 21-22 | A year beyond the day, and what it asks of Fatima | `the_concept.md` §5-6 |
 
 - **Summary of all evidence:** `workspace/case1_salam_kissan/evidence.md`.
 - **Rebuild:** `uv run --no-project --with python-pptx python workspace/case1_salam_kissan/deck/build_case1_deck.py`. It writes the next `-vN`, and refuses to build if a verbatim isn't in a source file or a count no longer matches the data.
@@ -40,6 +42,22 @@ Built under the user's rule **"no made up data, no assumptions"**.
 | 29-36 | The campaign: **Dus Feesad Aur. Khet Gawah Hai.** | `concept/concept.yaml`, `concept/the_concept.md` |
 
 Paths above are under `workspace/case2_audit/`. The full argument in prose is `workspace/case2_audit/the_audit.md`.
+
+### Answering "What We Expect from the Pitch" (p14) → `workspace/out/Sarsabz_point_of_view-v3.pptx` (9 slides)
+
+Neither case deck answers p14: the seven expectations sit above both. Built by `workspace/pov/build_pov_deck.py`, where every
+figure comes from a `FACTS` entry carrying its source, so a number cannot reach a slide without one.
+
+| Slides | Section |
+|---|---|
+| 1-2 | Cover; the portfolio: the job each of Sarsabz, Bubber Sher and Pakarab CAN would do |
+| 3 | Bubber Sher: the brief calls it North Zone (p20), Fatima's own site describes it nationally - and the vision that follows |
+| 4-5 | The category in numbers (Economic Survey, PACRA); the audience, macro and in their own words |
+| 6-7 | What communication can do for farmer relationships; emotion x proof as one system |
+| 8-9 | How we would measure it, and the long-term operating model |
+
+Sources downloaded to `workspace/pov/sources/`. **FFC's own annual report could not be retrieved** - ffc.com.pk returns 403 to
+curl, WebFetch and a headless browser - so FFC's figures are cited from PACRA's rating report on FFC instead.
 
 ### Next, in priority order
 
@@ -84,8 +102,9 @@ Paths above are under `workspace/case2_audit/`. The full argument in prose is `w
 | File | What |
 |---|---|
 | `Sarsabz_case1_big_idea_2026-09-15.docx` | Case 1 Big Idea sheet, from `case1_salam_kissan/big_idea.md` |
-| `Sarsabz_case1_campaign_concept_2026-09-16.docx` | Case 1 campaign concept (line "Salam Kissan. Salam Pakistan."), from `case1_salam_kissan/the_concept.md`. The 15 Sep file has the earlier line. |
-| `Sarsabz_TG_farmer_card-v2.pptx` | The Sarsabz farmer TG profile card, from `workspace/tg_profile/farmer_card.json` |
+| `Sarsabz_case1_campaign_concept_2026-09-16-v2.docx` | Case 1 campaign concept, from `case1_salam_kissan/the_concept.md`. Earlier files keep the earlier line and the pre-goal version. |
+| `Sarsabz_point_of_view-v3.pptx` | The pitch-expectations deck (portfolio, Bubber Sher, category, measurement, long term) |
+| `Sarsabz_TG_farmer_card-v4.pptx` | The Sarsabz farmer TG profile card, from `workspace/tg_profile/farmer_card.json` |
 | `Sarsabz_case2_brand_audit_draft_2026-09-15-v5.docx` | The Case 2 audit, rendered from `the_audit.md` |
 | `Sarsabz_farmer_conversation_analysis_2026-09-15.docx` | The Case 2 comment analysis |
 | `Sarsabz_big_idea_sheet_2026-09-15-v2.docx` | Case 2 one-page Big Idea |

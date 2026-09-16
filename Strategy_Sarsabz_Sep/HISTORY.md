@@ -3,11 +3,56 @@
 Newest first. The history of the SLIC and PTCL work this repo was copied from is in `_archive/slic_p78118/HISTORY.md`.
 
 > **Resuming?** Read `README.md` → "Start here". At the end of 16 Sep 2026, both cases are built as internal drafts:
-> - Case 1: `workspace/out/Sarsabz_case1_deck-v3.pptx` (19 slides)
+> - Case 1: `workspace/out/Sarsabz_case1_deck-v4.pptx` (19 slides)
 > - Case 2: `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides)
 >
 > Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
 > The pitch date and budget are still unknown.
+
+## 2026-09-16 (later) — "What We Expect from the Pitch" (p14): the point-of-view deck
+
+Checked both case decks against p14's seven expectations: only "innovative ideas across touchpoints" was covered, with farmer
+understanding partly there. **Bubber Sher had no vision anywhere** (4 Case 2 slides, all scan findings), and there was nothing on
+the portfolio, the emotional/functional balance, measurement, or long-term delivery.
+
+New deck `workspace/out/Sarsabz_point_of_view-v3.pptx` (9 slides), built by `workspace/pov/build_pov_deck.py`. Its guard: every
+figure comes from a `FACTS` entry with a source attached, and the build prints how many sourced figures were used (24).
+
+Sources the user named, downloaded to `workspace/pov/sources/`:
+- **Economic Survey 2025-26 ch.2** (retrieved PDF): agriculture 23.4% of GDP, 33.1% of employment, sector growth 2.89%; nutrient
+  offtake 3,795k tonnes Jul-Mar FY2026 (+11.4%), nitrogen +14.8%, phosphate -1.9% on high prices; "Rs 100 more per 50kg bag =
+  Rs 20 billion more on farmers"; Punjab Kissan Card aided cotton fertilizer use; tractor availability a constraint.
+- **PBS agriculture page** (retrieved): ~24% of GDP, "half of employed labour force" - undated and **disagrees with the Survey**.
+  Both are shown on the slide rather than picking the flattering one.
+- **PACRA** (retrieved): Fatima 24 Jul 2026 - portfolio incl. "Bubbersher Urea and Bubbersher DAP", flagship brands Sarsabz and
+  Bubbersher, Multan carve-out to Pakarab from 1 Jan 2025, "oligopolistic fertilizer industry"; Fatimafert 22 Apr 2020 - Bubber
+  Sher urea, Sheikhupura plant 445,500 MT; FFC 31 Jul 2026 - urea/DAP share 56%/66% in 1HCY26, industry offtake ~9.3mln MT CY25.
+- **FFC's own annual report: NOT retrieved.** ffc.com.pk returns 403 to curl, WebFetch and the headless browser (Cloudflare). FFC
+  figures are cited from PACRA's FFC report instead, and no unretrieved number was put on a slide.
+
+**The find worth the room:** the brief calls Bubber Sher "a regional brand... in North Zone" (p20); Fatima's own site calls it one
+of Pakistan's oldest brands, marketed with no regional limit. The deck puts the contradiction on the page as a client question,
+and writes the vision for the national-heritage reading with the tactical alternative stated.
+
+## 2026-09-16 (later) — Case 1 checked against the brief's task AND goal; deck v4 (22 slides)
+
+The user asked whether Case 1 covered p12's four task points, then supplied the goal paragraph. Checked by extracting the deck's
+own text rather than from memory. Result: the task's celebration and ownership asks were covered and "beyond a single day" was
+built, but **all three goal points appeared only on slide 2, the brief restatement** - the campaign delivered none of them, and
+"rural"/"urban"/"nationwide movement" were asserted rather than mechanised.
+
+Added (concept §5b-5c, deck slides 18-20, plus an urban row in the executions table):
+- **Daily life:** "What I put on your table today" - the reply cut for the city, reviving the archive thread that demonstrably
+  works on urban viewers (2025 food-blogger film 4.0M; 2020 urban shorts 388K and 382K).
+- **The economy:** farmers state what their field puts in; the work carries 24% of GDP and 37.4% of employment (PES 2023-24).
+- **Empowering, not just celebrating:** Ki Jeet (34 of 40 districts), 500+ demo plots (p5), the app's 800,000+ downloads and
+  Sarsabz Asaan Rs.500bn (p7), and the UNDP film (13.7M) join Kissan Day for the first time. This deliberately links Case 1 to
+  Case 2; keeping them apart was the wrong call against the goal's wording.
+- **The movement:** the day already travels without the brand (Kissan Ittehad and Kashtkar Dost, The Nation 19 Dec 2024; FAO and
+  the Federal Minister, ProPakistani 8 Jan 2025; the ICT administration's own campaign). A partner pack under the Salam Kissan
+  name, one shared record, and one published participation number a year.
+
+Deck **v4, 22 slides**; v3 kept. Word: `Sarsabz_case1_campaign_concept_2026-09-16-v2.docx`.
 
 ## 2026-09-16 (later) — `tg-profile` skill, and the farmer TG card
 
@@ -27,9 +72,18 @@ passes skill-creator's `quick_validate.py`). Built with `skill-creator`, the per
 35,681 urban visitors, Jan-Sep 2026) is kept for a future urban card because it does not describe farmers; and the media
 block shows evidenced channels with no invented percentages.
 
-**Deliverable:** `workspace/out/Sarsabz_TG_farmer_card-v2.pptx`, spec `workspace/tg_profile/farmer_card.json`. Pain points
+**Deliverable:** `workspace/out/Sarsabz_TG_farmer_card-v4.pptx`, spec `workspace/tg_profile/farmer_card.json`. Pain points
 come from the 1,433 agronomy comments (counts verified against `theme_counts.csv`) and the 1,572 Salam Kissan comments.
 v1 is kept; its render showed the media panel overflowing, fixed in v2.
+
+**v3, on the user's instruction:** the interests block now carries six categories from a second GA4 export the user supplied,
+`data/reference/Punjab.csv` (brandsynario.com visitors **in Punjab**, male 25-44: 390 of 1,472 users) - Avid Political News
+Readers i264, Cricket i185, Auto i183, Business News i161, Avid Investors i159, Avid News Readers i126. The media block follows
+the insurance template's frame (traditional TV/radio/OOH plus the social platforms), with no percentages, since no rural survey
+exists. **The caveat stands and is printed on the card:** this is a website audience in Punjab, not a farmer sample - the
+taxonomy has no agriculture category at all, and against the national file Punjab skews *more* digital (Mobile Enthusiasts
+i159, Technophiles i131), which is the opposite of a rural signal. Treat the indices as directional only. (v3 clipped its media panel; the builder's fit check now counts the lines each
+bullet wraps to, rather than total characters, and v4 is the clean render.)
 
 ## 2026-09-16 (later) — Case 1 line changed, deck v3
 
@@ -41,7 +95,7 @@ including under "We need to make this permanent not temporary. They are us and w
   **#KissanKaJawab**. The old line stays on the line slide as considered-and-rejected, with the reasons: religious register, a farmer
   who isn't Muslim can't say it in character, the correct form is the longer "Wa Alaikum Assalam", and the corpus evidence above.
 - `analyse.py` now codes `salam_pakistan`, so the 19 is reproducible; the builder checks the count before it will build.
-- **Deck: `workspace/out/Sarsabz_case1_deck-v3.pptx`** (v2 kept). Word: `Sarsabz_case1_campaign_concept_2026-09-16.docx`.
+- **Deck: `workspace/out/Sarsabz_case1_deck-v4.pptx`** (v2 kept). Word: `Sarsabz_case1_campaign_concept_2026-09-16.docx`.
 - Four Big Idea options inside the farmer-voice territory were offered (the reply; a published record of farmers' asks; farmers write
   the anthem; the farmer as expert). The deck still carries the reply; the user hasn't chosen between them.
 
@@ -60,7 +114,7 @@ Under the user's rule **"no made up data, no assumptions"**. Everything is in `w
 - **Concept** (`the_concept.md`): proposed line "Salam Kissan. Salam Pakistan." with the mechanic "Kissan ka Jawab", with executions for ATL, UGC, BTL, PR, events and on-ground. It asks Fatima to put farmers' complaints on air and to name
   the brand with the day.
 - Word files: `workspace/out/Sarsabz_case1_big_idea_2026-09-15.docx`, `Sarsabz_case1_campaign_concept_2026-09-15.docx`.
-- **Deck:** `workspace/out/Sarsabz_case1_deck-v3.pptx`, 19 slides: cover; brief; archive; comments ×2; category scan; Big Idea ×7
+- **Deck:** `workspace/out/Sarsabz_case1_deck-v4.pptx`, 19 slides: cover; brief; archive; comments ×2; category scan; Big Idea ×7
   (big-idea-slides skill); campaign ×6. Built by `workspace/case1_salam_kissan/deck/build_case1_deck.py`, which refuses to build if
   any verbatim isn't in a source file or a count no longer matches the data. v1 is kept: its render check showed line overlap and
   table overflow, fixed in v2.

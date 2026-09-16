@@ -52,6 +52,36 @@ Touchpoints are the ones the brief asks for: ATL, BTL, PR, Events, On-Ground Act
 | Events | **The farmer takes the stage.** At the national Kissan Day, farmers and their children speak first and officials answer. | Celebrities and politicians speak in 30 of 76 archive uploads. A farmer speaks in 9. |
 | On-Ground | **Replies at sowing and harvest.** Recording points where farmers gather, in Rabi and Kharif, not only in December. | The brief's seasons (p6). 79% of uploads fall in the December window. |
 
+## 5b. Delivering the goal (p12), not only the task
+
+The brief's goal asks that people understand three things. Each gets a mechanism.
+
+| The goal says people should understand | What delivers it | Evidence it stands on |
+|---|---|---|
+| The importance of farmers in our daily lives | **"What I put on your table today."** The reply is cut for the city: a farmer names his district, his crop and the meal it becomes. | The archive proves this thread works on urban viewers: "Behind every meal is a farmer's hard work." (2025, 4.0M views), "Let's Pledge Not To Waste Food" (2020, 388K), "Thank you, Kissan!" (2020, 382K) |
+| The contribution of agriculture to Pakistan's economy | **The number in the reply.** Farmers state what their field puts in, and the campaign carries the national figures rather than leaving them in an appendix. | Agriculture is 24% of GDP and 37.4% of employment (Pakistan Economic Survey 2023-24, retrieved) |
+| The role Sarsabz plays in celebrating **and empowering** the farming community | **The other 364 days.** The empowerment proof already exists and has never been part of Kissan Day: Ki Jeet wins in 34 of 40 districts, 500+ demo plots, the app, Sarsabz Asaan, the UNDP partnership. | Brief p5 (500+ demo plots), p7 (app 800,000+ downloads; Sarsabz Asaan Rs.500bn); Ki Jeet films are the brand's most-watched product content (8.2M and 7.5M); UNDP film 13.7M (Oct 2024) |
+
+**Why this matters:** the concept as first written celebrated the farmer and gave him a voice, which answers the task. It did not
+make the country understand what agriculture contributes or what Sarsabz does the rest of the year, which is what the goal asks.
+
+## 5c. From a day to a nationwide movement
+
+"Movement" is the easiest word in a pitch to assert and the hardest to evidence. The evidence says the day already travels
+without Sarsabz — which is the raw material for a movement, and the reason the brand's name keeps falling off it:
+
+- The 5th National Farmers' Day was observed through the Kashtkar Dost Foundation and All Pakistan Kissan Ittehad, crediting "Fatima Group" (The Nation, 19 Dec 2024).
+- The sixth Kissan Day was held in Islamabad with the Federal Minister and the FAO representative (ProPakistani, 8 Jan 2025).
+- The ICT administration ran its own "Salam Kissan" campaign on the capital's streets (Daily Times; undated, page blocked).
+- Syngenta, JPL, Rizq Foods and others post the day on their own channels.
+
+**The mechanism:** a Salam Kissan partner pack — the day's assets, the reply format and the name — offered to the farmer bodies,
+provincial departments and agri partners who already mark it, so the movement grows under the name that started it. Every partner
+publishes its own replies into the same record, and Fatima publishes one participation number each year: how many farmers
+answered, from how many districts. A movement that publishes its size can be checked; one that does not is a claim.
+
+**What it asks:** Fatima has to decide the number it will publish before the campaign runs, and accept that year one may be small.
+
 **Across time** (tied to the brief's seasons, not a media plan):
 - **Rabi sowing (Oct-Nov):** collect replies.
 - **1-18 Dec:** the Reply anthem, #KissanKaJawab UGC, and the national event with the Kissan ki Awaaz handover.
