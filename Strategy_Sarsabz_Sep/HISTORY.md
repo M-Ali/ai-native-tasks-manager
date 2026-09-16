@@ -9,6 +9,31 @@ Newest first. The history of the SLIC and PTCL work this repo was copied from is
 > Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
 > The pitch date and budget are still unknown.
 
+## 2026-09-16 (later) — The agricultural landscape deck
+
+Built from the user's `data/reference/Agri_Landscape_2026` folder (PBS tables) plus sources I retrieved. Deck:
+`workspace/out/Sarsabz_agri_landscape-v2.pptx` (9 slides), builder `workspace/agri/build_agri_landscape.py`.
+
+**What the folder could and could not answer.** It has national crop area/production, province-wise and crop-wise fertilizer
+consumption, land use, irrigation, canal withdrawals, water availability, support prices - but **no province-level crop data**,
+and its "crop calendars" (Tables 13-15) are dates for releasing crop estimates, not sowing windows. The PBS web page the user
+pointed to hosts the same tables. So province rankings came from the **MNFSR Crops Area & Production (District Wise) 2022-23**,
+downloaded to `workspace/agri/sources/`.
+
+**Parsing it honestly.** Province totals are section rows in a 162-page PDF. Three faults found and fixed by validation, not by
+eye: Sindh's rice total carried a fifth "% share" column my pattern missed; minor-crop tables are in hectares while majors are in
+'000 hectares (which had put sesame above wheat); and province attribution for minor crops proved unreliable (Punjab tobacco read
+as 51.9k ha against a true 16.3k). **Only the five crops that reconcile exactly with PBS Table-1 are used** - wheat, rice, cotton,
+sugarcane, maize - and the deck states that the minors were dropped.
+
+**What it shows:** Punjab holds ~70% of every major crop's area and 69.1% of national nutrient use; Sindh uses more per hectare
+(254.2 kg) than Punjab (170.5) but is more nitrogen-skewed; nitrogen offtake rose 14.8% while phosphate fell 1.9% on price;
+Pakistan's N:P:K is 1:0.27:0.013 against IFA's balanced 1:0.5:0.5, and was already 1:0.3:0.01 in 1996-2005.
+
+**International practice** (retrieved): World Bank per-hectare use - Pakistan 160.3 kg vs India 199.1, Bangladesh 391.9, China
+394.0 (2023); IFA's 4R framework; the EC brief quoting IFA that urea's share is "high in Asia while it is lower in the EU";
+Fertilizers Europe on AN and CAN suiting European soils - the nitrate norm Sarsabz already manufactures.
+
 ## 2026-09-16 (later) — "What We Expect from the Pitch" (p14): the point-of-view deck
 
 Checked both case decks against p14's seven expectations: only "innovative ideas across touchpoints" was covered, with farmer
