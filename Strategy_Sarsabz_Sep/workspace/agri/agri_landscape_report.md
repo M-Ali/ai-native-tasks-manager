@@ -16,7 +16,7 @@ measured inputs, and labelled as such). Nothing is estimated from experience or 
 | Measured | Taken directly from an official table | Cropped area, nutrient consumption, crop area and production |
 | Reconciled | Taken from one official source and checked against another | Province crop areas, checked against the national table |
 | Modelled | Arithmetic performed here on measured inputs | Crops per year, nutrient use per hectare, the phosphate gap |
-| Not available | Asked for and not found in a reachable source | Sowing and harvest months |
+| Not available | Asked for and not found in a reachable source | District land use for Sindh; a current crop-level fertilizer survey |
 
 Two cautions that matter more than any single number:
 
@@ -148,16 +148,49 @@ The land is organised into crop production regions with settled rotations (measu
 roughly six months apart; a rice-wheat farmer makes two on a different clock; a rainfed pulses-wheat farmer makes one and
 may skip it.
 
-### What is not available
+### The crop calendar, from the provincial crop reporting services
 
-**Sowing and harvest months are not in any source reachable for this report.** The published crop calendars are
-estimate-release dates; the national agricultural statistics publication carries no sowing windows; the provincial crop
-reporting service's crop life calendar could not be retrieved (its host did not resolve); and the agricultural survey
-chapter discusses sowing *decisions* without giving dates. Month-level windows circulate on commercial websites, but
-nothing there is traceable to an official source, so they are deliberately omitted.
+Measured. Punjab's crop reporting service publishes a crops' life calendar; the months below are read from that grid,
+including its own keys — **t** transplantation, **p** picking, **d** digging.
 
-**To close this gap:** the provincial crop reporting services publish a crop life calendar by crop and district. That
-single document would convert the season-level calendar above into a month-level one.
+| Crop | Sowing | Harvesting | Other operations |
+|---|---|---|---|
+| **Wheat** | September - December | March - May | |
+| **Rice** | May - July | August - November | Transplanting June-July |
+| **Cotton** | April - June | August - November | Picking September-November |
+| **Sugarcane** | February - March | November - February | |
+| **Maize (autumn)** | May - July | September - December | |
+| **Maize (spring)** | January - March | April - June | |
+| Gram and masoor | September - November | January - March | |
+| Potato (autumn) | August - October | January - March | Digging January-March |
+| Onion | January - February | March - April | Transplanting Jan-Feb, digging Mar-Apr |
+
+The same service issues a separate **crop-cut calendar** fixing when yield estimation happens in the field: rice from
+15 September, cotton from 15 July, sugarcane from 1 January, autumn maize from 1 November.
+
+**In Sindh the windows differ, and they differ by district** (district-wise sowing periods published by the provincial
+agriculture department):
+
+| Crop | North Sindh | South Sindh |
+|---|---|---|
+| **Wheat** | Sowing 7 November - 30 December; harvest through May | Sowing 1 - 20 November (late varieties to 15 December); harvest through March |
+| **Rice** (nursery) | Sowing late May - 30 June; harvest November | Sowing 20 April - 10 June; harvest September - October |
+| **Cotton** | Sowing June (Sukkur, Khairpur, Dadu, Ghotki); harvest 15 October - 15 December | Sowing March - May (Badin, Thatta, Mirpurkhas, Hyderabad); harvest 15 September - 31 October |
+| **Sugarcane** | Spring planting 10 February - 30 March; autumn planting September - October | Same, with harvest December - February |
+| Gram | Sowing 15 October - 30 November | Harvest 15 March - 15 April |
+
+**What this means for timing.** Three facts fall out of these tables that a season-level view hides:
+
+1. **Wheat sowing runs across four months in Punjab and is compressed into weeks in Sindh.** A national "Rabi campaign"
+   addresses a Punjab farmer with a wide window and a Sindh farmer with a narrow one.
+2. **Sindh's cotton is sown up to three months earlier than north Sindh's** — March in Badin and Thatta against June in
+   Sukkur and Dadu. Within one province, the first fertilizer decision of the Kharif season moves by a full quarter.
+3. **Sugarcane is harvested while wheat is being sown and rice is still being cut.** November-December is the single
+   busiest month pair in both provinces: wheat sowing, sugarcane harvest, cotton picking and autumn maize harvest overlap.
+
+Note on vintage: the Punjab grid is undated on its face, and the crop-cut notification carries a 2020 season. The
+agricultural survey records that sowing has been shifting earlier in recent years, so treat these as the published
+windows rather than as this season's dates.
 
 ---
 
@@ -301,7 +334,8 @@ Globally, nitrogen is 108 million tonnes of nutrient — 60% of all fertilizer �
 
 ## 9. Data limits, stated plainly
 
-1. **Sowing and harvest months are absent.** Season and rotation are evidenced; month-level windows are not.
+1. **The crop calendar is published, not current-season.** The Punjab grid is undated on its face and the crop-cut
+   notification carries a 2020 season; the agricultural survey notes sowing has been shifting earlier.
 2. **Crop-wise fertilizer consumption is an allocation rule**, not a measurement.
 3. **Application rates by crop are twenty years old.** The structure is corroborated by current ratios, but a current
    crop-level survey does not appear to be public.
@@ -311,7 +345,7 @@ Globally, nitrogen is 108 million tonnes of nutrient — 60% of all fertilizer �
 
 ### What to obtain next
 
-- The provincial crop life calendar, by crop and district, for month-level timing.
+- A dated, current crop calendar from each provincial crop reporting service, to confirm the published windows still hold.
 - A current crop-level fertilizer use survey, to replace the 2004 rates.
 - District land-use data for Sindh, to match the Punjab intensity map.
 - Soil test data by district, which would convert the balanced-ratio argument from national to field level.
@@ -326,6 +360,8 @@ Globally, nitrogen is 108 million tonnes of nutrient — 60% of all fertilizer �
 | S2 | Ministry of national food security, *Crops Area & Production (District Wise) 2022-23* | Measured, reconciled against S1 | Section 3 |
 | S3 | National economic survey 2025-26, agriculture chapter | Measured | Sections 5, 6 |
 | S4 | FAO, *Fertilizer use by crop in Pakistan*, 2004 — recommendations (ch.4), use by crop (ch.6), crop production regions (ch.2) | Measured, dated | Sections 4, 7 |
+| S4a | Provincial crop reporting service (Punjab): *Crops' Life Calendar*, and the Kharif crop-cut calendar notification | Measured | Section 4 |
+| S4b | Provincial agriculture department (Sindh): district-wise sowing periods and harvest dates for major crops | Measured | Section 4 |
 | S5 | World Bank, fertilizer consumption per hectare of arable land, 2023 | Measured | Sections 7, 8 |
 | S6 | International fertilizer industry association: balanced fertilization (2007) and the 4R stewardship framework (2009) | Measured | Sections 7, 8 |
 | S7 | European Commission, EU agricultural markets brief on fertilisers, June 2019; European fertilizer industry association, types of fertilizer | Measured | Section 8 |

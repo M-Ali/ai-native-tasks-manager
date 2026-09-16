@@ -82,7 +82,7 @@ A detailed background report written with **no company or brand named anywhere**
 participant. Source: `workspace/agri/agri_landscape_report.md` (edit that, then re-render with
 `uv run sarsabz-pitch doc workspace/agri/agri_landscape_report.md --stem Agricultural_landscape_report`).
 
-Covers: the land and irrigation by province; **crops per year** (Punjab 1.62 vs Sindh 1.38, and Punjab districts from
+Covers: the land and irrigation by province; **the crop calendar from the provincial crop reporting services** (Punjab's crops' life calendar and crop-cut notification; Sindh's district-wise sowing and harvest windows); **crops per year** (Punjab 1.62 vs Sindh 1.38, and Punjab districts from
 Kasur 3.84 down to Islamabad 1.00); crop sizes and province shares; cropping systems and the season; water as the only
 calendar that can be evidenced; the fertilizer market (4,324.2k nutrient tonnes, Punjab 69.1% / Sindh 22.9%); and three
 sized opportunities - the **602k nutrient tonne phosphate gap** against official recommendations, balanced nutrition, and

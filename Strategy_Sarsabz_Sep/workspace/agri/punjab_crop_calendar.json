@@ -1,0 +1,200 @@
+{
+ "Wheat": {
+  "sowing": "Sept, Oct, Nov, Dec",
+  "growth": "Jan, Feb, Mar",
+  "harvesting": "Mar, Apr, May",
+  "marks": {}
+ },
+ "Rice": {
+  "sowing": "May, June, July",
+  "growth": "July, Aug",
+  "harvesting": "Aug, Sept, Oct, Nov",
+  "marks": {
+   "t": "June, July"
+  }
+ },
+ "Cotton": {
+  "sowing": "Apr, May, June",
+  "growth": "June, July, Aug",
+  "harvesting": "Aug, Sept, Oct, Nov",
+  "marks": {
+   "p": "Sept, Oct, Nov"
+  }
+ },
+ "Sugarcane": {
+  "sowing": "Feb, Mar",
+  "growth": "Mar, Apr, May, June, July, Aug, Sept, Oct, Nov",
+  "harvesting": "Jan, Feb, Nov, Dec",
+  "marks": {}
+ },
+ "Maize (A)": {
+  "sowing": "May, June, July",
+  "growth": "July, Aug, Sept",
+  "harvesting": "Sept, Oct, Nov, Dec",
+  "marks": {}
+ },
+ "Maize (S)": {
+  "sowing": "Jan, Feb, Mar",
+  "growth": "Mar, Apr",
+  "harvesting": "Apr, May, June",
+  "marks": {}
+ },
+ "Potato(A)": {
+  "sowing": "Aug, Sept, Oct",
+  "growth": "Jan, Oct, Nov, Dec",
+  "harvesting": "Jan, Feb, Mar",
+  "marks": {
+   "d": "Jan, Feb, Mar"
+  }
+ },
+ "Potato(S)": {
+  "sowing": "Feb, Mar, Apr",
+  "growth": "Apr, May",
+  "harvesting": "May, June, July",
+  "marks": {
+   "d": "June, July"
+  }
+ },
+ "Gram + Masoor": {
+  "sowing": "Sept, Oct, Nov",
+  "growth": "Jan, Nov, Dec",
+  "harvesting": "Jan, Feb, Mar",
+  "marks": {}
+ },
+ "Moong +": {
+  "sowing": "Apr, May, June",
+  "growth": "June, July, Aug",
+  "harvesting": "Aug, Sept, Oct",
+  "marks": {}
+ },
+ "Onion": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar",
+  "harvesting": "Mar, Apr",
+  "marks": {
+   "t": "Jan, Feb",
+   "d": "Mar, Apr"
+  }
+ },
+ "Tomato": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar, Apr",
+  "harvesting": "Apr, May, June, July",
+  "marks": {
+   "t": "Jan, Feb",
+   "p": "Apr, May, June, July"
+  }
+ },
+ "Matter(G)": {
+  "sowing": "Sept, Oct, Nov",
+  "growth": "Nov",
+  "harvesting": "Jan, Feb, Nov, Dec",
+  "marks": {
+   "p": "Jan, Feb, Dec"
+  }
+ },
+ "Chillies(HB)": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar",
+  "harvesting": "Mar, Apr, May, June, July, Aug, Sept, Oct, Nov",
+  "marks": {
+   "t": "Jan, Feb",
+   "p": "Apr, May, June, July, Aug, Sept, Oct, Nov"
+  }
+ },
+ "Chillies(Shimla)": {
+  "sowing": "June, July, Aug, Sept, Oct, Nov",
+  "growth": "Jan, Feb, Nov, Dec",
+  "harvesting": "Feb, Mar, Apr",
+  "marks": {
+   "p": "Feb, Mar, Apr",
+   "t": "June, July, Aug, Sept, Oct, Nov"
+  }
+ },
+ "Water Melon": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar",
+  "harvesting": "Mar, Apr, May, June",
+  "marks": {
+   "p": "Apr, May, June"
+  }
+ },
+ "Musk Melon": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar",
+  "harvesting": "Mar, Apr, May, June",
+  "marks": {
+   "p": "Apr, May, June"
+  }
+ },
+ "Pumpkin": {
+  "sowing": "Jan, Feb, Mar",
+  "growth": "Mar, Apr",
+  "harvesting": "Apr, May, June, July, Aug",
+  "marks": {
+   "p": "May, June, July, Aug"
+  }
+ },
+ "BitterGourd": {
+  "sowing": "Jan, Feb, Mar",
+  "growth": "Mar, Apr",
+  "harvesting": "Apr, May, June, July, Aug",
+  "marks": {
+   "p": "May, June, July, Aug"
+  }
+ },
+ "LadyFinger": {
+  "sowing": "Jan, Feb, Mar",
+  "growth": "Mar, Apr",
+  "harvesting": "Apr, May, June, July",
+  "marks": {
+   "p": "Apr, May, June, July"
+  }
+ },
+ "Tinda": {
+  "sowing": "Feb, Mar, Apr, May",
+  "growth": "",
+  "harvesting": "May, June, July, Aug",
+  "marks": {
+   "p": "June, July, Aug"
+  }
+ },
+ "BottleGourd": {
+  "sowing": "Jan, Feb, Mar, Apr",
+  "growth": "",
+  "harvesting": "Apr, May, June, July",
+  "marks": {
+   "p": "May, June, July"
+  }
+ },
+ "Spinach": {
+  "sowing": "July, Aug, Sept, Oct",
+  "growth": "",
+  "harvesting": "Jan, Feb, Oct, Nov, Dec",
+  "marks": {}
+ },
+ "Arvi": {
+  "sowing": "Jan, Feb",
+  "growth": "Feb, Mar, Apr",
+  "harvesting": "Apr, May, June, July, Aug",
+  "marks": {
+   "d": "May, June, July, Aug"
+  }
+ },
+ "Turnip": {
+  "sowing": "July, Aug, Sept, Oct, Nov",
+  "growth": "",
+  "harvesting": "Jan, Feb, Mar, Nov, Dec",
+  "marks": {
+   "d": "Jan, Feb, Mar, Dec"
+  }
+ },
+ "Carrot": {
+  "sowing": "Sept, Oct, Nov, Dec",
+  "growth": "",
+  "harvesting": "Jan, Feb, Mar, Dec",
+  "marks": {
+   "d": "Jan, Feb, Mar"
+  }
+ }
+}

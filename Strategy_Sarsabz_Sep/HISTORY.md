@@ -9,6 +9,29 @@ Newest first. The history of the SLIC and PTCL work this repo was copied from is
 > Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
 > The pitch date and budget are still unknown.
 
+## 2026-09-16 (later) — Crop calendar added from the provincial crop reporting services
+
+The month-level gap flagged in the first version of the report is closed. The Punjab crop reporting service's host
+(`crs-agripunjab.punjab.gov.pk`) no longer exists in DNS, but the same documents are mirrored on `agripunjab.gov.pk`:
+the **Crops' Life Calendar** and the **Kharif crop-cut calendar notification**. Sindh's district-wise sowing periods and
+harvest dates came from a published compilation citing the provincial agriculture department (its own monthly calendar
+pages 404).
+
+**Parsing the Punjab grid needed positional extraction, not text.** Sowing, growth and harvesting are encoded as coloured
+cells, so the text layer yields only crop names and the t/p/d keys. Using pdfplumber, the legend swatch colours were
+matched to their labels (olive = sowing, green = growth, yellow = harvesting), then every coloured rectangle mapped to a
+crop row and the month columns it spans → `workspace/agri/punjab_crop_calendar.json` (26 crops).
+
+Result: wheat sown September-December and harvested March-May; rice sown May-July, transplanted June-July, harvested
+August-November; cotton sown April-June, picked September-November; sugarcane sown February-March, harvested
+November-February; spring and autumn maize separately. Sindh differs sharply and by district - wheat sowing compressed
+into 1-20 November in the south against 7 November-30 December in the north, and cotton sown March-May in Badin and
+Thatta against June in Sukkur and Dadu.
+
+Report re-rendered as `Agricultural_landscape_report_2026-09-16-v2.docx`; the "not available" limit is replaced by a
+vintage caveat (the Punjab grid is undated, the crop-cut notification is a 2020 season, and sowing has been shifting
+earlier).
+
 ## 2026-09-16 (later) — Brand-free agricultural landscape report
 
 Written at the user's request with **no brand or company named**, as a market description rather than a pitch document.
