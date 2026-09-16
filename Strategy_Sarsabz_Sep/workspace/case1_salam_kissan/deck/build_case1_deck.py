@@ -104,11 +104,13 @@ syn = sorted([o for o in others if o["channel"] == "Syngenta Pakistan"], key=lam
 FACTS = {"uploads": N_UP, "in_window": IN_WIN, "farmer": FARMER, "celeb_pol": CELEB_POL, "anthem_comments": ANTHEM_C,
          "comments": len(corpus), "audience": len(aud), "grievance": code_n["grievance"],
          "song": code_n["song_voice_lyrics"], "winner": code_n["channel_winner_notice"], "vlog": code_n["vlog_referral"],
+         "salam_pakistan": code_n["salam_pakistan"],
          "y25": len(Y25), "y25_multi": Y25_MULTI, "search_sarsabz": SARSABZ_SEARCH, "search_rel": len(rel)}
 # The spec and big_idea.md carry these numbers as text; stop if the data no longer says the same.
 EXPECT = {"uploads": 76, "in_window": 60, "farmer": 9, "celeb_pol": 30, "anthem_comments": 1422, "comments": 1572,
           "audience": 1516, "grievance": 19, "song": 103, "winner": 31, "vlog": 24, "y25": 61, "y25_multi": 35,
-          "search_sarsabz": 43, "search_rel": 168}
+          "search_sarsabz": 43, "search_rel": 168, "salam_pakistan": 19}
+SALAM_PK = code_n["salam_pakistan"]
 
 
 # ---------- drawing ----------
@@ -294,12 +296,13 @@ CHAIN = [
     ("Tension", "The farmer is saluted, but celebrities, ministers and animation deliver the salute."),
     ("Territory", "The farmer's own voice, all year, with Sarsabz handing over the microphone."),
     ("Proposition", "We gave Pakistan a day to salute the farmer. Now the farmer answers."),
-    ("Line", "Salam Kissan. Wa Alaikum Salam, Pakistan.   (proposed: the farmer returns the greeting)"),
+    ("Line", "Salam Kissan. Salam Pakistan.   (proposed: the farmer salutes the country back)"),
+    ("Mechanic", "Kissan ka Jawab, the farmer's answer: the name the anthem, the UGC and the PR record all sit under."),
 ]
 EXEC = [
     ("ATL", "The Reply anthem", "Real farming families, parent and child, sing and speak the 2026 anthem back. No celebrities, no AI farmers.",
      f"Anthems hold {ANTHEM_C:,} of {len(corpus):,} comments; the 2025 uploads drew {len(Y25)}."),
-    ("Digital / UGC", "#WaAlaikumSalam", "Farmers' children film their parent's answer; creators seed it to people who don't farm.",
+    ("Digital / UGC", "#KissanKaJawab", "Farmers' children film their parent's answer; creators seed it to people who don't farm.",
      f"The pride-in-family comments; {code_n['vlog_referral']} 2023 creator referrals; TikTok UGC awards (brief p9-10)."),
     ("BTL", "Reply cards", "Replies and voice notes collected at Kissan Day stalls and dealer counters.",
      "Collection method to be agreed with the client."),
@@ -311,14 +314,14 @@ EXEC = [
      f"Brief p6 seasons; {100 * IN_WIN / N_UP:.0f}% of uploads sit in the December window."),
 ]
 YEAR = [("Rabi sowing  ·  Oct-Nov", "Collect replies at recording points, stalls and dealer counters."),
-        ("1-18 December", "The Reply anthem, #WaAlaikumSalam UGC, the national event and the Kissan ki Awaaz handover."),
+        ("1-18 December", "The Reply anthem, #KissanKaJawab UGC, the national event and the Kissan ki Awaaz handover."),
         ("Kharif  ·  Apr-Sep", "Harvest replies, and follow-up on the asks raised in December."),
         ("Month twelve", "The next December opens with what changed since the last reply.")]
 ASKS = [("Complaints on air", "Farmers' answers will include fertilizer supply and price. Editing them out breaks the idea."),
         ("Real families", "Real farmers and their children, not celebrities or AI-animated farmers."),
         ("Name the brand", "Sarsabz Salam Kissan in every PR and event material."),
         ("Beyond December", "Run it through Rabi and Kharif, not only on the day."),
-        ("Clear the line", "Religious and cultural sensitivity check of the greeting; legal check of the Salam Kissan mark."),
+        ("Clear the line", "Legal check of the Salam Kissan mark, and test both halves with farmers before production."),
         ("Supply the data", "TikTok results; brand-health attribution of Kissan Day; 2023 giveaway rules.")]
 
 
@@ -329,8 +332,8 @@ def campaign(prs) -> None:
     rect(s, 0, 0, 13.333, 7.5, NAVY)
     rect(s, 0.9, 2.0, 1.6, 0.06, ACCENT)
     txt(s, 0.9, 2.3, 11.4, 0.6, "6  ·  The campaign", 22, False, SKY)
-    txt(s, 0.9, 2.95, 11.6, 1.8, ["Salam Kissan.", "Wa Alaikum Salam, Pakistan."], 44, True, WHITE, space=0)
-    txt(s, 0.9, 4.95, 11.4, 0.5, "Proposed line: Pakistan salutes the farmer, and the farmer returns the greeting.", 18, False, SKY, italic=True)
+    txt(s, 0.9, 2.95, 11.6, 1.8, ["Salam Kissan.", "Salam Pakistan."], 44, True, WHITE, space=0)
+    txt(s, 0.9, 4.95, 11.4, 0.5, "Proposed line: the country salutes the farmer, and the farmer salutes the country back.", 18, False, SKY, italic=True)
     txt(s, 0.9, 6.3, 11.4, 0.4, "From the Big Idea: the farmer answers Pakistan's salute in his own voice, through his own family.", 13, False, SKY)
 
     s = frame(prs, "6  ·  THE CAMPAIGN  ·  THE CHAIN", "From the Big Idea to the campaign, one step at a time",
@@ -345,17 +348,21 @@ def campaign(prs) -> None:
         txt(s, 2.9, y + 0.15, 9.6, 0.7, body, 14 if hi else 12, hi, NAVY if hi else INK, space=0)
         y += 0.96
 
-    s = frame(prs, "6  ·  THE CAMPAIGN  ·  THE LINE", "Build on the name Sarsabz owns; turn the salute into a reply",
-              "Recommended: Salam Kissan. Wa Alaikum Salam, Pakistan. Test the religious greeting with Fatima and with consumers before use.",
-              "Archive: " + V("Kissan Tera Ehsaan, Sarsabz Pakistan!") + " (2021 rice testimonial description). "
-              "Scan: JPL (2020) and Rizq Foods (2025) titles.")
+    s = frame(prs, "6  ·  THE CAMPAIGN  ·  THE LINE", "Build on the name Sarsabz owns; give the salute an answer",
+              f"Recommended: Salam Kissan. Salam Pakistan. The audience writes the second half already, in {SALAM_PK} of "
+              f"{len(aud):,} comments.",
+              "Comments: " + V("They are us and we are them. SALAM PAKISTAN") + " (87 likes, 2019). Archive: "
+              + V("Kissan Tera Ehsaan, Sarsabz Pakistan!") + " (2021 rice testimonial description). Scan: JPL (2020), Rizq Foods (2025).")
     table(s, 0.6, 1.3, [4.2, 7.9], [
         ["Line", "Trade-off"],
-        ["Salam Kissan. Wa Alaikum Salam, Pakistan.  (recommended)",
-         "Keeps the owned name and adds the reply, which a rival can't use without saying Sarsabz's half first. Needs a sensitivity check."],
+        ["Salam Kissan. Salam Pakistan.  (recommended)",
+         f"Keeps the owned name and answers it, in words {SALAM_PK} commenters already use. Generic on its own, so who says it on screen carries it."],
+        ["Salam Kissan. Wa Alaikum Salam, Pakistan.  (rejected)",
+         "Sharper, because a greeting has a fixed answer. But it moves a civic salute into a religious register, a farmer who isn't "
+         "Muslim can't say it in character, and only 3 comments use the greeting at all."],
         ["Salam Kissan  (as today)", "Owned since 2019, but JPL and Rizq Foods already title their own videos with it."],
         ["Kissan Tera Ehsaan, Sarsabz Pakistan!  (owned, 2021)", "A thank-you with the brand name, but still one-way: the farmer is thanked, not heard."]],
-        12, 1.2)
+        11.5, 1.05)
 
     s = frame(prs, "6  ·  THE CAMPAIGN  ·  HOW IT TRAVELS", "One idea across the five touchpoints the brief names",
               "Every execution puts the farmer's own voice first, and every one builds on something the evidence shows.", src)

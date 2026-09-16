@@ -24,6 +24,7 @@ PATTERNS = {
     "contest_own_words": (aud, lambda r: re.search(r"(?i)wish to win|hope to win|gift i received|gift if i won|details sent|^\W*done\W*$|gify milna", r["text"])),
     "india_bangladesh": (aud, lambda r: re.search(r"(?i)\bindia|bangladesh|jai (jawan|javan|johar)|modi\b", r["text"])),
     "song_voice_lyrics": (aud, lambda r: re.search(r"(?i)\bsong|lyric|\bvoice|singer|\bmusic|noori|ali noor|mai dha|گانا|آواز", r["text"])),
+    "salam_pakistan": (aud, lambda r: re.search(r"(?i)salam,? ?(ka )?pakistan|سلام پاکستان", r["text"])),
     "fraud_gang_replies": (aud, lambda r: r["text"].strip() == "Fatima Group is Fraud Gang"),
 }
 

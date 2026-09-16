@@ -7,7 +7,7 @@ for Fatima Fertilizer, Pak Arab and FatimaFert (brands: Sarsabz, Bubber Sher, Pa
 is `data/Creative Pitch Deck (1).pdf`.
 
 - 90-minute presentation: agency, team, awards, case studies, brand understanding, Case 1 and Case 2 solutions.
-- **Case 1**: Salam Kissan 2026. *Evidence, Big Idea and concept drafted* (`workspace/case1_salam_kissan/`); deck `workspace/out/Sarsabz_case1_deck-v2.pptx` built by `deck/build_case1_deck.py` (verbatim and count guards). No made-up data, no assumptions.
+- **Case 1**: Salam Kissan 2026. *Evidence, Big Idea and concept drafted* (`workspace/case1_salam_kissan/`); deck `workspace/out/Sarsabz_case1_deck-v3.pptx` built by `deck/build_case1_deck.py` (verbatim and count guards). No made-up data, no assumptions. In the deck builder, every new verbatim goes through `V()`, which checks it against the sources, and every translation through `T()`, which labels it.
 - **Case 2**: Sarsabz brand audit and a tactical campaign for "10 feesad se bhi ziada izafi paidawar". *Built:* the current deck is
   `workspace/out/Sarsabz_case2_deck-v4.pptx`. See README "Start here".
 - **No pitch date, no budget** in the brief. Do not invent either; they are open questions in `brief.py`.
@@ -38,6 +38,7 @@ not leak into this one: no insurance or telco vocabulary, brands, examples or fi
 | `consumer-brand-review` | `~/.claude` | Category research method |
 | `category-creative-scan` | project (patched) + `~/.claude` | Presence sweep, coding schema, `build_deck.py` for the scan section |
 | `competitor-comms-audit` | project + `~/.claude` | Territory method |
+| `tg-profile` | project + `~/.claude` + library | TG profile card: `interest_index.py` for affinity indices, `build_tg_card.py` for the slide |
 | `comment-analysis` | project | Loader, lexicon coder, the farmer analysis |
 | `brand-laddering` | `~/.claude` + shared library only | `compute_levels.py`, `build_ladder_section.py` |
 | `big-idea` | copied from PTCL to `~/.claude` + shared library | The three-insight method |

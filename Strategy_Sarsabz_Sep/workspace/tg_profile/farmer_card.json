@@ -1,0 +1,83 @@
+{
+  "out": "../out/Sarsabz_TG_farmer_card.pptx",
+  "name": "The Sarsabz farmer",
+  "subtitle": "Male, 25-55  ·  Punjab and Sindh  ·  12-150+ acres  ·  50%+ of income from farming  (brief p23)",
+  "tag": "COMPOSITE",
+
+  "household": [
+    "Head of a farming household. Brief p23: male, 25-55, Punjab and Sindh, 12-150+ acres, half or more of income from farming.",
+    "Brief p6 describes a wider buyer: 18-60, SEC A to upper D, minimum secondary education. The two definitions differ - settle it with the client.",
+    "Farming is a family identity: commenters introduce themselves through a father or grandfather who farmed."
+  ],
+
+  "mindset": [
+    "Judges at product level, on what he has seen work on land like his.",
+    "Asks strangers in comment threads what the maker should be telling him, and suspects the answers are paid for.",
+    "Fears waste more than failure: not whether NP and CAN work, but what will lock up if he mixes them."
+  ],
+
+  "pain_points": [
+    {"title": "Will it lock up if I mix it",
+     "detail": "Whether NP with zinc urea, sulphur or potash reacts and wastes the bag.",
+     "evidence": "220 of 1,433 agronomy comments (15.4%), the largest theme; 83 about NP or CAN (case2_audit/comments/analysis.md §3, theme_counts.csv)"},
+    {"title": "Give me the dose for my soil, not the country",
+     "detail": "Wants a per-acre, per-irrigation plan for his soil and district.",
+     "evidence": "163 timing-and-dose plus 66 soil-type comments (theme_counts.csv)"},
+    {"title": "Every expert says something different",
+     "detail": "Creators contradict each other and Fatima's own field practice.",
+     "evidence": "analysis.md §5, verbatim 'Medicine mafia se paise lekar video banner rehta'; 13 trust/advice comments"},
+    {"title": "Nobody answers me",
+     "detail": "He asks under videos and asks for a WhatsApp number.",
+     "evidence": "20 contact/reply-request comments (theme_counts.csv); analysis.md §3"},
+    {"title": "The bag is expensive, and sometimes not there",
+     "detail": "Price and supply surface even under a tribute film.",
+     "evidence": "35 price plus 10 availability comments (case 2); 19 of 1,516 Salam Kissan comments complain about supply, price and respect (case1_salam_kissan/comments/comment_findings.md)"},
+    {"title": "Show me proof, in words I use",
+     "detail": "Asks for written evidence; says the advice he gets is too English.",
+     "evidence": "analysis.md §4-5: a request for written proof (translated from Urdu), and verbatim 'Sir English mn to samjh hi nh ati'"}
+  ],
+
+  "triggers": [
+    {"title": "The irrigation calendar",
+     "detail": "Buys against sowing and first irrigation: Rabi Oct-Mar, Kharif Apr-Sep.",
+     "evidence": "163 timing-and-dose comments; brief p6 seasons"},
+    {"title": "A result on a field like his",
+     "detail": "Yield in maunds, from a named farmer in a district he knows.",
+     "evidence": "47 yield-result comments; Ki Jeet films are the brand's most-watched product content (case2_audit/the_audit.md)"},
+    {"title": "A recipe he can copy",
+     "detail": "What replaced DAP, mixed with what, on which irrigation, on what soil.",
+     "evidence": "16 NP-vs-DAP substitution comments; analysis.md §4"},
+    {"title": "Being addressed, not thanked",
+     "detail": "Response is strongest where farmers and families are the voice.",
+     "evidence": "comment_findings.md pride-in-family comments; a farmer speaks in 9 of 76 Salam Kissan uploads"}
+  ],
+
+  "interests": {
+    "title": "Interests and affinity index",
+    "items": [],
+    "gap": "No interest-affinity dataset covers this audience. The available export (Interests.csv) is brandsynario.com's own web audience - 35,681 urban, English-reading visitors, Jan-Sep 2026 - so it is kept for the urban card. To fill this block: a rural U&A or media study from Fatima.",
+    "source": ""
+  },
+
+  "media": {
+    "title": "Where to reach him (evidenced, no survey)",
+    "items": [
+      {"channel": "YouTube, agronomy creators", "note": "where the switch is argued out"},
+      {"channel": "YouTube, brand films", "note": "long anthems draw response; 2025's AI shorts drew almost none"},
+      {"channel": "Dealer and trade counter", "note": "the last conversation before the bag"},
+      {"channel": "Sarsabz Pakistan App", "note": "800,000+ downloads claimed (brief p7)"},
+      {"channel": "TikTok", "note": "brief p23 calls the target TikTok-engaged; unverified, not readable logged-out"}
+    ],
+    "source": ""
+  },
+
+  "conclusion": "He is not waiting to be persuaded that the product works. He is waiting to be shown how to use it without losing a season - and to be heard, not thanked.",
+  "sources": [
+    "Fatima brief 2026, pp.6, 7, 23",
+    "1,433 farmer comments (case2_audit/comments/analysis.md, theme_counts.csv)",
+    "1,572 Salam Kissan comments (case1_salam_kissan/comments/comment_findings.md)",
+    "76-upload archive (case1_salam_kissan/archive/archive_findings.md)",
+    "No media survey supplied, so no percentages are shown; ask Fatima for TGI or Gallup",
+    "The name and composite framing are a device; no individual farmer is described"
+  ]
+}

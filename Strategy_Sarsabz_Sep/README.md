@@ -6,9 +6,29 @@ Brief: `data/Creative Pitch Deck (1).pdf` (32 pages, 13 of them image-only). Far
 
 ---
 
-## Start here (state at end of 15 September 2026)
+## Start here (state at end of 16 September 2026)
 
-**Case 2 is built.** Open **`workspace/out/Sarsabz_case2_deck-v4.pptx`** (36 slides, internal working draft):
+**Both cases are built as internal working drafts.** Everything is committed on branch `sarsabz-pitch` (last commit `6b6eeeb`).
+**Nothing is pushed:** both remotes are public, and the branch holds the client brief and downloaded comments.
+
+### Case 1: Salam Kissan 2026 → `workspace/out/Sarsabz_case1_deck-v3.pptx` (19 slides)
+
+Built under the user's rule **"no made up data, no assumptions"**.
+
+| Slides | Section | Source of truth (under `workspace/case1_salam_kissan/`) |
+|---|---|---|
+| 1-2 | Cover; what the brief asks (p12) | `src/sarsabz_pitch/brief.py` (`uv run sarsabz-pitch case1`) |
+| 3 | Seven years on YouTube (76 uploads coded) | `archive/archive_findings.md`, `archive/archive_codes.csv` |
+| 4-5 | What commenters say (1,572 comments, all read) | `comments/comment_findings.md`, `comments/analyse.py` → `comment_codes.csv` |
+| 6 | Who else marks the day (YouTube scan) | `scan/scan_findings.md`, `scan/others.csv` |
+| 7-13 | The Big Idea: *the farmer answers Pakistan's salute in his own voice, through his own family* | `big_idea.md`, `deck/big_idea_spec.json` |
+| 14-19 | The campaign: **"Salam Kissan. Salam Pakistan."** (proposed), mechanic **Kissan ka Jawab** | `the_concept.md` |
+
+- **Summary of all evidence:** `workspace/case1_salam_kissan/evidence.md`.
+- **Rebuild:** `uv run --no-project --with python-pptx python workspace/case1_salam_kissan/deck/build_case1_deck.py`. It writes the next `-vN`, and refuses to build if a verbatim isn't in a source file or a count no longer matches the data.
+- **The deck's words live in the builder** (`deck/build_case1_deck.py`, `deck/big_idea_spec.json`) as well as in the .md files. Change both.
+
+### Case 2: Sarsabz audit + "10 feesad" → `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides)
 
 | Slides | Section | Source of truth |
 |---|---|---|
@@ -20,42 +40,59 @@ Brief: `data/Creative Pitch Deck (1).pdf` (32 pages, 13 of them image-only). Far
 | 29-36 | The campaign: **Dus Feesad Aur. Khet Gawah Hai.** | `concept/concept.yaml`, `concept/the_concept.md` |
 
 Paths above are under `workspace/case2_audit/`. The full argument in prose is `workspace/case2_audit/the_audit.md`.
-**Case 1 (Salam Kissan 2026): evidence, Big Idea and concept drafted.** Read `workspace/case1_salam_kissan/evidence.md`, then `big_idea.md` and `the_concept.md`. Deck: `workspace/out/Sarsabz_case1_deck-v2.pptx` (19 slides), rebuilt by `uv run --no-project --with python-pptx python workspace/case1_salam_kissan/deck/build_case1_deck.py`.
 
 ### Next, in priority order
 
-1. **Ask the client** (none of these are in the brief):
-   - Pitch date and budget.
-   - The demo-plot dataset behind the 10% claim.
-   - Ki Jeet winners' input records.
-   - Which YouTube channels `COMMENTS.xlsx` came from, and whether any were Fatima-sponsored.
-   - Competitor names and method for the brand-health study (p29).
-   - Full list: `uv run sarsabz-pitch info`.
-2. **Case 1, Salam Kissan 2026.** A 360° campaign reaching rural, urban and young audiences, beyond one day (brief p12). The
-   `big-idea` method needs its own consumer evidence here: the farmer comments don't cover urban or young audiences.
-3. **Bubber Sher.** The brief expects "strategic vision for Sarsabz and Baber Sher" (p14), and neither case covers it.
-4. **Client-facing Case 2 deck.** A lower-volume version: no file names or source notes, hostile verbatims made neutral. Both
-   `brand-laddering` and `big-idea-slides` describe how.
-5. **Evidence gaps** (audit §6):
-   - FFC and Engro paid ads, from the Meta Ad Library
-   - Sarsabz and Engro Facebook and TikTok content
-   - Comments on Sarsabz's own 10% and Ki Jeet films
-   - Fatima annual report 2025
-   - NFDC Fertilizer Review 2024-25
-6. **Agency sections of the 90-minute pitch** (intro, team, awards, case studies; brief p11-12). Agency facts, not ours to invent.
-7. **Housekeeping decisions for the user:**
-   - Whether to sync the patched `build_deck.py` to `~/.claude/skills` (see AGENTS.md).
-   - Whether to turn the consumer and concept builders into skills.
+1. **Ask the client.** None of these are in the brief.
+   - **Both cases:** pitch date, budget, and whether Case 1 and Case 2 share a media plan.
+   - **Case 1:**
+     - Real TikTok results for Salam Kissan, 2021-2025.
+     - Brand-health data on who people credit for Kissan Day. This is what would take the Case 1 brand insight off "provisional".
+     - The rules of the 2023 YouTube giveaway, and whether the Ducky Bhai and Shehr Main Dehat vlog mentions were paid.
+     - Any government notification recognising 18 December.
+   - **Case 2:**
+     - The demo-plot dataset behind the 10% claim.
+     - Ki Jeet winners' input records.
+     - Which YouTube channels `COMMENTS.xlsx` came from.
+     - Competitor names and method for the brand-health study (p29).
+   - **Full list:** `uv run sarsabz-pitch info`, plus `evidence.md` §7.
+2. **Case 1 checks before the line is presented:**
+   - Test both halves of the line with farmers. The rejected alternative ("Wa Alaikum Salam") and the reason are on deck slide 16.
+   - Whether "Salam Kissan" is a registered trademark.
+   - Watch Syngenta's #MaiKisanHun films, to see how far they already give the farmer a voice. Not watched yet; slide 9 says so.
+   - Watch the 2025 "Salam Kissan 2025" short. Not watched yet.
+3. **Case 1 evidence gaps:**
+   - TikTok and Facebook Kissan Day activity. Neither can be read without logging in.
+   - A Pakistani statistic, from a source we can read, on how young people see farming.
+   - Whether the Express News, BOL, GNN, SAMAA, Aaj and Neo programmes name Sarsabz. Only their titles were checked.
+4. **Bubber Sher.** The brief expects a "strategic vision for Sarsabz and Baber Sher" (p14), and neither case covers it.
+5. **Client-facing versions of both decks.** Turn the volume down: no file names or source notes, and neutral wording for hostile verbatims. The `big-idea-slides` skill describes how.
+6. **Case 2 evidence gaps** (audit §6):
+   - FFC and Engro paid ads (Meta Ad Library).
+   - Sarsabz and Engro content on Facebook and TikTok.
+   - Comments on Sarsabz's 10% and Ki Jeet films.
+   - Fatima annual report 2025.
+   - NFDC Fertilizer Review 2024-25.
+7. **Agency sections of the 90-minute pitch:** intro, team, awards, case studies (brief p11-12). These are agency facts, not ours to invent.
+8. **Housekeeping decisions for the user:**
+   - Sync the patched `build_deck.py` to `~/.claude/skills`? (See AGENTS.md.)
+   - Turn the consumer, concept and Case 1 deck builders into skills?
+   - Push the branch or not? Both remotes are public.
 
 ### Other deliverables in `workspace/out/` (latest versions)
 
 | File | What |
 |---|---|
-| `Sarsabz_case2_brand_audit_draft_2026-09-15-v5.docx` | The audit, rendered from `the_audit.md` |
-| `Sarsabz_farmer_conversation_analysis_2026-09-15.docx` | The comment analysis |
-| `Sarsabz_big_idea_sheet_2026-09-15-v2.docx` | One-page Big Idea |
-| `Sarsabz_campaign_concept_2026-09-15.docx` | Campaign rationale |
-| `Sarsabz_brand_ladder_section-v2.pptx`, `Sarsabz_big_idea_section-v2.pptx` | Standalone sections (superseded by the combined deck) |
+| `Sarsabz_case1_big_idea_2026-09-15.docx` | Case 1 Big Idea sheet, from `case1_salam_kissan/big_idea.md` |
+| `Sarsabz_case1_campaign_concept_2026-09-16.docx` | Case 1 campaign concept (line "Salam Kissan. Salam Pakistan."), from `case1_salam_kissan/the_concept.md`. The 15 Sep file has the earlier line. |
+| `Sarsabz_TG_farmer_card-v2.pptx` | The Sarsabz farmer TG profile card, from `workspace/tg_profile/farmer_card.json` |
+| `Sarsabz_case2_brand_audit_draft_2026-09-15-v5.docx` | The Case 2 audit, rendered from `the_audit.md` |
+| `Sarsabz_farmer_conversation_analysis_2026-09-15.docx` | The Case 2 comment analysis |
+| `Sarsabz_big_idea_sheet_2026-09-15-v2.docx` | Case 2 one-page Big Idea |
+| `Sarsabz_campaign_concept_2026-09-15.docx` | Case 2 campaign rationale |
+| `Sarsabz_brand_ladder_section-v2.pptx`, `Sarsabz_big_idea_section-v2.pptx` | Case 2 standalone sections (superseded by the combined deck) |
+
+The Case 1 Word files carry 15 Sep in their names because the renderer takes the date from the machine clock. They were made on 16 Sep.
 
 Earlier `-vN` files are kept deliberately. Never delete or overwrite a deliverable.
 

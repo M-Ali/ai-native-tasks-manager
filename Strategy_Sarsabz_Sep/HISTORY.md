@@ -2,10 +2,50 @@
 
 Newest first. The history of the SLIC and PTCL work this repo was copied from is in `_archive/slic_p78118/HISTORY.md`.
 
-> **Resuming?** Read `README.md` → "Start here". At the end of 15 Sep 2026, Case 2 is complete as
-> `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides), Case 1 is in evidence gathering (`workspace/case1_salam_kissan/evidence.md`), and the pitch date and budget are still unknown.
+> **Resuming?** Read `README.md` → "Start here". At the end of 16 Sep 2026, both cases are built as internal drafts:
+> - Case 1: `workspace/out/Sarsabz_case1_deck-v3.pptx` (19 slides)
+> - Case 2: `workspace/out/Sarsabz_case2_deck-v4.pptx` (36 slides)
+>
+> Everything is committed on `sarsabz-pitch` (`6b6eeeb`); nothing is pushed. Next up are the client questions in README "Next".
+> The pitch date and budget are still unknown.
 
-## 2026-09-16 — Case 1 started: evidence gathering (not committed)
+## 2026-09-16 (later) — `tg-profile` skill, and the farmer TG card
+
+New skill `.claude/skills/tg-profile/` (synced to `~/.claude/skills` and the shared library; added to `sync-skills.sh`;
+passes skill-creator's `quick_validate.py`). Built with `skill-creator`, the persona layout from
+`data/reference/insurance middle age.pptx`, and the interests export in `data/reference/Interests.csv`.
+
+- `scripts/interest_index.py`: affinity index = segment share / all-users share x 100, from the wide two-header-row export.
+  It prints index AND volume, refuses to rank interests under `--min-users` (default 50), and prints the dataset's own
+  header so the card can name the population.
+- `scripts/build_tg_card.py`: one-slide card. Refuses to build on an unevidenced pain point or trigger, a `%` with no
+  source, an interests source naming no population, or text that would overflow its box.
+- `references/card-anatomy.md` documents the blocks and what to copy (and not) from the insurance card: its media
+  percentages carry no source, which is why the builder rejects that pattern.
+
+**Decisions the user made:** the card covers the Sarsabz farmer only; `Interests.csv` (brandsynario.com's own web audience,
+35,681 urban visitors, Jan-Sep 2026) is kept for a future urban card because it does not describe farmers; and the media
+block shows evidenced channels with no invented percentages.
+
+**Deliverable:** `workspace/out/Sarsabz_TG_farmer_card-v2.pptx`, spec `workspace/tg_profile/farmer_card.json`. Pain points
+come from the 1,433 agronomy comments (counts verified against `theme_counts.csv`) and the 1,572 Salam Kissan comments.
+v1 is kept; its render showed the media panel overflowing, fixed in v2.
+
+## 2026-09-16 (later) — Case 1 line changed, deck v3
+
+The user challenged the proposed line "Salam Kissan. Wa Alaikum Salam, Pakistan." Checking it against the corpus settled it: the
+greeting appears in 3 of 1,516 comments and never as a reply to the campaign, while **"Salam Pakistan" appears in 19**, unprompted,
+including under "We need to make this permanent not temporary. They are us and we are them. SALAM PAKISTAN" (87 likes).
+
+- **Line is now "Salam Kissan. Salam Pakistan."**, with the mechanic named **Kissan ka Jawab** (the farmer's answer) and the UGC tag
+  **#KissanKaJawab**. The old line stays on the line slide as considered-and-rejected, with the reasons: religious register, a farmer
+  who isn't Muslim can't say it in character, the correct form is the longer "Wa Alaikum Assalam", and the corpus evidence above.
+- `analyse.py` now codes `salam_pakistan`, so the 19 is reproducible; the builder checks the count before it will build.
+- **Deck: `workspace/out/Sarsabz_case1_deck-v3.pptx`** (v2 kept). Word: `Sarsabz_case1_campaign_concept_2026-09-16.docx`.
+- Four Big Idea options inside the farmer-voice territory were offered (the reply; a published record of farmers' asks; farmers write
+  the anthem; the farmer as expert). The deck still carries the reply; the user hasn't chosen between them.
+
+## 2026-09-16 — Case 1 built: evidence, Big Idea, concept, deck (commit `6b6eeeb`)
 
 Under the user's rule **"no made up data, no assumptions"**. Everything is in `workspace/case1_salam_kissan/`; `evidence.md` is the summary.
 - `archive/`: 76 Salam Kissan uploads coded (format, speaker, audience, window): 79% of uploads in 1 Dec-15 Jan; a farmer speaks in 9 of 76.
@@ -17,11 +57,10 @@ Under the user's rule **"no made up data, no assumptions"**. Everything is in `w
   use "Salam Kissan"; no FFC or Engro campaign was found; one agri channel calls the day "sirf tv show".
 - **Big Idea** (`big_idea.md`): "Salam Kissan gets its reply: the farmer answers Pakistan's salute in his own voice, through his own
   family." Brand insight is provisional (no attribution data).
-- **Concept** (`the_concept.md`): proposed line "Salam Kissan. Wa Alaikum Salam, Pakistan." (still needs a religious-sensitivity
-  check), with executions for ATL, UGC, BTL, PR, events and on-ground. It asks Fatima to put farmers' complaints on air and to name
+- **Concept** (`the_concept.md`): proposed line "Salam Kissan. Salam Pakistan." with the mechanic "Kissan ka Jawab", with executions for ATL, UGC, BTL, PR, events and on-ground. It asks Fatima to put farmers' complaints on air and to name
   the brand with the day.
 - Word files: `workspace/out/Sarsabz_case1_big_idea_2026-09-15.docx`, `Sarsabz_case1_campaign_concept_2026-09-15.docx`.
-- **Deck:** `workspace/out/Sarsabz_case1_deck-v2.pptx`, 19 slides: cover; brief; archive; comments ×2; category scan; Big Idea ×7
+- **Deck:** `workspace/out/Sarsabz_case1_deck-v3.pptx`, 19 slides: cover; brief; archive; comments ×2; category scan; Big Idea ×7
   (big-idea-slides skill); campaign ×6. Built by `workspace/case1_salam_kissan/deck/build_case1_deck.py`, which refuses to build if
   any verbatim isn't in a source file or a count no longer matches the data. v1 is kept: its render check showed line overlap and
   table overflow, fixed in v2.

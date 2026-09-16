@@ -1,6 +1,7 @@
 # Case 1 — Salam Kissan 2026: evidence so far
 
-Working file, started 16 September 2026. **Status: evidence gathering.** No insight or idea is decided yet. Only retrieved or
+Working file, started 16 September 2026. **Status: evidence gathered.** The Big Idea (`big_idea.md`), the concept (`the_concept.md`)
+and the deck (`workspace/out/Sarsabz_case1_deck-v2.pptx`) are built from it. Gaps are listed in §6, client questions in §7. Only retrieved or
 clearly-labelled reported facts are recorded; unverified claims are marked as such and not used.
 
 **Retrieved** = read by us from the source. **Reported** = from a search summary or secondary page. Marked where it matters.

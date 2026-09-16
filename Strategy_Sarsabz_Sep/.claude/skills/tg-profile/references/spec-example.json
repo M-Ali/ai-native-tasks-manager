@@ -1,0 +1,54 @@
+{
+  "out": "../out/TG_card.pptx",
+  "name": "Rashid - wheat and rice grower",
+  "subtitle": "Age 42  ·  30 acres, Sahiwal district, Punjab  ·  buys 12-15 bags a season",
+  "tag": "PROVISIONAL",
+
+  "household": [
+    "Married, three children; his eldest helps in the field and handles his phone.",
+    "Owns his land; rents a tractor at sowing.",
+    "Source of the definition: brief p23 (male farmers 25-55, 12-150+ acres)."
+  ],
+
+  "mindset": [
+    "Decides by what he has seen work on land like his, not by what a brand claims.",
+    "Fears waste more than failure: a season lost cannot be recovered."
+  ],
+
+  "pain_points": [
+    {"title": "Will it lock up if I mix it",
+     "detail": "Asks whether NP mixed with zinc urea or potash will react and waste the bag.",
+     "evidence": "220 of 1,433 comments (15.4%), the largest theme; verbatim in comments/analysis.md §3"},
+    {"title": "Every expert says something different",
+     "detail": "Creators contradict each other and the company's own field practice.",
+     "evidence": "analysis.md §5, verbatim quoted with translation"}
+  ],
+
+  "triggers": [
+    {"title": "The irrigation calendar",
+     "detail": "Buys against sowing and first irrigation, not against a campaign date.",
+     "evidence": "163 timing and dose comments; brief p6 Rabi Oct-Mar, Kharif Apr-Sep"}
+  ],
+
+  "interests": {
+    "title": "Interests and affinity index",
+    "items": [],
+    "gap": "No interest-affinity dataset covers this audience. The nearest export describes an urban news site's web visitors, so it is not used here. To fill this: a rural media or U&A study from the client.",
+    "source": ""
+  },
+
+  "media": {
+    "title": "Where to reach him",
+    "items": [
+      {"channel": "YouTube", "note": "watches agronomy creators and comments there; asks strangers what the maker should tell him"},
+      {"channel": "Dealer counter", "note": "the last conversation before the bag is bought"}
+    ],
+    "source": ""
+  },
+
+  "conclusion": "He is not waiting to be persuaded that the product works. He is waiting to be shown how to use it without losing a season.",
+  "sources": [
+    "Fatima Creative Marketing Brief 2026, pp.6, 23",
+    "1,433 farmer comments, comments/analysis.md (16 Sep 2026)"
+  ]
+}

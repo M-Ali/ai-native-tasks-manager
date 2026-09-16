@@ -5,7 +5,7 @@
 set -e
 cd "$(dirname "$0")"
 LIB="D:/Personal/Skills_aug2026/skills-main/skills"
-for s in brief-to-plan competitor-comms-audit category-creative-scan campaign-concept communication-strategy comment-analysis; do
+for s in brief-to-plan competitor-comms-audit category-creative-scan campaign-concept communication-strategy comment-analysis tg-profile; do
   rm -rf "$HOME/.claude/skills/$s"
   cp -r "$s" "$HOME/.claude/skills/"
   echo "synced $s -> ~/.claude/skills/"
