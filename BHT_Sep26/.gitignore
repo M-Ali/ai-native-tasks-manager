@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+workspace/out/
+data/clients/*
+!data/clients/README.md
